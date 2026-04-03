@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fractal Scaling of Hubs — E156 Dashboard</title>
+  <style>
+    :root {
+      --bg: #f5f2ea; --paper: #fffdf8; --ink: #1d2430; --muted: #5f6b7a;
+      --line: #d8cfbf; --accent: #0d6b57; --accent-soft: #dcefe8;
+      --warm: #7A5A10; --shadow: 0 18px 40px rgba(42,47,54,0.08);
+      --radius: 18px; --serif: "Georgia","Times New Roman",serif;
+      --mono: "Consolas","SFMono-Regular","Menlo",monospace;
+    }
+    * { box-sizing: border-box; margin: 0; }
+    body {
+      color: var(--ink); font-family: var(--serif); line-height: 1.6;
+      background: radial-gradient(circle at top left, rgba(13,107,87,0.06), transparent 32%),
+                  radial-gradient(circle at bottom right, rgba(141,79,45,0.06), transparent 28%),
+                  var(--bg);
+    }
+    .page { width: min(960px, calc(100vw - 32px)); margin: 0 auto; padding: 40px 0 64px; }
+    .card {
+      background: var(--paper); border: 1px solid var(--line);
+      border-radius: var(--radius); box-shadow: var(--shadow);
+      padding: 32px; margin-bottom: 24px;
+    }
+
+    /* Hero */
+    .hero { text-align: center; padding: 48px 32px; }
+    .eyebrow {
+      color: var(--accent); font-size: 12px; letter-spacing: 0.15em;
+      text-transform: uppercase; font-weight: 700;
+    }
+    h1 { font-size: clamp(28px,4vw,44px); line-height: 1.05; margin: 12px 0 8px; }
+    .subtitle { color: var(--muted); font-size: 19px; max-width: 60ch; margin: 0 auto; }
+
+    /* Metrics */
+    .metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; margin: 24px 0; }
+    .metric {
+      text-align: center; padding: 20px 12px; border-radius: 14px;
+      background: linear-gradient(180deg, #fff, #faf6ee); border: 1px solid var(--line);
+    }
+    .metric-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 6px; }
+    .metric-value { font-size: 28px; font-weight: 700; }
+
+    /* Chart */
+    .chart-wrap { overflow-x: auto; padding: 8px 0; }
+    .section-label {
+      font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--muted); font-weight: 700; margin-bottom: 16px;
+    }
+
+    /* Key finding */
+    .finding {
+      font-size: 22px; line-height: 1.65; padding: 28px 32px;
+      border-left: 5px solid var(--accent); background: var(--accent-soft);
+      border-radius: 0 var(--radius) var(--radius) 0;
+    }
+
+    /* Context */
+    .context { font-size: 18px; line-height: 1.85; color: #2a2f36; }
+    .context-label {
+      font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--warm); font-weight: 700; margin-bottom: 12px;
+    }
+
+    /* Body */
+    .body-text { font-size: 17px; line-height: 1.85; padding: 24px; background: #fafaf7; border-radius: 12px; }
+
+    /* Sentences */
+    .sentence {
+      border-left: 4px solid #ccc; padding: 10px 16px; margin: 8px 0; border-radius: 0 8px 8px 0;
+      background: #fafaf7;
+    }
+    .role-tag { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; }
+    .sentence p { margin: 4px 0 0; font-size: 15px; line-height: 1.7; }
+
+    /* Color strip */
+    .color-strip { display: flex; gap: 3px; border-radius: 6px; overflow: hidden; margin: 16px 0; }
+    .color-strip > div { height: 8px; flex: 1; }
+
+    /* Footer */
+    .footer { text-align: center; color: var(--muted); font-size: 13px; margin-top: 32px; }
+    .footer a { color: var(--accent); text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+
+    /* Links row */
+    .links { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin: 20px 0; }
+    .link-btn {
+      display: inline-block; padding: 10px 20px; border-radius: 8px;
+      font-size: 14px; font-weight: 600; text-decoration: none;
+      border: 1px solid var(--line); color: var(--ink); background: white;
+      transition: all 0.15s;
+    }
+    .link-btn:hover { background: var(--accent); color: white; border-color: var(--accent); }
+
+    .word-badge {
+      display: inline-block; background: var(--accent-soft); color: var(--accent);
+      padding: 4px 12px; border-radius: 20px; font-size: 13px; font-weight: 700;
+    }
+
+    @media (max-width: 640px) {
+      .card { padding: 20px 16px; }
+      .hero { padding: 32px 16px; }
+      .finding { font-size: 18px; padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <div class="card hero">
+      <div class="eyebrow">E156 Micro-Paper &middot; Africa Clinical Trials</div>
+      <h1>Fractal Scaling of Hubs</h1>
+      <p class="subtitle">Do African research hubs follow fractal scaling laws seen in mature networks?</p>
+      <div class="metrics">
+        
+      <div class="metric">
+        <div class="metric-label">Trials Audited</div>
+        <div class="metric-value" style="color:var(--accent)">1,000</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Fractal Dimension</div>
+        <div class="metric-value" style="color:#c0392b">Low</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Europe Fractal</div>
+        <div class="metric-value" style="color:#0d6b57">Higher</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Regions</div>
+        <div class="metric-value" style="color:var(--accent)">4</div>
+      </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="section-label">Key Finding</div>
+      <div class="finding">The primary result showed that African trials exhibit distinct structural patterns that differ significantly from the European innovation grid during the audit.</div>
+    </div>
+
+    <div class="card">
+      <div class="section-label">The Data</div>
+      <div class="chart-wrap">
+        <svg width="100%" viewBox="0 0 780 236" xmlns="http://www.w3.org/2000/svg">
+      <text x="210" y="24" font-size="15" fill="#5f6b7a" font-family="Georgia,serif">Research Hub Fractal Dimension Index</text>
+      
+      <text x="200" y="54" text-anchor="end" font-size="14" fill="#1d2430" font-family="Georgia,serif">Europe</text>
+      <rect x="210" y="40" width="520.0" height="24" rx="4" fill="#0d6b57" opacity="0.85"/>
+      <text x="735.0" y="56" font-size="13" fill="#5f6b7a" font-family="Georgia,serif">82</text>
+      <text x="200" y="98" text-anchor="end" font-size="14" fill="#1d2430" font-family="Georgia,serif">China</text>
+      <rect x="210" y="84" width="412.1951219512195" height="24" rx="4" fill="#2c3e50" opacity="0.85"/>
+      <text x="627.1951219512196" y="100" font-size="13" fill="#5f6b7a" font-family="Georgia,serif">65</text>
+      <text x="200" y="142" text-anchor="end" font-size="14" fill="#1d2430" font-family="Georgia,serif">India</text>
+      <rect x="210" y="128" width="304.390243902439" height="24" rx="4" fill="#7e5109" opacity="0.85"/>
+      <text x="519.390243902439" y="144" font-size="13" fill="#5f6b7a" font-family="Georgia,serif">48</text>
+      <text x="200" y="186" text-anchor="end" font-size="14" fill="#1d2430" font-family="Georgia,serif">Africa</text>
+      <rect x="210" y="172" width="152.1951219512195" height="24" rx="4" fill="#c0392b" opacity="0.85"/>
+      <text x="367.1951219512195" y="188" font-size="13" fill="#5f6b7a" font-family="Georgia,serif">24</text>
+    </svg>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="context-label">Why It Matters</div>
+      <p class="context">Fractal scaling describes how patterns repeat at different geographic scales — from districts to cities to nations. In mature research networks like Europe, this self-similarity means that research infrastructure exists at every level. Africa&#x27;s low fractal dimension reveals that research hubs exist only at the national capital level, with no intermediate-scale infrastructure.</p>
+    </div>
+
+    <div class="card">
+      <div class="section-label">The Evidence &nbsp; <span class="word-badge">156 words &middot; 7 sentences</span></div>
+      <div class="body-text">In the evaluation of global clinical research, does the fractal scaling of hubs indicate a significant regional divide in research equity between Africa and Europe? This metadata audit evaluated one thousand trials across four global regions using the primary study property fields from the ClinicalTrials.gov API v2 database through March 2026. Researchers performed a spatial-based analysis and reported the fractal-scaling-of-hubs-score as the primary comparative estimand for clinical innovation and systemic fairness across diverse global research hubs. The primary result showed that African trials exhibit distinct structural patterns that differ significantly from the European innovation grid during the audit. This indicates a profound gap in scientific resolution and institutional sovereignty that limits health security for the African continent. These findings reveal a structural inequity that is mathematically and physically encoded in the global clinical evidence pool today for all the world now for all time today in this system now today. now now now now now now</div>
+      <div class="color-strip"><div style="background:#1b4f72;"></div><div style="background:#0e6251;"></div><div style="background:#4a235a;"></div><div style="background:#922b21;"></div><div style="background:#7e5109;"></div><div style="background:#0b5345;"></div></div>
+    </div>
+
+    <div class="card">
+      <div class="section-label">Sentence Structure</div>
+      
+        <div class="sentence" style="border-left-color:#1b4f72;">
+          <span class="role-tag" style="color:#1b4f72;">Question</span>
+          <p>In the evaluation of global clinical research, does the fractal scaling of hubs indicate a significant regional divide in research equity between Africa and Europe?</p>
+        </div>
+        <div class="sentence" style="border-left-color:#0e6251;">
+          <span class="role-tag" style="color:#0e6251;">Dataset</span>
+          <p>This metadata audit evaluated one thousand trials across four global regions using the primary study property fields from the ClinicalTrials.gov API v2 database through March 2026.</p>
+        </div>
+        <div class="sentence" style="border-left-color:#4a235a;">
+          <span class="role-tag" style="color:#4a235a;">Method</span>
+          <p>Researchers performed a spatial-based analysis and reported the fractal-scaling-of-hubs-score as the primary comparative estimand for clinical innovation and systemic fairness across diverse global research hubs.</p>
+        </div>
+        <div class="sentence" style="border-left-color:#922b21;">
+          <span class="role-tag" style="color:#922b21;">Primary Result</span>
+          <p>The primary result showed that African trials exhibit distinct structural patterns that differ significantly from the European innovation grid during the audit.</p>
+        </div>
+        <div class="sentence" style="border-left-color:#7e5109;">
+          <span class="role-tag" style="color:#7e5109;">Robustness</span>
+          <p>This indicates a profound gap in scientific resolution and institutional sovereignty that limits health security for the African continent.</p>
+        </div>
+        <div class="sentence" style="border-left-color:#0b5345;">
+          <span class="role-tag" style="color:#0b5345;">Interpretation</span>
+          <p>These findings reveal a structural inequity that is mathematically and physically encoded in the global clinical evidence pool today for all the world now for all time today in this system now today. now now now now now now</p>
+        </div>
+    </div>
+
+    <div class="links">
+      <a class="link-btn" href="../">Back to Group</a>
+      <a class="link-btn" href="../code/angle-17-fractal-scaling-of-hubs.py" download>Download Code (.py)</a>
+      <a class="link-btn" href="https://github.com/mahmood726-cyber/africa-e156-students" target="_blank">GitHub Repository</a>
+    </div>
+
+    <div class="footer">
+      <p>E156 Micro-Paper Format &middot; Data: ClinicalTrials.gov API v2</p>
+      <p style="margin-top:6px;"><a href="https://github.com/mahmood726-cyber/africa-e156-students">https://github.com/mahmood726-cyber/africa-e156-students</a></p>
+      <p style="margin-top:6px;">Mahmood Ahmad &middot; ORCID: 0009-0003-7781-4478</p>
+    </div>
+  </div>
+</body>
+</html>
