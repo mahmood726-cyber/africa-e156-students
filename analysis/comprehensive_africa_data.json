@@ -1,0 +1,337 @@
+{
+  "retrieved": "2026-04-03T19:36:35.961069",
+  "source": "ClinicalTrials.gov API v2",
+  "totals": {
+    "Africa": 23873,
+    "Europe": 142126,
+    "United States": 190644,
+    "China": 49763
+  },
+  "conditions": {
+    "HIV": {
+      "Africa": 1793,
+      "Europe": 1451,
+      "United States": 5071,
+      "China": 181
+    },
+    "malaria": {
+      "Africa": 531,
+      "Europe": 146,
+      "United States": 125,
+      "China": 7
+    },
+    "tuberculosis": {
+      "Africa": 489,
+      "Europe": 230,
+      "United States": 174,
+      "China": 118
+    },
+    "cancer": {
+      "Africa": 2182,
+      "Europe": 28724,
+      "United States": 49054,
+      "China": 19359
+    },
+    "cardiovascular": {
+      "Africa": 1426,
+      "Europe": 19386,
+      "United States": 19566,
+      "China": 5642
+    },
+    "diabetes": {
+      "Africa": 760,
+      "Europe": 5719,
+      "United States": 8095,
+      "China": 1558
+    },
+    "hypertension": {
+      "Africa": 497,
+      "Europe": 2508,
+      "United States": 3770,
+      "China": 935
+    },
+    "mental health": {
+      "Africa": 174,
+      "Europe": 1494,
+      "United States": 2996,
+      "China": 154
+    },
+    "stroke": {
+      "Africa": 232,
+      "Europe": 2788,
+      "United States": 2409,
+      "China": 1277
+    },
+    "maternal": {
+      "Africa": 444,
+      "Europe": 586,
+      "United States": 1014,
+      "China": 150
+    },
+    "sickle cell": {
+      "Africa": 101,
+      "Europe": 237,
+      "United States": 758,
+      "China": 7
+    },
+    "heart failure": {
+      "Africa": 167,
+      "Europe": 2527,
+      "United States": 2499,
+      "China": 436
+    },
+    "pneumonia": {
+      "Africa": 650,
+      "Europe": 3264,
+      "United States": 2763,
+      "China": 734
+    },
+    "diarrhea": {
+      "Africa": 106,
+      "Europe": 192,
+      "United States": 350,
+      "China": 70
+    },
+    "neonatal": {
+      "Africa": 1252,
+      "Europe": 8085,
+      "United States": 10923,
+      "China": 1422
+    },
+    "neglected tropical diseases": {
+      "Africa": 12,
+      "Europe": 0,
+      "United States": 4,
+      "China": 0
+    },
+    "epilepsy": {
+      "Africa": 73,
+      "Europe": 727,
+      "United States": 1017,
+      "China": 147
+    },
+    "kidney": {
+      "Africa": 629,
+      "Europe": 4864,
+      "United States": 6276,
+      "China": 1604
+    },
+    "liver": {
+      "Africa": 545,
+      "Europe": 3797,
+      "United States": 4547,
+      "China": 2865
+    },
+    "respiratory": {
+      "Africa": 1886,
+      "Europe": 15924,
+      "United States": 17385,
+      "China": 5158
+    }
+  },
+  "phases": {
+    "EARLY_PHASE1": {
+      "Africa": -1,
+      "Europe": -1,
+      "United States": -1,
+      "China": -1
+    },
+    "PHASE1": {
+      "Africa": -1,
+      "Europe": -1,
+      "United States": -1,
+      "China": -1
+    },
+    "PHASE2": {
+      "Africa": -1,
+      "Europe": -1,
+      "United States": -1,
+      "China": -1
+    },
+    "PHASE3": {
+      "Africa": -1,
+      "Europe": -1,
+      "United States": -1,
+      "China": -1
+    },
+    "PHASE4": {
+      "Africa": -1,
+      "Europe": -1,
+      "United States": -1,
+      "China": -1
+    }
+  },
+  "statuses": {
+    "RECRUITING": {
+      "Africa": 2313,
+      "Europe": 18254,
+      "United States": 22288,
+      "China": 11186
+    },
+    "COMPLETED": {
+      "Africa": 13918,
+      "Europe": 80632,
+      "United States": 116827,
+      "China": 14879
+    },
+    "TERMINATED": {
+      "Africa": 522,
+      "Europe": 9358,
+      "United States": 19822,
+      "China": 988
+    },
+    "WITHDRAWN": {
+      "Africa": 144,
+      "Europe": 1826,
+      "United States": 6515,
+      "China": 417
+    },
+    "NOT_YET_RECRUITING": {
+      "Africa": 1020,
+      "Europe": 3407,
+      "United States": 3058,
+      "China": 3208
+    },
+    "ACTIVE_NOT_RECRUITING": {
+      "Africa": 948,
+      "Europe": 5932,
+      "United States": 10407,
+      "China": 2301
+    }
+  },
+  "sponsors": {
+    "INDUSTRY": {
+      "Africa": -1,
+      "Europe": -1,
+      "United States": -1,
+      "China": -1
+    },
+    "NIH": {
+      "Africa": -1,
+      "Europe": -1,
+      "United States": -1,
+      "China": -1
+    },
+    "FED": {
+      "Africa": -1,
+      "Europe": -1,
+      "United States": -1,
+      "China": -1
+    },
+    "OTHER": {
+      "Africa": -1,
+      "Europe": -1,
+      "United States": -1,
+      "China": -1
+    }
+  },
+  "designs": {
+    "adaptive": {
+      "Africa": 140,
+      "United States": 2986
+    },
+    "cluster": {
+      "Africa": 452,
+      "United States": 1144
+    },
+    "platform": {
+      "Africa": 152,
+      "United States": 1385
+    },
+    "bayesian": {
+      "Africa": 20,
+      "United States": 494
+    },
+    "placebo": {
+      "Africa": 3324,
+      "United States": 33931
+    },
+    "double-blind": {
+      "Africa": 2453,
+      "United States": 21421
+    },
+    "open-label": {
+      "Africa": 1545,
+      "United States": 23963
+    },
+    "biomarker": {
+      "Africa": 1149,
+      "United States": 15494
+    },
+    "immunotherapy": {
+      "Africa": 92,
+      "United States": 3803
+    },
+    "genomic": {
+      "Africa": 189,
+      "United States": 2718
+    },
+    "digital": {
+      "Africa": 268,
+      "United States": 4540
+    },
+    "community": {
+      "Africa": 203,
+      "United States": 1969
+    }
+  },
+  "temporal": {
+    "2000-2005": {
+      "Africa": 678,
+      "Europe": 6583,
+      "United States": 16409,
+      "China": 442
+    },
+    "2006-2010": {
+      "Africa": 1488,
+      "Europe": 18393,
+      "United States": 31868,
+      "China": 2174
+    },
+    "2011-2015": {
+      "Africa": 2538,
+      "Europe": 28905,
+      "United States": 37382,
+      "China": 5570
+    },
+    "2016-2020": {
+      "Africa": 6935,
+      "Europe": 41035,
+      "United States": 46595,
+      "China": 13533
+    },
+    "2021-2025": {
+      "Africa": 11599,
+      "Europe": 43609,
+      "United States": 48234,
+      "China": 26382
+    }
+  },
+  "africa_conditions_detailed": {
+    "HIV": 1793,
+    "malaria": 531,
+    "tuberculosis": 489,
+    "cancer": 2182,
+    "cardiovascular": 1426,
+    "diabetes": 760,
+    "hypertension": 497,
+    "maternal mortality": 40,
+    "sickle cell disease": 101,
+    "heart failure": 167,
+    "stroke": 232,
+    "pneumonia": 650,
+    "diarrheal disease": 10,
+    "neglected tropical diseases": 12,
+    "mental health": 174,
+    "epilepsy": 73,
+    "kidney disease": 542,
+    "respiratory infection": 903,
+    "hepatitis": 218,
+    "meningitis": 37,
+    "rheumatic heart disease": 23,
+    "peripartum cardiomyopathy": 4,
+    "schistosomiasis": 50,
+    "dengue": 2,
+    "Ebola": 21
+  }
+}
