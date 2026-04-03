@@ -1,0 +1,95 @@
+{
+  "bootstrap": {
+    "gini": {
+      "mean": 0.8091,
+      "ci": [
+        0.6062,
+        0.8969
+      ]
+    },
+    "shannon": {
+      "mean": 3.2811,
+      "ci": [
+        2.3274,
+        4.7995
+      ]
+    },
+    "hhi": {
+      "mean": 0.2309,
+      "ci": [
+        0.0484,
+        0.4639
+      ]
+    }
+  },
+  "theil": {
+    "T": 2.0283,
+    "L": 2.069
+  },
+  "atkinson": {
+    "e05": 0.6644,
+    "e10": 0.8785,
+    "e20": 0.9788
+  },
+  "divergence": {
+    "kl_uniform": 2.9263,
+    "js_uniform": 0.5189,
+    "js_population": 0.361
+  },
+  "spearman": {
+    "pop_trials": 0.7235,
+    "pop_per_million": -0.0112
+  },
+  "kendall": {
+    "pop_trials": 0.5332
+  },
+  "mann_whitney": {
+    "U": 0.0,
+    "z": -4.899,
+    "significant": true
+  },
+  "ks_test": {
+    "D": 0.0623,
+    "critical": 0.1868,
+    "reject": false
+  },
+  "powerlaw": {
+    "alpha": 1.402,
+    "se": 0.064
+  },
+  "bayesian": {
+    "mean": 0.054643,
+    "mode": 0.054641,
+    "cri": [
+      0.053943,
+      0.055343
+    ]
+  },
+  "jackknife": {
+    "gini_se": 0.1102,
+    "shannon_se": 1.1343
+  },
+  "permutation": {
+    "north_vs_rest_diff": 1908.4375,
+    "p_value": 0.0372
+  },
+  "timeseries": {
+    "africa_linear": {
+      "intercept": -810.2,
+      "slope": 2728.9,
+      "r2": 0.8892
+    },
+    "africa_quadratic": {
+      "a": 654.9,
+      "b": 1960.5,
+      "c": 570.8,
+      "r2": 0.0403
+    },
+    "us_linear": {
+      "intercept": 20422.2,
+      "slope": 7837.7,
+      "r2": 0.9242
+    }
+  },
+  "concentration_index": 0.7405
+}
