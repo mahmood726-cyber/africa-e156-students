@@ -1,3 +1,4 @@
+import os
 import json
 import requests
 import time
@@ -6,6 +7,8 @@ from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 from pathlib import Path
+
+os.makedirs(Path(__file__).parent / "data", exist_ok=True)
 
 BASE_URL = "https://clinicaltrials.gov/api/v2/studies"
 REGIONS = ["Africa", "Europe", "China", "India", "South America"]
@@ -75,7 +78,7 @@ def run_cluster_audit():
     }
     
     print(json.dumps(results, indent=2))
-    with open("C:/AfricaRCT/data/high_dimensional_cluster_data.json", "w") as f:
+    with open(str(Path(__file__).parent / "data" / "high_dimensional_cluster_data.json"), "w") as f:
         json.dump(results, f, indent=2)
 
 if __name__ == "__main__":

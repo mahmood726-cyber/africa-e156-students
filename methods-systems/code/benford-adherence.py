@@ -3,6 +3,8 @@ import os
 import math
 from pathlib import Path
 
+os.makedirs(Path(__file__).parent / "data", exist_ok=True)
+
 # -- Advanced Stats Functions --
 
 def calculate_gini(list_of_values):
@@ -33,10 +35,10 @@ def calculate_hhi(list_of_counts):
     return hhi
 
 # -- Data Loading --
-DATA_DIR = Path("C:/AfricaRCT/data")
+DATA_DIR = Path(__file__).parent / "data"
 AFRICA_CACHE = DATA_DIR / "collected_data.json"
 COMP_CACHE = DATA_DIR / "comparison_data_v2.json"
-OUTPUT_HTML = Path("C:/AfricaRCT/advanced_stats_hidden_realities.html")
+OUTPUT_HTML = Path(__file__).parent / "output.html"
 
 def run_analysis():
     print("Initiating Advanced Statistical Audit...")

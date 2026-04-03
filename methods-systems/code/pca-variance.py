@@ -1,9 +1,12 @@
+import os
 import json
 import requests
 import time
 import math
 import numpy as np
 from pathlib import Path
+
+os.makedirs(Path(__file__).parent / "data", exist_ok=True)
 
 BASE_URL = "https://clinicaltrials.gov/api/v2/studies"
 REGIONS = ["Africa", "Europe", "China", "India"]
@@ -97,7 +100,7 @@ def run_topology_audit():
     for reg in REGIONS:
         print(f"{reg} - Benford MAD: {results[reg]['benford_mad']}, Pareto: {results[reg]['pareto_ratio']}")
 
-    with open("C:/AfricaRCT/data/information_topology_data.json", "w") as f:
+    with open(str(Path(__file__).parent / "data" / "information_topology_data.json"), "w") as f:
         json.dump(results, f, indent=2)
 
 if __name__ == "__main__":

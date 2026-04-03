@@ -1,6 +1,10 @@
+import os
+from pathlib import Path
 import json
 import requests
 import time
+
+os.makedirs(Path(__file__).parent / "data", exist_ok=True)
 
 BASE_URL = "https://clinicaltrials.gov/api/v2/studies"
 REGIONS = ["Africa", "Europe", "China", "India"]
@@ -46,5 +50,5 @@ def analyze_topology(location, count=200):
 results = {reg: analyze_topology(reg) for reg in REGIONS}
 print(json.dumps(results, indent=2))
 
-with open("C:/AfricaRCT/data/topology_data.json", "w") as f:
+with open(str(Path(__file__).parent / "data" / "topology_data.json"), "w") as f:
     json.dump(results, f, indent=2)

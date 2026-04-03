@@ -1,4 +1,8 @@
-﻿import json
+import os
+from pathlib import Path
+
+os.makedirs(Path(__file__).parent / "data", exist_ok=True)
+import json
 import requests
 import time
 
@@ -51,5 +55,5 @@ results = {
 }
 print(json.dumps(results, indent=2))
 
-with open("C:/AfricaRCT/data/sharing_sovereignty_data.json", "w") as f:
+with open(str(Path(__file__).parent / "data" / "sharing_sovereignty_data.json"), "w") as f:
     json.dump(results, f, indent=2)

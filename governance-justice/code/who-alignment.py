@@ -1,11 +1,14 @@
-﻿import json
+import os
+import json
 import requests
 import time
 from pathlib import Path
 
+os.makedirs(Path(__file__).parent / "data", exist_ok=True)
+
 # WHO GHO API Base
 GHO_URL = "https://ghoapi.azureedge.net/api"
-DATA_DIR = Path("C:/AfricaRCT/data")
+DATA_DIR = Path(__file__).parent / "data"
 
 # Top Hubs
 AFRICA_ISO = ["EGY", "ZAF", "NGA", "KEN", "UGA"]
