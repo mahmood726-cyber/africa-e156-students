@@ -1,0 +1,745 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Africa RCT Country Analysis — ClinicalTrials.gov</title>
+  <style>
+    :root {
+      --bg: #f5f2ea; --paper: #fffdf8; --ink: #1d2430; --muted: #5f6b7a;
+      --line: #d8cfbf; --accent: #0d6b57; --accent-soft: #dcefe8;
+      --warm: #7A5A10; --shadow: 0 18px 40px rgba(42,47,54,0.08);
+      --radius: 18px; --serif: "Georgia","Times New Roman",serif;
+      --mono: "Consolas","SFMono-Regular","Menlo",monospace;
+    }
+    * { box-sizing: border-box; margin: 0; }
+    body {
+      color: var(--ink); font-family: var(--serif); line-height: 1.6;
+      background: radial-gradient(circle at top left, rgba(13,107,87,0.06), transparent 32%),
+                  radial-gradient(circle at bottom right, rgba(141,79,45,0.06), transparent 28%),
+                  var(--bg);
+    }
+    .page { width: min(1080px, calc(100vw - 32px)); margin: 0 auto; padding: 40px 0 64px; }
+    .card {
+      background: var(--paper); border: 1px solid var(--line);
+      border-radius: var(--radius); box-shadow: var(--shadow);
+      padding: 32px; margin-bottom: 24px;
+    }
+    .hero { text-align: center; padding: 48px 32px; }
+    .eyebrow { color: var(--accent); font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700; }
+    h1 { font-size: clamp(28px,4vw,44px); line-height: 1.05; margin: 12px 0 8px; }
+    .subtitle { color: var(--muted); font-size: 19px; max-width: 65ch; margin: 0 auto; }
+    .metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin: 24px 0; }
+    .metric { text-align: center; padding: 20px 12px; border-radius: 14px; background: linear-gradient(180deg, #fff, #faf6ee); border: 1px solid var(--line); }
+    .metric-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 6px; }
+    .metric-value { font-size: 28px; font-weight: 700; color: var(--accent); }
+    .section-label { font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); font-weight: 700; margin-bottom: 16px; }
+    .chart-wrap { overflow-x: auto; }
+    .context { font-size: 17px; line-height: 1.8; color: #2a2f36; }
+
+    /* Table */
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th { text-align: left; padding: 10px 12px; border-bottom: 2px solid var(--line); color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
+    td { padding: 8px 12px; border-bottom: 1px solid var(--line); }
+    .num { text-align: right; font-family: var(--mono); }
+    tr.zero td { color: #bbb; }
+    tr:hover { background: var(--accent-soft); }
+
+    .finding { font-size: 20px; line-height: 1.65; padding: 24px 28px; border-left: 5px solid var(--accent); background: var(--accent-soft); border-radius: 0 var(--radius) var(--radius) 0; }
+    .footer { text-align: center; color: var(--muted); font-size: 13px; margin-top: 32px; }
+    .footer a { color: var(--accent); text-decoration: none; }
+    @media (max-width: 640px) {
+      .card { padding: 20px 16px; }
+      table { font-size: 12px; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <div class="card hero">
+    <div class="eyebrow">ClinicalTrials.gov API v2 &middot; Live Analysis</div>
+    <h1>Clinical Trials in Africa<br>Country-by-Country</h1>
+    <p class="subtitle">Interventional trial counts across all 54 African nations, ranked by volume and adjusted for population.</p>
+    <div class="metrics">
+      <div class="metric"><div class="metric-label">Total Trials</div><div class="metric-value">22,110</div></div>
+      <div class="metric"><div class="metric-label">Countries with Trials</div><div class="metric-value">53/54</div></div>
+      <div class="metric"><div class="metric-label">Africa Population</div><div class="metric-value">1444M</div></div>
+      <div class="metric"><div class="metric-label">Trials per Million</div><div class="metric-value">15.3</div></div>
+      <div class="metric"><div class="metric-label">Countries Zero Trials</div><div class="metric-value" style="color:#c0392b">1</div></div>
+      <div class="metric"><div class="metric-label">Data Retrieved</div><div class="metric-value" style="font-size:16px">2026-04-03 14:31</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-label">Key Finding</div>
+    <div class="finding">
+      Egypt leads Africa with 11,752 registered interventional trials,
+      followed by South Africa (3,654) and Uganda (809).
+      Together, these three countries account for 73% of all African clinical trials
+      while representing only 15% of the continent's population.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-label">Trial Volume by Country (Top 30)</div>
+    <div class="chart-wrap">
+      <svg width="100%" viewBox="0 0 780 1040" xmlns="http://www.w3.org/2000/svg">
+        <text x="205" y="30" font-size="14" fill="#5f6b7a" font-family="Georgia,serif">Registered Interventional Trials</text>
+        
+      <text x="195" y="62" text-anchor="end" font-size="12" fill="#1d2430" font-family="Georgia,serif">Egypt</text>
+      <rect x="205" y="50" width="480.0" height="20" rx="3" fill="#0d6b57" opacity="0.85"/>
+      <text x="690.0" y="63" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">11,752</text>
+      <text x="195" y="94" text-anchor="end" font-size="12" fill="#1d2430" font-family="Georgia,serif">South Africa</text>
+      <rect x="205" y="82" width="149.24438393464942" height="20" rx="3" fill="#0d6b57" opacity="0.85"/>
+      <text x="359.2443839346494" y="95" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">3,654</text>
+      <text x="195" y="126" text-anchor="end" font-size="12" fill="#1d2430" font-family="Georgia,serif">Uganda</text>
+      <rect x="205" y="114" width="33.042886317222596" height="20" rx="3" fill="#0d6b57" opacity="0.85"/>
+      <text x="243.0428863172226" y="127" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">809</text>
+      <text x="195" y="158" text-anchor="end" font-size="12" fill="#1d2430" font-family="Georgia,serif">Kenya</text>
+      <rect x="205" y="146" width="32.18515997277059" height="20" rx="3" fill="#0d6b57" opacity="0.85"/>
+      <text x="242.18515997277058" y="159" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">788</text>
+      <text x="195" y="190" text-anchor="end" font-size="12" fill="#1d2430" font-family="Georgia,serif">Tunisia</text>
+      <rect x="205" y="178" width="22.05582028590878" height="20" rx="3" fill="#0d6b57" opacity="0.85"/>
+      <text x="232.0558202859088" y="191" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">540</text>
+      <text x="195" y="222" text-anchor="end" font-size="12" fill="#1d2430" font-family="Georgia,serif">Tanzania</text>
+      <rect x="205" y="210" width="18.788291354663034" height="20" rx="3" fill="#2c3e50" opacity="0.85"/>
+      <text x="228.78829135466304" y="223" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">460</text>
+      <text x="195" y="254" text-anchor="end" font-size="12" fill="#1d2430" font-family="Georgia,serif">Nigeria</text>
+      <rect x="205" y="242" width="15.479918311776718" height="20" rx="3" fill="#2c3e50" opacity="0.85"/>
+      <text x="225.47991831177671" y="255" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">379</text>
+      <text x="195" y="286" text-anchor="end" font-size="12" fill="#1d2430" font-family="Georgia,serif">Malawi</text>
+      <rect x="205" y="274" width="14.050374404356706" height="20" rx="3" fill="#2c3e50" opacity="0.85"/>
+      <text x="224.05037440435672" y="287" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">344</text>
+      <text x="195" y="318" text-anchor="end" font-size="12" fill="#1d2430" font-family="Georgia,serif">Zambia</text>
+      <rect x="205" y="306" width="12.539142273655548" height="20" rx="3" fill="#2c3e50" opacity="0.85"/>
+      <text x="222.53914227365556" y="319" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">307</text>
+      <text x="195" y="350" text-anchor="end" font-size="12" fill="#1d2430" font-family="Georgia,serif">Ethiopia</text>
+      <rect x="205" y="338" width="12.334921715452689" height="20" rx="3" fill="#2c3e50" opacity="0.85"/>
+      <text x="222.33492171545268" y="351" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">302</text>
+      <text x="195" y="382" text-anchor="end" font-size="12" fill="#1d2430" font-family="Georgia,serif">Ghana</text>
+      <rect x="205" y="370" width="10.660313138189245" height="20" rx="3" fill="#2c3e50" opacity="0.85"/>
+      <text x="220.66031313818925" y="383" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">261</text>
+      <text x="195" y="414" text-anchor="end" font-size="12" fill="#1d2430" font-family="Georgia,serif">Burkina Faso</text>
+      <rect x="205" y="402" width="8.78148400272294" height="20" rx="3" fill="#2c3e50" opacity="0.85"/>
+      <text x="218.78148400272295" y="415" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">215</text>
+      <text x="195" y="446" text-anchor="end" font-size="12" fill="#1d2430" font-family="Georgia,serif">Zimbabwe</text>
+      <rect x="205" y="434" width="8.209666439754935" height="20" rx="3" fill="#2c3e50" opacity="0.85"/>
+      <text x="218.20966643975493" y="447" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">201</text>
+      <text x="195" y="478" text-anchor="end" font-size="12" fill="#1d2430" font-family="Georgia,serif">Mali</text>
+      <rect x="205" y="466" width="7.474472430224643" height="20" rx="3" fill="#2c3e50" opacity="0.85"/>
+      <text x="217.47447243022464" y="479" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">183</text>
+      <text x="195" y="510" text-anchor="end" font-size="12" fill="#1d2430" font-family="Georgia,serif">Morocco</text>
+      <rect x="205" y="498" width="6.616746085772634" height="20" rx="3" fill="#2c3e50" opacity="0.85"/>
+      <text x="216.61674608577263" y="511" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">162</text>
+      <text x="195" y="542" text-anchor="end" font-size="12" fill="#1d2430" font-family="Georgia,serif">Democratic Republic of Congo</text>
+      <rect x="205" y="530" width="6.535057862491491" height="20" rx="3" fill="#2c3e50" opacity="0.85"/>
+      <text x="216.5350578624915" y="543" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">160</text>
+      <text x="195" y="574" text-anchor="end" font-size="12" fill="#1d2430" font-family="Georgia,serif">Mozambique</text>
+      <rect x="205" y="562" width="6.004084411164056" height="20" rx="3" fill="#2c3e50" opacity="0.85"/>
+      <text x="216.00408441116406" y="575" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">147</text>
+      <text x="195" y="606" text-anchor="end" font-size="12" fill="#1d2430" font-family="Georgia,serif">Rwanda</text>
+      <rect x="205" y="594" width="5.636487406398911" height="20" rx="3" fill="#2c3e50" opacity="0.85"/>
+      <text x="215.6364874063989" y="607" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">138</text>
+      <text x="195" y="638" text-anchor="end" font-size="12" fill="#1d2430" font-family="Georgia,serif">Cameroon</text>
+      <rect x="205" y="626" width="5.432266848196052" height="20" rx="3" fill="#2c3e50" opacity="0.85"/>
+      <text x="215.43226684819606" y="639" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">133</text>
+      <text x="195" y="670" text-anchor="end" font-size="12" fill="#1d2430" font-family="Georgia,serif">Botswana</text>
+      <rect x="205" y="658" width="5.023825731790334" height="20" rx="3" fill="#2c3e50" opacity="0.85"/>
+      <text x="215.02382573179034" y="671" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">123</text>
+      <text x="195" y="702" text-anchor="end" font-size="12" fill="#1d2430" font-family="Georgia,serif">Algeria</text>
+      <rect x="205" y="690" width="4.656228727025187" height="20" rx="3" fill="#2c3e50" opacity="0.85"/>
+      <text x="214.6562287270252" y="703" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">114</text>
+      <text x="195" y="734" text-anchor="end" font-size="12" fill="#1d2430" font-family="Georgia,serif">Senegal</text>
+      <rect x="205" y="722" width="4.615384615384616" height="20" rx="3" fill="#2c3e50" opacity="0.85"/>
+      <text x="214.6153846153846" y="735" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">113</text>
+      <text x="195" y="766" text-anchor="end" font-size="12" fill="#1d2430" font-family="Georgia,serif">Cote d&#x27;Ivoire</text>
+      <rect x="205" y="754" width="3.7985023825731794" height="20" rx="3" fill="#7e5109" opacity="0.85"/>
+      <text x="213.7985023825732" y="767" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">93</text>
+      <text x="195" y="798" text-anchor="end" font-size="12" fill="#1d2430" font-family="Georgia,serif">Gambia</text>
+      <rect x="205" y="786" width="3.349217154526889" height="20" rx="3" fill="#7e5109" opacity="0.85"/>
+      <text x="213.34921715452688" y="799" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">82</text>
+      <text x="195" y="830" text-anchor="end" font-size="12" fill="#1d2430" font-family="Georgia,serif">Gabon</text>
+      <rect x="205" y="818" width="2.614023144996596" height="20" rx="3" fill="#7e5109" opacity="0.85"/>
+      <text x="212.6140231449966" y="831" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">64</text>
+      <text x="195" y="862" text-anchor="end" font-size="12" fill="#1d2430" font-family="Georgia,serif">Guinea-Bissau</text>
+      <rect x="205" y="850" width="2.3281143635125936" height="20" rx="3" fill="#7e5109" opacity="0.85"/>
+      <text x="212.32811436351258" y="863" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">57</text>
+      <text x="195" y="894" text-anchor="end" font-size="12" fill="#1d2430" font-family="Georgia,serif">Benin</text>
+      <rect x="205" y="882" width="2.24642614023145" height="20" rx="3" fill="#7e5109" opacity="0.85"/>
+      <text x="212.24642614023145" y="895" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">55</text>
+      <text x="195" y="926" text-anchor="end" font-size="12" fill="#1d2430" font-family="Georgia,serif">Sudan</text>
+      <rect x="205" y="914" width="2.24642614023145" height="20" rx="3" fill="#7e5109" opacity="0.85"/>
+      <text x="212.24642614023145" y="927" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">55</text>
+      <text x="195" y="958" text-anchor="end" font-size="12" fill="#1d2430" font-family="Georgia,serif">Sierra Leone</text>
+      <rect x="205" y="946" width="2.205582028590878" height="20" rx="3" fill="#7e5109" opacity="0.85"/>
+      <text x="212.20558202859087" y="959" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">54</text>
+      <text x="195" y="990" text-anchor="end" font-size="12" fill="#1d2430" font-family="Georgia,serif">Mauritius</text>
+      <rect x="205" y="978" width="1.9605173587474471" height="20" rx="3" fill="#7e5109" opacity="0.85"/>
+      <text x="211.96051735874744" y="991" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">48</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-label">Trials per Million Population (Top 20)</div>
+    <div class="chart-wrap">
+      <svg width="100%" viewBox="0 0 780 720" xmlns="http://www.w3.org/2000/svg">
+        <text x="205" y="30" font-size="14" fill="#5f6b7a" font-family="Georgia,serif">Trials per Million Residents</text>
+        
+      <text x="195" y="62" text-anchor="end" font-size="12" fill="#1d2430" font-family="Georgia,serif">Egypt</text>
+      <rect x="205" y="50" width="480.0" height="20" rx="3" fill="#0d6b57" opacity="0.85"/>
+      <text x="690.0" y="63" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">112.5</text>
+      <text x="195" y="94" text-anchor="end" font-size="12" fill="#1d2430" font-family="Georgia,serif">South Africa</text>
+      <rect x="205" y="82" width="258.1333333333333" height="20" rx="3" fill="#0d6b57" opacity="0.85"/>
+      <text x="468.1333333333333" y="95" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">60.5</text>
+      <text x="195" y="126" text-anchor="end" font-size="12" fill="#1d2430" font-family="Georgia,serif">Botswana</text>
+      <rect x="205" y="114" width="201.8133333333333" height="20" rx="3" fill="#2c3e50" opacity="0.85"/>
+      <text x="411.8133333333333" y="127" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">47.3</text>
+      <text x="195" y="158" text-anchor="end" font-size="12" fill="#1d2430" font-family="Georgia,serif">Tunisia</text>
+      <rect x="205" y="146" width="184.32" height="20" rx="3" fill="#2c3e50" opacity="0.85"/>
+      <text x="394.32" y="159" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">43.2</text>
+      <text x="195" y="190" text-anchor="end" font-size="12" fill="#1d2430" font-family="Georgia,serif">Mauritius</text>
+      <rect x="205" y="178" width="157.44" height="20" rx="3" fill="#2c3e50" opacity="0.85"/>
+      <text x="367.44" y="191" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">36.9</text>
+      <text x="195" y="222" text-anchor="end" font-size="12" fill="#1d2430" font-family="Georgia,serif">Gambia</text>
+      <rect x="205" y="210" width="129.70666666666665" height="20" rx="3" fill="#2c3e50" opacity="0.85"/>
+      <text x="339.70666666666665" y="223" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">30.4</text>
+      <text x="195" y="254" text-anchor="end" font-size="12" fill="#1d2430" font-family="Georgia,serif">Guinea-Bissau</text>
+      <rect x="205" y="242" width="115.62666666666668" height="20" rx="3" fill="#2c3e50" opacity="0.85"/>
+      <text x="325.62666666666667" y="255" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">27.1</text>
+      <text x="195" y="286" text-anchor="end" font-size="12" fill="#1d2430" font-family="Georgia,serif">Gabon</text>
+      <rect x="205" y="274" width="113.92" height="20" rx="3" fill="#2c3e50" opacity="0.85"/>
+      <text x="323.92" y="287" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">26.7</text>
+      <text x="195" y="318" text-anchor="end" font-size="12" fill="#1d2430" font-family="Georgia,serif">Eswatini</text>
+      <rect x="205" y="306" width="106.66666666666666" height="20" rx="3" fill="#2c3e50" opacity="0.85"/>
+      <text x="316.66666666666663" y="319" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">25.0</text>
+      <text x="195" y="350" text-anchor="end" font-size="12" fill="#1d2430" font-family="Georgia,serif">Malawi</text>
+      <rect x="205" y="338" width="72.10666666666665" height="20" rx="3" fill="#7e5109" opacity="0.85"/>
+      <text x="282.1066666666667" y="351" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">16.9</text>
+      <text x="195" y="382" text-anchor="end" font-size="12" fill="#1d2430" font-family="Georgia,serif">Uganda</text>
+      <rect x="205" y="370" width="70.82666666666668" height="20" rx="3" fill="#7e5109" opacity="0.85"/>
+      <text x="280.8266666666667" y="383" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">16.6</text>
+      <text x="195" y="414" text-anchor="end" font-size="12" fill="#1d2430" font-family="Georgia,serif">Lesotho</text>
+      <rect x="205" y="402" width="70.4" height="20" rx="3" fill="#7e5109" opacity="0.85"/>
+      <text x="280.4" y="415" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">16.5</text>
+      <text x="195" y="446" text-anchor="end" font-size="12" fill="#1d2430" font-family="Georgia,serif">Zambia</text>
+      <rect x="205" y="434" width="63.57333333333334" height="20" rx="3" fill="#7e5109" opacity="0.85"/>
+      <text x="273.5733333333333" y="447" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">14.9</text>
+      <text x="195" y="478" text-anchor="end" font-size="12" fill="#1d2430" font-family="Georgia,serif">Kenya</text>
+      <rect x="205" y="466" width="61.013333333333335" height="20" rx="3" fill="#7e5109" opacity="0.85"/>
+      <text x="271.0133333333333" y="479" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">14.3</text>
+      <text x="195" y="510" text-anchor="end" font-size="12" fill="#1d2430" font-family="Georgia,serif">Zimbabwe</text>
+      <rect x="205" y="498" width="51.2" height="20" rx="3" fill="#7e5109" opacity="0.85"/>
+      <text x="261.2" y="511" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">12.0</text>
+      <text x="195" y="542" text-anchor="end" font-size="12" fill="#1d2430" font-family="Georgia,serif">Seychelles</text>
+      <rect x="205" y="530" width="42.66666666666667" height="20" rx="3" fill="#7e5109" opacity="0.85"/>
+      <text x="252.66666666666669" y="543" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">10.0</text>
+      <text x="195" y="574" text-anchor="end" font-size="12" fill="#1d2430" font-family="Georgia,serif">Rwanda</text>
+      <rect x="205" y="562" width="41.81333333333333" height="20" rx="3" fill="#7e5109" opacity="0.85"/>
+      <text x="251.81333333333333" y="575" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">9.8</text>
+      <text x="195" y="606" text-anchor="end" font-size="12" fill="#1d2430" font-family="Georgia,serif">Burkina Faso</text>
+      <rect x="205" y="594" width="40.53333333333333" height="20" rx="3" fill="#7e5109" opacity="0.85"/>
+      <text x="250.53333333333333" y="607" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">9.5</text>
+      <text x="195" y="638" text-anchor="end" font-size="12" fill="#1d2430" font-family="Georgia,serif">Mali</text>
+      <rect x="205" y="626" width="34.559999999999995" height="20" rx="3" fill="#7e5109" opacity="0.85"/>
+      <text x="244.56" y="639" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">8.1</text>
+      <text x="195" y="670" text-anchor="end" font-size="12" fill="#1d2430" font-family="Georgia,serif">Ghana</text>
+      <rect x="205" y="658" width="33.28" height="20" rx="3" fill="#7e5109" opacity="0.85"/>
+      <text x="243.28" y="671" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">7.8</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-label">Sub-Regional Distribution</div>
+    <div class="chart-wrap">
+      <svg width="100%" viewBox="0 0 780 330" xmlns="http://www.w3.org/2000/svg">
+        <text x="205" y="30" font-size="14" fill="#5f6b7a" font-family="Georgia,serif">Trials by African Sub-Region</text>
+        
+      <text x="195" y="64" text-anchor="end" font-size="13" fill="#1d2430" font-family="Georgia,serif">North Africa</text>
+      <rect x="205" y="50" width="480.0" height="28" rx="4" fill="#0d6b57" opacity="0.85"/>
+      <text x="690.0" y="66" font-size="12" fill="#5f6b7a" font-family="Georgia,serif">12,635 trials (49.5/M)</text>
+      <text x="195" y="112" text-anchor="end" font-size="13" fill="#1d2430" font-family="Georgia,serif">Southern Africa</text>
+      <rect x="205" y="98" width="166.01503759398494" height="28" rx="4" fill="#0d6b57" opacity="0.85"/>
+      <text x="376.01503759398497" y="114" font-size="12" fill="#5f6b7a" font-family="Georgia,serif">4,370 trials (30.5/M)</text>
+      <text x="195" y="160" text-anchor="end" font-size="13" fill="#1d2430" font-family="Georgia,serif">East Africa</text>
+      <rect x="205" y="146" width="117.9200633161852" height="28" rx="4" fill="#0d6b57" opacity="0.85"/>
+      <text x="327.9200633161852" y="162" font-size="12" fill="#5f6b7a" font-family="Georgia,serif">3,104 trials (7.0/M)</text>
+      <text x="195" y="208" text-anchor="end" font-size="13" fill="#1d2430" font-family="Georgia,serif">West Africa</text>
+      <rect x="205" y="194" width="61.505342303126234" height="28" rx="4" fill="#2c3e50" opacity="0.85"/>
+      <text x="271.5053423031262" y="210" font-size="12" fill="#5f6b7a" font-family="Georgia,serif">1,619 trials (3.7/M)</text>
+      <text x="195" y="256" text-anchor="end" font-size="13" fill="#1d2430" font-family="Georgia,serif">Central Africa</text>
+      <rect x="205" y="242" width="14.51206964780372" height="28" rx="4" fill="#c0392b" opacity="0.85"/>
+      <text x="224.5120696478037" y="258" font-size="12" fill="#5f6b7a" font-family="Georgia,serif">382 trials (2.3/M)</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-label">Full Country Table</div>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th><th>Country</th><th class="num">Trials</th>
+          <th class="num">% of Total</th><th class="num">Population</th>
+          <th class="num">Trials/M</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="">
+          <td>1</td>
+          <td>Egypt</td>
+          <td class="num">11,752</td>
+          <td class="num">53.2%</td>
+          <td class="num">104.5M</td>
+          <td class="num">112.5</td>
+        </tr>
+        <tr class="">
+          <td>2</td>
+          <td>South Africa</td>
+          <td class="num">3,654</td>
+          <td class="num">16.5%</td>
+          <td class="num">60.4M</td>
+          <td class="num">60.5</td>
+        </tr>
+        <tr class="">
+          <td>3</td>
+          <td>Uganda</td>
+          <td class="num">809</td>
+          <td class="num">3.7%</td>
+          <td class="num">48.6M</td>
+          <td class="num">16.6</td>
+        </tr>
+        <tr class="">
+          <td>4</td>
+          <td>Kenya</td>
+          <td class="num">788</td>
+          <td class="num">3.6%</td>
+          <td class="num">55.1M</td>
+          <td class="num">14.3</td>
+        </tr>
+        <tr class="">
+          <td>5</td>
+          <td>Tunisia</td>
+          <td class="num">540</td>
+          <td class="num">2.4%</td>
+          <td class="num">12.5M</td>
+          <td class="num">43.2</td>
+        </tr>
+        <tr class="">
+          <td>6</td>
+          <td>Tanzania</td>
+          <td class="num">460</td>
+          <td class="num">2.1%</td>
+          <td class="num">65.5M</td>
+          <td class="num">7.0</td>
+        </tr>
+        <tr class="">
+          <td>7</td>
+          <td>Nigeria</td>
+          <td class="num">379</td>
+          <td class="num">1.7%</td>
+          <td class="num">223.8M</td>
+          <td class="num">1.7</td>
+        </tr>
+        <tr class="">
+          <td>8</td>
+          <td>Malawi</td>
+          <td class="num">344</td>
+          <td class="num">1.6%</td>
+          <td class="num">20.4M</td>
+          <td class="num">16.9</td>
+        </tr>
+        <tr class="">
+          <td>9</td>
+          <td>Zambia</td>
+          <td class="num">307</td>
+          <td class="num">1.4%</td>
+          <td class="num">20.6M</td>
+          <td class="num">14.9</td>
+        </tr>
+        <tr class="">
+          <td>10</td>
+          <td>Ethiopia</td>
+          <td class="num">302</td>
+          <td class="num">1.4%</td>
+          <td class="num">126.5M</td>
+          <td class="num">2.4</td>
+        </tr>
+        <tr class="">
+          <td>11</td>
+          <td>Ghana</td>
+          <td class="num">261</td>
+          <td class="num">1.2%</td>
+          <td class="num">33.5M</td>
+          <td class="num">7.8</td>
+        </tr>
+        <tr class="">
+          <td>12</td>
+          <td>Burkina Faso</td>
+          <td class="num">215</td>
+          <td class="num">1.0%</td>
+          <td class="num">22.7M</td>
+          <td class="num">9.5</td>
+        </tr>
+        <tr class="">
+          <td>13</td>
+          <td>Zimbabwe</td>
+          <td class="num">201</td>
+          <td class="num">0.9%</td>
+          <td class="num">16.7M</td>
+          <td class="num">12.0</td>
+        </tr>
+        <tr class="">
+          <td>14</td>
+          <td>Mali</td>
+          <td class="num">183</td>
+          <td class="num">0.8%</td>
+          <td class="num">22.6M</td>
+          <td class="num">8.1</td>
+        </tr>
+        <tr class="">
+          <td>15</td>
+          <td>Morocco</td>
+          <td class="num">162</td>
+          <td class="num">0.7%</td>
+          <td class="num">37.5M</td>
+          <td class="num">4.3</td>
+        </tr>
+        <tr class="">
+          <td>16</td>
+          <td>Democratic Republic of Congo</td>
+          <td class="num">160</td>
+          <td class="num">0.7%</td>
+          <td class="num">102.3M</td>
+          <td class="num">1.6</td>
+        </tr>
+        <tr class="">
+          <td>17</td>
+          <td>Mozambique</td>
+          <td class="num">147</td>
+          <td class="num">0.7%</td>
+          <td class="num">33.9M</td>
+          <td class="num">4.3</td>
+        </tr>
+        <tr class="">
+          <td>18</td>
+          <td>Rwanda</td>
+          <td class="num">138</td>
+          <td class="num">0.6%</td>
+          <td class="num">14.1M</td>
+          <td class="num">9.8</td>
+        </tr>
+        <tr class="">
+          <td>19</td>
+          <td>Cameroon</td>
+          <td class="num">133</td>
+          <td class="num">0.6%</td>
+          <td class="num">28.6M</td>
+          <td class="num">4.7</td>
+        </tr>
+        <tr class="">
+          <td>20</td>
+          <td>Botswana</td>
+          <td class="num">123</td>
+          <td class="num">0.6%</td>
+          <td class="num">2.6M</td>
+          <td class="num">47.3</td>
+        </tr>
+        <tr class="">
+          <td>21</td>
+          <td>Algeria</td>
+          <td class="num">114</td>
+          <td class="num">0.5%</td>
+          <td class="num">45.6M</td>
+          <td class="num">2.5</td>
+        </tr>
+        <tr class="">
+          <td>22</td>
+          <td>Senegal</td>
+          <td class="num">113</td>
+          <td class="num">0.5%</td>
+          <td class="num">17.9M</td>
+          <td class="num">6.3</td>
+        </tr>
+        <tr class="">
+          <td>23</td>
+          <td>Cote d&#x27;Ivoire</td>
+          <td class="num">93</td>
+          <td class="num">0.4%</td>
+          <td class="num">28.9M</td>
+          <td class="num">3.2</td>
+        </tr>
+        <tr class="">
+          <td>24</td>
+          <td>Gambia</td>
+          <td class="num">82</td>
+          <td class="num">0.4%</td>
+          <td class="num">2.7M</td>
+          <td class="num">30.4</td>
+        </tr>
+        <tr class="">
+          <td>25</td>
+          <td>Gabon</td>
+          <td class="num">64</td>
+          <td class="num">0.3%</td>
+          <td class="num">2.4M</td>
+          <td class="num">26.7</td>
+        </tr>
+        <tr class="">
+          <td>26</td>
+          <td>Guinea-Bissau</td>
+          <td class="num">57</td>
+          <td class="num">0.3%</td>
+          <td class="num">2.1M</td>
+          <td class="num">27.1</td>
+        </tr>
+        <tr class="">
+          <td>27</td>
+          <td>Benin</td>
+          <td class="num">55</td>
+          <td class="num">0.2%</td>
+          <td class="num">13.4M</td>
+          <td class="num">4.1</td>
+        </tr>
+        <tr class="">
+          <td>28</td>
+          <td>Sudan</td>
+          <td class="num">55</td>
+          <td class="num">0.2%</td>
+          <td class="num">48.1M</td>
+          <td class="num">1.1</td>
+        </tr>
+        <tr class="">
+          <td>29</td>
+          <td>Sierra Leone</td>
+          <td class="num">54</td>
+          <td class="num">0.2%</td>
+          <td class="num">8.6M</td>
+          <td class="num">6.3</td>
+        </tr>
+        <tr class="">
+          <td>30</td>
+          <td>Mauritius</td>
+          <td class="num">48</td>
+          <td class="num">0.2%</td>
+          <td class="num">1.3M</td>
+          <td class="num">36.9</td>
+        </tr>
+        <tr class="">
+          <td>31</td>
+          <td>Niger</td>
+          <td class="num">44</td>
+          <td class="num">0.2%</td>
+          <td class="num">26.2M</td>
+          <td class="num">1.7</td>
+        </tr>
+        <tr class="">
+          <td>32</td>
+          <td>Lesotho</td>
+          <td class="num">38</td>
+          <td class="num">0.2%</td>
+          <td class="num">2.3M</td>
+          <td class="num">16.5</td>
+        </tr>
+        <tr class="">
+          <td>33</td>
+          <td>Guinea</td>
+          <td class="num">35</td>
+          <td class="num">0.2%</td>
+          <td class="num">14.2M</td>
+          <td class="num">2.5</td>
+        </tr>
+        <tr class="">
+          <td>34</td>
+          <td>Madagascar</td>
+          <td class="num">33</td>
+          <td class="num">0.1%</td>
+          <td class="num">30.3M</td>
+          <td class="num">1.1</td>
+        </tr>
+        <tr class="">
+          <td>35</td>
+          <td>Liberia</td>
+          <td class="num">31</td>
+          <td class="num">0.1%</td>
+          <td class="num">5.4M</td>
+          <td class="num">5.7</td>
+        </tr>
+        <tr class="">
+          <td>36</td>
+          <td>Eswatini</td>
+          <td class="num">30</td>
+          <td class="num">0.1%</td>
+          <td class="num">1.2M</td>
+          <td class="num">25.0</td>
+        </tr>
+        <tr class="">
+          <td>37</td>
+          <td>Togo</td>
+          <td class="num">14</td>
+          <td class="num">0.1%</td>
+          <td class="num">9.0M</td>
+          <td class="num">1.6</td>
+        </tr>
+        <tr class="">
+          <td>38</td>
+          <td>Burundi</td>
+          <td class="num">13</td>
+          <td class="num">0.1%</td>
+          <td class="num">13.2M</td>
+          <td class="num">1.0</td>
+        </tr>
+        <tr class="">
+          <td>39</td>
+          <td>Libya</td>
+          <td class="num">12</td>
+          <td class="num">0.1%</td>
+          <td class="num">7.0M</td>
+          <td class="num">1.7</td>
+        </tr>
+        <tr class="">
+          <td>40</td>
+          <td>Angola</td>
+          <td class="num">10</td>
+          <td class="num">0.0%</td>
+          <td class="num">36.7M</td>
+          <td class="num">0.3</td>
+        </tr>
+        <tr class="">
+          <td>41</td>
+          <td>Central African Republic</td>
+          <td class="num">9</td>
+          <td class="num">0.0%</td>
+          <td class="num">5.7M</td>
+          <td class="num">1.6</td>
+        </tr>
+        <tr class="">
+          <td>42</td>
+          <td>Chad</td>
+          <td class="num">9</td>
+          <td class="num">0.0%</td>
+          <td class="num">18.3M</td>
+          <td class="num">0.5</td>
+        </tr>
+        <tr class="">
+          <td>43</td>
+          <td>South Sudan</td>
+          <td class="num">8</td>
+          <td class="num">0.0%</td>
+          <td class="num">11.1M</td>
+          <td class="num">0.7</td>
+        </tr>
+        <tr class="">
+          <td>44</td>
+          <td>Namibia</td>
+          <td class="num">7</td>
+          <td class="num">0.0%</td>
+          <td class="num">2.6M</td>
+          <td class="num">2.7</td>
+        </tr>
+        <tr class="">
+          <td>45</td>
+          <td>Somalia</td>
+          <td class="num">6</td>
+          <td class="num">0.0%</td>
+          <td class="num">18.1M</td>
+          <td class="num">0.3</td>
+        </tr>
+        <tr class="">
+          <td>46</td>
+          <td>Comoros</td>
+          <td class="num">4</td>
+          <td class="num">0.0%</td>
+          <td class="num">0.9M</td>
+          <td class="num">4.4</td>
+        </tr>
+        <tr class="">
+          <td>47</td>
+          <td>Congo (Brazzaville)</td>
+          <td class="num">4</td>
+          <td class="num">0.0%</td>
+          <td class="num">6.1M</td>
+          <td class="num">0.7</td>
+        </tr>
+        <tr class="">
+          <td>48</td>
+          <td>Equatorial Guinea</td>
+          <td class="num">3</td>
+          <td class="num">0.0%</td>
+          <td class="num">1.7M</td>
+          <td class="num">1.8</td>
+        </tr>
+        <tr class="">
+          <td>49</td>
+          <td>Djibouti</td>
+          <td class="num">2</td>
+          <td class="num">0.0%</td>
+          <td class="num">1.1M</td>
+          <td class="num">1.8</td>
+        </tr>
+        <tr class="">
+          <td>50</td>
+          <td>Mauritania</td>
+          <td class="num">2</td>
+          <td class="num">0.0%</td>
+          <td class="num">4.9M</td>
+          <td class="num">0.4</td>
+        </tr>
+        <tr class="">
+          <td>51</td>
+          <td>Cabo Verde</td>
+          <td class="num">1</td>
+          <td class="num">0.0%</td>
+          <td class="num">0.6M</td>
+          <td class="num">1.7</td>
+        </tr>
+        <tr class="">
+          <td>52</td>
+          <td>Eritrea</td>
+          <td class="num">1</td>
+          <td class="num">0.0%</td>
+          <td class="num">3.7M</td>
+          <td class="num">0.3</td>
+        </tr>
+        <tr class="">
+          <td>53</td>
+          <td>Seychelles</td>
+          <td class="num">1</td>
+          <td class="num">0.0%</td>
+          <td class="num">0.1M</td>
+          <td class="num">10.0</td>
+        </tr>
+        <tr class="zero">
+          <td>54</td>
+          <td>Sao Tome and Principe</td>
+          <td class="num">0</td>
+          <td class="num">0%</td>
+          <td class="num">0.2M</td>
+          <td class="num">0</td>
+        </tr></tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="section-label">Why It Matters</div>
+    <p class="context">
+      Clinical trial distribution across Africa reveals a continent of extreme internal inequality.
+      A handful of nations — primarily Egypt, South Africa, and Kenya — host the vast majority of
+      research activity, while dozens of countries with significant disease burdens have minimal or
+      no trial presence. The per-capita analysis exposes further inequities: small nations with
+      established research infrastructure (like Gambia, thanks to the MRC unit) can outperform
+      giants like Nigeria on a population-adjusted basis. Understanding these patterns is essential
+      for any strategy to build equitable, sovereign clinical research capacity across the continent.
+    </p>
+  </div>
+
+  <div class="footer">
+    <p>Data: ClinicalTrials.gov API v2 (public, no key required) &middot; Retrieved 2026-04-03 14:31</p>
+    <p>Analysis: University of Uganda &middot; Africa E156 Series</p>
+  </div>
+
+</div>
+</body>
+</html>

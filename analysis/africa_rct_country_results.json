@@ -1,0 +1,384 @@
+{
+  "retrieved": "2026-04-03T14:31:15.182542",
+  "source": "ClinicalTrials.gov API v2",
+  "countries": [
+    {
+      "name": "Egypt",
+      "iso": "EG",
+      "pop": 104.5,
+      "trials": 11752,
+      "per_million": 112.5
+    },
+    {
+      "name": "South Africa",
+      "iso": "ZA",
+      "pop": 60.4,
+      "trials": 3654,
+      "per_million": 60.5
+    },
+    {
+      "name": "Uganda",
+      "iso": "UG",
+      "pop": 48.6,
+      "trials": 809,
+      "per_million": 16.6
+    },
+    {
+      "name": "Kenya",
+      "iso": "KE",
+      "pop": 55.1,
+      "trials": 788,
+      "per_million": 14.3
+    },
+    {
+      "name": "Tunisia",
+      "iso": "TN",
+      "pop": 12.5,
+      "trials": 540,
+      "per_million": 43.2
+    },
+    {
+      "name": "Tanzania",
+      "iso": "TZ",
+      "pop": 65.5,
+      "trials": 460,
+      "per_million": 7.0
+    },
+    {
+      "name": "Nigeria",
+      "iso": "NG",
+      "pop": 223.8,
+      "trials": 379,
+      "per_million": 1.7
+    },
+    {
+      "name": "Malawi",
+      "iso": "MW",
+      "pop": 20.4,
+      "trials": 344,
+      "per_million": 16.9
+    },
+    {
+      "name": "Zambia",
+      "iso": "ZM",
+      "pop": 20.6,
+      "trials": 307,
+      "per_million": 14.9
+    },
+    {
+      "name": "Ethiopia",
+      "iso": "ET",
+      "pop": 126.5,
+      "trials": 302,
+      "per_million": 2.4
+    },
+    {
+      "name": "Ghana",
+      "iso": "GH",
+      "pop": 33.5,
+      "trials": 261,
+      "per_million": 7.8
+    },
+    {
+      "name": "Burkina Faso",
+      "iso": "BF",
+      "pop": 22.7,
+      "trials": 215,
+      "per_million": 9.5
+    },
+    {
+      "name": "Zimbabwe",
+      "iso": "ZW",
+      "pop": 16.7,
+      "trials": 201,
+      "per_million": 12.0
+    },
+    {
+      "name": "Mali",
+      "iso": "ML",
+      "pop": 22.6,
+      "trials": 183,
+      "per_million": 8.1
+    },
+    {
+      "name": "Morocco",
+      "iso": "MA",
+      "pop": 37.5,
+      "trials": 162,
+      "per_million": 4.3
+    },
+    {
+      "name": "Democratic Republic of Congo",
+      "iso": "CD",
+      "pop": 102.3,
+      "trials": 160,
+      "per_million": 1.6
+    },
+    {
+      "name": "Mozambique",
+      "iso": "MZ",
+      "pop": 33.9,
+      "trials": 147,
+      "per_million": 4.3
+    },
+    {
+      "name": "Rwanda",
+      "iso": "RW",
+      "pop": 14.1,
+      "trials": 138,
+      "per_million": 9.8
+    },
+    {
+      "name": "Cameroon",
+      "iso": "CM",
+      "pop": 28.6,
+      "trials": 133,
+      "per_million": 4.7
+    },
+    {
+      "name": "Botswana",
+      "iso": "BW",
+      "pop": 2.6,
+      "trials": 123,
+      "per_million": 47.3
+    },
+    {
+      "name": "Algeria",
+      "iso": "DZ",
+      "pop": 45.6,
+      "trials": 114,
+      "per_million": 2.5
+    },
+    {
+      "name": "Senegal",
+      "iso": "SN",
+      "pop": 17.9,
+      "trials": 113,
+      "per_million": 6.3
+    },
+    {
+      "name": "Cote d'Ivoire",
+      "iso": "CI",
+      "pop": 28.9,
+      "trials": 93,
+      "per_million": 3.2
+    },
+    {
+      "name": "Gambia",
+      "iso": "GM",
+      "pop": 2.7,
+      "trials": 82,
+      "per_million": 30.4
+    },
+    {
+      "name": "Gabon",
+      "iso": "GA",
+      "pop": 2.4,
+      "trials": 64,
+      "per_million": 26.7
+    },
+    {
+      "name": "Guinea-Bissau",
+      "iso": "GW",
+      "pop": 2.1,
+      "trials": 57,
+      "per_million": 27.1
+    },
+    {
+      "name": "Benin",
+      "iso": "BJ",
+      "pop": 13.4,
+      "trials": 55,
+      "per_million": 4.1
+    },
+    {
+      "name": "Sudan",
+      "iso": "SD",
+      "pop": 48.1,
+      "trials": 55,
+      "per_million": 1.1
+    },
+    {
+      "name": "Sierra Leone",
+      "iso": "SL",
+      "pop": 8.6,
+      "trials": 54,
+      "per_million": 6.3
+    },
+    {
+      "name": "Mauritius",
+      "iso": "MU",
+      "pop": 1.3,
+      "trials": 48,
+      "per_million": 36.9
+    },
+    {
+      "name": "Niger",
+      "iso": "NE",
+      "pop": 26.2,
+      "trials": 44,
+      "per_million": 1.7
+    },
+    {
+      "name": "Lesotho",
+      "iso": "LS",
+      "pop": 2.3,
+      "trials": 38,
+      "per_million": 16.5
+    },
+    {
+      "name": "Guinea",
+      "iso": "GN",
+      "pop": 14.2,
+      "trials": 35,
+      "per_million": 2.5
+    },
+    {
+      "name": "Madagascar",
+      "iso": "MG",
+      "pop": 30.3,
+      "trials": 33,
+      "per_million": 1.1
+    },
+    {
+      "name": "Liberia",
+      "iso": "LR",
+      "pop": 5.4,
+      "trials": 31,
+      "per_million": 5.7
+    },
+    {
+      "name": "Eswatini",
+      "iso": "SZ",
+      "pop": 1.2,
+      "trials": 30,
+      "per_million": 25.0
+    },
+    {
+      "name": "Togo",
+      "iso": "TG",
+      "pop": 9.0,
+      "trials": 14,
+      "per_million": 1.6
+    },
+    {
+      "name": "Burundi",
+      "iso": "BI",
+      "pop": 13.2,
+      "trials": 13,
+      "per_million": 1.0
+    },
+    {
+      "name": "Libya",
+      "iso": "LY",
+      "pop": 7.0,
+      "trials": 12,
+      "per_million": 1.7
+    },
+    {
+      "name": "Angola",
+      "iso": "AO",
+      "pop": 36.7,
+      "trials": 10,
+      "per_million": 0.3
+    },
+    {
+      "name": "Central African Republic",
+      "iso": "CF",
+      "pop": 5.7,
+      "trials": 9,
+      "per_million": 1.6
+    },
+    {
+      "name": "Chad",
+      "iso": "CD",
+      "pop": 18.3,
+      "trials": 9,
+      "per_million": 0.5
+    },
+    {
+      "name": "South Sudan",
+      "iso": "SS",
+      "pop": 11.1,
+      "trials": 8,
+      "per_million": 0.7
+    },
+    {
+      "name": "Namibia",
+      "iso": "NA",
+      "pop": 2.6,
+      "trials": 7,
+      "per_million": 2.7
+    },
+    {
+      "name": "Somalia",
+      "iso": "SO",
+      "pop": 18.1,
+      "trials": 6,
+      "per_million": 0.3
+    },
+    {
+      "name": "Comoros",
+      "iso": "KM",
+      "pop": 0.9,
+      "trials": 4,
+      "per_million": 4.4
+    },
+    {
+      "name": "Congo (Brazzaville)",
+      "iso": "CG",
+      "pop": 6.1,
+      "trials": 4,
+      "per_million": 0.7
+    },
+    {
+      "name": "Equatorial Guinea",
+      "iso": "GQ",
+      "pop": 1.7,
+      "trials": 3,
+      "per_million": 1.8
+    },
+    {
+      "name": "Djibouti",
+      "iso": "DJ",
+      "pop": 1.1,
+      "trials": 2,
+      "per_million": 1.8
+    },
+    {
+      "name": "Mauritania",
+      "iso": "MR",
+      "pop": 4.9,
+      "trials": 2,
+      "per_million": 0.4
+    },
+    {
+      "name": "Cabo Verde",
+      "iso": "CV",
+      "pop": 0.6,
+      "trials": 1,
+      "per_million": 1.7
+    },
+    {
+      "name": "Eritrea",
+      "iso": "ER",
+      "pop": 3.7,
+      "trials": 1,
+      "per_million": 0.3
+    },
+    {
+      "name": "Seychelles",
+      "iso": "SC",
+      "pop": 0.1,
+      "trials": 1,
+      "per_million": 10.0
+    },
+    {
+      "name": "Sao Tome and Principe",
+      "iso": "ST",
+      "pop": 0.2,
+      "trials": 0,
+      "per_million": 0
+    }
+  ]
+}
