@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Africa E156 Series — University of Uganda Student Assignment</title>
+  <style>
+    :root {
+      --bg: #f8f6f1; --paper: #fffdf8; --ink: #1d2430; --muted: #5f6b7a;
+      --line: #d8cfbf; --accent: #0d6b57;
+      --serif: "Georgia","Times New Roman",serif;
+    }
+    * { box-sizing: border-box; margin: 0; }
+    body {
+      color: var(--ink); font-family: var(--serif); line-height: 1.6;
+      background: linear-gradient(135deg, #f0ede4 0%, #f8f6f1 50%, #efeadf 100%);
+      min-height: 100vh;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    .page { width: min(1080px, calc(100vw - 32px)); margin: 0 auto; padding: 48px 0 64px; }
+    .masthead {
+      text-align: center; margin-bottom: 40px; padding-bottom: 32px;
+      border-bottom: 3px double var(--line);
+    }
+    .masthead .eyebrow {
+      color: var(--accent); font-size: 13px; letter-spacing: 0.12em;
+      text-transform: uppercase; font-weight: 700;
+    }
+    .masthead h1 {
+      font-size: clamp(32px, 5vw, 52px); line-height: 1.05;
+      margin: 12px 0; font-weight: 700;
+    }
+    .masthead .sub {
+      color: var(--muted); font-size: 18px; max-width: 65ch; margin: 0 auto;
+    }
+    .intro {
+      background: var(--paper); border: 1px solid var(--line);
+      border-radius: 14px; padding: 28px 32px; margin-bottom: 36px;
+      box-shadow: 0 12px 32px rgba(42,47,54,0.07);
+    }
+    .intro h2 { font-size: 20px; margin-bottom: 12px; }
+    .intro p { color: var(--muted); margin: 8px 0; }
+    .intro a { font-weight: 600; }
+    .groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+    .group-card {
+      display: block; background: var(--paper); border: 1px solid var(--line);
+      border-radius: 14px; padding: 24px 28px; text-decoration: none; color: var(--ink);
+      box-shadow: 0 8px 24px rgba(42,47,54,0.06); transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .group-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(42,47,54,0.12); text-decoration: none; }
+    .group-num {
+      display: inline-block; color: white; padding: 4px 14px;
+      border-radius: 6px; font-size: 13px; font-weight: 700;
+      letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 12px;
+    }
+    .group-card h2 { font-size: 20px; margin-bottom: 8px; }
+    .group-card p { color: var(--muted); font-size: 14px; margin-bottom: 12px; }
+    .paper-count {
+      font-size: 13px; color: var(--accent); font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.05em;
+    }
+    .footer {
+      text-align: center; margin-top: 48px; padding-top: 24px;
+      border-top: 2px solid var(--line); color: var(--muted); font-size: 13px;
+    }
+    @media (max-width: 640px) {
+      .groups { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="masthead">
+      <div class="eyebrow">E156 Micro-Paper Series</div>
+      <h1>Africa Clinical Trials<br>Under the Microscope</h1>
+      <p class="sub">48 evidence papers on clinical trial equity in Africa. Four thematic groups, twelve papers each. Your assignment: rewrite, verify, and submit.</p>
+    </div>
+
+    <div class="intro">
+      <h2>What is this?</h2>
+      <p>Each group below contains 12 AI-drafted E156 micro-papers about clinical trial inequity in Africa. Each paper is exactly 7 sentences and 156 words, backed by ClinicalTrials.gov data, with an interactive HTML dashboard and Python analysis code.</p>
+      <p><strong>Your task:</strong> Read each paper, study the dashboard, understand the code, then <strong>rewrite the paper in your own voice</strong> before submitting to the <a href="https://www.synthesis-medicine.org/index.php/journal" target="_blank">Synthesis Medicine Journal</a>.</p>
+      <p>Click your group below to get started.</p>
+    </div>
+
+    <div class="groups">
+      
+    <a href="geographic-equity/" class="group-card" style="border-top: 4px solid #1b4f72;">
+      <div class="group-num" style="background:#1b4f72;">Group 1</div>
+      <h2>Geographic Equity &amp; Spatial Justice</h2>
+      <p>Where do clinical trials happen in Africa? These 12 papers analyse the spatial distribution of research sites, urban-rural gaps, cross-border access barriers, and geographic concentration patterns using ClinicalTrials.gov data.</p>
+      <div class="paper-count">12 papers</div>
+    </a>
+    <a href="health-disease/" class="group-card" style="border-top: 4px solid #922b21;">
+      <div class="group-num" style="background:#922b21;">Group 2</div>
+      <h2>Health &amp; Disease Burden</h2>
+      <p>What diseases get studied in Africa, and which are ignored? These 12 papers examine heart failure, maternal mortality, COVID displacement, genomic gaps, and the mismatch between disease burden and research investment.</p>
+      <div class="paper-count">12 papers</div>
+    </a>
+    <a href="governance-justice/" class="group-card" style="border-top: 4px solid #7e5109;">
+      <div class="group-num" style="background:#7e5109;">Group 3</div>
+      <h2>Governance, Justice &amp; Sovereignty</h2>
+      <p>Who controls clinical research in Africa? These 12 papers examine authorship gaps, corporate capture, data sovereignty, knowledge extraction, placebo ethics, and the structural power dynamics that shape African research.</p>
+      <div class="paper-count">12 papers</div>
+    </a>
+    <a href="methods-systems/" class="group-card" style="border-top: 4px solid #0b5345;">
+      <div class="group-num" style="background:#0b5345;">Group 4</div>
+      <h2>Methods, Design &amp; Research Systems</h2>
+      <p>What trial methods does Africa receive? These 12 papers audit protocol quality, recruitment speed, Benford&#x27;s law adherence, network entropy, and whether Africa gets cutting-edge or second-class methodology.</p>
+      <div class="paper-count">12 papers</div>
+    </a>
+    </div>
+
+    <div class="footer">
+      <p>
+        <a href="https://www.synthesis-medicine.org/index.php/journal" target="_blank">Synthesis Medicine Journal</a> &middot;
+        <a href="https://github.com/mahmood726-cyber/africa-e156-students" target="_blank">GitHub Repository</a>
+      </p>
+      <p style="margin-top:8px;">Mahmood Ahmad &middot; ORCID: 0009-0003-7781-4478</p>
+    </div>
+  </div>
+</body>
+</html>

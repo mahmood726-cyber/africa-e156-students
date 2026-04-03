@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Heart Failure in Africa Dashboard</title>
+  <style>
+    :root {
+      --bg: #f5f2ea; --paper: #fffdf8; --ink: #1d2430; --muted: #5f6b7a;
+      --line: #d8cfbf; --accent: #0d6b57; --accent-soft: #dcefe8;
+      --shadow: 0 18px 40px rgba(42,47,54,0.08); --radius: 18px;
+      --sans: "Georgia","Times New Roman",serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; color: var(--ink); font-family: var(--sans); line-height: 1.5;
+      background: radial-gradient(circle at top left, rgba(13,107,87,0.08), transparent 32%),
+                  radial-gradient(circle at bottom right, rgba(141,79,45,0.08), transparent 28%),
+                  var(--bg);
+    }
+    .page { width: min(900px, calc(100vw - 32px)); margin: 32px auto 48px; }
+    .card {
+      background: var(--paper); border: 1px solid var(--line);
+      border-radius: var(--radius); box-shadow: var(--shadow); padding: 28px; margin: 20px 0;
+    }
+    .eyebrow {
+      color: var(--accent); font-size: 13px; letter-spacing: 0.08em;
+      text-transform: uppercase; font-weight: 700; margin-bottom: 8px;
+    }
+    h1 { margin: 0 0 12px; font-size: clamp(24px,3.5vw,36px); line-height: 1.1; }
+    .metric-row { display: flex; gap: 20px; flex-wrap: wrap; margin: 16px 0; }
+    .metric {
+      background: var(--accent-soft); padding: 12px 20px; border-radius: 10px;
+      text-align: center; min-width: 120px;
+    }
+    .metric-val { font-size: 28px; font-weight: 700; color: var(--accent); }
+    .metric-lab { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+    .body-text { font-size: 17px; line-height: 1.8; color: var(--ink); margin: 20px 0; }
+    .footer { text-align: center; color: var(--muted); font-size: 13px; margin-top: 32px; }
+    .footer a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="card">
+      <div class="eyebrow">E156 Micro-Paper Dashboard</div>
+      <h1>Heart Failure in Africa</h1>
+      <div class="metric-row">
+        <div class="metric"><div class="metric-val">156</div><div class="metric-lab">Words</div></div>
+        <div class="metric"><div class="metric-val">7</div><div class="metric-lab">Sentences</div></div>
+        <div class="metric"><div class="metric-val">Africa</div><div class="metric-lab">Region</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <h2 style="margin:0 0 16px;font-size:20px;">Full Text</h2>
+      <div class="body-text">In global cardiology, does interventional heart failure trial distribution reflect the distinct burden carried by Africa? This audit queried ClinicalTrials.gov for heart failure trials across Africa, the United States, India, and Brazil, plus peripartum cardiomyopathy, rheumatic heart disease, and endomyocardial fibrosis in Africa. Researchers classified each African trial by sponsor origin, phenotype, and intervention class, reporting the Condition Colonialism Index as primary estimand. Africa had 41 heart failure trials versus 1,855 in the United States, a 45-fold disparity despite carrying ten percent of global burden. SGLT2 inhibitor and device trials were near-absent, rheumatic heart disease had two trials despite 240,000 annual deaths preventable by two-cent penicillin, and peripartum cardiomyopathy trials were rare despite Nigeria having the highest incidence. These findings expose a fundamental evidence gap where therapies validated in elderly ischemic populations are extrapolated to younger non-ischemic African patients without confirmation. Interpretation is limited by reliance on one public registry which may undercount locally funded studies.</div>
+    </div>
+    <div class="card">
+      <h2 style="margin:0 0 16px;font-size:20px;">Sentence Structure</h2>
+      
+        <div style="background:#d4e6f1;border-left:4px solid #1b4f72;padding:12px 16px;margin:8px 0;border-radius:6px;">
+          <span style="color:#1b4f72;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:0.05em;">Question</span>
+          <p style="margin:6px 0 0;color:#1d2430;line-height:1.6;">In global cardiology, does interventional heart failure trial distribution reflect the distinct burden carried by Africa?</p>
+        </div>
+        <div style="background:#d1f2eb;border-left:4px solid #0e6251;padding:12px 16px;margin:8px 0;border-radius:6px;">
+          <span style="color:#0e6251;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:0.05em;">Dataset</span>
+          <p style="margin:6px 0 0;color:#1d2430;line-height:1.6;">This audit queried ClinicalTrials.gov for heart failure trials across Africa, the United States, India, and Brazil, plus peripartum cardiomyopathy, rheumatic heart disease, and endomyocardial fibrosis in Africa.</p>
+        </div>
+        <div style="background:#e8daef;border-left:4px solid #4a235a;padding:12px 16px;margin:8px 0;border-radius:6px;">
+          <span style="color:#4a235a;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:0.05em;">Method</span>
+          <p style="margin:6px 0 0;color:#1d2430;line-height:1.6;">Researchers classified each African trial by sponsor origin, phenotype, and intervention class, reporting the Condition Colonialism Index as primary estimand.</p>
+        </div>
+        <div style="background:#fadbd8;border-left:4px solid #922b21;padding:12px 16px;margin:8px 0;border-radius:6px;">
+          <span style="color:#922b21;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:0.05em;">Primary Result</span>
+          <p style="margin:6px 0 0;color:#1d2430;line-height:1.6;">Africa had 41 heart failure trials versus 1,855 in the United States, a 45-fold disparity despite carrying ten percent of global burden.</p>
+        </div>
+        <div style="background:#fdebd0;border-left:4px solid #7e5109;padding:12px 16px;margin:8px 0;border-radius:6px;">
+          <span style="color:#7e5109;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:0.05em;">Robustness</span>
+          <p style="margin:6px 0 0;color:#1d2430;line-height:1.6;">SGLT2 inhibitor and device trials were near-absent, rheumatic heart disease had two trials despite 240,000 annual deaths preventable by two-cent penicillin, and peripartum cardiomyopathy trials were rare despite Nigeria having the highest incidence.</p>
+        </div>
+        <div style="background:#d0ece7;border-left:4px solid #0b5345;padding:12px 16px;margin:8px 0;border-radius:6px;">
+          <span style="color:#0b5345;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:0.05em;">Interpretation</span>
+          <p style="margin:6px 0 0;color:#1d2430;line-height:1.6;">These findings expose a fundamental evidence gap where therapies validated in elderly ischemic populations are extrapolated to younger non-ischemic African patients without confirmation.</p>
+        </div>
+        <div style="background:#d5d8dc;border-left:4px solid #566573;padding:12px 16px;margin:8px 0;border-radius:6px;">
+          <span style="color:#566573;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:0.05em;">Boundary</span>
+          <p style="margin:6px 0 0;color:#1d2430;line-height:1.6;">Interpretation is limited by reliance on one public registry which may undercount locally funded studies.</p>
+        </div>
+    </div>
+    <div class="footer">
+      <p>E156 Micro-Paper Format &middot; Data: ClinicalTrials.gov API v2</p>
+      <p><a href="https://github.com/mahmood726-cyber/africa-e156-students">GitHub Repository</a></p>
+    </div>
+  </div>
+</body>
+</html>

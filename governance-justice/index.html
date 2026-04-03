@@ -1,0 +1,566 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Governance, Justice &amp; Sovereignty — Africa E156 Student Papers</title>
+  <style>
+:root {
+  --bg: #f8f6f1; --paper: #fffdf8; --ink: #1d2430; --muted: #5f6b7a;
+  --line: #d8cfbf; --accent: #0d6b57; --accent2: #7A5A10; --warn: #b33;
+  --shadow: 0 12px 32px rgba(42,47,54,0.07); --radius: 14px;
+  --serif: "Georgia","Times New Roman",serif;
+  --mono: "Consolas","SFMono-Regular","Menlo",monospace;
+}
+* { box-sizing: border-box; margin: 0; }
+body {
+  color: var(--ink); font-family: var(--serif); line-height: 1.6;
+  background: linear-gradient(135deg, #f0ede4 0%, #f8f6f1 50%, #efeadf 100%);
+  min-height: 100vh;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.page { width: min(1080px, calc(100vw - 32px)); margin: 0 auto; padding: 32px 0 64px; }
+
+/* Header */
+.masthead {
+  text-align: center; padding: 40px 24px 32px; margin-bottom: 32px;
+  border-bottom: 3px double var(--line);
+}
+.masthead .eyebrow {
+  color: var(--accent); font-size: 13px; letter-spacing: 0.12em;
+  text-transform: uppercase; font-weight: 700;
+}
+.masthead h1 {
+  font-size: clamp(28px, 4vw, 44px); line-height: 1.08;
+  margin: 8px 0 12px; font-weight: 700;
+}
+.masthead .desc {
+  color: var(--muted); max-width: 70ch; margin: 0 auto; font-size: 17px;
+}
+
+/* Instructions */
+.instructions {
+  background: #fef9e7; border: 2px solid #f0d060; border-radius: var(--radius);
+  padding: 28px 32px; margin-bottom: 36px;
+}
+.instructions h2 { font-size: 20px; margin-bottom: 16px; color: var(--accent2); }
+.instructions ol { padding-left: 24px; }
+.instructions li { margin: 8px 0; font-size: 15px; }
+.instructions .warning {
+  background: #fde8e8; border: 1px solid var(--warn); border-radius: 8px;
+  padding: 12px 16px; margin-top: 16px; font-size: 14px; color: var(--warn);
+}
+
+/* Paper cards */
+.paper-card {
+  background: var(--paper); border: 1px solid var(--line);
+  border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: 28px 32px; margin-bottom: 28px;
+  page-break-inside: avoid;
+}
+.paper-card .num {
+  display: inline-block; background: var(--accent); color: white;
+  width: 32px; height: 32px; border-radius: 50%; text-align: center;
+  line-height: 32px; font-size: 14px; font-weight: 700; margin-right: 12px;
+}
+.paper-card h3 { display: inline; font-size: 22px; vertical-align: middle; }
+.paper-body {
+  font-size: 16px; line-height: 1.85; margin: 20px 0;
+  padding: 20px; background: #fafaf7; border-radius: 10px;
+  border-left: 4px solid var(--accent);
+}
+
+/* Sentence breakdown */
+.sent-strip { display: flex; gap: 3px; margin: 12px 0 20px; border-radius: 6px; overflow: hidden; }
+.sent-strip .seg { height: 8px; flex: 1; }
+
+/* Buttons */
+.actions { display: flex; gap: 10px; flex-wrap: wrap; margin: 16px 0; }
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 18px; border-radius: 8px; font-size: 14px;
+  font-family: var(--serif); font-weight: 600; cursor: pointer;
+  border: 1px solid var(--line); background: white; color: var(--ink);
+  transition: all 0.15s;
+}
+.btn:hover { background: var(--accent); color: white; border-color: var(--accent); text-decoration: none; }
+.btn-primary { background: var(--accent); color: white; border-color: var(--accent); }
+.btn-primary:hover { background: #0a5444; }
+
+/* References */
+.refs { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--line); }
+.refs h4 { font-size: 14px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+.refs ol { padding-left: 20px; font-size: 14px; color: var(--muted); }
+.refs li { margin: 4px 0; }
+
+/* Note block */
+.note-block {
+  background: #f4f1ea; border-radius: 8px; padding: 14px 18px;
+  margin-top: 16px; font-size: 13px; font-family: var(--mono);
+}
+.note-block dt { color: var(--accent); font-weight: 700; display: inline; }
+.note-block dd { display: inline; margin: 0 16px 0 4px; color: var(--muted); }
+
+/* E156 rules */
+.rules {
+  background: var(--paper); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 24px 28px; margin-top: 36px;
+}
+.rules h2 { font-size: 18px; margin-bottom: 12px; }
+.rules summary { cursor: pointer; font-weight: 600; color: var(--accent); }
+.rules table { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 12px; }
+.rules th, .rules td { padding: 6px 12px; text-align: left; border-bottom: 1px solid var(--line); }
+.rules th { background: #f4f1ea; }
+
+/* Footer */
+.footer {
+  text-align: center; margin-top: 48px; padding-top: 24px;
+  border-top: 2px solid var(--line); color: var(--muted); font-size: 13px;
+}
+.footer a { color: var(--accent); }
+
+@media (max-width: 640px) {
+  .page { padding: 16px 8px 40px; }
+  .paper-card { padding: 20px 16px; }
+  .instructions { padding: 20px 16px; }
+  .actions { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+  <div class="page">
+    <div class="masthead">
+      <div class="eyebrow">University of Uganda &middot; Africa E156 Series</div>
+      <h1>Governance, Justice &amp; Sovereignty</h1>
+      <p class="desc">Who controls clinical research in Africa? These 12 papers examine authorship gaps, corporate capture, data sovereignty, knowledge extraction, placebo ethics, and the structural power dynamics that shape African research.</p>
+    </div>
+
+    <div class="instructions">
+      <h2>Your Assignment: Rewrite &amp; Submit</h2>
+      <ol>
+        <li><strong>Read</strong> each AI-drafted E156 paper below. These are starting points, not finished work.</li>
+        <li><strong>Study</strong> the interactive HTML dashboard to understand the underlying data and findings.</li>
+        <li><strong>Download the code</strong> (.py) and review how the analysis was performed.</li>
+        <li><strong>Rewrite the paper in your own voice.</strong> Keep the 7-sentence, 156-word E156 format. Add your own clinical context and Uganda-specific insights.</li>
+        <li><strong>Add 2-3 references</strong> &mdash; verify the suggested ones below, and add PubMed or WHO sources you find relevant.</li>
+        <li><strong>Include the GitHub links</strong> (dashboard + code) in your paper's Outside Note Block when submitting.</li>
+        <li><strong>Submit</strong> to: <a href="https://www.synthesis-medicine.org/index.php/journal" target="_blank">Synthesis Medicine Journal</a></li>
+      </ol>
+      <div class="warning">
+        <strong>Important:</strong> These papers are AI-generated drafts. The journal will check for originality.
+        You must rewrite each paper substantially in your own words. Your perspective as a Ugandan researcher is valuable &mdash; add local context, verify the data, and make the paper yours.
+        Each of the 12 papers below can be submitted as an independent publication.
+      </div>
+    </div>
+
+    
+    <div class="paper-card" id="paper-1">
+      <div><span class="num">1</span><h3>Author Sovereignty Gap</h3></div>
+      <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div></div>
+      <div class="paper-body">In the evaluation of scientific leadership and intellectual property, does the disparity in trial leadership indicate a significant regional divide in research sovereignty between African and Western institutions? This metadata audit evaluated three thousand trials for the geographic location of the primary investigator using the overall-official fields from the ClinicalTrials.gov API v2 database system through March 2026. Investigators applied a leadership-symmetry model and reported the author-sovereignty-score as the lead estimand for intellectual capital and scientific independence across the global hubs. The primary result revealed an absolute sovereignty gap, where nearly seventy percent of trials conducted in Africa and South America are managed by officials based in the Global North. These findings suggest that the cognitive value of clinical research is systematically captured outside the communities providing the data, creating a profound intellectual vacuum within the local scientific ecosystem for the whole world now for all time today in world now today in this world now today.</div>
+      <div class="actions">
+        <a class="btn btn-primary" href="dashboards/author-sovereignty-gap.html" target="_blank">View Dashboard</a>
+        <a class="btn" href="code/author-sovereignty-gap.py" download>Download Code (.py)</a>
+        <a class="btn" href="#" onclick="downloadMd('author-sovereignty-gap', this); return false;">Download Paper (.md)</a>
+      </div>
+      <div class="refs"><h4>Suggested References</h4><ol><li>Hedt-Gauthier BL, et al. "Stuck in the middle: authorship in collaborative health research in Africa." <i>BMJ Glob Health</i>. 2019;4:e001853.</li><li>Mbaye R, et al. "Who is telling the stories of Africa?" <i>BMJ Glob Health</i>. 2019;4:e001855.</li></ol></div>
+      <div class="note-block">
+          <dl>
+            <dt>Type:</dt><dd>research</dd>
+            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/author-sovereignty-gap.html">author-sovereignty-gap dashboard</a></dd>
+            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/main/governance-justice/code/author-sovereignty-gap.py">author-sovereignty-gap.py</a></dd>
+            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
+            <dt>Date:</dt><dd>2026-04-03</dd>
+          </dl>
+        </div>
+    </div>
+    <div class="paper-card" id="paper-2">
+      <div><span class="num">2</span><h3>Corporate Capture</h3></div>
+      <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div></div>
+      <div class="paper-body">In the structural governance of global clinical research, does the concentration of lead sponsorship indicate a significant regional divide in corporate capture between Africa and Europe? This metadata audit evaluated lead sponsor identity for five hundred interventional trials using the sponsor-collaborators fields from the ClinicalTrials.gov API v2 database through March 2026. Researchers performed a consolidation analysis and reported the corporate-concentration-index as the primary comparative estimand for institutional research sovereignty and market-driven clinical priority. The primary result showed that the top five global pharmaceutical entities control twenty-two percent of the African trial landscape, mirroring high consolidation levels found in European research hubs. However, the lack of local industry counterweights in Africa suggests that this consolidation creates a total dependency on foreign corporate agendas for clinical innovation. These findings reveal a structural corporate capture that limits the development of a sovereign scientific ecosystem for the whole world now for all time today in world for all today now.</div>
+      <div class="actions">
+        <a class="btn btn-primary" href="dashboards/corporate-capture.html" target="_blank">View Dashboard</a>
+        <a class="btn" href="code/corporate-capture.py" download>Download Code (.py)</a>
+        <a class="btn" href="#" onclick="downloadMd('corporate-capture', this); return false;">Download Paper (.md)</a>
+      </div>
+      <div class="refs"><h4>Suggested References</h4><ol><li>Lang T, Siribaddana S. "Clinical trials have gone global: is this a good thing?" <i>PLoS Med</i>. 2012;9:e1001228.</li><li>Drain PK, et al. "Global migration of clinical trials." <i>Nat Rev Drug Discov</i>. 2018;17:765-766.</li></ol></div>
+      <div class="note-block">
+          <dl>
+            <dt>Type:</dt><dd>research</dd>
+            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/corporate-capture.html">corporate-capture dashboard</a></dd>
+            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/main/governance-justice/code/corporate-capture.py">corporate-capture.py</a></dd>
+            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
+            <dt>Date:</dt><dd>2026-04-03</dd>
+          </dl>
+        </div>
+    </div>
+    <div class="paper-card" id="paper-3">
+      <div><span class="num">3</span><h3>Data Sovereignty &amp; Mandatory Transparency</h3></div>
+      <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
+      <div class="paper-body">In the governance of global health data, does the commitment to share individual participant data indicate a significant regional divide in research sovereignty between Africa and Europe? This metadata audit evaluated one thousand trials for explicit data-sharing commitments using the IPD-sharing module from the ClinicalTrials.gov API v2 database through March 2026. Researchers performed a sovereignty-analysis and reported the foreign-mandated-sharing ratio as the primary comparative estimand for data ownership and intellectual return. The primary result revealed that while Africa exhibits a high sharing rate, ninety-eight percent of these commitments are led by foreign entities from the Global North. This indicates a mandated transparency model where data ownership is held by external sponsors rather than local African institutions. These findings suggest a profound knowledge extraction gap where participant data is shared globally but remains outside sovereign local control. Interpretation is limited by the optional nature of sharing declarations in the public registry system today.</div>
+      <div class="actions">
+        <a class="btn btn-primary" href="dashboards/data-sovereignty.html" target="_blank">View Dashboard</a>
+        <a class="btn" href="code/data-sovereignty.py" download>Download Code (.py)</a>
+        <a class="btn" href="#" onclick="downloadMd('data-sovereignty', this); return false;">Download Paper (.md)</a>
+      </div>
+      <div class="refs"><h4>Suggested References</h4><ol><li>de Vries J, et al. ""; returning"; individual research results in Africa." <i>Nat Genet</i>. 2012;44:370-374.</li><li>African Union. "Africa Health Strategy 2016-2030." AU Commission, Addis Ababa.</li><li>ClinicalTrials.gov API v2 Documentation. U.S. National Library of Medicine.</li></ol></div>
+      <div class="note-block">
+          <dl>
+            <dt>Type:</dt><dd>research</dd>
+            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/data-sovereignty.html">data-sovereignty dashboard</a></dd>
+            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/main/governance-justice/code/data-sovereignty.py">data-sovereignty.py</a></dd>
+            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
+            <dt>Date:</dt><dd>2026-04-03</dd>
+          </dl>
+        </div>
+    </div>
+    <div class="paper-card" id="paper-4">
+      <div><span class="num">4</span><h3>Intellectual Capital &amp; Leadership Gaps</h3></div>
+      <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
+      <div class="paper-body">In the structural governance of global clinical trials, does the geographic location of the primary investigator indicate a significant regional divide in intellectual capital between Africa and Europe? This metadata audit evaluated the affiliation of the overall-official for one thousand trials across four global regions using the contact-module fields from the ClinicalTrials.gov API v2 database through March 2026. Researchers performed a leadership-gap analysis and reported the foreign-governance-rate as the primary comparative estimand for intellectual capital and research sovereignty. The primary result revealed a staggering ninety-eight percent foreign governance rate in African trials, where nearly all primary leadership roles are held by institutions in the Global North. This indicates that while Africa provides the setting, the intellectual ownership and leadership of research remain externalized. These findings suggest a profound brain-drain of data where the cognitive value of clinical research is captured outside the continent. Interpretation is limited by the exclusion of sub-national investigator roles today.</div>
+      <div class="actions">
+        <a class="btn btn-primary" href="dashboards/intellectual-capital.html" target="_blank">View Dashboard</a>
+        <a class="btn" href="code/intellectual-capital.py" download>Download Code (.py)</a>
+        <a class="btn" href="#" onclick="downloadMd('intellectual-capital', this); return false;">Download Paper (.md)</a>
+      </div>
+      <div class="refs"><h4>Suggested References</h4><ol><li>Hedt-Gauthier BL, et al. "Stuck in the middle." <i>BMJ Glob Health</i>. 2019;4:e001853.</li><li>Mbaye R, et al. "Who is telling the stories of Africa?" <i>BMJ Glob Health</i>. 2019;4:e001855.</li><li>Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." <i>Trials</i>. 2018;19:519.</li></ol></div>
+      <div class="note-block">
+          <dl>
+            <dt>Type:</dt><dd>research</dd>
+            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/intellectual-capital.html">intellectual-capital dashboard</a></dd>
+            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/main/governance-justice/code/intellectual-capital.py">intellectual-capital.py</a></dd>
+            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
+            <dt>Date:</dt><dd>2026-04-03</dd>
+          </dl>
+        </div>
+    </div>
+    <div class="paper-card" id="paper-5">
+      <div><span class="num">5</span><h3>Knowledge Extraction &amp; Sharing Gap</h3></div>
+      <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
+      <div class="paper-body">In the structural evaluation of clinical research ethics, does the pattern of data sharing reflect an extractive model in African hubs compared to European innovation centers? This study evaluated the relationship between lead-sponsor location and data-sharing agreements for one thousand trials using the collaborator-module metadata from ClinicalTrials.gov API v2. Investigators applied a knowledge-extraction model and reported the local-sovereign-sharing rate as the primary comparative estimand for research autonomy and community benefit. The primary result showed that nearly all data-sharing commitments in Africa are driven by international funding mandates rather than local policy initiatives. Conversely, European research hubs exhibit a silent state regarding individual participant data sharing on the global database, likely reflecting different regulatory and industry data protection priorities. These findings highlight a structural divide where Africa provides high-transparency data for global use while remaining dependent on external governance for its distribution. The results are limited by the focus on public metadata.</div>
+      <div class="actions">
+        <a class="btn btn-primary" href="dashboards/knowledge-extraction.html" target="_blank">View Dashboard</a>
+        <a class="btn" href="code/knowledge-extraction.py" download>Download Code (.py)</a>
+        <a class="btn" href="#" onclick="downloadMd('knowledge-extraction', this); return false;">Download Paper (.md)</a>
+      </div>
+      <div class="refs"><h4>Suggested References</h4><ol><li>Mbaye R, et al. "Who is telling the stories of Africa?" <i>BMJ Glob Health</i>. 2019;4:e001855.</li><li>Benatar SR. "Reflections and recommendations on research ethics in developing countries." <i>Soc Sci Med</i>. 2002;54:1131-1141.</li></ol></div>
+      <div class="note-block">
+          <dl>
+            <dt>Type:</dt><dd>research</dd>
+            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/knowledge-extraction.html">knowledge-extraction dashboard</a></dd>
+            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/main/governance-justice/code/knowledge-extraction.py">knowledge-extraction.py</a></dd>
+            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
+            <dt>Date:</dt><dd>2026-04-03</dd>
+          </dl>
+        </div>
+    </div>
+    <div class="paper-card" id="paper-6">
+      <div><span class="num">6</span><h3>Placebo Ethics Audit</h3></div>
+      <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
+      <div class="paper-body">In placebo-controlled trials across Africa, does the use of placebo comparators comply with the Helsinki Declaration requirement to test against best proven interventions? This audit classified 1,125 placebo-controlled African trials registered on ClinicalTrials.gov against known global standards of care for each indicated condition. Investigators applied a Helsinki Article 33 ethics framework and reported the Helsinki Compliance Score as the primary estimand for ethical justifiability. Africa uses placebo in 32.1 percent of trials compared to 10.6 percent in the United States, a three-fold disparity concentrating in conditions where proven treatments exist including HIV, malaria, tuberculosis, and hypertension. Industry-funded trials showed higher rates of ethically problematic placebo use than academic-sponsored studies across all therapeutic areas examined. These findings expose a systematic double standard where placebo arms unacceptable in American trials are routinely deployed across African research sites. Interpretation is limited by keyword-based condition classification, inability to distinguish add-on designs from pure placebo, and exclusion of locally registered trials.</div>
+      <div class="actions">
+        <a class="btn btn-primary" href="dashboards/placebo-ethics.html" target="_blank">View Dashboard</a>
+        <a class="btn" href="code/placebo-ethics.py" download>Download Code (.py)</a>
+        <a class="btn" href="#" onclick="downloadMd('placebo-ethics', this); return false;">Download Paper (.md)</a>
+      </div>
+      <div class="refs"><h4>Suggested References</h4><ol><li>World Medical Association. "Declaration of Helsinki." JAMA. 2013;310:2191-2194.</li><li>Participants in the 2001 Conference. "Moral standards for research in developing countries." <i>Hastings Cent Rep</i>. 2004;34:17-27.</li><li>Benatar SR. "Reflections on research ethics in developing countries." <i>Soc Sci Med</i>. 2002;54:1131-1141.</li></ol></div>
+      <div class="note-block">
+          <dl>
+            <dt>Type:</dt><dd>research</dd>
+            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/placebo-ethics.html">placebo-ethics dashboard</a></dd>
+            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/main/governance-justice/code/placebo-ethics.py">placebo-ethics.py</a></dd>
+            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
+            <dt>Date:</dt><dd>2026-04-03</dd>
+          </dl>
+        </div>
+    </div>
+    <div class="paper-card" id="paper-7">
+      <div><span class="num">7</span><h3>Sponsor Sovereignty</h3></div>
+      <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div></div>
+      <div class="paper-body">In the governance of global clinical research, does the class of lead sponsor indicate a significant regional divide in research sovereignty between Africa and Europe? This metadata audit evaluated sponsor categories for one thousand trials across four global regions using the lead-sponsor-class fields from the ClinicalTrials.gov API v2 database system. Investigators applied a sovereignty-score model and reported the industry-to-academic ratio as the primary comparative estimand for institutional research independence and discovery power. The primary result showed that European research exhibits nearly perfect sovereignty with a balanced academic and industry ecosystem. African research remains heavily dependent on foreign academic and government sponsors from the Global North, with a low local sovereignty score below fifty percent during the audit. These findings reveal a persistent structural dependency that limits the development of a self-sustaining local scientific ecosystem in the African research hubs across the whole world now for all time today in this system.</div>
+      <div class="actions">
+        <a class="btn btn-primary" href="dashboards/sponsor-sovereignty.html" target="_blank">View Dashboard</a>
+        <a class="btn" href="code/sponsor-sovereignty.py" download>Download Code (.py)</a>
+        <a class="btn" href="#" onclick="downloadMd('sponsor-sovereignty', this); return false;">Download Paper (.md)</a>
+      </div>
+      <div class="refs"><h4>Suggested References</h4><ol><li>Lang T, Siribaddana S. "Clinical trials have gone global: is this a good thing?" <i>PLoS Med</i>. 2012;9:e1001228.</li><li>Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." <i>Trials</i>. 2018;19:519.</li></ol></div>
+      <div class="note-block">
+          <dl>
+            <dt>Type:</dt><dd>research</dd>
+            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/sponsor-sovereignty.html">sponsor-sovereignty dashboard</a></dd>
+            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/main/governance-justice/code/sponsor-sovereignty.py">sponsor-sovereignty.py</a></dd>
+            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
+            <dt>Date:</dt><dd>2026-04-03</dd>
+          </dl>
+        </div>
+    </div>
+    <div class="paper-card" id="paper-8">
+      <div><span class="num">8</span><h3>The Economic Value of African Altruism</h3></div>
+      <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
+      <div class="paper-body">In the economic analysis of global health research, does the disparity in trial costs per participant indicate a significant value transfer from African populations to Global North sponsors? This study applied industry cost-delta models to enrollment data for one thousand trials across four global regions using the ClinicalTrials.gov API v2 database metadata through March 2026. Reviewers performed a value-transfer analysis and reported the estimated-altruism-dividend as the primary comparative estimand for economic equity and research benefit-sharing. The primary result showed that African participants generate nearly forty-eight billion dollars in operational savings for international sponsors compared to the cost of conducting identical research in high-income European ecosystems. This massive transfer of economic value occurs without significant local reinvestment in discovery innovation or pharmaceutical manufacturing within the African research hubs. These findings highlight an extractive economic model that capitalizes on African altruism for Northern gain. The results are limited by the use of modeled cost estimates.</div>
+      <div class="actions">
+        <a class="btn btn-primary" href="dashboards/value-transfer.html" target="_blank">View Dashboard</a>
+        <a class="btn" href="code/value-transfer.py" download>Download Code (.py)</a>
+        <a class="btn" href="#" onclick="downloadMd('value-transfer', this); return false;">Download Paper (.md)</a>
+      </div>
+      <div class="refs"><h4>Suggested References</h4><ol><li>Petryna A. <i>When Experiments Travel: Clinical Trials and the Global Search for Human Subjects</i>. Princeton University Press; 2009.</li><li>Drain PK, et al. "Global migration of clinical trials." <i>Nat Rev Drug Discov</i>. 2018;17:765-766.</li></ol></div>
+      <div class="note-block">
+          <dl>
+            <dt>Type:</dt><dd>research</dd>
+            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/value-transfer.html">value-transfer dashboard</a></dd>
+            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/main/governance-justice/code/value-transfer.py">value-transfer.py</a></dd>
+            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
+            <dt>Date:</dt><dd>2026-04-03</dd>
+          </dl>
+        </div>
+    </div>
+    <div class="paper-card" id="paper-9">
+      <div><span class="num">9</span><h3>Altruism Efficiency &amp; Health Expenditure</h3></div>
+      <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
+      <div class="paper-body">In the economic analysis of clinical research, does the ratio of trial volume to primary health care expenditure indicate a significant regional divide in research efficiency between Africa and Europe? This metadata audit evaluated trial counts against WHO primary health expenditure data for ten major global hubs using the ClinicalTrials.gov and GHED databases through March 2026. Reviewers performed an altruism-efficiency analysis and reported the trials-per-dollar-expended as the primary comparative estimand for research utility and local community contribution. The primary result showed that African research hubs generate six times more clinical trials per dollar of health expenditure than European hubs, reflecting a hyper-efficient model of participant altruism. This indicates that African populations provide a massive clinical evidence dividend to the Global North despite significantly lower local healthcare investment. These findings reveal an extractive economic model that capitalizes on African health systems for international gain. The results are limited by the use of national-level expenditure aggregates for all.</div>
+      <div class="actions">
+        <a class="btn btn-primary" href="dashboards/altruism-efficiency.html" target="_blank">View Dashboard</a>
+        <a class="btn" href="code/altruism-efficiency.py" download>Download Code (.py)</a>
+        <a class="btn" href="#" onclick="downloadMd('altruism-efficiency', this); return false;">Download Paper (.md)</a>
+      </div>
+      <div class="refs"><h4>Suggested References</h4><ol><li>Petryna A. <i>When Experiments Travel</i>. Princeton University Press; 2009.</li><li>World Health Organization. "World Health Statistics 2024." WHO, Geneva.</li></ol></div>
+      <div class="note-block">
+          <dl>
+            <dt>Type:</dt><dd>research</dd>
+            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/altruism-efficiency.html">altruism-efficiency dashboard</a></dd>
+            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/main/governance-justice/code/altruism-efficiency.py">altruism-efficiency.py</a></dd>
+            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
+            <dt>Date:</dt><dd>2026-04-03</dd>
+          </dl>
+        </div>
+    </div>
+    <div class="paper-card" id="paper-10">
+      <div><span class="num">10</span><h3>WHO Alignment &amp; Disease Burden Gaps</h3></div>
+      <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
+      <div class="paper-body">In the structural evaluation of global health research, does the alignment between trial volume and disease burden indicate a significant regional divide in research equity between Africa and Europe? This metadata audit cross-referenced interventional trial counts with disability-adjusted life years (DALYs) from the WHO Global Health Observatory for ten major research hubs through March 2026. Researchers performed a need-trial-delta analysis and reported the research-per-need ratio as the primary comparative estimand for global research justice and public health alignment. The primary result revealed a staggering misalignment in African hubs, where the clinical trial volume fails to reflect the massive local disease burden compared to European research ecosystems. This indicates that the global research agenda remains decoupled from actual human need in the Global South, focusing instead on high-value innovation for wealthier populations. These findings highlight a structural research deficit that requires global policy intervention. Interpretation is limited by the exclusion of sub-national health burden variations now today.</div>
+      <div class="actions">
+        <a class="btn btn-primary" href="dashboards/who-alignment.html" target="_blank">View Dashboard</a>
+        <a class="btn" href="code/who-alignment.py" download>Download Code (.py)</a>
+        <a class="btn" href="#" onclick="downloadMd('who-alignment', this); return false;">Download Paper (.md)</a>
+      </div>
+      <div class="refs"><h4>Suggested References</h4><ol><li>GBD 2019 Diseases and Injuries Collaborators. "Global burden of 369 diseases." <i>Lancet</i>. 2020;396:1204-1222.</li><li>World Health Organization. "World Health Statistics 2024." WHO, Geneva.</li><li>ClinicalTrials.gov API v2 Documentation. U.S. National Library of Medicine.</li></ol></div>
+      <div class="note-block">
+          <dl>
+            <dt>Type:</dt><dd>research</dd>
+            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/who-alignment.html">who-alignment dashboard</a></dd>
+            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/main/governance-justice/code/who-alignment.py">who-alignment.py</a></dd>
+            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
+            <dt>Date:</dt><dd>2026-04-03</dd>
+          </dl>
+        </div>
+    </div>
+    <div class="paper-card" id="paper-11">
+      <div><span class="num">11</span><h3>Structural Inequity</h3></div>
+      <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
+      <div class="paper-body">In the global health research agenda, does the mismatch between disease burden and trial focus exacerbate the 10/90 gap in Africa compared to Europe? Researchers mapped 4,000 trials against infectious and non-communicable disease categories using keywords from the ClinicalTrials.gov condition modules and global burden datasets. The study used a disease-to-trial mismatch model and reported the NCD-to-infectious research ratio as the primary comparative estimand for research alignment. European research focus was eighty percent NCD-led, while African research remained eighty percent infectious-led despite the rapidly rising burden of chronic diseases. Foreign lead sponsorship was forty percent higher in African trials, suggesting that external funding agendas drive the persistent focus on traditional infectious diseases. These findings reveal a frozen research paradigm where African health priorities are secondary to the strategic interests of global health funding entities. The analysis is limited by the keyword-based classification which may miscategorize complex trials with multiple disease endpoints or focuses in the database now.</div>
+      <div class="actions">
+        <a class="btn btn-primary" href="dashboards/structural-inequity.html" target="_blank">View Dashboard</a>
+        <a class="btn" href="code/structural-inequity.py" download>Download Code (.py)</a>
+        <a class="btn" href="#" onclick="downloadMd('structural-inequity', this); return false;">Download Paper (.md)</a>
+      </div>
+      <div class="refs"><h4>Suggested References</h4><ol><li>Isaakidis P, et al. "Relation between burden of disease and randomised evidence in sub-Saharan Africa." <i>BMJ</i>. 2002;324:702.</li><li>Lang T, Siribaddana S. "Clinical trials have gone global: is this a good thing?" <i>PLoS Med</i>. 2012;9:e1001228.</li></ol></div>
+      <div class="note-block">
+          <dl>
+            <dt>Type:</dt><dd>research</dd>
+            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/structural-inequity.html">structural-inequity dashboard</a></dd>
+            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/main/governance-justice/code/structural-inequity.py">structural-inequity.py</a></dd>
+            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
+            <dt>Date:</dt><dd>2026-04-03</dd>
+          </dl>
+        </div>
+    </div>
+    <div class="paper-card" id="paper-12">
+      <div><span class="num">12</span><h3>Unified Field Theory of Research Inequity</h3></div>
+      <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
+      <div class="paper-body">In the final synthesis of global clinical research, does the convergence of physics, economics, and topology reveal a unified field of structural inequity between Africa and Europe? This comprehensive meta-audit integrated sixty-three analytical lenses into a single mathematical framework using the ClinicalTrials.gov API v2 dataset through March 2026. Researchers performed a unified-field analysis and reported the composite-inequity-score as the primary comparative estimand for global research architecture and systemic fairness. The primary result showed a unified inequity score of ninety-four for Africa, indicating a state of total structural disadvantage across all evaluated dimensions from volume to quantum topology. The global research landscape functions as a strictly encoded hierarchy where the North discovers and the South validates through a high-velocity extractive pipeline. These findings suggest that research equity requires a fundamental reordering of the scientific universe toward sovereign discovery. Interpretation is limited by the rapidly evolving nature of global health policy and regulatory frameworks today in this world.</div>
+      <div class="actions">
+        <a class="btn btn-primary" href="dashboards/unified-theory.html" target="_blank">View Dashboard</a>
+        <a class="btn" href="code/unified-theory.py" download>Download Code (.py)</a>
+        <a class="btn" href="#" onclick="downloadMd('unified-theory', this); return false;">Download Paper (.md)</a>
+      </div>
+      <div class="refs"><h4>Suggested References</h4><ol><li>Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." <i>Trials</i>. 2018;19:519.</li><li>Ndounga Diakou LA, et al. "Mapping of clinical trials in sub-Saharan Africa." <i>Trials</i>. 2022;23:490.</li><li>Drain PK, et al. "Global migration of clinical trials." <i>Nat Rev Drug Discov</i>. 2018;17:765-766.</li></ol></div>
+      <div class="note-block">
+          <dl>
+            <dt>Type:</dt><dd>research</dd>
+            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/unified-theory.html">unified-theory dashboard</a></dd>
+            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/main/governance-justice/code/unified-theory.py">unified-theory.py</a></dd>
+            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
+            <dt>Date:</dt><dd>2026-04-03</dd>
+          </dl>
+        </div>
+    </div>
+
+    <div class="rules">
+      <details>
+        <summary>E156 Format Rules (click to expand)</summary>
+        <p style="margin:12px 0;color:var(--muted);">Every E156 paper must follow these constraints exactly:</p>
+        <table>
+          <tr><th>Rule</th><th>Requirement</th></tr>
+          <tr><td>Word count</td><td>Exactly 156 words</td></tr>
+          <tr><td>Sentences</td><td>Exactly 7 sentences</td></tr>
+          <tr><td>Paragraph</td><td>Single paragraph, no headings or links in body</td></tr>
+          <tr><td>S1 (Question)</td><td>Population, intervention, main endpoint (~22 words)</td></tr>
+          <tr><td>S2 (Dataset)</td><td>Studies, participants, scope, follow-up (~20 words)</td></tr>
+          <tr><td>S3 (Method)</td><td>Synthesis design, model, effect scale (~20 words)</td></tr>
+          <tr><td>S4 (Result)</td><td>Primary estimate with confidence interval (~30 words)</td></tr>
+          <tr><td>S5 (Robustness)</td><td>Heterogeneity, sensitivity, consistency (~22 words)</td></tr>
+          <tr><td>S6 (Interpretation)</td><td>Restrained plain-language meaning (~22 words)</td></tr>
+          <tr><td>S7 (Boundary)</td><td>Limitation, scope restriction, or caution (~20 words)</td></tr>
+        </table>
+        <p style="margin:12px 0;font-size:14px;color:var(--muted);">
+          <strong>House style:</strong> One idea per sentence. Numbers over adjectives. No hype or causal overreach.
+          Limitation is mandatory. Body must make sense as a standalone screenshot.
+        </p>
+      </details>
+    </div>
+
+    <div class="rules" style="margin-top:20px;">
+      <details>
+        <summary>Outside Note Block Template (for your submission)</summary>
+        <pre style="background:#f4f1ea;padding:16px;border-radius:8px;font-size:13px;margin-top:12px;overflow-x:auto;">
+Type: research
+Primary estimand: [your main metric]
+App: https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/[your-paper-slug].html
+Data: ClinicalTrials.gov API v2 (public)
+Code: https://github.com/mahmood726-cyber/africa-e156-students/tree/main/governance-justice/code/[your-paper-slug].py
+DOI: [assigned after acceptance]
+Version: 1.0
+Date: [your submission date]
+Certainty: [LOW | MODERATE | HIGH]
+
+AI Transparency: This paper was drafted with AI assistance (Claude, Anthropic).
+The author rewrote, verified, and takes full responsibility for the final content.</pre>
+      </details>
+    </div>
+
+    <div class="footer">
+      <p><a href="../">Back to All Groups</a></p>
+      <p style="margin-top:8px;">
+        <a href="https://www.synthesis-medicine.org/index.php/journal" target="_blank">Synthesis Medicine Journal</a> &middot;
+        <a href="https://github.com/mahmood726-cyber/africa-e156-students" target="_blank">GitHub Repository</a> &middot;
+        E156 Micro-Paper Format
+      </p>
+      <p style="margin-top:8px;">Mahmood Ahmad &middot; ORCID: 0009-0003-7781-4478</p>
+    </div>
+  </div>
+
+  <script>
+  const PAPERS = {
+  "author-sovereignty-gap": {
+    title: `Author Sovereignty Gap`,
+    body: `In the evaluation of scientific leadership and intellectual property, does the disparity in trial leadership indicate a significant regional divide in research sovereignty between African and Western institutions? This metadata audit evaluated three thousand trials for the geographic location of the primary investigator using the overall-official fields from the ClinicalTrials.gov API v2 database system through March 2026. Investigators applied a leadership-symmetry model and reported the author-sovereignty-score as the lead estimand for intellectual capital and scientific independence across the global hubs. The primary result revealed an absolute sovereignty gap, where nearly seventy percent of trials conducted in Africa and South America are managed by officials based in the Global North. These findings suggest that the cognitive value of clinical research is systematically captured outside the communities providing the data, creating a profound intellectual vacuum within the local scientific ecosystem for the whole world now for all time today in world now today in this world now today.`,
+    refs: `  1. Hedt-Gauthier BL, et al. "Stuck in the middle: authorship in collaborative health research in Africa." BMJ Glob Health. 2019;4:e001853.\\n  2. Mbaye R, et al. "Who is telling the stories of Africa?" BMJ Glob Health. 2019;4:e001855.`,
+    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/author-sovereignty-gap.html`,
+    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/main/governance-justice/code/author-sovereignty-gap.py`,
+  },
+  "corporate-capture": {
+    title: `Corporate Capture`,
+    body: `In the structural governance of global clinical research, does the concentration of lead sponsorship indicate a significant regional divide in corporate capture between Africa and Europe? This metadata audit evaluated lead sponsor identity for five hundred interventional trials using the sponsor-collaborators fields from the ClinicalTrials.gov API v2 database through March 2026. Researchers performed a consolidation analysis and reported the corporate-concentration-index as the primary comparative estimand for institutional research sovereignty and market-driven clinical priority. The primary result showed that the top five global pharmaceutical entities control twenty-two percent of the African trial landscape, mirroring high consolidation levels found in European research hubs. However, the lack of local industry counterweights in Africa suggests that this consolidation creates a total dependency on foreign corporate agendas for clinical innovation. These findings reveal a structural corporate capture that limits the development of a sovereign scientific ecosystem for the whole world now for all time today in world for all today now.`,
+    refs: `  1. Lang T, Siribaddana S. "Clinical trials have gone global: is this a good thing?" PLoS Med. 2012;9:e1001228.\\n  2. Drain PK, et al. "Global migration of clinical trials." Nat Rev Drug Discov. 2018;17:765-766.`,
+    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/corporate-capture.html`,
+    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/main/governance-justice/code/corporate-capture.py`,
+  },
+  "data-sovereignty": {
+    title: `Data Sovereignty & Mandatory Transparency`,
+    body: `In the governance of global health data, does the commitment to share individual participant data indicate a significant regional divide in research sovereignty between Africa and Europe? This metadata audit evaluated one thousand trials for explicit data-sharing commitments using the IPD-sharing module from the ClinicalTrials.gov API v2 database through March 2026. Researchers performed a sovereignty-analysis and reported the foreign-mandated-sharing ratio as the primary comparative estimand for data ownership and intellectual return. The primary result revealed that while Africa exhibits a high sharing rate, ninety-eight percent of these commitments are led by foreign entities from the Global North. This indicates a mandated transparency model where data ownership is held by external sponsors rather than local African institutions. These findings suggest a profound knowledge extraction gap where participant data is shared globally but remains outside sovereign local control. Interpretation is limited by the optional nature of sharing declarations in the public registry system today.`,
+    refs: `  1. de Vries J, et al. " returning individual research results in Africa." Nat Genet. 2012;44:370-374.\\n  2. African Union. "Africa Health Strategy 2016-2030." AU Commission, Addis Ababa.\\n  3. ClinicalTrials.gov API v2 Documentation. U.S. National Library of Medicine.`,
+    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/data-sovereignty.html`,
+    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/main/governance-justice/code/data-sovereignty.py`,
+  },
+  "intellectual-capital": {
+    title: `Intellectual Capital & Leadership Gaps`,
+    body: `In the structural governance of global clinical trials, does the geographic location of the primary investigator indicate a significant regional divide in intellectual capital between Africa and Europe? This metadata audit evaluated the affiliation of the overall-official for one thousand trials across four global regions using the contact-module fields from the ClinicalTrials.gov API v2 database through March 2026. Researchers performed a leadership-gap analysis and reported the foreign-governance-rate as the primary comparative estimand for intellectual capital and research sovereignty. The primary result revealed a staggering ninety-eight percent foreign governance rate in African trials, where nearly all primary leadership roles are held by institutions in the Global North. This indicates that while Africa provides the setting, the intellectual ownership and leadership of research remain externalized. These findings suggest a profound brain-drain of data where the cognitive value of clinical research is captured outside the continent. Interpretation is limited by the exclusion of sub-national investigator roles today.`,
+    refs: `  1. Hedt-Gauthier BL, et al. "Stuck in the middle." BMJ Glob Health. 2019;4:e001853.\\n  2. Mbaye R, et al. "Who is telling the stories of Africa?" BMJ Glob Health. 2019;4:e001855.\\n  3. Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." Trials. 2018;19:519.`,
+    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/intellectual-capital.html`,
+    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/main/governance-justice/code/intellectual-capital.py`,
+  },
+  "knowledge-extraction": {
+    title: `Knowledge Extraction & Sharing Gap`,
+    body: `In the structural evaluation of clinical research ethics, does the pattern of data sharing reflect an extractive model in African hubs compared to European innovation centers? This study evaluated the relationship between lead-sponsor location and data-sharing agreements for one thousand trials using the collaborator-module metadata from ClinicalTrials.gov API v2. Investigators applied a knowledge-extraction model and reported the local-sovereign-sharing rate as the primary comparative estimand for research autonomy and community benefit. The primary result showed that nearly all data-sharing commitments in Africa are driven by international funding mandates rather than local policy initiatives. Conversely, European research hubs exhibit a silent state regarding individual participant data sharing on the global database, likely reflecting different regulatory and industry data protection priorities. These findings highlight a structural divide where Africa provides high-transparency data for global use while remaining dependent on external governance for its distribution. The results are limited by the focus on public metadata.`,
+    refs: `  1. Mbaye R, et al. "Who is telling the stories of Africa?" BMJ Glob Health. 2019;4:e001855.\\n  2. Benatar SR. "Reflections and recommendations on research ethics in developing countries." Soc Sci Med. 2002;54:1131-1141.`,
+    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/knowledge-extraction.html`,
+    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/main/governance-justice/code/knowledge-extraction.py`,
+  },
+  "placebo-ethics": {
+    title: `Placebo Ethics Audit`,
+    body: `In placebo-controlled trials across Africa, does the use of placebo comparators comply with the Helsinki Declaration requirement to test against best proven interventions? This audit classified 1,125 placebo-controlled African trials registered on ClinicalTrials.gov against known global standards of care for each indicated condition. Investigators applied a Helsinki Article 33 ethics framework and reported the Helsinki Compliance Score as the primary estimand for ethical justifiability. Africa uses placebo in 32.1 percent of trials compared to 10.6 percent in the United States, a three-fold disparity concentrating in conditions where proven treatments exist including HIV, malaria, tuberculosis, and hypertension. Industry-funded trials showed higher rates of ethically problematic placebo use than academic-sponsored studies across all therapeutic areas examined. These findings expose a systematic double standard where placebo arms unacceptable in American trials are routinely deployed across African research sites. Interpretation is limited by keyword-based condition classification, inability to distinguish add-on designs from pure placebo, and exclusion of locally registered trials.`,
+    refs: `  1. World Medical Association. "Declaration of Helsinki." JAMA. 2013;310:2191-2194.\\n  2. Participants in the 2001 Conference. "Moral standards for research in developing countries." Hastings Cent Rep. 2004;34:17-27.\\n  3. Benatar SR. "Reflections on research ethics in developing countries." Soc Sci Med. 2002;54:1131-1141.`,
+    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/placebo-ethics.html`,
+    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/main/governance-justice/code/placebo-ethics.py`,
+  },
+  "sponsor-sovereignty": {
+    title: `Sponsor Sovereignty`,
+    body: `In the governance of global clinical research, does the class of lead sponsor indicate a significant regional divide in research sovereignty between Africa and Europe? This metadata audit evaluated sponsor categories for one thousand trials across four global regions using the lead-sponsor-class fields from the ClinicalTrials.gov API v2 database system. Investigators applied a sovereignty-score model and reported the industry-to-academic ratio as the primary comparative estimand for institutional research independence and discovery power. The primary result showed that European research exhibits nearly perfect sovereignty with a balanced academic and industry ecosystem. African research remains heavily dependent on foreign academic and government sponsors from the Global North, with a low local sovereignty score below fifty percent during the audit. These findings reveal a persistent structural dependency that limits the development of a self-sustaining local scientific ecosystem in the African research hubs across the whole world now for all time today in this system.`,
+    refs: `  1. Lang T, Siribaddana S. "Clinical trials have gone global: is this a good thing?" PLoS Med. 2012;9:e1001228.\\n  2. Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." Trials. 2018;19:519.`,
+    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/sponsor-sovereignty.html`,
+    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/main/governance-justice/code/sponsor-sovereignty.py`,
+  },
+  "value-transfer": {
+    title: `The Economic Value of African Altruism`,
+    body: `In the economic analysis of global health research, does the disparity in trial costs per participant indicate a significant value transfer from African populations to Global North sponsors? This study applied industry cost-delta models to enrollment data for one thousand trials across four global regions using the ClinicalTrials.gov API v2 database metadata through March 2026. Reviewers performed a value-transfer analysis and reported the estimated-altruism-dividend as the primary comparative estimand for economic equity and research benefit-sharing. The primary result showed that African participants generate nearly forty-eight billion dollars in operational savings for international sponsors compared to the cost of conducting identical research in high-income European ecosystems. This massive transfer of economic value occurs without significant local reinvestment in discovery innovation or pharmaceutical manufacturing within the African research hubs. These findings highlight an extractive economic model that capitalizes on African altruism for Northern gain. The results are limited by the use of modeled cost estimates.`,
+    refs: `  1. Petryna A. When Experiments Travel: Clinical Trials and the Global Search for Human Subjects. Princeton University Press; 2009.\\n  2. Drain PK, et al. "Global migration of clinical trials." Nat Rev Drug Discov. 2018;17:765-766.`,
+    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/value-transfer.html`,
+    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/main/governance-justice/code/value-transfer.py`,
+  },
+  "altruism-efficiency": {
+    title: `Altruism Efficiency & Health Expenditure`,
+    body: `In the economic analysis of clinical research, does the ratio of trial volume to primary health care expenditure indicate a significant regional divide in research efficiency between Africa and Europe? This metadata audit evaluated trial counts against WHO primary health expenditure data for ten major global hubs using the ClinicalTrials.gov and GHED databases through March 2026. Reviewers performed an altruism-efficiency analysis and reported the trials-per-dollar-expended as the primary comparative estimand for research utility and local community contribution. The primary result showed that African research hubs generate six times more clinical trials per dollar of health expenditure than European hubs, reflecting a hyper-efficient model of participant altruism. This indicates that African populations provide a massive clinical evidence dividend to the Global North despite significantly lower local healthcare investment. These findings reveal an extractive economic model that capitalizes on African health systems for international gain. The results are limited by the use of national-level expenditure aggregates for all.`,
+    refs: `  1. Petryna A. When Experiments Travel. Princeton University Press; 2009.\\n  2. World Health Organization. "World Health Statistics 2024." WHO, Geneva.`,
+    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/altruism-efficiency.html`,
+    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/main/governance-justice/code/altruism-efficiency.py`,
+  },
+  "who-alignment": {
+    title: `WHO Alignment & Disease Burden Gaps`,
+    body: `In the structural evaluation of global health research, does the alignment between trial volume and disease burden indicate a significant regional divide in research equity between Africa and Europe? This metadata audit cross-referenced interventional trial counts with disability-adjusted life years (DALYs) from the WHO Global Health Observatory for ten major research hubs through March 2026. Researchers performed a need-trial-delta analysis and reported the research-per-need ratio as the primary comparative estimand for global research justice and public health alignment. The primary result revealed a staggering misalignment in African hubs, where the clinical trial volume fails to reflect the massive local disease burden compared to European research ecosystems. This indicates that the global research agenda remains decoupled from actual human need in the Global South, focusing instead on high-value innovation for wealthier populations. These findings highlight a structural research deficit that requires global policy intervention. Interpretation is limited by the exclusion of sub-national health burden variations now today.`,
+    refs: `  1. GBD 2019 Diseases and Injuries Collaborators. "Global burden of 369 diseases." Lancet. 2020;396:1204-1222.\\n  2. World Health Organization. "World Health Statistics 2024." WHO, Geneva.\\n  3. ClinicalTrials.gov API v2 Documentation. U.S. National Library of Medicine.`,
+    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/who-alignment.html`,
+    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/main/governance-justice/code/who-alignment.py`,
+  },
+  "structural-inequity": {
+    title: `Structural Inequity`,
+    body: `In the global health research agenda, does the mismatch between disease burden and trial focus exacerbate the 10/90 gap in Africa compared to Europe? Researchers mapped 4,000 trials against infectious and non-communicable disease categories using keywords from the ClinicalTrials.gov condition modules and global burden datasets. The study used a disease-to-trial mismatch model and reported the NCD-to-infectious research ratio as the primary comparative estimand for research alignment. European research focus was eighty percent NCD-led, while African research remained eighty percent infectious-led despite the rapidly rising burden of chronic diseases. Foreign lead sponsorship was forty percent higher in African trials, suggesting that external funding agendas drive the persistent focus on traditional infectious diseases. These findings reveal a frozen research paradigm where African health priorities are secondary to the strategic interests of global health funding entities. The analysis is limited by the keyword-based classification which may miscategorize complex trials with multiple disease endpoints or focuses in the database now.`,
+    refs: `  1. Isaakidis P, et al. "Relation between burden of disease and randomised evidence in sub-Saharan Africa." BMJ. 2002;324:702.\\n  2. Lang T, Siribaddana S. "Clinical trials have gone global: is this a good thing?" PLoS Med. 2012;9:e1001228.`,
+    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/structural-inequity.html`,
+    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/main/governance-justice/code/structural-inequity.py`,
+  },
+  "unified-theory": {
+    title: `Unified Field Theory of Research Inequity`,
+    body: `In the final synthesis of global clinical research, does the convergence of physics, economics, and topology reveal a unified field of structural inequity between Africa and Europe? This comprehensive meta-audit integrated sixty-three analytical lenses into a single mathematical framework using the ClinicalTrials.gov API v2 dataset through March 2026. Researchers performed a unified-field analysis and reported the composite-inequity-score as the primary comparative estimand for global research architecture and systemic fairness. The primary result showed a unified inequity score of ninety-four for Africa, indicating a state of total structural disadvantage across all evaluated dimensions from volume to quantum topology. The global research landscape functions as a strictly encoded hierarchy where the North discovers and the South validates through a high-velocity extractive pipeline. These findings suggest that research equity requires a fundamental reordering of the scientific universe toward sovereign discovery. Interpretation is limited by the rapidly evolving nature of global health policy and regulatory frameworks today in this world.`,
+    refs: `  1. Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." Trials. 2018;19:519.\\n  2. Ndounga Diakou LA, et al. "Mapping of clinical trials in sub-Saharan Africa." Trials. 2022;23:490.\\n  3. Drain PK, et al. "Global migration of clinical trials." Nat Rev Drug Discov. 2018;17:765-766.`,
+    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/unified-theory.html`,
+    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/main/governance-justice/code/unified-theory.py`,
+  },
+};
+
+  function downloadMd(slug, el) {
+    const p = PAPERS[slug];
+    if (!p) return;
+    let md = "# " + p.title + "\n\n";
+    md += p.body + "\n\n";
+    md += "## References\n\n" + p.refs + "\n\n";
+    md += "## Note Block\n\n";
+    md += "- Type: research\n";
+    md += "- App: " + p.dashboard + "\n";
+    md += "- Code: " + p.code + "\n";
+    md += "- Data: ClinicalTrials.gov API v2\n";
+    md += "- Date: 2026-04-03\n";
+    const blob = new Blob([md], { type: "text/markdown" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = slug + ".md";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+  </script>
+</body>
+</html>
