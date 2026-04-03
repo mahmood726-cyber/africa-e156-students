@@ -3,93 +3,219 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>The Maternal Mortality Scandal Dashboard</title>
+  <title>The Maternal Mortality Scandal — E156 Dashboard</title>
   <style>
     :root {
       --bg: #f5f2ea; --paper: #fffdf8; --ink: #1d2430; --muted: #5f6b7a;
       --line: #d8cfbf; --accent: #0d6b57; --accent-soft: #dcefe8;
-      --shadow: 0 18px 40px rgba(42,47,54,0.08); --radius: 18px;
-      --sans: "Georgia","Times New Roman",serif;
+      --warm: #7A5A10; --shadow: 0 18px 40px rgba(42,47,54,0.08);
+      --radius: 18px; --serif: "Georgia","Times New Roman",serif;
+      --mono: "Consolas","SFMono-Regular","Menlo",monospace;
     }
-    * { box-sizing: border-box; }
+    * { box-sizing: border-box; margin: 0; }
     body {
-      margin: 0; color: var(--ink); font-family: var(--sans); line-height: 1.5;
-      background: radial-gradient(circle at top left, rgba(13,107,87,0.08), transparent 32%),
-                  radial-gradient(circle at bottom right, rgba(141,79,45,0.08), transparent 28%),
+      color: var(--ink); font-family: var(--serif); line-height: 1.6;
+      background: radial-gradient(circle at top left, rgba(13,107,87,0.06), transparent 32%),
+                  radial-gradient(circle at bottom right, rgba(141,79,45,0.06), transparent 28%),
                   var(--bg);
     }
-    .page { width: min(900px, calc(100vw - 32px)); margin: 32px auto 48px; }
+    .page { width: min(960px, calc(100vw - 32px)); margin: 0 auto; padding: 40px 0 64px; }
     .card {
       background: var(--paper); border: 1px solid var(--line);
-      border-radius: var(--radius); box-shadow: var(--shadow); padding: 28px; margin: 20px 0;
+      border-radius: var(--radius); box-shadow: var(--shadow);
+      padding: 32px; margin-bottom: 24px;
     }
+
+    /* Hero */
+    .hero { text-align: center; padding: 48px 32px; }
     .eyebrow {
-      color: var(--accent); font-size: 13px; letter-spacing: 0.08em;
-      text-transform: uppercase; font-weight: 700; margin-bottom: 8px;
+      color: var(--accent); font-size: 12px; letter-spacing: 0.15em;
+      text-transform: uppercase; font-weight: 700;
     }
-    h1 { margin: 0 0 12px; font-size: clamp(24px,3.5vw,36px); line-height: 1.1; }
-    .metric-row { display: flex; gap: 20px; flex-wrap: wrap; margin: 16px 0; }
+    h1 { font-size: clamp(28px,4vw,44px); line-height: 1.05; margin: 12px 0 8px; }
+    .subtitle { color: var(--muted); font-size: 19px; max-width: 60ch; margin: 0 auto; }
+
+    /* Metrics */
+    .metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; margin: 24px 0; }
     .metric {
-      background: var(--accent-soft); padding: 12px 20px; border-radius: 10px;
-      text-align: center; min-width: 120px;
+      text-align: center; padding: 20px 12px; border-radius: 14px;
+      background: linear-gradient(180deg, #fff, #faf6ee); border: 1px solid var(--line);
     }
-    .metric-val { font-size: 28px; font-weight: 700; color: var(--accent); }
-    .metric-lab { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
-    .body-text { font-size: 17px; line-height: 1.8; color: var(--ink); margin: 20px 0; }
+    .metric-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 6px; }
+    .metric-value { font-size: 28px; font-weight: 700; }
+
+    /* Chart */
+    .chart-wrap { overflow-x: auto; padding: 8px 0; }
+    .section-label {
+      font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--muted); font-weight: 700; margin-bottom: 16px;
+    }
+
+    /* Key finding */
+    .finding {
+      font-size: 22px; line-height: 1.65; padding: 28px 32px;
+      border-left: 5px solid var(--accent); background: var(--accent-soft);
+      border-radius: 0 var(--radius) var(--radius) 0;
+    }
+
+    /* Context */
+    .context { font-size: 18px; line-height: 1.85; color: #2a2f36; }
+    .context-label {
+      font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--warm); font-weight: 700; margin-bottom: 12px;
+    }
+
+    /* Body */
+    .body-text { font-size: 17px; line-height: 1.85; padding: 24px; background: #fafaf7; border-radius: 12px; }
+
+    /* Sentences */
+    .sentence {
+      border-left: 4px solid #ccc; padding: 10px 16px; margin: 8px 0; border-radius: 0 8px 8px 0;
+      background: #fafaf7;
+    }
+    .role-tag { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; }
+    .sentence p { margin: 4px 0 0; font-size: 15px; line-height: 1.7; }
+
+    /* Color strip */
+    .color-strip { display: flex; gap: 3px; border-radius: 6px; overflow: hidden; margin: 16px 0; }
+    .color-strip > div { height: 8px; flex: 1; }
+
+    /* Footer */
     .footer { text-align: center; color: var(--muted); font-size: 13px; margin-top: 32px; }
-    .footer a { color: var(--accent); }
+    .footer a { color: var(--accent); text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+
+    /* Links row */
+    .links { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin: 20px 0; }
+    .link-btn {
+      display: inline-block; padding: 10px 20px; border-radius: 8px;
+      font-size: 14px; font-weight: 600; text-decoration: none;
+      border: 1px solid var(--line); color: var(--ink); background: white;
+      transition: all 0.15s;
+    }
+    .link-btn:hover { background: var(--accent); color: white; border-color: var(--accent); }
+
+    .word-badge {
+      display: inline-block; background: var(--accent-soft); color: var(--accent);
+      padding: 4px 12px; border-radius: 20px; font-size: 13px; font-weight: 700;
+    }
+
+    @media (max-width: 640px) {
+      .card { padding: 20px 16px; }
+      .hero { padding: 32px 16px; }
+      .finding { font-size: 18px; padding: 20px; }
+    }
   </style>
 </head>
 <body>
   <div class="page">
-    <div class="card">
-      <div class="eyebrow">E156 Micro-Paper Dashboard</div>
+
+    <div class="card hero">
+      <div class="eyebrow">E156 Micro-Paper &middot; Africa Clinical Trials</div>
       <h1>The Maternal Mortality Scandal</h1>
-      <div class="metric-row">
-        <div class="metric"><div class="metric-val">180</div><div class="metric-lab">Words</div></div>
-        <div class="metric"><div class="metric-val">7</div><div class="metric-lab">Sentences</div></div>
-        <div class="metric"><div class="metric-val">Africa</div><div class="metric-lab">Region</div></div>
+      <p class="subtitle">66% of maternal deaths, 1% of maternal trials.</p>
+      <div class="metrics">
+        
+      <div class="metric">
+        <div class="metric-label">Africa Burden</div>
+        <div class="metric-value" style="color:#c0392b">66%</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Africa Trials</div>
+        <div class="metric-value" style="color:#c0392b">9</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">US Trials</div>
+        <div class="metric-value" style="color:var(--accent)">738</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">MMR vs SDG Target</div>
+        <div class="metric-value" style="color:var(--accent)">542 vs 70</div>
+      </div>
       </div>
     </div>
+
     <div class="card">
-      <h2 style="margin:0 0 16px;font-size:20px;">Full Text</h2>
-      <div class="body-text">In global health, does the distribution of maternal mortality trials reflect the geographic burden of obstetric death? This registry audit queried ClinicalTrials.gov API v2 for interventional trials addressing maternal mortality, postpartum hemorrhage, preeclampsia, and eclampsia across Africa and comparators through March 2026. Investigators applied the Condition Colonialism Index and reported the burden-to-trial ratio as the primary estimand. Africa carries sixty-six percent of global maternal deaths yet hosts only nine trials versus seven hundred and thirty-eight in the United States, yielding a CCI of eighty-two. Sub-Saharan Africa has a maternal mortality ratio of five hundred and forty-two per hundred thousand against the SDG 3.1 target of seventy, with no trial infrastructure to close this gap. Postpartum hemorrhage and peripartum cardiomyopathy, both concentrated in Africa, have virtually no trial activity. These findings identify arguably the most extreme clinical trial disparity in global health. Interpretation is limited by reliance on registered trials which may undercount locally funded obstetric research. ai_transparency: &quot;LLM assistance was used for drafting and language editing. The author reviewed and edited the manuscript and takes responsibility for the final content.&quot;</div>
+      <div class="section-label">Key Finding</div>
+      <div class="finding">Africa carries sixty-six percent of global maternal deaths yet hosts only nine trials versus seven hundred and thirty-eight in the United States, yielding a CCI of eighty-two.</div>
     </div>
+
     <div class="card">
-      <h2 style="margin:0 0 16px;font-size:20px;">Sentence Structure</h2>
+      <div class="section-label">The Data</div>
+      <div class="chart-wrap">
+        <svg width="100%" viewBox="0 0 780 236" xmlns="http://www.w3.org/2000/svg">
+      <text x="210" y="24" font-size="15" fill="#5f6b7a" font-family="Georgia,serif">Maternal Mortality Trials vs Burden</text>
       
-        <div style="background:#d4e6f1;border-left:4px solid #1b4f72;padding:12px 16px;margin:8px 0;border-radius:6px;">
-          <span style="color:#1b4f72;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:0.05em;">Question</span>
-          <p style="margin:6px 0 0;color:#1d2430;line-height:1.6;">In global health, does the distribution of maternal mortality trials reflect the geographic burden of obstetric death?</p>
+      <text x="200" y="54" text-anchor="end" font-size="14" fill="#1d2430" font-family="Georgia,serif">US Trials</text>
+      <rect x="210" y="40" width="520.0" height="24" rx="4" fill="#2c3e50" opacity="0.85"/>
+      <text x="735.0" y="56" font-size="13" fill="#5f6b7a" font-family="Georgia,serif">74</text>
+      <text x="200" y="98" text-anchor="end" font-size="14" fill="#1d2430" font-family="Georgia,serif">Africa Burden (%)</text>
+      <rect x="210" y="84" width="463.7837837837838" height="24" rx="4" fill="#c0392b" opacity="0.85"/>
+      <text x="678.7837837837837" y="100" font-size="13" fill="#5f6b7a" font-family="Georgia,serif">66</text>
+      <text x="200" y="142" text-anchor="end" font-size="14" fill="#1d2430" font-family="Georgia,serif">US Burden (%)</text>
+      <rect x="210" y="128" width="14.054054054054054" height="24" rx="4" fill="#0d6b57" opacity="0.85"/>
+      <text x="229.05405405405406" y="144" font-size="13" fill="#5f6b7a" font-family="Georgia,serif">2</text>
+      <text x="200" y="186" text-anchor="end" font-size="14" fill="#1d2430" font-family="Georgia,serif">Africa Trials</text>
+      <rect x="210" y="172" width="7.027027027027027" height="24" rx="4" fill="#922b21" opacity="0.85"/>
+      <text x="222.02702702702703" y="188" font-size="13" fill="#5f6b7a" font-family="Georgia,serif">1</text>
+    </svg>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="context-label">Why It Matters</div>
+      <p class="context">Sub-Saharan Africa&#x27;s maternal mortality ratio of 542 per 100,000 is nearly 8 times the SDG 3.1 target of 70. Yet only 9 trials address maternal mortality in Africa compared to 738 in the United States. Postpartum haemorrhage — the leading killer — has virtually no trial activity on the continent. Two-cent penicillin could prevent 240,000 annual rheumatic heart disease deaths, yet only two trials exist. This is arguably the most extreme clinical trial disparity in global health.</p>
+    </div>
+
+    <div class="card">
+      <div class="section-label">The Evidence &nbsp; <span class="word-badge">180 words &middot; 7 sentences</span></div>
+      <div class="body-text">In global health, does the distribution of maternal mortality trials reflect the geographic burden of obstetric death? This registry audit queried ClinicalTrials.gov API v2 for interventional trials addressing maternal mortality, postpartum hemorrhage, preeclampsia, and eclampsia across Africa and comparators through March 2026. Investigators applied the Condition Colonialism Index and reported the burden-to-trial ratio as the primary estimand. Africa carries sixty-six percent of global maternal deaths yet hosts only nine trials versus seven hundred and thirty-eight in the United States, yielding a CCI of eighty-two. Sub-Saharan Africa has a maternal mortality ratio of five hundred and forty-two per hundred thousand against the SDG 3.1 target of seventy, with no trial infrastructure to close this gap. Postpartum hemorrhage and peripartum cardiomyopathy, both concentrated in Africa, have virtually no trial activity. These findings identify arguably the most extreme clinical trial disparity in global health. Interpretation is limited by reliance on registered trials which may undercount locally funded obstetric research. ai_transparency: &quot;LLM assistance was used for drafting and language editing. The author reviewed and edited the manuscript and takes responsibility for the final content.&quot;</div>
+      <div class="color-strip"><div style="background:#1b4f72;"></div><div style="background:#0e6251;"></div><div style="background:#4a235a;"></div><div style="background:#922b21;"></div><div style="background:#7e5109;"></div><div style="background:#0b5345;"></div><div style="background:#566573;"></div></div>
+    </div>
+
+    <div class="card">
+      <div class="section-label">Sentence Structure</div>
+      
+        <div class="sentence" style="border-left-color:#1b4f72;">
+          <span class="role-tag" style="color:#1b4f72;">Question</span>
+          <p>In global health, does the distribution of maternal mortality trials reflect the geographic burden of obstetric death?</p>
         </div>
-        <div style="background:#d1f2eb;border-left:4px solid #0e6251;padding:12px 16px;margin:8px 0;border-radius:6px;">
-          <span style="color:#0e6251;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:0.05em;">Dataset</span>
-          <p style="margin:6px 0 0;color:#1d2430;line-height:1.6;">This registry audit queried ClinicalTrials.gov API v2 for interventional trials addressing maternal mortality, postpartum hemorrhage, preeclampsia, and eclampsia across Africa and comparators through March 2026.</p>
+        <div class="sentence" style="border-left-color:#0e6251;">
+          <span class="role-tag" style="color:#0e6251;">Dataset</span>
+          <p>This registry audit queried ClinicalTrials.gov API v2 for interventional trials addressing maternal mortality, postpartum hemorrhage, preeclampsia, and eclampsia across Africa and comparators through March 2026.</p>
         </div>
-        <div style="background:#e8daef;border-left:4px solid #4a235a;padding:12px 16px;margin:8px 0;border-radius:6px;">
-          <span style="color:#4a235a;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:0.05em;">Method</span>
-          <p style="margin:6px 0 0;color:#1d2430;line-height:1.6;">Investigators applied the Condition Colonialism Index and reported the burden-to-trial ratio as the primary estimand.</p>
+        <div class="sentence" style="border-left-color:#4a235a;">
+          <span class="role-tag" style="color:#4a235a;">Method</span>
+          <p>Investigators applied the Condition Colonialism Index and reported the burden-to-trial ratio as the primary estimand.</p>
         </div>
-        <div style="background:#fadbd8;border-left:4px solid #922b21;padding:12px 16px;margin:8px 0;border-radius:6px;">
-          <span style="color:#922b21;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:0.05em;">Primary Result</span>
-          <p style="margin:6px 0 0;color:#1d2430;line-height:1.6;">Africa carries sixty-six percent of global maternal deaths yet hosts only nine trials versus seven hundred and thirty-eight in the United States, yielding a CCI of eighty-two.</p>
+        <div class="sentence" style="border-left-color:#922b21;">
+          <span class="role-tag" style="color:#922b21;">Primary Result</span>
+          <p>Africa carries sixty-six percent of global maternal deaths yet hosts only nine trials versus seven hundred and thirty-eight in the United States, yielding a CCI of eighty-two.</p>
         </div>
-        <div style="background:#fdebd0;border-left:4px solid #7e5109;padding:12px 16px;margin:8px 0;border-radius:6px;">
-          <span style="color:#7e5109;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:0.05em;">Robustness</span>
-          <p style="margin:6px 0 0;color:#1d2430;line-height:1.6;">Sub-Saharan Africa has a maternal mortality ratio of five hundred and forty-two per hundred thousand against the SDG 3.1 target of seventy, with no trial infrastructure to close this gap.</p>
+        <div class="sentence" style="border-left-color:#7e5109;">
+          <span class="role-tag" style="color:#7e5109;">Robustness</span>
+          <p>Sub-Saharan Africa has a maternal mortality ratio of five hundred and forty-two per hundred thousand against the SDG 3.1 target of seventy, with no trial infrastructure to close this gap.</p>
         </div>
-        <div style="background:#d0ece7;border-left:4px solid #0b5345;padding:12px 16px;margin:8px 0;border-radius:6px;">
-          <span style="color:#0b5345;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:0.05em;">Interpretation</span>
-          <p style="margin:6px 0 0;color:#1d2430;line-height:1.6;">Postpartum hemorrhage and peripartum cardiomyopathy, both concentrated in Africa, have virtually no trial activity.</p>
+        <div class="sentence" style="border-left-color:#0b5345;">
+          <span class="role-tag" style="color:#0b5345;">Interpretation</span>
+          <p>Postpartum hemorrhage and peripartum cardiomyopathy, both concentrated in Africa, have virtually no trial activity.</p>
         </div>
-        <div style="background:#d5d8dc;border-left:4px solid #566573;padding:12px 16px;margin:8px 0;border-radius:6px;">
-          <span style="color:#566573;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:0.05em;">Boundary</span>
-          <p style="margin:6px 0 0;color:#1d2430;line-height:1.6;">These findings identify arguably the most extreme clinical trial disparity in global health.</p>
+        <div class="sentence" style="border-left-color:#566573;">
+          <span class="role-tag" style="color:#566573;">Boundary</span>
+          <p>These findings identify arguably the most extreme clinical trial disparity in global health.</p>
         </div>
     </div>
+
+    <div class="links">
+      <a class="link-btn" href="../">Back to Group</a>
+      <a class="link-btn" href="../code/maternal-mortality.py" download>Download Code (.py)</a>
+      <a class="link-btn" href="https://github.com/mahmood726-cyber/africa-e156-students" target="_blank">GitHub Repository</a>
+    </div>
+
     <div class="footer">
       <p>E156 Micro-Paper Format &middot; Data: ClinicalTrials.gov API v2</p>
-      <p><a href="https://github.com/mahmood726-cyber/africa-e156-students">GitHub Repository</a></p>
+      <p style="margin-top:6px;"><a href="https://github.com/mahmood726-cyber/africa-e156-students">https://github.com/mahmood726-cyber/africa-e156-students</a></p>
+      <p style="margin-top:6px;">Mahmood Ahmad &middot; ORCID: 0009-0003-7781-4478</p>
     </div>
   </div>
 </body>

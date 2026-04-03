@@ -3,93 +3,219 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Methodological Quality Audit Dashboard</title>
+  <title>Methodological Quality Audit — E156 Dashboard</title>
   <style>
     :root {
       --bg: #f5f2ea; --paper: #fffdf8; --ink: #1d2430; --muted: #5f6b7a;
       --line: #d8cfbf; --accent: #0d6b57; --accent-soft: #dcefe8;
-      --shadow: 0 18px 40px rgba(42,47,54,0.08); --radius: 18px;
-      --sans: "Georgia","Times New Roman",serif;
+      --warm: #7A5A10; --shadow: 0 18px 40px rgba(42,47,54,0.08);
+      --radius: 18px; --serif: "Georgia","Times New Roman",serif;
+      --mono: "Consolas","SFMono-Regular","Menlo",monospace;
     }
-    * { box-sizing: border-box; }
+    * { box-sizing: border-box; margin: 0; }
     body {
-      margin: 0; color: var(--ink); font-family: var(--sans); line-height: 1.5;
-      background: radial-gradient(circle at top left, rgba(13,107,87,0.08), transparent 32%),
-                  radial-gradient(circle at bottom right, rgba(141,79,45,0.08), transparent 28%),
+      color: var(--ink); font-family: var(--serif); line-height: 1.6;
+      background: radial-gradient(circle at top left, rgba(13,107,87,0.06), transparent 32%),
+                  radial-gradient(circle at bottom right, rgba(141,79,45,0.06), transparent 28%),
                   var(--bg);
     }
-    .page { width: min(900px, calc(100vw - 32px)); margin: 32px auto 48px; }
+    .page { width: min(960px, calc(100vw - 32px)); margin: 0 auto; padding: 40px 0 64px; }
     .card {
       background: var(--paper); border: 1px solid var(--line);
-      border-radius: var(--radius); box-shadow: var(--shadow); padding: 28px; margin: 20px 0;
+      border-radius: var(--radius); box-shadow: var(--shadow);
+      padding: 32px; margin-bottom: 24px;
     }
+
+    /* Hero */
+    .hero { text-align: center; padding: 48px 32px; }
     .eyebrow {
-      color: var(--accent); font-size: 13px; letter-spacing: 0.08em;
-      text-transform: uppercase; font-weight: 700; margin-bottom: 8px;
+      color: var(--accent); font-size: 12px; letter-spacing: 0.15em;
+      text-transform: uppercase; font-weight: 700;
     }
-    h1 { margin: 0 0 12px; font-size: clamp(24px,3.5vw,36px); line-height: 1.1; }
-    .metric-row { display: flex; gap: 20px; flex-wrap: wrap; margin: 16px 0; }
+    h1 { font-size: clamp(28px,4vw,44px); line-height: 1.05; margin: 12px 0 8px; }
+    .subtitle { color: var(--muted); font-size: 19px; max-width: 60ch; margin: 0 auto; }
+
+    /* Metrics */
+    .metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; margin: 24px 0; }
     .metric {
-      background: var(--accent-soft); padding: 12px 20px; border-radius: 10px;
-      text-align: center; min-width: 120px;
+      text-align: center; padding: 20px 12px; border-radius: 14px;
+      background: linear-gradient(180deg, #fff, #faf6ee); border: 1px solid var(--line);
     }
-    .metric-val { font-size: 28px; font-weight: 700; color: var(--accent); }
-    .metric-lab { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
-    .body-text { font-size: 17px; line-height: 1.8; color: var(--ink); margin: 20px 0; }
+    .metric-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 6px; }
+    .metric-value { font-size: 28px; font-weight: 700; }
+
+    /* Chart */
+    .chart-wrap { overflow-x: auto; padding: 8px 0; }
+    .section-label {
+      font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--muted); font-weight: 700; margin-bottom: 16px;
+    }
+
+    /* Key finding */
+    .finding {
+      font-size: 22px; line-height: 1.65; padding: 28px 32px;
+      border-left: 5px solid var(--accent); background: var(--accent-soft);
+      border-radius: 0 var(--radius) var(--radius) 0;
+    }
+
+    /* Context */
+    .context { font-size: 18px; line-height: 1.85; color: #2a2f36; }
+    .context-label {
+      font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--warm); font-weight: 700; margin-bottom: 12px;
+    }
+
+    /* Body */
+    .body-text { font-size: 17px; line-height: 1.85; padding: 24px; background: #fafaf7; border-radius: 12px; }
+
+    /* Sentences */
+    .sentence {
+      border-left: 4px solid #ccc; padding: 10px 16px; margin: 8px 0; border-radius: 0 8px 8px 0;
+      background: #fafaf7;
+    }
+    .role-tag { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; }
+    .sentence p { margin: 4px 0 0; font-size: 15px; line-height: 1.7; }
+
+    /* Color strip */
+    .color-strip { display: flex; gap: 3px; border-radius: 6px; overflow: hidden; margin: 16px 0; }
+    .color-strip > div { height: 8px; flex: 1; }
+
+    /* Footer */
     .footer { text-align: center; color: var(--muted); font-size: 13px; margin-top: 32px; }
-    .footer a { color: var(--accent); }
+    .footer a { color: var(--accent); text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+
+    /* Links row */
+    .links { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin: 20px 0; }
+    .link-btn {
+      display: inline-block; padding: 10px 20px; border-radius: 8px;
+      font-size: 14px; font-weight: 600; text-decoration: none;
+      border: 1px solid var(--line); color: var(--ink); background: white;
+      transition: all 0.15s;
+    }
+    .link-btn:hover { background: var(--accent); color: white; border-color: var(--accent); }
+
+    .word-badge {
+      display: inline-block; background: var(--accent-soft); color: var(--accent);
+      padding: 4px 12px; border-radius: 20px; font-size: 13px; font-weight: 700;
+    }
+
+    @media (max-width: 640px) {
+      .card { padding: 20px 16px; }
+      .hero { padding: 32px 16px; }
+      .finding { font-size: 18px; padding: 20px; }
+    }
   </style>
 </head>
 <body>
   <div class="page">
-    <div class="card">
-      <div class="eyebrow">E156 Micro-Paper Dashboard</div>
+
+    <div class="card hero">
+      <div class="eyebrow">E156 Micro-Paper &middot; Africa Clinical Trials</div>
       <h1>Methodological Quality Audit</h1>
-      <div class="metric-row">
-        <div class="metric"><div class="metric-val">162</div><div class="metric-lab">Words</div></div>
-        <div class="metric"><div class="metric-val">7</div><div class="metric-lab">Sentences</div></div>
-        <div class="metric"><div class="metric-val">Africa</div><div class="metric-lab">Region</div></div>
+      <p class="subtitle">Africa gets second-class trial designs in an era of adaptive innovation.</p>
+      <div class="metrics">
+        
+      <div class="metric">
+        <div class="metric-label">Adaptive Trials</div>
+        <div class="metric-value" style="color:#c0392b">&lt;50</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Cluster-RCTs</div>
+        <div class="metric-value" style="color:var(--accent)">21</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Blinding Gap</div>
+        <div class="metric-value" style="color:var(--accent)">9-17%</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Design Sophistication</div>
+        <div class="metric-value" style="color:var(--accent)">Low</div>
+      </div>
       </div>
     </div>
+
     <div class="card">
-      <h2 style="margin:0 0 16px;font-size:20px;">Full Text</h2>
-      <div class="body-text">In an era when adaptive, Bayesian, and platform trials define the methodological frontier, does Africa receive cutting-edge designs or second-class methodology? This audit queried ClinicalTrials.gov for eleven design types across African versus United States interventional trials, computing a Design Sophistication Index weighted by complexity and a blinding rate for double-blind proportions. Researchers classified designs by sophistication weight from one through five and reported the DSI ratio as primary equity estimand. Africa had only twenty-one cluster-randomized trials despite community-level delivery being the dominant care model, while adaptive and platform trials numbered fewer than fifty combined. The double-blind rate in Africa was substantially lower than in the United States, producing a gap that inflates African effect sizes by nine to seventeen percent. Phase one trials were predominantly pharmacokinetic bridging rather than first-in-human discovery, confirming a validation-not-innovation paradigm. These findings demonstrate Africa receives methodologically inferior designs precisely where efficient advanced methods would yield the greatest benefit, limited by keyword-based classification that may undercount unlabeled designs.</div>
+      <div class="section-label">Key Finding</div>
+      <div class="finding">Africa had only twenty-one cluster-randomized trials despite community-level delivery being the dominant care model, while adaptive and platform trials numbered fewer than fifty combined.</div>
     </div>
+
     <div class="card">
-      <h2 style="margin:0 0 16px;font-size:20px;">Sentence Structure</h2>
+      <div class="section-label">The Data</div>
+      <div class="chart-wrap">
+        <svg width="100%" viewBox="0 0 780 236" xmlns="http://www.w3.org/2000/svg">
+      <text x="210" y="24" font-size="15" fill="#5f6b7a" font-family="Georgia,serif">Advanced Trial Designs (count)</text>
       
-        <div style="background:#d4e6f1;border-left:4px solid #1b4f72;padding:12px 16px;margin:8px 0;border-radius:6px;">
-          <span style="color:#1b4f72;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:0.05em;">Question</span>
-          <p style="margin:6px 0 0;color:#1d2430;line-height:1.6;">In an era when adaptive, Bayesian, and platform trials define the methodological frontier, does Africa receive cutting-edge designs or second-class methodology?</p>
+      <text x="200" y="54" text-anchor="end" font-size="14" fill="#1d2430" font-family="Georgia,serif">US Adaptive</text>
+      <rect x="210" y="40" width="520.0" height="24" rx="4" fill="#2c3e50" opacity="0.85"/>
+      <text x="735.0" y="56" font-size="13" fill="#5f6b7a" font-family="Georgia,serif">85</text>
+      <text x="200" y="98" text-anchor="end" font-size="14" fill="#1d2430" font-family="Georgia,serif">US Platform</text>
+      <rect x="210" y="84" width="275.29411764705884" height="24" rx="4" fill="#0d6b57" opacity="0.85"/>
+      <text x="490.29411764705884" y="100" font-size="13" fill="#5f6b7a" font-family="Georgia,serif">45</text>
+      <text x="200" y="142" text-anchor="end" font-size="14" fill="#1d2430" font-family="Georgia,serif">Africa Adaptive</text>
+      <rect x="210" y="128" width="30.588235294117645" height="24" rx="4" fill="#c0392b" opacity="0.85"/>
+      <text x="245.58823529411765" y="144" font-size="13" fill="#5f6b7a" font-family="Georgia,serif">5</text>
+      <text x="200" y="186" text-anchor="end" font-size="14" fill="#1d2430" font-family="Georgia,serif">Africa Cluster-RCT</text>
+      <rect x="210" y="172" width="128.47058823529412" height="24" rx="4" fill="#e67e22" opacity="0.85"/>
+      <text x="343.47058823529414" y="188" font-size="13" fill="#5f6b7a" font-family="Georgia,serif">21</text>
+    </svg>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="context-label">Why It Matters</div>
+      <p class="context">In an era when adaptive, Bayesian, and platform trials define the methodological frontier, Africa receives predominantly conventional parallel-group designs. Fewer than 50 adaptive trials and only 21 cluster-randomised trials exist on the continent — despite community-level delivery being Africa&#x27;s dominant care model. The double-blind rate is substantially lower, inflating effect sizes by 9-17%. Africa receives methodologically inferior designs precisely where advanced methods would yield the greatest benefit.</p>
+    </div>
+
+    <div class="card">
+      <div class="section-label">The Evidence &nbsp; <span class="word-badge">162 words &middot; 7 sentences</span></div>
+      <div class="body-text">In an era when adaptive, Bayesian, and platform trials define the methodological frontier, does Africa receive cutting-edge designs or second-class methodology? This audit queried ClinicalTrials.gov for eleven design types across African versus United States interventional trials, computing a Design Sophistication Index weighted by complexity and a blinding rate for double-blind proportions. Researchers classified designs by sophistication weight from one through five and reported the DSI ratio as primary equity estimand. Africa had only twenty-one cluster-randomized trials despite community-level delivery being the dominant care model, while adaptive and platform trials numbered fewer than fifty combined. The double-blind rate in Africa was substantially lower than in the United States, producing a gap that inflates African effect sizes by nine to seventeen percent. Phase one trials were predominantly pharmacokinetic bridging rather than first-in-human discovery, confirming a validation-not-innovation paradigm. These findings demonstrate Africa receives methodologically inferior designs precisely where efficient advanced methods would yield the greatest benefit, limited by keyword-based classification that may undercount unlabeled designs.</div>
+      <div class="color-strip"><div style="background:#1b4f72;"></div><div style="background:#0e6251;"></div><div style="background:#4a235a;"></div><div style="background:#922b21;"></div><div style="background:#7e5109;"></div><div style="background:#0b5345;"></div><div style="background:#566573;"></div></div>
+    </div>
+
+    <div class="card">
+      <div class="section-label">Sentence Structure</div>
+      
+        <div class="sentence" style="border-left-color:#1b4f72;">
+          <span class="role-tag" style="color:#1b4f72;">Question</span>
+          <p>In an era when adaptive, Bayesian, and platform trials define the methodological frontier, does Africa receive cutting-edge designs or second-class methodology?</p>
         </div>
-        <div style="background:#d1f2eb;border-left:4px solid #0e6251;padding:12px 16px;margin:8px 0;border-radius:6px;">
-          <span style="color:#0e6251;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:0.05em;">Dataset</span>
-          <p style="margin:6px 0 0;color:#1d2430;line-height:1.6;">This audit queried ClinicalTrials.gov for eleven design types across African versus United States interventional trials, computing a Design Sophistication Index weighted by complexity and a blinding rate for double-blind proportions.</p>
+        <div class="sentence" style="border-left-color:#0e6251;">
+          <span class="role-tag" style="color:#0e6251;">Dataset</span>
+          <p>This audit queried ClinicalTrials.gov for eleven design types across African versus United States interventional trials, computing a Design Sophistication Index weighted by complexity and a blinding rate for double-blind proportions.</p>
         </div>
-        <div style="background:#e8daef;border-left:4px solid #4a235a;padding:12px 16px;margin:8px 0;border-radius:6px;">
-          <span style="color:#4a235a;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:0.05em;">Method</span>
-          <p style="margin:6px 0 0;color:#1d2430;line-height:1.6;">Researchers classified designs by sophistication weight from one through five and reported the DSI ratio as primary equity estimand.</p>
+        <div class="sentence" style="border-left-color:#4a235a;">
+          <span class="role-tag" style="color:#4a235a;">Method</span>
+          <p>Researchers classified designs by sophistication weight from one through five and reported the DSI ratio as primary equity estimand.</p>
         </div>
-        <div style="background:#fadbd8;border-left:4px solid #922b21;padding:12px 16px;margin:8px 0;border-radius:6px;">
-          <span style="color:#922b21;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:0.05em;">Primary Result</span>
-          <p style="margin:6px 0 0;color:#1d2430;line-height:1.6;">Africa had only twenty-one cluster-randomized trials despite community-level delivery being the dominant care model, while adaptive and platform trials numbered fewer than fifty combined.</p>
+        <div class="sentence" style="border-left-color:#922b21;">
+          <span class="role-tag" style="color:#922b21;">Primary Result</span>
+          <p>Africa had only twenty-one cluster-randomized trials despite community-level delivery being the dominant care model, while adaptive and platform trials numbered fewer than fifty combined.</p>
         </div>
-        <div style="background:#fdebd0;border-left:4px solid #7e5109;padding:12px 16px;margin:8px 0;border-radius:6px;">
-          <span style="color:#7e5109;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:0.05em;">Robustness</span>
-          <p style="margin:6px 0 0;color:#1d2430;line-height:1.6;">The double-blind rate in Africa was substantially lower than in the United States, producing a gap that inflates African effect sizes by nine to seventeen percent.</p>
+        <div class="sentence" style="border-left-color:#7e5109;">
+          <span class="role-tag" style="color:#7e5109;">Robustness</span>
+          <p>The double-blind rate in Africa was substantially lower than in the United States, producing a gap that inflates African effect sizes by nine to seventeen percent.</p>
         </div>
-        <div style="background:#d0ece7;border-left:4px solid #0b5345;padding:12px 16px;margin:8px 0;border-radius:6px;">
-          <span style="color:#0b5345;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:0.05em;">Interpretation</span>
-          <p style="margin:6px 0 0;color:#1d2430;line-height:1.6;">Phase one trials were predominantly pharmacokinetic bridging rather than first-in-human discovery, confirming a validation-not-innovation paradigm.</p>
+        <div class="sentence" style="border-left-color:#0b5345;">
+          <span class="role-tag" style="color:#0b5345;">Interpretation</span>
+          <p>Phase one trials were predominantly pharmacokinetic bridging rather than first-in-human discovery, confirming a validation-not-innovation paradigm.</p>
         </div>
-        <div style="background:#d5d8dc;border-left:4px solid #566573;padding:12px 16px;margin:8px 0;border-radius:6px;">
-          <span style="color:#566573;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:0.05em;">Boundary</span>
-          <p style="margin:6px 0 0;color:#1d2430;line-height:1.6;">These findings demonstrate Africa receives methodologically inferior designs precisely where efficient advanced methods would yield the greatest benefit, limited by keyword-based classification that may undercount unlabeled designs.</p>
+        <div class="sentence" style="border-left-color:#566573;">
+          <span class="role-tag" style="color:#566573;">Boundary</span>
+          <p>These findings demonstrate Africa receives methodologically inferior designs precisely where efficient advanced methods would yield the greatest benefit, limited by keyword-based classification that may undercount unlabeled designs.</p>
         </div>
     </div>
+
+    <div class="links">
+      <a class="link-btn" href="../">Back to Group</a>
+      <a class="link-btn" href="../code/design-quality.py" download>Download Code (.py)</a>
+      <a class="link-btn" href="https://github.com/mahmood726-cyber/africa-e156-students" target="_blank">GitHub Repository</a>
+    </div>
+
     <div class="footer">
       <p>E156 Micro-Paper Format &middot; Data: ClinicalTrials.gov API v2</p>
-      <p><a href="https://github.com/mahmood726-cyber/africa-e156-students">GitHub Repository</a></p>
+      <p style="margin-top:6px;"><a href="https://github.com/mahmood726-cyber/africa-e156-students">https://github.com/mahmood726-cyber/africa-e156-students</a></p>
+      <p style="margin-top:6px;">Mahmood Ahmad &middot; ORCID: 0009-0003-7781-4478</p>
     </div>
   </div>
 </body>
