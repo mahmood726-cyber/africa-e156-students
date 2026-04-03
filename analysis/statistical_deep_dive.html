@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Statistical Deep Dive — Africa RCT Distribution</title>
+  <style>
+    :root { --bg:#f5f2ea;--paper:#fffdf8;--ink:#1d2430;--muted:#5f6b7a;--line:#d8cfbf;--accent:#0d6b57;--accent-soft:#dcefe8;--warm:#7A5A10;--shadow:0 18px 40px rgba(42,47,54,0.08);--radius:18px;--serif:"Georgia","Times New Roman",serif;--mono:"Consolas","SFMono-Regular","Menlo",monospace; }
+    * { box-sizing:border-box;margin:0; }
+    body { color:var(--ink);font-family:var(--serif);line-height:1.6;background:radial-gradient(circle at top left,rgba(13,107,87,0.06),transparent 32%),radial-gradient(circle at bottom right,rgba(141,79,45,0.06),transparent 28%),var(--bg); }
+    .page { width:min(1080px,calc(100vw - 32px));margin:0 auto;padding:40px 0 64px; }
+    .card { background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:32px;margin-bottom:24px; }
+    .hero { text-align:center;padding:48px 32px; }
+    .eyebrow { color:var(--accent);font-size:12px;letter-spacing:0.15em;text-transform:uppercase;font-weight:700; }
+    h1 { font-size:clamp(28px,4vw,44px);line-height:1.05;margin:12px 0 8px; }
+    h2 { font-size:22px;margin:0 0 16px;color:var(--warm); }
+    .subtitle { color:var(--muted);font-size:19px;max-width:65ch;margin:0 auto; }
+    .metrics { display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:16px;margin:24px 0; }
+    .metric { text-align:center;padding:20px 12px;border-radius:14px;background:linear-gradient(180deg,#fff,#faf6ee);border:1px solid var(--line); }
+    .metric-label { font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:6px; }
+    .metric-value { font-size:28px;font-weight:700;color:var(--accent); }
+    .section-label { font-size:13px;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);font-weight:700;margin-bottom:16px; }
+    .chart-wrap { display:flex;justify-content:center;overflow-x:auto;padding:8px 0; }
+    .two-col { display:grid;grid-template-columns:1fr 1fr;gap:24px; }
+    .context { font-size:16px;line-height:1.8;color:#2a2f36;margin-top:16px; }
+    .formula { font-family:var(--mono);font-size:14px;background:#f4f1ea;padding:12px 16px;border-radius:8px;margin:12px 0;overflow-x:auto; }
+    table { width:100%;border-collapse:collapse;font-size:14px; }
+    th { text-align:left;padding:10px 12px;border-bottom:2px solid var(--line);color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:0.05em; }
+    td { padding:8px 12px;border-bottom:1px solid var(--line); }
+    .num { text-align:right;font-family:var(--mono); }
+    tr:hover { background:var(--accent-soft); }
+    .finding { font-size:20px;line-height:1.65;padding:24px 28px;border-left:5px solid var(--accent);background:var(--accent-soft);border-radius:0 var(--radius) var(--radius) 0;margin:16px 0; }
+    .footer { text-align:center;color:var(--muted);font-size:13px;margin-top:32px; }
+    .footer a { color:var(--accent);text-decoration:none; }
+    @media (max-width:768px) { .two-col { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <div class="card hero">
+    <div class="eyebrow">Mathematical Analysis &middot; ClinicalTrials.gov</div>
+    <h1>Statistical Deep Dive<br>Africa RCT Distribution</h1>
+    <p class="subtitle">Ten mathematical lenses applied to the distribution of 22,110 clinical trials across 54 African nations.</p>
+    <div class="metrics">
+      <div class="metric"><div class="metric-label">Gini Coefficient</div><div class="metric-value" style="color:#c0392b">0.857</div></div>
+      <div class="metric"><div class="metric-label">Shannon Entropy</div><div class="metric-value">2.83 bits</div></div>
+      <div class="metric"><div class="metric-label">Normalised Entropy</div><div class="metric-value">0.492</div></div>
+      <div class="metric"><div class="metric-label">HHI</div><div class="metric-value">0.3152</div></div>
+      <div class="metric"><div class="metric-label">Zipf Slope</div><div class="metric-value">-2.11</div></div>
+      <div class="metric"><div class="metric-label">Benford MAD</div><div class="metric-value">0.0297</div></div>
+      <div class="metric"><div class="metric-label">Pop→Trial R²</div><div class="metric-value">0.485</div></div>
+      <div class="metric"><div class="metric-label">Pareto Countries</div><div class="metric-value">6/54</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="finding">
+      Africa's clinical trial distribution has a Gini coefficient of 0.857 — comparable to the world's most
+      unequal income distributions. Just 6 countries (11.1% of the continent) account for 80% of all trials.
+      Egypt alone hosts 53% of the total.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Inequality: Gini Coefficient & Lorenz Curve</h2>
+    <div class="formula">Gini = (2 &middot; &Sigma;(i &middot; x_i)) / (n &middot; &Sigma;x_i) &minus; (n+1)/n = 0.8570</div>
+    <div class="two-col">
+      <div>
+        <p class="context">
+          The <strong>Gini coefficient</strong> measures inequality on a 0–1 scale. A value of 0.857 indicates
+          <strong>extreme inequality</strong> in trial distribution.
+          For comparison, South Africa's income Gini is ~0.63 — Africa's trial Gini is even higher.
+        </p>
+        <p class="context" style="margin-top:12px;">
+          The <strong>Lorenz curve</strong> shows the cumulative share of trials held by each percentile of countries.
+          The red area between the curve and the equality line is proportional to the Gini coefficient.
+        </p>
+      </div>
+      <div class="chart-wrap"><svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="max-width:420px;">
+  <rect x="50" y="50" width="300" height="300" fill="#fafaf7" stroke="#d8cfbf"/>
+  <path d="M 50.0 350.0 L 55.6 350.0 L 61.1 350.0 L 66.7 350.0 L 72.2 350.0 L 77.8 349.9 L 83.3 349.9 L 88.9 349.9 L 94.4 349.8 L 100.0 349.8 L 105.6 349.7 L 111.1 349.6 L 116.7 349.5 L 122.2 349.3 L 127.8 349.2 L 133.3 349.1 L 138.9 348.9 L 144.4 348.8 L 150.0 348.6 L 155.6 348.2 L 161.1 347.7 L 166.7 347.3 L 172.2 346.8 L 177.8 346.3 L 183.3 345.7 L 188.9 345.0 L 194.4 344.3 L 200.0 343.6 L 205.6 342.8 L 211.1 342.0 L 216.7 341.2 L 222.2 340.1 L 227.8 338.8 L 233.3 337.3 L 238.9 335.7 L 244.4 334.1 L 250.0 332.3 L 255.6 330.4 L 261.1 328.4 L 266.7 326.2 L 272.2 324.0 L 277.8 321.5 L 283.3 318.8 L 288.9 315.9 L 294.4 312.3 L 300.0 308.2 L 305.6 304.1 L 311.1 299.4 L 316.7 294.3 L 322.2 288.0 L 327.8 280.7 L 333.3 270.0 L 338.9 259.0 L 344.4 209.5 L 350.0 50.0 L 350.0 50.0 L 50.0 350.0 Z" fill="rgba(192,57,43,0.15)" stroke="none"/>
+  <path d="M 50 350 L 350 50" stroke="#0d6b57" stroke-width="1.5" stroke-dasharray="6 4" fill="none"/>
+  <path d="M 50.0 350.0 L 55.6 350.0 L 61.1 350.0 L 66.7 350.0 L 72.2 350.0 L 77.8 349.9 L 83.3 349.9 L 88.9 349.9 L 94.4 349.8 L 100.0 349.8 L 105.6 349.7 L 111.1 349.6 L 116.7 349.5 L 122.2 349.3 L 127.8 349.2 L 133.3 349.1 L 138.9 348.9 L 144.4 348.8 L 150.0 348.6 L 155.6 348.2 L 161.1 347.7 L 166.7 347.3 L 172.2 346.8 L 177.8 346.3 L 183.3 345.7 L 188.9 345.0 L 194.4 344.3 L 200.0 343.6 L 205.6 342.8 L 211.1 342.0 L 216.7 341.2 L 222.2 340.1 L 227.8 338.8 L 233.3 337.3 L 238.9 335.7 L 244.4 334.1 L 250.0 332.3 L 255.6 330.4 L 261.1 328.4 L 266.7 326.2 L 272.2 324.0 L 277.8 321.5 L 283.3 318.8 L 288.9 315.9 L 294.4 312.3 L 300.0 308.2 L 305.6 304.1 L 311.1 299.4 L 316.7 294.3 L 322.2 288.0 L 327.8 280.7 L 333.3 270.0 L 338.9 259.0 L 344.4 209.5 L 350.0 50.0" stroke="#c0392b" stroke-width="2.5" fill="none"/>
+  <!-- Axes labels -->
+  <text x="200.0" y="392" text-anchor="middle" font-size="12" fill="#5f6b7a" font-family="Georgia,serif">Cumulative % of Countries (ranked low→high)</text>
+  <text x="14" y="200.0" text-anchor="middle" font-size="12" fill="#5f6b7a" font-family="Georgia,serif" transform="rotate(-90,14,200.0)">Cumulative % of Trials</text>
+  <!-- Gini label -->
+  <text x="215.0" y="275.0" font-size="18" font-weight="700" fill="#c0392b" font-family="Georgia,serif">Gini = 0.857</text>
+  <text x="260.0" y="140.0" font-size="12" fill="#0d6b57" font-family="Georgia,serif">Line of equality</text>
+  <!-- Axis ticks -->
+  <line x1="50" x2="50" y1="350" y2="355" stroke="#5f6b7a"/><text x="50" y="368" text-anchor="middle" font-size="11" fill="#5f6b7a">0%</text><line x1="125.0" x2="125.0" y1="350" y2="355" stroke="#5f6b7a"/><text x="125.0" y="368" text-anchor="middle" font-size="11" fill="#5f6b7a">25%</text><line x1="200.0" x2="200.0" y1="350" y2="355" stroke="#5f6b7a"/><text x="200.0" y="368" text-anchor="middle" font-size="11" fill="#5f6b7a">50%</text><line x1="275.0" x2="275.0" y1="350" y2="355" stroke="#5f6b7a"/><text x="275.0" y="368" text-anchor="middle" font-size="11" fill="#5f6b7a">75%</text><line x1="350.0" x2="350.0" y1="350" y2="355" stroke="#5f6b7a"/><text x="350.0" y="368" text-anchor="middle" font-size="11" fill="#5f6b7a">100%</text>
+  <line x1="45" x2="50" y1="350" y2="350" stroke="#5f6b7a"/><text x="42" y="354" text-anchor="end" font-size="11" fill="#5f6b7a">0%</text><line x1="45" x2="50" y1="275.0" y2="275.0" stroke="#5f6b7a"/><text x="42" y="279.0" text-anchor="end" font-size="11" fill="#5f6b7a">25%</text><line x1="45" x2="50" y1="200.0" y2="200.0" stroke="#5f6b7a"/><text x="42" y="204.0" text-anchor="end" font-size="11" fill="#5f6b7a">50%</text><line x1="45" x2="50" y1="125.0" y2="125.0" stroke="#5f6b7a"/><text x="42" y="129.0" text-anchor="end" font-size="11" fill="#5f6b7a">75%</text><line x1="45" x2="50" y1="50.0" y2="50.0" stroke="#5f6b7a"/><text x="42" y="54.0" text-anchor="end" font-size="11" fill="#5f6b7a">100%</text>
+</svg></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>2. Diversity: Shannon Entropy</h2>
+    <div class="formula">H = &minus;&Sigma; p_i &middot; log₂(p_i) = 2.829 bits &nbsp; | &nbsp; H_max = log₂(54) = 5.755 bits &nbsp; | &nbsp; H/H_max = 0.492</div>
+    <p class="context">
+      Shannon entropy measures the <strong>diversity</strong> of trial distribution. With a normalised entropy of 0.492,
+      the distribution uses only 49% of its maximum possible diversity.
+      If trials were spread equally across all 54 countries, entropy would be 5.75 bits.
+      The actual value of 2.83 bits reflects heavy concentration in a few nations.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>3. Market Concentration: Herfindahl-Hirschman Index</h2>
+    <div class="formula">HHI = &Sigma;(s_i)² = 0.3152 &nbsp; | &nbsp; Equivalent firms = 1/HHI = 3.2</div>
+    <p class="context">
+      The HHI, borrowed from antitrust economics, treats each country as a "market participant."
+      An HHI of 0.3152 means the 54 African countries behave, in terms of concentration,
+      like <strong>only 3.2 equal-sized countries</strong>. In antitrust terms,
+      this would indicate a highly concentrated market.
+      The US DOJ considers HHI > 0.25 as "highly concentrated."
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>4. Pareto Analysis (80/20 Rule)</h2>
+    <p class="context">
+      <strong>6 countries (11.1%)</strong> account for 80% of all 22,110 African clinical trials:
+    </p>
+    <table style="margin-top:12px;">
+      <thead><tr><th>Country</th><th class="num">Trials</th><th class="num">% of Total</th><th class="num">Cumulative %</th></tr></thead>
+      <tbody><tr><td>Egypt</td><td class="num">11,752</td><td class="num">53.2%</td><td class="num">53.2%</td></tr><tr><td>South Africa</td><td class="num">3,654</td><td class="num">16.5%</td><td class="num">69.7%</td></tr><tr><td>Uganda</td><td class="num">809</td><td class="num">3.7%</td><td class="num">73.3%</td></tr><tr><td>Kenya</td><td class="num">788</td><td class="num">3.6%</td><td class="num">76.9%</td></tr><tr><td>Tunisia</td><td class="num">540</td><td class="num">2.4%</td><td class="num">79.3%</td></tr><tr><td>Tanzania</td><td class="num">460</td><td class="num">2.1%</td><td class="num">81.4%</td></tr></tbody></table>
+  </div>
+
+  <div class="card">
+    <h2>5. Zipf's Law (Rank-Size Distribution)</h2>
+    <div class="formula">log(trials) = -2.112 &middot; log(rank) + C &nbsp; | &nbsp; R² = 0.842 &nbsp; | &nbsp; Ideal Zipf slope = &minus;1.0</div>
+    <div class="two-col">
+      <div>
+        <p class="context">
+          <strong>Zipf's law</strong> predicts that the second-largest city is half the size of the largest, the third is a third, etc.
+          Applied to trial counts, a slope of -2.11 deviates from the ideal &minus;1.0.
+          The distribution is more top-heavy than Zipf predicts — Egypt dominates even more than expected.
+          R² = 0.842 indicates good fit.
+        </p>
+      </div>
+      <div class="chart-wrap"><svg viewBox="0 0 500 350" xmlns="http://www.w3.org/2000/svg" style="max-width:520px;">
+  <rect x="55" y="55" width="390" height="240" fill="#fafaf7" stroke="#d8cfbf"/>
+  <circle cx="55.0" cy="55.0" r="4" fill="#c0392b" opacity="0.7"/><circle cx="123.1" cy="84.9" r="4" fill="#c0392b" opacity="0.7"/><circle cx="162.9" cy="123.5" r="4" fill="#c0392b" opacity="0.7"/><circle cx="191.2" cy="124.2" r="4" fill="#c0392b" opacity="0.7"/><circle cx="213.1" cy="133.9" r="4" fill="#c0392b" opacity="0.7"/><circle cx="231.0" cy="138.0" r="4" fill="#c0392b" opacity="0.7"/><circle cx="246.1" cy="142.9" r="4" fill="#c0392b" opacity="0.7"/><circle cx="259.3" cy="145.4" r="4" fill="#c0392b" opacity="0.7"/><circle cx="270.8" cy="148.3" r="4" fill="#c0392b" opacity="0.7"/><circle cx="281.2" cy="148.8" r="4" fill="#c0392b" opacity="0.7"/><circle cx="290.5" cy="152.5" r="4" fill="#c0392b" opacity="0.7"/><circle cx="299.1" cy="157.5" r="4" fill="#c0392b" opacity="0.7"/><circle cx="307.0" cy="159.2" r="4" fill="#c0392b" opacity="0.7"/><circle cx="314.2" cy="161.6" r="4" fill="#c0392b" opacity="0.7"/><circle cx="321.0" cy="164.7" r="4" fill="#c0392b" opacity="0.7"/><circle cx="327.4" cy="165.0" r="4" fill="#c0392b" opacity="0.7"/><circle cx="333.3" cy="167.2" r="4" fill="#c0392b" opacity="0.7"/><circle cx="338.9" cy="168.8" r="4" fill="#c0392b" opacity="0.7"/><circle cx="344.2" cy="169.8" r="4" fill="#c0392b" opacity="0.7"/><circle cx="349.3" cy="171.8" r="4" fill="#c0392b" opacity="0.7"/><circle cx="354.1" cy="173.7" r="4" fill="#c0392b" opacity="0.7"/><circle cx="358.6" cy="173.9" r="4" fill="#c0392b" opacity="0.7"/><circle cx="363.0" cy="178.9" r="4" fill="#c0392b" opacity="0.7"/><circle cx="367.2" cy="182.1" r="4" fill="#c0392b" opacity="0.7"/><circle cx="371.2" cy="188.5" r="4" fill="#c0392b" opacity="0.7"/><circle cx="375.0" cy="191.5" r="4" fill="#c0392b" opacity="0.7"/><circle cx="378.7" cy="192.4" r="4" fill="#c0392b" opacity="0.7"/><circle cx="382.3" cy="192.4" r="4" fill="#c0392b" opacity="0.7"/><circle cx="385.8" cy="192.8" r="4" fill="#c0392b" opacity="0.7"/><circle cx="389.1" cy="195.9" r="4" fill="#c0392b" opacity="0.7"/><circle cx="392.3" cy="198.1" r="4" fill="#c0392b" opacity="0.7"/><circle cx="395.4" cy="201.8" r="4" fill="#c0392b" opacity="0.7"/><circle cx="398.5" cy="204.0" r="4" fill="#c0392b" opacity="0.7"/><circle cx="401.4" cy="205.5" r="4" fill="#c0392b" opacity="0.7"/><circle cx="404.2" cy="207.1" r="4" fill="#c0392b" opacity="0.7"/><circle cx="407.0" cy="207.9" r="4" fill="#c0392b" opacity="0.7"/><circle cx="409.7" cy="227.4" r="4" fill="#c0392b" opacity="0.7"/><circle cx="412.3" cy="229.3" r="4" fill="#c0392b" opacity="0.7"/><circle cx="414.9" cy="231.4" r="4" fill="#c0392b" opacity="0.7"/><circle cx="417.4" cy="236.0" r="4" fill="#c0392b" opacity="0.7"/><circle cx="419.8" cy="238.7" r="4" fill="#c0392b" opacity="0.7"/><circle cx="422.1" cy="238.7" r="4" fill="#c0392b" opacity="0.7"/><circle cx="424.5" cy="241.7" r="4" fill="#c0392b" opacity="0.7"/><circle cx="426.7" cy="245.2" r="4" fill="#c0392b" opacity="0.7"/><circle cx="428.9" cy="249.1" r="4" fill="#c0392b" opacity="0.7"/><circle cx="431.1" cy="259.5" r="4" fill="#c0392b" opacity="0.7"/><circle cx="433.2" cy="259.5" r="4" fill="#c0392b" opacity="0.7"/><circle cx="435.3" cy="266.9" r="4" fill="#c0392b" opacity="0.7"/><circle cx="437.3" cy="277.2" r="4" fill="#c0392b" opacity="0.7"/><circle cx="439.3" cy="277.2" r="4" fill="#c0392b" opacity="0.7"/><circle cx="441.2" cy="295.0" r="4" fill="#c0392b" opacity="0.7"/><circle cx="443.1" cy="295.0" r="4" fill="#c0392b" opacity="0.7"/><circle cx="445.0" cy="295.0" r="4" fill="#c0392b" opacity="0.7"/>
+  <text x="250.0" y="20" text-anchor="middle" font-size="14" fill="#5f6b7a" font-family="Georgia,serif">Rank-Size Distribution (log-log)</text>
+  <text x="250.0" y="38" text-anchor="middle" font-size="12" fill="#5f6b7a" font-family="Georgia,serif">Zipf slope = -2.11 | R² = 0.842</text>
+  <text x="250.0" y="342" text-anchor="middle" font-size="12" fill="#5f6b7a" font-family="Georgia,serif">log(Rank)</text>
+  <text x="14" y="175.0" text-anchor="middle" font-size="12" fill="#5f6b7a" font-family="Georgia,serif" transform="rotate(-90,14,175.0)">log(Trials)</text>
+</svg></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>6. Benford's Law (First-Digit Test)</h2>
+    <div class="formula">MAD = 0.0297 &nbsp; | &nbsp; &chi;² = 6.35 (df=8, critical=15.51 at &alpha;=0.05) &nbsp; → &nbsp; CONFORMS</div>
+    <div class="two-col">
+      <div>
+        <p class="context">
+          <strong>Benford's Law</strong> predicts that in naturally occurring datasets, the digit 1 appears as the first digit ~30% of the time,
+          digit 2 ~17.6%, and so on. The trial counts conform to Benford at the 5% significance level, suggesting natural (non-fabricated) data.
+          MAD of 0.0297 is outside the close-conformity threshold of 0.015.
+        </p>
+      </div>
+      <div class="chart-wrap"><svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg" style="max-width:620px;">
+  <text x="300.0" y="20" text-anchor="middle" font-size="14" fill="#5f6b7a" font-family="Georgia,serif">First-Digit Distribution: Expected (green) vs Observed (red)</text>
+  <text x="300.0" y="38" text-anchor="middle" font-size="12" fill="#5f6b7a" font-family="Georgia,serif">MAD = 0.0297 | n = 53 countries</text>
+  <rect x="50" y="59.382002601611276" width="23.0" height="180.61799739838872" fill="#0d6b57" opacity="0.6" rx="2"/><rect x="75.0" y="47.54716981132077" width="23.0" height="192.45283018867923" fill="#c0392b" opacity="0.7" rx="2"/><text x="75.0" y="256" text-anchor="middle" font-size="13" fill="#1d2430">1</text><text x="62.5" y="55.382002601611276" text-anchor="middle" font-size="9" fill="#0d6b57">30.1%</text><text x="87.5" y="43.54716981132077" text-anchor="middle" font-size="9" fill="#c0392b">32.1%</text><rect x="108" y="134.34524456659125" width="23.0" height="105.65475543340874" fill="#0d6b57" opacity="0.6" rx="2"/><rect x="133.0" y="183.39622641509433" width="23.0" height="56.60377358490567" fill="#c0392b" opacity="0.7" rx="2"/><text x="133.0" y="256" text-anchor="middle" font-size="13" fill="#1d2430">2</text><text x="120.5" y="130.34524456659125" text-anchor="middle" font-size="9" fill="#0d6b57">17.6%</text><text x="145.5" y="179.39622641509433" text-anchor="middle" font-size="9" fill="#c0392b">9.4%</text><rect x="166" y="165.03675803502006" width="23.0" height="74.96324196497996" fill="#0d6b57" opacity="0.6" rx="2"/><rect x="191.0" y="115.47169811320754" width="23.0" height="124.52830188679246" fill="#c0392b" opacity="0.7" rx="2"/><text x="191.0" y="256" text-anchor="middle" font-size="13" fill="#1d2430">3</text><text x="178.5" y="161.03675803502006" text-anchor="middle" font-size="9" fill="#0d6b57">12.5%</text><text x="203.5" y="111.47169811320754" text-anchor="middle" font-size="9" fill="#c0392b">20.8%</text><rect x="224" y="181.85399219516614" width="23.0" height="58.14600780483385" fill="#0d6b57" opacity="0.6" rx="2"/><rect x="249.0" y="183.39622641509433" width="23.0" height="56.60377358490567" fill="#c0392b" opacity="0.7" rx="2"/><text x="249.0" y="256" text-anchor="middle" font-size="13" fill="#1d2430">4</text><text x="236.5" y="177.85399219516614" text-anchor="middle" font-size="9" fill="#0d6b57">9.7%</text><text x="261.5" y="179.39622641509433" text-anchor="middle" font-size="9" fill="#c0392b">9.4%</text><rect x="282" y="192.4912523714251" width="23.0" height="47.50874762857489" fill="#0d6b57" opacity="0.6" rx="2"/><rect x="307.0" y="183.39622641509433" width="23.0" height="56.60377358490567" fill="#c0392b" opacity="0.7" rx="2"/><text x="307.0" y="256" text-anchor="middle" font-size="13" fill="#1d2430">5</text><text x="294.5" y="188.4912523714251" text-anchor="middle" font-size="9" fill="#0d6b57">7.9%</text><text x="319.5" y="179.39622641509433" text-anchor="middle" font-size="9" fill="#c0392b">9.4%</text><rect x="340" y="199.83192622163207" width="23.0" height="40.16807377836793" fill="#0d6b57" opacity="0.6" rx="2"/><rect x="365.0" y="217.35849056603774" width="23.0" height="22.641509433962263" fill="#c0392b" opacity="0.7" rx="2"/><text x="365.0" y="256" text-anchor="middle" font-size="13" fill="#1d2430">6</text><text x="352.5" y="195.83192622163207" text-anchor="middle" font-size="9" fill="#0d6b57">6.7%</text><text x="377.5" y="213.35849056603774" text-anchor="middle" font-size="9" fill="#c0392b">3.8%</text><rect x="398" y="205.20483181338795" width="23.0" height="34.79516818661204" fill="#0d6b57" opacity="0.6" rx="2"/><rect x="423.0" y="217.35849056603774" width="23.0" height="22.641509433962263" fill="#c0392b" opacity="0.7" rx="2"/><text x="423.0" y="256" text-anchor="middle" font-size="13" fill="#1d2430">7</text><text x="410.5" y="201.20483181338795" text-anchor="middle" font-size="9" fill="#0d6b57">5.8%</text><text x="435.5" y="213.35849056603774" text-anchor="middle" font-size="9" fill="#c0392b">3.8%</text><rect x="456" y="209.30848653157122" width="23.0" height="30.691513468428774" fill="#0d6b57" opacity="0.6" rx="2"/><rect x="481.0" y="206.03773584905662" width="23.0" height="33.9622641509434" fill="#c0392b" opacity="0.7" rx="2"/><text x="481.0" y="256" text-anchor="middle" font-size="13" fill="#1d2430">8</text><text x="468.5" y="205.30848653157122" text-anchor="middle" font-size="9" fill="#0d6b57">5.1%</text><text x="493.5" y="202.03773584905662" text-anchor="middle" font-size="9" fill="#c0392b">5.7%</text><rect x="514" y="212.54550566359492" width="23.0" height="27.454494336405087" fill="#0d6b57" opacity="0.6" rx="2"/><rect x="539.0" y="206.03773584905662" width="23.0" height="33.9622641509434" fill="#c0392b" opacity="0.7" rx="2"/><text x="539.0" y="256" text-anchor="middle" font-size="13" fill="#1d2430">9</text><text x="526.5" y="208.54550566359492" text-anchor="middle" font-size="9" fill="#0d6b57">4.6%</text><text x="551.5" y="202.03773584905662" text-anchor="middle" font-size="9" fill="#c0392b">5.7%</text>
+  <text x="300.0" y="292" text-anchor="middle" font-size="12" fill="#5f6b7a" font-family="Georgia,serif">First Digit</text>
+</svg></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>7. Log-Linear Regression: Population → Trials</h2>
+    <div class="formula">log(trials) = 0.925 &times; log(population) + 1.669 &nbsp; | &nbsp; R² = 0.485</div>
+    <div class="two-col">
+      <div>
+        <p class="context">
+          A <strong>log-log regression</strong> tests whether trial counts scale proportionally with population.
+          A slope of 0.93 means that doubling a country's population is associated with a
+          1.9-fold increase in trials.
+          Population alone poorly predicts trial activity — other factors dominate.
+        </p>
+        <p class="context" style="margin-top:12px;">
+          <strong>Green dots</strong> are overperformers (more trials than population predicts).
+          <strong>Red dots</strong> are underperformers. Countries above the regression line have stronger
+          research infrastructure relative to their size.
+        </p>
+      </div>
+      <div class="chart-wrap"><svg viewBox="0 0 500 380" xmlns="http://www.w3.org/2000/svg" style="max-width:520px;">
+  <rect x="55" y="55" width="390" height="270" fill="#fafaf7" stroke="#d8cfbf"/>
+  <line x1="55.0" y1="338.3" x2="445.0" y2="132.7" stroke="#7A5A10" stroke-width="2" stroke-dasharray="6 4"/>
+  <circle cx="406.5" cy="55.0" r="5" fill="#0d6b57" opacity="0.7"/><text x="413.5" y="50.0" font-size="10" fill="#0d6b57" font-family="Georgia,serif">Egypt</text><circle cx="378.8" cy="88.7" r="5" fill="#0d6b57" opacity="0.7"/><text x="385.8" y="83.7" font-size="10" fill="#0d6b57" font-family="Georgia,serif">South Africa</text><circle cx="367.8" cy="132.1" r="5" fill="#0d6b57" opacity="0.7"/><text x="374.8" y="127.1" font-size="10" fill="#0d6b57" font-family="Georgia,serif">Uganda</text><circle cx="374.1" cy="132.9" r="5" fill="#0d6b57" opacity="0.7"/><text x="381.1" y="127.9" font-size="10" fill="#0d6b57" font-family="Georgia,serif">Kenya</text><circle cx="299.1" cy="143.7" r="5" fill="#0d6b57" opacity="0.7"/><text x="306.1" y="138.7" font-size="10" fill="#0d6b57" font-family="Georgia,serif">Tunisia</text><circle cx="382.9" cy="148.4" r="5" fill="#0d6b57" opacity="0.7"/><circle cx="445.0" cy="153.9" r="5" fill="#c0392b" opacity="0.7"/><text x="452.0" y="148.9" font-size="10" fill="#c0392b" font-family="Georgia,serif">Nigeria</text><circle cx="323.9" cy="156.7" r="5" fill="#0d6b57" opacity="0.7"/><text x="330.9" y="151.7" font-size="10" fill="#0d6b57" font-family="Georgia,serif">Malawi</text><circle cx="324.4" cy="160.0" r="5" fill="#0d6b57" opacity="0.7"/><text x="331.4" y="155.0" font-size="10" fill="#0d6b57" font-family="Georgia,serif">Zambia</text><circle cx="416.2" cy="160.5" r="5" fill="#2c3e50" opacity="0.7"/><circle cx="349.0" cy="164.7" r="5" fill="#0d6b57" opacity="0.7"/><circle cx="329.3" cy="170.3" r="5" fill="#0d6b57" opacity="0.7"/><circle cx="313.8" cy="172.2" r="5" fill="#0d6b57" opacity="0.7"/><text x="320.8" y="167.2" font-size="10" fill="#0d6b57" font-family="Georgia,serif">Zimbabwe</text><circle cx="329.1" cy="174.9" r="5" fill="#0d6b57" opacity="0.7"/><circle cx="354.7" cy="178.4" r="5" fill="#2c3e50" opacity="0.7"/><circle cx="405.4" cy="178.8" r="5" fill="#c0392b" opacity="0.7"/><circle cx="349.6" cy="181.2" r="5" fill="#2c3e50" opacity="0.7"/><circle cx="305.2" cy="183.0" r="5" fill="#0d6b57" opacity="0.7"/><text x="312.2" y="178.0" font-size="10" fill="#0d6b57" font-family="Georgia,serif">Rwanda</text><circle cx="341.0" cy="184.1" r="5" fill="#2c3e50" opacity="0.7"/><circle cx="219.7" cy="186.4" r="5" fill="#0d6b57" opacity="0.7"/><text x="226.7" y="181.4" font-size="10" fill="#0d6b57" font-family="Georgia,serif">Botswana</text><circle cx="364.6" cy="188.6" r="5" fill="#2c3e50" opacity="0.7"/><circle cx="317.3" cy="188.8" r="5" fill="#2c3e50" opacity="0.7"/><circle cx="341.5" cy="194.4" r="5" fill="#2c3e50" opacity="0.7"/><circle cx="221.6" cy="198.0" r="5" fill="#0d6b57" opacity="0.7"/><text x="228.6" y="193.0" font-size="10" fill="#0d6b57" font-family="Georgia,serif">Gambia</text><circle cx="215.7" cy="205.2" r="5" fill="#0d6b57" opacity="0.7"/><text x="222.7" y="200.2" font-size="10" fill="#0d6b57" font-family="Georgia,serif">Gabon</text><circle cx="208.9" cy="208.5" r="5" fill="#0d6b57" opacity="0.7"/><text x="215.9" y="203.5" font-size="10" fill="#0d6b57" font-family="Georgia,serif">Guinea-Bissau</text><circle cx="302.6" cy="209.5" r="5" fill="#2c3e50" opacity="0.7"/><circle cx="367.3" cy="209.5" r="5" fill="#c0392b" opacity="0.7"/><text x="374.3" y="204.5" font-size="10" fill="#c0392b" font-family="Georgia,serif">Sudan</text><circle cx="280.2" cy="210.1" r="5" fill="#2c3e50" opacity="0.7"/><circle cx="184.7" cy="213.5" r="5" fill="#0d6b57" opacity="0.7"/><text x="191.7" y="208.5" font-size="10" fill="#0d6b57" font-family="Georgia,serif">Mauritius</text><circle cx="336.5" cy="216.0" r="5" fill="#c0392b" opacity="0.7"/><circle cx="213.5" cy="220.2" r="5" fill="#0d6b57" opacity="0.7"/><text x="220.5" y="215.2" font-size="10" fill="#0d6b57" font-family="Georgia,serif">Lesotho</text><circle cx="305.6" cy="222.6" r="5" fill="#c0392b" opacity="0.7"/><circle cx="343.9" cy="224.3" r="5" fill="#c0392b" opacity="0.7"/><text x="350.9" y="219.3" font-size="10" fill="#c0392b" font-family="Georgia,serif">Madagascar</text><circle cx="256.7" cy="226.1" r="5" fill="#2c3e50" opacity="0.7"/><circle cx="180.6" cy="227.0" r="5" fill="#0d6b57" opacity="0.7"/><text x="187.6" y="222.0" font-size="10" fill="#0d6b57" font-family="Georgia,serif">Eswatini</text><circle cx="282.5" cy="249.0" r="5" fill="#c0392b" opacity="0.7"/><text x="289.5" y="244.0" font-size="10" fill="#c0392b" font-family="Georgia,serif">Togo</text><circle cx="301.9" cy="251.1" r="5" fill="#c0392b" opacity="0.7"/><text x="308.9" y="246.1" font-size="10" fill="#c0392b" font-family="Georgia,serif">Burundi</text><circle cx="269.8" cy="253.4" r="5" fill="#c0392b" opacity="0.7"/><circle cx="353.6" cy="258.7" r="5" fill="#c0392b" opacity="0.7"/><text x="360.6" y="253.7" font-size="10" fill="#c0392b" font-family="Georgia,serif">Angola</text><circle cx="259.4" cy="261.7" r="5" fill="#c0392b" opacity="0.7"/><text x="266.4" y="256.7" font-size="10" fill="#c0392b" font-family="Georgia,serif">Central African Republic</text><circle cx="318.4" cy="261.7" r="5" fill="#c0392b" opacity="0.7"/><text x="325.4" y="256.7" font-size="10" fill="#c0392b" font-family="Georgia,serif">Chad</text><circle cx="293.1" cy="265.1" r="5" fill="#c0392b" opacity="0.7"/><text x="300.1" y="260.1" font-size="10" fill="#c0392b" font-family="Georgia,serif">South Sudan</text><circle cx="219.7" cy="268.9" r="5" fill="#c0392b" opacity="0.7"/><circle cx="317.8" cy="273.4" r="5" fill="#c0392b" opacity="0.7"/><text x="324.8" y="268.4" font-size="10" fill="#c0392b" font-family="Georgia,serif">Somalia</text><circle cx="166.1" cy="285.1" r="5" fill="#2c3e50" opacity="0.7"/><circle cx="262.9" cy="285.1" r="5" fill="#c0392b" opacity="0.7"/><text x="269.9" y="280.1" font-size="10" fill="#c0392b" font-family="Georgia,serif">Congo (Brazzaville)</text><circle cx="198.3" cy="293.3" r="5" fill="#c0392b" opacity="0.7"/><text x="205.3" y="288.3" font-size="10" fill="#c0392b" font-family="Georgia,serif">Equatorial Guinea</text><circle cx="176.2" cy="305.0" r="5" fill="#c0392b" opacity="0.7"/><text x="183.2" y="300.0" font-size="10" fill="#c0392b" font-family="Georgia,serif">Djibouti</text><circle cx="251.8" cy="305.0" r="5" fill="#c0392b" opacity="0.7"/><text x="258.8" y="300.0" font-size="10" fill="#c0392b" font-family="Georgia,serif">Mauritania</text><circle cx="145.6" cy="325.0" r="5" fill="#c0392b" opacity="0.7"/><text x="152.6" y="320.0" font-size="10" fill="#c0392b" font-family="Georgia,serif">Cabo Verde</text><circle cx="237.6" cy="325.0" r="5" fill="#c0392b" opacity="0.7"/><text x="244.6" y="320.0" font-size="10" fill="#c0392b" font-family="Georgia,serif">Eritrea</text><circle cx="55.0" cy="325.0" r="5" fill="#2c3e50" opacity="0.7"/>
+  <text x="250.0" y="20" text-anchor="middle" font-size="14" fill="#5f6b7a" font-family="Georgia,serif">Population vs Trials (log-log)</text>
+  <text x="250.0" y="38" text-anchor="middle" font-size="12" fill="#5f6b7a" font-family="Georgia,serif">slope = 0.93 | R² = 0.485</text>
+  <text x="250.0" y="372" text-anchor="middle" font-size="12" fill="#5f6b7a" font-family="Georgia,serif">log(Population in millions)</text>
+  <text x="14" y="190.0" text-anchor="middle" font-size="12" fill="#5f6b7a" font-family="Georgia,serif" transform="rotate(-90,14,190.0)">log(Trial count)</text>
+  <text x="445" y="71" text-anchor="end" font-size="11" fill="#0d6b57">Green = overperforms</text>
+  <text x="445" y="85" text-anchor="end" font-size="11" fill="#c0392b">Red = underperforms</text>
+</svg></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>8. Regression Residuals (Over/Underperformers)</h2>
+    <table>
+      <thead><tr><th>Country</th><th class="num">Trials</th><th class="num">Population</th><th class="num">Residual</th></tr></thead>
+      <tbody><tr><td>Egypt</td><td class="num">11,752</td><td class="num">104.5M</td><td class="num" style="color:#0d6b57">+3.40</td></tr><tr><td>South Africa</td><td class="num">3,654</td><td class="num">60.4M</td><td class="num" style="color:#0d6b57">+2.74</td></tr><tr><td>Tunisia</td><td class="num">540</td><td class="num">12.5M</td><td class="num" style="color:#0d6b57">+2.29</td></tr><tr><td>Botswana</td><td class="num">123</td><td class="num">2.6M</td><td class="num" style="color:#0d6b57">+2.26</td></tr><tr><td>Mauritius</td><td class="num">48</td><td class="num">1.3M</td><td class="num" style="color:#0d6b57">+1.96</td></tr><tr><td>Gambia</td><td class="num">82</td><td class="num">2.7M</td><td class="num" style="color:#0d6b57">+1.82</td></tr><tr><td>Guinea-Bissau</td><td class="num">57</td><td class="num">2.1M</td><td class="num" style="color:#0d6b57">+1.69</td></tr><tr><td>Gabon</td><td class="num">64</td><td class="num">2.4M</td><td class="num" style="color:#0d6b57">+1.68</td></tr><tr><td>Eswatini</td><td class="num">30</td><td class="num">1.2M</td><td class="num" style="color:#0d6b57">+1.56</td></tr><tr><td>Uganda</td><td class="num">809</td><td class="num">48.6M</td><td class="num" style="color:#0d6b57">+1.43</td></tr><tr><td>Malawi</td><td class="num">344</td><td class="num">20.4M</td><td class="num" style="color:#0d6b57">+1.38</td></tr><tr><td>Kenya</td><td class="num">788</td><td class="num">55.1M</td><td class="num" style="color:#0d6b57">+1.29</td></tr><tr><td>Zambia</td><td class="num">307</td><td class="num">20.6M</td><td class="num" style="color:#0d6b57">+1.26</td></tr><tr><td>Lesotho</td><td class="num">38</td><td class="num">2.3M</td><td class="num" style="color:#0d6b57">+1.20</td></tr><tr><td>Zimbabwe</td><td class="num">201</td><td class="num">16.7M</td><td class="num" style="color:#0d6b57">+1.03</td></tr><tr><td>Burkina Faso</td><td class="num">215</td><td class="num">22.7M</td><td class="num" style="color:#0d6b57">+0.81</td></tr><tr><td>Rwanda</td><td class="num">138</td><td class="num">14.1M</td><td class="num" style="color:#0d6b57">+0.81</td></tr><tr><td>Mali</td><td class="num">183</td><td class="num">22.6M</td><td class="num" style="color:#0d6b57">+0.66</td></tr><tr><td>Ghana</td><td class="num">261</td><td class="num">33.5M</td><td class="num" style="color:#0d6b57">+0.65</td></tr><tr><td>Tanzania</td><td class="num">460</td><td class="num">65.5M</td><td class="num" style="color:#0d6b57">+0.59</td></tr><tr><td>Seychelles</td><td class="num">1</td><td class="num">0.1M</td><td class="num" style="color:#2c3e50">+0.46</td></tr><tr><td>Senegal</td><td class="num">113</td><td class="num">17.9M</td><td class="num" style="color:#2c3e50">+0.39</td></tr><tr><td>Sierra Leone</td><td class="num">54</td><td class="num">8.6M</td><td class="num" style="color:#2c3e50">+0.33</td></tr><tr><td>Liberia</td><td class="num">31</td><td class="num">5.4M</td><td class="num" style="color:#2c3e50">+0.21</td></tr><tr><td>Cameroon</td><td class="num">133</td><td class="num">28.6M</td><td class="num" style="color:#2c3e50">+0.12</td></tr><tr><td>Morocco</td><td class="num">162</td><td class="num">37.5M</td><td class="num" style="color:#2c3e50">+0.07</td></tr><tr><td>Mozambique</td><td class="num">147</td><td class="num">33.9M</td><td class="num" style="color:#2c3e50">+0.06</td></tr><tr><td>Benin</td><td class="num">55</td><td class="num">13.4M</td><td class="num" style="color:#2c3e50">-0.06</td></tr><tr><td>Comoros</td><td class="num">4</td><td class="num">0.9M</td><td class="num" style="color:#2c3e50">-0.19</td></tr><tr><td>Cote d&#x27;Ivoire</td><td class="num">93</td><td class="num">28.9M</td><td class="num" style="color:#2c3e50">-0.25</td></tr><tr><td>Ethiopia</td><td class="num">302</td><td class="num">126.5M</td><td class="num" style="color:#2c3e50">-0.44</td></tr><tr><td>Algeria</td><td class="num">114</td><td class="num">45.6M</td><td class="num" style="color:#2c3e50">-0.47</td></tr><tr><td>Guinea</td><td class="num">35</td><td class="num">14.2M</td><td class="num" style="color:#c0392b">-0.57</td></tr><tr><td>Namibia</td><td class="num">7</td><td class="num">2.6M</td><td class="num" style="color:#c0392b">-0.61</td></tr><tr><td>Nigeria</td><td class="num">379</td><td class="num">223.8M</td><td class="num" style="color:#c0392b">-0.74</td></tr><tr><td>Democratic Republic of Congo</td><td class="num">160</td><td class="num">102.3M</td><td class="num" style="color:#c0392b">-0.87</td></tr><tr><td>Niger</td><td class="num">44</td><td class="num">26.2M</td><td class="num" style="color:#c0392b">-0.91</td></tr><tr><td>Libya</td><td class="num">12</td><td class="num">7.0M</td><td class="num" style="color:#c0392b">-0.98</td></tr><tr><td>Togo</td><td class="num">14</td><td class="num">9.0M</td><td class="num" style="color:#c0392b">-1.06</td></tr><tr><td>Equatorial Guinea</td><td class="num">3</td><td class="num">1.7M</td><td class="num" style="color:#c0392b">-1.06</td></tr><tr><td>Djibouti</td><td class="num">2</td><td class="num">1.1M</td><td class="num" style="color:#c0392b">-1.06</td></tr><tr><td>Central African Republic</td><td class="num">9</td><td class="num">5.7M</td><td class="num" style="color:#c0392b">-1.08</td></tr><tr><td>Cabo Verde</td><td class="num">1</td><td class="num">0.6M</td><td class="num" style="color:#c0392b">-1.20</td></tr><tr><td>Sudan</td><td class="num">55</td><td class="num">48.1M</td><td class="num" style="color:#c0392b">-1.24</td></tr><tr><td>Madagascar</td><td class="num">33</td><td class="num">30.3M</td><td class="num" style="color:#c0392b">-1.33</td></tr><tr><td>Burundi</td><td class="num">13</td><td class="num">13.2M</td><td class="num" style="color:#c0392b">-1.49</td></tr><tr><td>South Sudan</td><td class="num">8</td><td class="num">11.1M</td><td class="num" style="color:#c0392b">-1.82</td></tr><tr><td>Congo (Brazzaville)</td><td class="num">4</td><td class="num">6.1M</td><td class="num" style="color:#c0392b">-1.96</td></tr><tr><td>Chad</td><td class="num">9</td><td class="num">18.3M</td><td class="num" style="color:#c0392b">-2.16</td></tr><tr><td>Mauritania</td><td class="num">2</td><td class="num">4.9M</td><td class="num" style="color:#c0392b">-2.45</td></tr><tr><td>Somalia</td><td class="num">6</td><td class="num">18.1M</td><td class="num" style="color:#c0392b">-2.56</td></tr><tr><td>Angola</td><td class="num">10</td><td class="num">36.7M</td><td class="num" style="color:#c0392b">-2.70</td></tr><tr><td>Eritrea</td><td class="num">1</td><td class="num">3.7M</td><td class="num" style="color:#c0392b">-2.88</td></tr></tbody>
+    </table>
+    <p class="context" style="margin-top:12px;">
+      Positive residuals indicate countries with more trials than their population would predict.
+      Negative residuals indicate underperformance. The residual captures the effect of governance,
+      infrastructure, language, colonial history, and funding beyond what population alone explains.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>9. Regional Inequality Decomposition</h2>
+    <table>
+      <thead><tr><th>Region</th><th class="num">Trials</th><th class="num">Population</th><th class="num">Trials/M</th><th class="num">Internal Gini</th></tr></thead>
+      <tbody><tr><td>North</td><td class="num">12,635</td><td class="num">255M</td><td class="num">49.5</td><td class="num">0.794</td></tr><tr><td>West</td><td class="num">1,619</td><td class="num">436M</td><td class="num">3.7</td><td class="num">0.521</td></tr><tr><td>East</td><td class="num">3,104</td><td class="num">444M</td><td class="num">7.0</td><td class="num">0.677</td></tr><tr><td>Central</td><td class="num">382</td><td class="num">165M</td><td class="num">2.3</td><td class="num">0.638</td></tr><tr><td>Southern</td><td class="num">4,370</td><td class="num">143M</td><td class="num">30.5</td><td class="num">0.790</td></tr></tbody>
+    </table>
+    <p class="context" style="margin-top:12px;">
+      Internal Gini measures inequality <em>within</em> each sub-region. High internal Gini means
+      one country dominates the region (e.g., Egypt in North, South Africa in Southern).
+      Low internal Gini means trials are more evenly distributed across the region's countries.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>10. Descriptive Statistics Summary</h2>
+    <div class="metrics">
+      <div class="metric"><div class="metric-label">Mean</div><div class="metric-value">409.4</div></div>
+      <div class="metric"><div class="metric-label">Median</div><div class="metric-value">55.0</div></div>
+      <div class="metric"><div class="metric-label">Std Dev</div><div class="metric-value">1638.7</div></div>
+      <div class="metric"><div class="metric-label">CV</div><div class="metric-value">4.0</div></div>
+      <div class="metric"><div class="metric-label">IQR</div><div class="metric-value">174</div></div>
+      <div class="metric"><div class="metric-label">Min / Max</div><div class="metric-value">0 / 11,752</div></div>
+    </div>
+    <div class="formula">CV = &sigma;/&mu; = 1638.7/409.4 = 4.0 &nbsp; | &nbsp; IQR = Q3 &minus; Q1 = 183 &minus; 9 = 174</div>
+    <p class="context">
+      A coefficient of variation of 4.0 (mean = 409.4, std = 1638.7) indicates
+      extreme variability.
+      The median (55.0) is far below the mean (409.4),
+      confirming a heavily right-skewed distribution dominated by a few large values.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Methods Summary</h2>
+    <table>
+      <thead><tr><th>Method</th><th>Origin</th><th>What It Measures</th><th>Result</th></tr></thead>
+      <tbody>
+        <tr><td>Gini Coefficient</td><td>Economics (Corrado Gini, 1912)</td><td>Inequality of distribution</td><td>0.857</td></tr>
+        <tr><td>Shannon Entropy</td><td>Information Theory (Claude Shannon, 1948)</td><td>Diversity / evenness</td><td>2.83 bits (49.2% of max)</td></tr>
+        <tr><td>HHI</td><td>Antitrust Economics</td><td>Market concentration</td><td>0.3152 (equiv. 3.2 countries)</td></tr>
+        <tr><td>Pareto Analysis</td><td>Management Science (Vilfredo Pareto)</td><td>80/20 concentration</td><td>6 countries = 80% of trials</td></tr>
+        <tr><td>Zipf's Law</td><td>Linguistics / Complex Systems (George Zipf)</td><td>Rank-size regularity</td><td>slope = -2.11, R² = 0.842</td></tr>
+        <tr><td>Benford's Law</td><td>Number Theory (Frank Benford, 1938)</td><td>First-digit naturalness</td><td>MAD = 0.0297, &chi;² = 6.35</td></tr>
+        <tr><td>Log-Linear Regression</td><td>Statistics (OLS)</td><td>Population → Trial scaling</td><td>&beta; = 0.925, R² = 0.485</td></tr>
+        <tr><td>Coefficient of Variation</td><td>Descriptive Statistics</td><td>Relative variability</td><td>CV = 4.0</td></tr>
+        <tr><td>Regional Gini</td><td>Decomposition Analysis</td><td>Within-region inequality</td><td>5 sub-regions</td></tr>
+        <tr><td>Z-Score Outliers</td><td>Standardisation</td><td>Extreme values</td><td>1 outlier(s)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="footer">
+    <p>Data: ClinicalTrials.gov API v2 &middot; Retrieved 2026-04-03 &middot; Analysis: 2026-04-03 15:04</p>
+    <p>Pure Python (no external packages) &middot; University of Uganda &middot; Africa E156 Series</p>
+  </div>
+
+</div>
+</body>
+</html>
