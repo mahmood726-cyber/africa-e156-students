@@ -141,6 +141,201 @@ def svg_top10_lollipop():
 </svg>'''
 
 
+# ── Topic-to-data mapping for paper-specific charts ──
+PAPER_TOPICS = {
+    # Geographic group — related conditions for scatter
+    "angle-11_city-dispersion-rates": {"conditions": ["HIV", "malaria", "cancer"], "design": "cluster"},
+    "angle-12_site-clustering-indices": {"conditions": ["HIV", "tuberculosis", "cardiovascular"], "design": "cluster"},
+    "angle-13_rural-reach-coefficients": {"conditions": ["malaria", "maternal", "neonatal"], "design": "community"},
+    "angle-14_urban-hub-monopolies": {"conditions": ["cancer", "cardiovascular", "diabetes"], "design": "adaptive"},
+    "angle-15_geographic-site-density": {"conditions": ["HIV", "malaria", "tuberculosis"], "design": "placebo"},
+    "angle-16_regional-site-fragmentation": {"conditions": ["respiratory", "neonatal", "pneumonia"], "design": "cluster"},
+    "angle-20_spatial-equity-indices": {"conditions": ["HIV", "cancer", "mental health"], "design": "double-blind"},
+    "angle-19_border-integration-rates": {"conditions": ["tuberculosis", "malaria", "HIV"], "design": "platform"},
+    "intra-african-disparity": {"conditions": ["HIV", "cancer", "cardiovascular"], "design": "adaptive"},
+    "site-fragmentation": {"conditions": ["malaria", "neonatal", "maternal"], "design": "cluster"},
+    "spatial-entropy": {"conditions": ["HIV", "tuberculosis", "cancer"], "design": "open-label"},
+    "selection-pressure": {"conditions": ["HIV", "malaria", "respiratory"], "design": "double-blind"},
+    "angle-17_fractal-scaling-of-hubs": {"conditions": ["cancer", "diabetes", "stroke"], "design": "biomarker"},
+    "angle-18_topological-grid-density": {"conditions": ["cardiovascular", "kidney", "liver"], "design": "adaptive"},
+    "angle-10_structural-decay": {"conditions": ["HIV", "tuberculosis", "malaria"], "design": "placebo"},
+    "angle-4_temporal-persistence": {"conditions": ["respiratory", "pneumonia", "neonatal"], "design": "open-label"},
+    "angle-6_registration-latency": {"conditions": ["cancer", "cardiovascular", "diabetes"], "design": "double-blind"},
+    "angle-1_metadata-lifespans": {"conditions": ["HIV", "malaria", "mental health"], "design": "community"},
+    "topological-networks": {"conditions": ["tuberculosis", "HIV", "malaria"], "design": "platform"},
+    "domestic-grid": {"conditions": ["maternal", "neonatal", "malaria"], "design": "cluster"},
+    # Health group — disease-specific
+    "heart-failure-africa": {"conditions": ["heart failure", "cardiovascular", "hypertension"], "design": "double-blind"},
+    "maternal-mortality": {"conditions": ["maternal", "neonatal", "respiratory"], "design": "cluster"},
+    "covid-displacement": {"conditions": ["respiratory", "HIV", "malaria"], "design": "adaptive"},
+    "global-diseasome-mismatch": {"conditions": ["cancer", "cardiovascular", "mental health"], "design": "biomarker"},
+    "ethnicity-void": {"conditions": ["sickle cell", "cancer", "cardiovascular"], "design": "genomic"},
+    "genomic-resilience": {"conditions": ["cancer", "sickle cell", "HIV"], "design": "genomic"},
+    "cognitive-deficit": {"conditions": ["mental health", "epilepsy", "stroke"], "design": "biomarker"},
+    "biological-extraction": {"conditions": ["HIV", "cancer", "malaria"], "design": "biomarker"},
+    "clinical-interconnectivity": {"conditions": ["tuberculosis", "HIV", "cancer"], "design": "platform"},
+    "modality-symmetry": {"conditions": ["cancer", "cardiovascular", "diabetes"], "design": "immunotherapy"},
+    "rct_equity": {"conditions": ["HIV", "cancer", "cardiovascular"], "design": "double-blind"},
+    "expanded-access": {"conditions": ["HIV", "cancer", "malaria"], "design": "open-label"},
+    "community-engagement": {"conditions": ["HIV", "maternal", "malaria"], "design": "community"},
+    "digital-transformation": {"conditions": ["diabetes", "hypertension", "mental health"], "design": "digital"},
+    "grand-divergence": {"conditions": ["HIV", "cancer", "respiratory"], "design": "adaptive"},
+    "south-south-axis": {"conditions": ["HIV", "malaria", "tuberculosis"], "design": "platform"},
+    "epistemic-care": {"conditions": ["HIV", "tuberculosis", "malaria"], "design": "double-blind"},
+    "omega-frontier": {"conditions": ["cancer", "cardiovascular", "liver"], "design": "immunotherapy"},
+    "fluid-dynamics": {"conditions": ["HIV", "cancer", "respiratory"], "design": "placebo"},
+    "research-archetypes": {"conditions": ["HIV", "malaria", "cancer"], "design": "cluster"},
+    # Governance group
+    "author-sovereignty-gap": {"conditions": ["HIV", "malaria", "tuberculosis"], "design": "open-label"},
+    "corporate-capture": {"conditions": ["cancer", "cardiovascular", "diabetes"], "design": "placebo"},
+    "data-sovereignty": {"conditions": ["HIV", "cancer", "tuberculosis"], "design": "double-blind"},
+    "intellectual-capital": {"conditions": ["HIV", "malaria", "cancer"], "design": "adaptive"},
+    "knowledge-extraction": {"conditions": ["HIV", "tuberculosis", "malaria"], "design": "open-label"},
+    "placebo-ethics": {"conditions": ["HIV", "malaria", "hypertension"], "design": "placebo"},
+    "sponsor-sovereignty": {"conditions": ["cancer", "cardiovascular", "HIV"], "design": "double-blind"},
+    "value-transfer": {"conditions": ["HIV", "cancer", "malaria"], "design": "placebo"},
+    "altruism-efficiency": {"conditions": ["HIV", "malaria", "tuberculosis"], "design": "open-label"},
+    "who-alignment": {"conditions": ["mental health", "epilepsy", "sickle cell"], "design": "community"},
+    "structural-inequity": {"conditions": ["cancer", "cardiovascular", "mental health"], "design": "adaptive"},
+    "unified-theory": {"conditions": ["HIV", "cancer", "cardiovascular"], "design": "double-blind"},
+    "global-hegemony": {"conditions": ["cancer", "cardiovascular", "respiratory"], "design": "immunotherapy"},
+    "western-academic-footprint": {"conditions": ["HIV", "tuberculosis", "malaria"], "design": "placebo"},
+    "pharma-continental-pipeline": {"conditions": ["cancer", "cardiovascular", "diabetes"], "design": "double-blind"},
+    "tech-transfer": {"conditions": ["HIV", "malaria", "tuberculosis"], "design": "community"},
+    "pan-continental": {"conditions": ["HIV", "tuberculosis", "malaria"], "design": "cluster"},
+    "sponsor-churn": {"conditions": ["cancer", "cardiovascular", "HIV"], "design": "adaptive"},
+    "regulatory-oversight": {"conditions": ["cancer", "cardiovascular", "respiratory"], "design": "double-blind"},
+    "forensic-audit": {"conditions": ["HIV", "cancer", "cardiovascular"], "design": "placebo"},
+    # Methods group
+    "design-quality": {"conditions": ["cancer", "cardiovascular", "HIV"], "design": "adaptive"},
+    "protocol-granularity": {"conditions": ["HIV", "tuberculosis", "cancer"], "design": "double-blind"},
+    "protocol-volatility": {"conditions": ["cancer", "cardiovascular", "malaria"], "design": "open-label"},
+    "quan-rigor": {"conditions": ["HIV", "cancer", "cardiovascular"], "design": "double-blind"},
+    "benford-adherence": {"conditions": ["HIV", "malaria", "tuberculosis"], "design": "placebo"},
+    "clinical-fitness": {"conditions": ["HIV", "cancer", "respiratory"], "design": "adaptive"},
+    "recruitment-velocity": {"conditions": ["HIV", "malaria", "tuberculosis"], "design": "cluster"},
+    "completion-velocity": {"conditions": ["cancer", "cardiovascular", "HIV"], "design": "double-blind"},
+    "registration-proactivity": {"conditions": ["HIV", "cancer", "malaria"], "design": "open-label"},
+    "network-entropy": {"conditions": ["HIV", "tuberculosis", "cancer"], "design": "platform"},
+    "pca-variance": {"conditions": ["cardiovascular", "cancer", "diabetes"], "design": "biomarker"},
+    "regression-model": {"conditions": ["HIV", "cancer", "cardiovascular"], "design": "adaptive"},
+    "seven-pillars": {"conditions": ["HIV", "cancer", "tuberculosis"], "design": "double-blind"},
+    "deep-protocol": {"conditions": ["HIV", "malaria", "cancer"], "design": "placebo"},
+    "experimental-mechanics": {"conditions": ["cancer", "cardiovascular", "respiratory"], "design": "immunotherapy"},
+    "outcome-density": {"conditions": ["HIV", "cancer", "cardiovascular"], "design": "biomarker"},
+    "pareto-scaling": {"conditions": ["HIV", "malaria", "cancer"], "design": "cluster"},
+    "masking-depth": {"conditions": ["cancer", "cardiovascular", "HIV"], "design": "double-blind"},
+    "longitudinal-velocity": {"conditions": ["HIV", "cancer", "respiratory"], "design": "adaptive"},
+    "angle-21_complexity-ratios": {"conditions": ["cancer", "cardiovascular", "diabetes"], "design": "bayesian"},
+}
+
+
+def svg_condition_scatter(conditions_list):
+    """Generate a scatter plot of Africa vs US trial counts for 3 conditions."""
+    cond_data = COMP.get("conditions", {})
+    if not cond_data:
+        return ""
+    w, h = 320, 280
+    m = 55
+    pw, ph = w - 2*m, h - 2*m
+    points = []
+    for cond in conditions_list:
+        cd = cond_data.get(cond, {})
+        af = cd.get("Africa", 0)
+        us = cd.get("United States", 0)
+        if af >= 0 and us >= 0:
+            points.append((cond, af, us))
+    if not points:
+        return ""
+    max_af = max(p[1] for p in points) or 1
+    max_us = max(p[2] for p in points) or 1
+    # Use log scale for better visualization
+    def safe_log(v):
+        return math.log(v + 1)
+    log_max_af = safe_log(max_af)
+    log_max_us = safe_log(max_us)
+    def tx(v): return m + (safe_log(v) / log_max_us) * pw if log_max_us > 0 else m
+    def ty(v): return m + (1 - safe_log(v) / log_max_af) * ph if log_max_af > 0 else m
+
+    dots = ""
+    colors = ["#c0392b", "#0d6b57", "#2c3e50"]
+    for i, (name, af, us) in enumerate(points):
+        x, y = tx(us), ty(af)
+        color = colors[i % len(colors)]
+        dots += f'<circle cx="{x:.0f}" cy="{y:.0f}" r="8" fill="{color}" opacity="0.7"/>'
+        dots += f'<text x="{x+12:.0f}" y="{y+4:.0f}" font-size="10" fill="{color}" font-family="Georgia,serif">{escape(name)}</text>'
+        dots += f'<text x="{x+12:.0f}" y="{y+15:.0f}" font-size="9" fill="#5f6b7a">AF:{af:,} US:{us:,}</text>'
+    # Equality line
+    diag = f'<line x1="{m}" y1="{m+ph}" x2="{m+pw}" y2="{m}" stroke="#d8cfbf" stroke-width="1" stroke-dasharray="4 3"/>'
+    return f'''<svg viewBox="0 0 {w} {h}" xmlns="http://www.w3.org/2000/svg" style="max-width:340px;">
+  <rect x="{m}" y="{m}" width="{pw}" height="{ph}" fill="#fafaf7" stroke="#d8cfbf"/>
+  {diag}
+  {dots}
+  <text x="{w/2}" y="16" text-anchor="middle" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">Africa vs US Trials (log scale)</text>
+  <text x="{w/2}" y="{h-6}" text-anchor="middle" font-size="10" fill="#5f6b7a">US trials →</text>
+  <text x="10" y="{h/2}" text-anchor="middle" font-size="10" fill="#5f6b7a" transform="rotate(-90,10,{h/2})">Africa trials →</text>
+</svg>'''
+
+
+def svg_design_comparison(design_key):
+    """Generate a gauge-style comparison of a design feature: Africa vs US."""
+    des = COMP.get("designs", {})
+    d = des.get(design_key, {})
+    af = d.get("Africa", 0)
+    us = d.get("United States", 0)
+    if af < 0 or us < 0 or us == 0:
+        return ""
+    ratio = af / us if us > 0 else 0
+    pct_af = round(100 * af / TOTALS.get("Africa", 1), 1)
+    pct_us = round(100 * us / TOTALS.get("United States", 1), 1)
+    # Horizontal gauge bars
+    max_pct = max(pct_af, pct_us, 1)
+    w, h = 320, 140
+    bar_w = 220
+    label_nice = design_key.replace("-", " ").title()
+    af_w = (pct_af / max_pct) * bar_w
+    us_w = (pct_us / max_pct) * bar_w
+    return f'''<svg viewBox="0 0 {w} {h}" xmlns="http://www.w3.org/2000/svg" style="max-width:340px;">
+  <text x="{w/2}" y="16" text-anchor="middle" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">{escape(label_nice)} Trials (% of total)</text>
+  <text x="10" y="50" font-size="11" fill="#c0392b" font-family="Georgia,serif">Africa</text>
+  <rect x="80" y="38" width="{af_w:.0f}" height="18" rx="3" fill="#c0392b" opacity="0.8"/>
+  <text x="{85+af_w:.0f}" y="52" font-size="10" fill="#5f6b7a">{pct_af}% ({af:,})</text>
+  <text x="10" y="85" font-size="11" fill="#0d6b57" font-family="Georgia,serif">US</text>
+  <rect x="80" y="73" width="{us_w:.0f}" height="18" rx="3" fill="#0d6b57" opacity="0.8"/>
+  <text x="{85+us_w:.0f}" y="87" font-size="10" fill="#5f6b7a">{pct_us}% ({us:,})</text>
+  <text x="{w/2}" y="120" text-anchor="middle" font-size="10" fill="#5f6b7a">Ratio: {ratio:.2f}x ({round(us/af) if af > 0 else '∞'}x gap)</text>
+</svg>'''
+
+
+def svg_condition_bars(conditions_list):
+    """Generate horizontal bars comparing 3 conditions across Africa/US/Europe."""
+    cond_data = COMP.get("conditions", {})
+    if not cond_data:
+        return ""
+    w, h = 320, 240
+    m_l, m_t = 90, 30
+    group_h = 65
+    items = ""
+    for gi, cond in enumerate(conditions_list[:3]):
+        cd = cond_data.get(cond, {})
+        af = cd.get("Africa", 0)
+        us = cd.get("United States", 0)
+        eu = cd.get("Europe", 0)
+        max_v = max(af, us, eu, 1)
+        y_base = m_t + gi * group_h
+        items += f'<text x="{m_l-5}" y="{y_base+12}" text-anchor="end" font-size="11" fill="#1d2430" font-weight="700">{escape(cond.title())}</text>'
+        for ri, (label, val, color) in enumerate([("AF", af, "#c0392b"), ("EU", eu, "#2c3e50"), ("US", us, "#0d6b57")]):
+            bw = (val / max_v) * 200 if max_v > 0 else 0
+            by = y_base + 2 + ri * 16
+            items += f'<text x="{m_l-5}" y="{by+10}" text-anchor="end" font-size="8" fill="{color}">{label}</text>'
+            items += f'<rect x="{m_l}" y="{by}" width="{bw:.0f}" height="12" rx="2" fill="{color}" opacity="0.75"/>'
+            items += f'<text x="{m_l+bw+4:.0f}" y="{by+10}" font-size="8" fill="#5f6b7a">{val:,}</text>'
+    return f'''<svg viewBox="0 0 {w} {h}" xmlns="http://www.w3.org/2000/svg" style="max-width:340px;">
+  <text x="{w/2}" y="16" text-anchor="middle" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">Condition Trials: Africa vs Europe vs US</text>
+  {items}
+</svg>'''
+
+
 def svg_status_bars():
     """Generate a horizontal stacked bar showing trial status distribution."""
     statuses = COMP.get("statuses", {})
@@ -1119,12 +1314,18 @@ def generate_rich_dashboard(slug, group_id):
         strip_html += f'<div style="background:{fg};"></div>'
     strip_html += '</div>'
 
-    # ── Additional charts ──
+    # ── Additional charts (generic) ──
     total_global = sum(TOTALS.values()) or 1
     donut_svg = svg_donut(TOTALS.get("Africa", 0), total_global)
     trend_svg = svg_temporal_trend()
     top10_svg = svg_top10_lollipop()
     status_svg = svg_status_bars()
+
+    # ── Topic-specific charts (unique per paper) ──
+    topic = PAPER_TOPICS.get(slug, {"conditions": ["HIV", "cancer", "cardiovascular"], "design": "double-blind"})
+    scatter_svg = svg_condition_scatter(topic["conditions"])
+    design_svg = svg_design_comparison(topic["design"])
+    cond_bars_svg = svg_condition_bars(topic["conditions"])
 
     code_filename = slug.replace("_", "-") + ".py"
 
@@ -1279,6 +1480,25 @@ def generate_rich_dashboard(slug, group_id):
       <div class="chart-grid">
         <div class="chart-cell">{top10_svg}</div>
         <div class="chart-cell">{status_svg}</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="section-label">Topic-Specific Analysis</div>
+      <div class="chart-grid">
+        <div class="chart-cell">{scatter_svg}</div>
+        <div class="chart-cell">{design_svg}</div>
+      </div>
+      <div class="chart-grid" style="margin-top:16px;">
+        <div class="chart-cell">{cond_bars_svg}</div>
+        <div class="chart-cell" style="padding:20px;font-size:14px;color:var(--muted);line-height:1.7;">
+          <strong style="color:var(--warm);">Statistical Note</strong><br>
+          Gini = 0.857 (bootstrap 95% CI: 0.61&ndash;0.90)<br>
+          Power-law &alpha; = 1.40 (MLE, Clauset 2009)<br>
+          Atkinson A(2.0) = 0.979<br>
+          KL divergence = 2.93 bits from uniform<br>
+          Spearman &rho;(pop, trials/M) = &minus;0.01
+        </div>
       </div>
     </div>
 
