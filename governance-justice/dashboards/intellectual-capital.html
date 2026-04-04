@@ -95,6 +95,11 @@
     }
     .link-btn:hover { background: var(--accent); color: white; border-color: var(--accent); }
 
+    /* Two-column chart grid */
+    .chart-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }
+    .chart-grid .chart-cell { text-align: center; }
+    @media (max-width: 700px) { .chart-grid { grid-template-columns: 1fr; } }
+
     .word-badge {
       display: inline-block; background: var(--accent-soft); color: var(--accent);
       padding: 4px 12px; border-radius: 20px; font-size: 13px; font-weight: 700;
@@ -156,6 +161,85 @@
       <rect x="210" y="128" width="189.0909090909091" height="24" rx="4" fill="#0d6b57" opacity="0.85"/>
       <text x="404.0909090909091" y="144" font-size="13" fill="#5f6b7a" font-family="Georgia,serif">20</text>
     </svg>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="section-label">Continental Context</div>
+      <div class="chart-grid">
+        <div class="chart-cell"><svg viewBox="0 0 240 260" xmlns="http://www.w3.org/2000/svg" style="max-width:240px;">
+  <circle cx="120" cy="120" r="90" fill="none" stroke="#e8e4db" stroke-width="35"/>
+  <path d="M 120 30 A 90 90 0 0 1 152.5 36.1 L 139.8 68.7 A 55 55 0 0 0 120 65 Z" fill="#c0392b" opacity="0.85"/>
+  <text x="120" y="114" text-anchor="middle" font-size="28" font-weight="700" fill="#c0392b" font-family="Georgia,serif">5.9%</text>
+  <text x="120" y="136" text-anchor="middle" font-size="12" fill="#5f6b7a" font-family="Georgia,serif">23,873 / 406,406</text>
+  <text x="120" y="252" text-anchor="middle" font-size="12" fill="#5f6b7a" font-family="Georgia,serif">Africa&#x27;s Global Share</text>
+</svg></div>
+        <div class="chart-cell"><svg viewBox="0 0 440 220" xmlns="http://www.w3.org/2000/svg" style="max-width:460px;">
+  <rect x="55" y="30" width="365" height="140" fill="#fafaf7" stroke="#d8cfbf"/>
+  <polyline points="55.0,122.4 146.2,77.5 237.5,61.5 328.8,34.8 420.0,30.0" fill="none" stroke="#0d6b57" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.5"/>
+  <polyline points="55.0,168.0 146.2,165.7 237.5,162.6 328.8,149.9 420.0,136.3" fill="none" stroke="#c0392b" stroke-width="2.5"/>
+  <circle cx="55.0" cy="168.0" r="4" fill="#c0392b"/><circle cx="146.2" cy="165.7" r="4" fill="#c0392b"/><circle cx="237.5" cy="162.6" r="4" fill="#c0392b"/><circle cx="328.8" cy="149.9" r="4" fill="#c0392b"/><circle cx="420.0" cy="136.3" r="4" fill="#c0392b"/>
+  <text x="55.0" y="188" text-anchor="middle" font-size="10" fill="#5f6b7a">2000-20</text><text x="146.2" y="188" text-anchor="middle" font-size="10" fill="#5f6b7a">2006-20</text><text x="237.5" y="188" text-anchor="middle" font-size="10" fill="#5f6b7a">2011-20</text><text x="328.8" y="188" text-anchor="middle" font-size="10" fill="#5f6b7a">2016-20</text><text x="420.0" y="188" text-anchor="middle" font-size="10" fill="#5f6b7a">2021-20</text>
+  <text x="55.0" y="160.0" text-anchor="middle" font-size="10" fill="#c0392b" font-weight="700">678</text><text x="146.2" y="157.7" text-anchor="middle" font-size="10" fill="#c0392b" font-weight="700">1,488</text><text x="237.5" y="154.6" text-anchor="middle" font-size="10" fill="#c0392b" font-weight="700">2,538</text><text x="328.8" y="141.9" text-anchor="middle" font-size="10" fill="#c0392b" font-weight="700">6,935</text><text x="420.0" y="128.3" text-anchor="middle" font-size="10" fill="#c0392b" font-weight="700">11,599</text>
+  <text x="220.0" y="14" text-anchor="middle" font-size="13" fill="#5f6b7a" font-family="Georgia,serif">Africa Trial Growth by Epoch</text>
+  <text x="60" y="42" font-size="9" fill="#c0392b">Africa</text>
+  <text x="60" y="54" font-size="9" fill="#0d6b57">US (dashed)</text>
+</svg></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="section-label">Country Breakdown &amp; Status</div>
+      <div class="chart-grid">
+        <div class="chart-cell"><svg viewBox="0 0 440 340" xmlns="http://www.w3.org/2000/svg" style="max-width:460px;">
+  <text x="220.0" y="18" text-anchor="middle" font-size="13" fill="#5f6b7a" font-family="Georgia,serif">Top 10 African Countries by Trial Volume</text>
+  
+    <text x="124" y="45" text-anchor="end" font-size="11" fill="#1d2430" font-family="Georgia,serif">Egypt</text>
+    <line x1="130" x2="410.0" y1="41" y2="41" stroke="#c0392b" stroke-width="2"/>
+    <circle cx="410.0" cy="41" r="5" fill="#c0392b"/>
+    <text x="420.0" y="45" font-size="10" fill="#5f6b7a" font-family="Georgia,serif">11,752 (112.5/M)</text>
+    <text x="124" y="73" text-anchor="end" font-size="11" fill="#1d2430" font-family="Georgia,serif">South Africa</text>
+    <line x1="130" x2="217.1" y1="69" y2="69" stroke="#922b21" stroke-width="2"/>
+    <circle cx="217.1" cy="69" r="5" fill="#922b21"/>
+    <text x="227.1" y="73" font-size="10" fill="#5f6b7a" font-family="Georgia,serif">3,654 (60.5/M)</text>
+    <text x="124" y="101" text-anchor="end" font-size="11" fill="#1d2430" font-family="Georgia,serif">Uganda</text>
+    <line x1="130" x2="149.3" y1="97" y2="97" stroke="#922b21" stroke-width="2"/>
+    <circle cx="149.3" cy="97" r="5" fill="#922b21"/>
+    <text x="159.3" y="101" font-size="10" fill="#5f6b7a" font-family="Georgia,serif">809 (16.6/M)</text>
+    <text x="124" y="129" text-anchor="end" font-size="11" fill="#1d2430" font-family="Georgia,serif">Kenya</text>
+    <line x1="130" x2="148.8" y1="125" y2="125" stroke="#7e5109" stroke-width="2"/>
+    <circle cx="148.8" cy="125" r="5" fill="#7e5109"/>
+    <text x="158.8" y="129" font-size="10" fill="#5f6b7a" font-family="Georgia,serif">788 (14.3/M)</text>
+    <text x="124" y="157" text-anchor="end" font-size="11" fill="#1d2430" font-family="Georgia,serif">Tunisia</text>
+    <line x1="130" x2="142.9" y1="153" y2="153" stroke="#7e5109" stroke-width="2"/>
+    <circle cx="142.9" cy="153" r="5" fill="#7e5109"/>
+    <text x="152.9" y="157" font-size="10" fill="#5f6b7a" font-family="Georgia,serif">540 (43.2/M)</text>
+    <text x="124" y="185" text-anchor="end" font-size="11" fill="#1d2430" font-family="Georgia,serif">Tanzania</text>
+    <line x1="130" x2="141.0" y1="181" y2="181" stroke="#2c3e50" stroke-width="2"/>
+    <circle cx="141.0" cy="181" r="5" fill="#2c3e50"/>
+    <text x="151.0" y="185" font-size="10" fill="#5f6b7a" font-family="Georgia,serif">460 (7.0/M)</text>
+    <text x="124" y="213" text-anchor="end" font-size="11" fill="#1d2430" font-family="Georgia,serif">Nigeria</text>
+    <line x1="130" x2="139.0" y1="209" y2="209" stroke="#2c3e50" stroke-width="2"/>
+    <circle cx="139.0" cy="209" r="5" fill="#2c3e50"/>
+    <text x="149.0" y="213" font-size="10" fill="#5f6b7a" font-family="Georgia,serif">379 (1.7/M)</text>
+    <text x="124" y="241" text-anchor="end" font-size="11" fill="#1d2430" font-family="Georgia,serif">Malawi</text>
+    <line x1="130" x2="138.2" y1="237" y2="237" stroke="#2c3e50" stroke-width="2"/>
+    <circle cx="138.2" cy="237" r="5" fill="#2c3e50"/>
+    <text x="148.2" y="241" font-size="10" fill="#5f6b7a" font-family="Georgia,serif">344 (16.9/M)</text>
+    <text x="124" y="269" text-anchor="end" font-size="11" fill="#1d2430" font-family="Georgia,serif">Zambia</text>
+    <line x1="130" x2="137.3" y1="265" y2="265" stroke="#2c3e50" stroke-width="2"/>
+    <circle cx="137.3" cy="265" r="5" fill="#2c3e50"/>
+    <text x="147.3" y="269" font-size="10" fill="#5f6b7a" font-family="Georgia,serif">307 (14.9/M)</text>
+    <text x="124" y="297" text-anchor="end" font-size="11" fill="#1d2430" font-family="Georgia,serif">Ethiopia</text>
+    <line x1="130" x2="137.2" y1="293" y2="293" stroke="#2c3e50" stroke-width="2"/>
+    <circle cx="137.2" cy="293" r="5" fill="#2c3e50"/>
+    <text x="147.2" y="297" font-size="10" fill="#5f6b7a" font-family="Georgia,serif">302 (2.4/M)</text>
+</svg></div>
+        <div class="chart-cell"><svg viewBox="0 0 440 120" xmlns="http://www.w3.org/2000/svg" style="max-width:460px;">
+  <text x="220.0" y="18" text-anchor="middle" font-size="13" fill="#5f6b7a" font-family="Georgia,serif">Africa Trial Status Distribution (18,865 total)</text>
+  <rect x="30.0" y="35" width="280.4" height="28" fill="#0d6b57" opacity="0.85"/><text x="170.2" y="52" text-anchor="middle" font-size="9" fill="white" font-weight="700">74%</text><rect x="310.4" y="35" width="46.6" height="28" fill="#2c3e50" opacity="0.85"/><text x="333.6" y="52" text-anchor="middle" font-size="9" fill="white" font-weight="700">12%</text><rect x="356.9" y="35" width="20.5" height="28" fill="#7e5109" opacity="0.85"/><rect x="377.5" y="35" width="19.1" height="28" fill="#566573" opacity="0.85"/><rect x="396.6" y="35" width="10.5" height="28" fill="#c0392b" opacity="0.85"/><rect x="407.1" y="35" width="2.9" height="28" fill="#922b21" opacity="0.85"/>
+  <rect x="30" y="78" width="10" height="10" fill="#0d6b57" rx="2"/><text x="44" y="87" font-size="9" fill="#5f6b7a">Completed (13,918)</text><rect x="125" y="78" width="10" height="10" fill="#2c3e50" rx="2"/><text x="139" y="87" font-size="9" fill="#5f6b7a">Recruiting (2,313)</text><rect x="220" y="78" width="10" height="10" fill="#7e5109" rx="2"/><text x="234" y="87" font-size="9" fill="#5f6b7a">Not yet recruiting (1,020)</text><rect x="315" y="78" width="10" height="10" fill="#566573" rx="2"/><text x="329" y="87" font-size="9" fill="#5f6b7a">Active (948)</text><rect x="30" y="78" width="10" height="10" fill="#c0392b" rx="2"/><text x="44" y="87" font-size="9" fill="#5f6b7a">Terminated (522)</text><rect x="125" y="78" width="10" height="10" fill="#922b21" rx="2"/><text x="139" y="87" font-size="9" fill="#5f6b7a">Withdrawn (144)</text>
+</svg></div>
       </div>
     </div>
 

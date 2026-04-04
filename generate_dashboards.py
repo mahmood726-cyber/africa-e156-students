@@ -4,7 +4,7 @@ Generate rich NYT-style dashboards for all 48 Africa E156 papers.
 Each dashboard includes: hero metrics, SVG bar chart, sentence breakdown,
 editorial context, and the full E156 body text.
 """
-import re, os, math
+import re, os, math, json
 from pathlib import Path
 from html import escape
 
@@ -12,6 +12,175 @@ E156_DIR = Path("C:/AfricaRCT/E156")
 OUT = Path("C:/Users/user/africa-e156-students")
 GITHUB_PAGES = "https://mahmood726-cyber.github.io/africa-e156-students"
 GITHUB_REPO = "https://github.com/mahmood726-cyber/africa-e156-students"
+
+# Load comprehensive data for additional charts
+_COMP_PATH = OUT / "analysis" / "comprehensive_africa_data.json"
+_COUNTRY_PATH = OUT / "analysis" / "africa_rct_country_results.json"
+COMP = {}
+COUNTRY_DATA = []
+if _COMP_PATH.exists():
+    with open(_COMP_PATH) as _f:
+        COMP = json.load(_f)
+if _COUNTRY_PATH.exists():
+    with open(_COUNTRY_PATH) as _f:
+        COUNTRY_DATA = json.load(_f).get("countries", [])
+
+# Temporal data for trend charts
+TEMPORAL = COMP.get("temporal", {})
+EPOCH_LABELS = list(TEMPORAL.keys()) if TEMPORAL else ["2000-05","2006-10","2011-15","2016-20","2021-25"]
+AF_TEMPORAL = [TEMPORAL.get(e, {}).get("Africa", 0) for e in EPOCH_LABELS]
+US_TEMPORAL = [TEMPORAL.get(e, {}).get("United States", 0) for e in EPOCH_LABELS]
+EU_TEMPORAL = [TEMPORAL.get(e, {}).get("Europe", 0) for e in EPOCH_LABELS]
+
+# Totals for donut
+TOTALS = COMP.get("totals", {"Africa": 23873, "Europe": 142126, "United States": 190644, "China": 49763})
+
+# Top 10 countries for lollipop
+TOP10_COUNTRIES = COUNTRY_DATA[:10] if COUNTRY_DATA else []
+
+
+def svg_donut(africa_val, total_val, label="Africa's Global Share"):
+    """Generate a donut chart showing Africa's share."""
+    if total_val == 0:
+        total_val = 1
+    pct = africa_val / total_val
+    angle = pct * 360
+    # SVG arc
+    cx, cy, r = 120, 120, 90
+    r_inner = 55
+    rad = math.radians(angle - 90)
+    end_x = cx + r * math.cos(rad)
+    end_y = cy + r * math.sin(rad)
+    end_xi = cx + r_inner * math.cos(rad)
+    end_yi = cy + r_inner * math.sin(rad)
+    large = 1 if angle > 180 else 0
+
+    # Start at top (12 o'clock)
+    start_x = cx
+    start_y = cy - r
+    start_xi = cx
+    start_yi = cy - r_inner
+
+    arc_path = f"M {start_x} {start_y} A {r} {r} 0 {large} 1 {end_x:.1f} {end_y:.1f} L {end_xi:.1f} {end_yi:.1f} A {r_inner} {r_inner} 0 {large} 0 {start_xi} {start_yi} Z"
+    bg_path = f"M {cx} {cy-r} A {r} {r} 0 1 1 {cx-.01} {cy-r} Z"
+
+    return f'''<svg viewBox="0 0 240 260" xmlns="http://www.w3.org/2000/svg" style="max-width:240px;">
+  <circle cx="{cx}" cy="{cy}" r="{r}" fill="none" stroke="#e8e4db" stroke-width="{r-r_inner}"/>
+  <path d="{arc_path}" fill="#c0392b" opacity="0.85"/>
+  <text x="{cx}" y="{cy-6}" text-anchor="middle" font-size="28" font-weight="700" fill="#c0392b" font-family="Georgia,serif">{pct:.1%}</text>
+  <text x="{cx}" y="{cy+16}" text-anchor="middle" font-size="12" fill="#5f6b7a" font-family="Georgia,serif">{africa_val:,} / {total_val:,}</text>
+  <text x="{cx}" y="252" text-anchor="middle" font-size="12" fill="#5f6b7a" font-family="Georgia,serif">{escape(label)}</text>
+</svg>'''
+
+
+def svg_temporal_trend():
+    """Generate a line chart showing Africa's trial growth over 5 epochs."""
+    w, h = 440, 220
+    m = {"t": 30, "r": 20, "b": 50, "l": 55}
+    pw = w - m["l"] - m["r"]
+    ph = h - m["t"] - m["b"]
+
+    if not AF_TEMPORAL or max(AF_TEMPORAL) == 0:
+        return ""
+
+    max_val = max(max(AF_TEMPORAL), max(US_TEMPORAL) if US_TEMPORAL else 0) or 1
+    n = len(AF_TEMPORAL)
+
+    def tx(i): return m["l"] + i * pw / max(n-1, 1)
+    def ty(v): return m["t"] + (1 - v/max_val) * ph
+
+    # Africa line
+    af_points = " ".join(f"{tx(i):.1f},{ty(v):.1f}" for i, v in enumerate(AF_TEMPORAL))
+    # US line (scaled down for comparison)
+    us_points = " ".join(f"{tx(i):.1f},{ty(v):.1f}" for i, v in enumerate(US_TEMPORAL)) if US_TEMPORAL else ""
+
+    # Africa dots
+    af_dots = "".join(f'<circle cx="{tx(i):.1f}" cy="{ty(v):.1f}" r="4" fill="#c0392b"/>' for i, v in enumerate(AF_TEMPORAL))
+    # Labels
+    labels = "".join(f'<text x="{tx(i):.1f}" y="{h-m["b"]+18}" text-anchor="middle" font-size="10" fill="#5f6b7a">{EPOCH_LABELS[i][:7]}</text>' for i in range(n))
+    # Value labels
+    vals = "".join(f'<text x="{tx(i):.1f}" y="{ty(v)-8:.1f}" text-anchor="middle" font-size="10" fill="#c0392b" font-weight="700">{v:,}</text>' for i, v in enumerate(AF_TEMPORAL))
+
+    return f'''<svg viewBox="0 0 {w} {h}" xmlns="http://www.w3.org/2000/svg" style="max-width:460px;">
+  <rect x="{m['l']}" y="{m['t']}" width="{pw}" height="{ph}" fill="#fafaf7" stroke="#d8cfbf"/>
+  {'<polyline points="' + us_points + '" fill="none" stroke="#0d6b57" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.5"/>' if us_points else ''}
+  <polyline points="{af_points}" fill="none" stroke="#c0392b" stroke-width="2.5"/>
+  {af_dots}
+  {labels}
+  {vals}
+  <text x="{w/2}" y="14" text-anchor="middle" font-size="13" fill="#5f6b7a" font-family="Georgia,serif">Africa Trial Growth by Epoch</text>
+  <text x="{m['l']+5}" y="{m['t']+12}" font-size="9" fill="#c0392b">Africa</text>
+  {'<text x="' + str(m["l"]+5) + '" y="' + str(m["t"]+24) + '" font-size="9" fill="#0d6b57">US (dashed)</text>' if us_points else ''}
+</svg>'''
+
+
+def svg_top10_lollipop():
+    """Generate a lollipop chart of top 10 African countries."""
+    if not TOP10_COUNTRIES:
+        return ""
+    w, h = 440, 340
+    m_l = 130
+    m_t = 35
+    bar_h = 28
+    max_val = TOP10_COUNTRIES[0]["trials"] if TOP10_COUNTRIES else 1
+
+    items = ""
+    for i, c in enumerate(TOP10_COUNTRIES):
+        y = m_t + i * bar_h
+        x_end = m_l + (c["trials"] / max_val) * 280
+        color = "#c0392b" if i == 0 else "#922b21" if i < 3 else "#7e5109" if i < 5 else "#2c3e50"
+        items += f'''
+    <text x="{m_l-6}" y="{y+10}" text-anchor="end" font-size="11" fill="#1d2430" font-family="Georgia,serif">{escape(c["name"])}</text>
+    <line x1="{m_l}" x2="{x_end:.1f}" y1="{y+6}" y2="{y+6}" stroke="{color}" stroke-width="2"/>
+    <circle cx="{x_end:.1f}" cy="{y+6}" r="5" fill="{color}"/>
+    <text x="{x_end+10:.1f}" y="{y+10}" font-size="10" fill="#5f6b7a" font-family="Georgia,serif">{c["trials"]:,} ({c["per_million"]}/M)</text>'''
+
+    return f'''<svg viewBox="0 0 {w} {h}" xmlns="http://www.w3.org/2000/svg" style="max-width:460px;">
+  <text x="{w/2}" y="18" text-anchor="middle" font-size="13" fill="#5f6b7a" font-family="Georgia,serif">Top 10 African Countries by Trial Volume</text>
+  {items}
+</svg>'''
+
+
+def svg_status_bars():
+    """Generate a horizontal stacked bar showing trial status distribution."""
+    statuses = COMP.get("statuses", {})
+    if not statuses:
+        return ""
+    af_data = {k: v.get("Africa", 0) for k, v in statuses.items() if v.get("Africa", 0) > 0}
+    total = sum(af_data.values()) or 1
+
+    colors = {"COMPLETED": "#0d6b57", "RECRUITING": "#2c3e50", "NOT_YET_RECRUITING": "#7e5109",
+              "ACTIVE_NOT_RECRUITING": "#566573", "TERMINATED": "#c0392b", "WITHDRAWN": "#922b21"}
+    labels = {"COMPLETED": "Completed", "RECRUITING": "Recruiting", "NOT_YET_RECRUITING": "Not yet recruiting",
+              "ACTIVE_NOT_RECRUITING": "Active", "TERMINATED": "Terminated", "WITHDRAWN": "Withdrawn"}
+
+    w, h = 440, 120
+    bar_w = 380
+    bar_y = 35
+    bar_h = 28
+    x = 30
+    segments = ""
+    legend = ""
+    lx = 30
+    for status, count in sorted(af_data.items(), key=lambda x: x[1], reverse=True):
+        seg_w = (count / total) * bar_w
+        color = colors.get(status, "#999")
+        segments += f'<rect x="{x:.1f}" y="{bar_y}" width="{seg_w:.1f}" height="{bar_h}" fill="{color}" opacity="0.85"/>'
+        if seg_w > 25:
+            segments += f'<text x="{x + seg_w/2:.1f}" y="{bar_y+17}" text-anchor="middle" font-size="9" fill="white" font-weight="700">{count/total:.0%}</text>'
+        # Legend
+        legend += f'<rect x="{lx}" y="78" width="10" height="10" fill="{color}" rx="2"/>'
+        legend += f'<text x="{lx+14}" y="87" font-size="9" fill="#5f6b7a">{labels.get(status, status)} ({count:,})</text>'
+        lx += 95
+        if lx > 400:
+            lx = 30
+        x += seg_w
+
+    return f'''<svg viewBox="0 0 {w} {h}" xmlns="http://www.w3.org/2000/svg" style="max-width:460px;">
+  <text x="{w/2}" y="18" text-anchor="middle" font-size="13" fill="#5f6b7a" font-family="Georgia,serif">Africa Trial Status Distribution ({total:,} total)</text>
+  {segments}
+  {legend}
+</svg>'''
 
 ROLE_COLORS = [
     ("#1b4f72", "#d4e6f1"),  # S1 Question
@@ -950,6 +1119,13 @@ def generate_rich_dashboard(slug, group_id):
         strip_html += f'<div style="background:{fg};"></div>'
     strip_html += '</div>'
 
+    # ── Additional charts ──
+    total_global = sum(TOTALS.values()) or 1
+    donut_svg = svg_donut(TOTALS.get("Africa", 0), total_global)
+    trend_svg = svg_temporal_trend()
+    top10_svg = svg_top10_lollipop()
+    status_svg = svg_status_bars()
+
     code_filename = slug.replace("_", "-") + ".py"
 
     return f'''<!doctype html>
@@ -1049,6 +1225,11 @@ def generate_rich_dashboard(slug, group_id):
     }}
     .link-btn:hover {{ background: var(--accent); color: white; border-color: var(--accent); }}
 
+    /* Two-column chart grid */
+    .chart-grid {{ display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }}
+    .chart-grid .chart-cell {{ text-align: center; }}
+    @media (max-width: 700px) {{ .chart-grid {{ grid-template-columns: 1fr; }} }}
+
     .word-badge {{
       display: inline-block; background: var(--accent-soft); color: var(--accent);
       padding: 4px 12px; border-radius: 20px; font-size: 13px; font-weight: 700;
@@ -1082,6 +1263,22 @@ def generate_rich_dashboard(slug, group_id):
       <div class="section-label">The Data</div>
       <div class="chart-wrap">
         {chart_svg}
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="section-label">Continental Context</div>
+      <div class="chart-grid">
+        <div class="chart-cell">{donut_svg}</div>
+        <div class="chart-cell">{trend_svg}</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="section-label">Country Breakdown &amp; Status</div>
+      <div class="chart-grid">
+        <div class="chart-cell">{top10_svg}</div>
+        <div class="chart-cell">{status_svg}</div>
       </div>
     </div>
 
