@@ -644,7 +644,7 @@ def generate_group_page(group_id, group):
           <dl>
             <dt>Type:</dt><dd>research</dd>
             <dt>App:</dt><dd><a href="{GITHUB_PAGES}/{group_id}/dashboards/{slug}.html">{slug} dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="{GITHUB_REPO}/tree/main/{group_id}/code/{code_filename}">{code_filename}</a></dd>
+            <dt>Code:</dt><dd><a href="{GITHUB_REPO}/tree/master/{group_id}/code/{code_filename}">{code_filename}</a></dd>
             <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
             <dt>Date:</dt><dd>2026-04-03</dd>
           </dl>
@@ -683,7 +683,7 @@ def generate_group_page(group_id, group):
         paper_data_js += f'    body: `{body_js}`,\n'
         paper_data_js += f'    refs: `{refs_js}`,\n'
         paper_data_js += f'    dashboard: `{GITHUB_PAGES}/{group_id}/dashboards/{slug}.html`,\n'
-        paper_data_js += f'    code: `{GITHUB_REPO}/tree/main/{group_id}/code/{code_filename}`,\n'
+        paper_data_js += f'    code: `{GITHUB_REPO}/tree/master/{group_id}/code/{code_filename}`,\n'
         paper_data_js += f'  }},\n'
     paper_data_js += "};"
 
@@ -755,7 +755,7 @@ Type: research
 Primary estimand: [your main metric]
 App: {GITHUB_PAGES}/{group_id}/dashboards/[your-paper-slug].html
 Data: ClinicalTrials.gov API v2 (public)
-Code: {GITHUB_REPO}/tree/main/{group_id}/code/[your-paper-slug].py
+Code: {GITHUB_REPO}/tree/master/{group_id}/code/[your-paper-slug].py
 DOI: [assigned after acceptance]
 Version: 1.0
 Date: [your submission date]

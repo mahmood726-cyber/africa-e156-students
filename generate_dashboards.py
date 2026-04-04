@@ -800,9 +800,9 @@ PAPERS = {
         "title": "Global RCT Equity: Africa vs Europe",
         "subtitle": "A 6.4-fold volume gap between two continents.",
         "metrics": [
-            {"label": "Europe Trials", "value": "110,000+"},
-            {"label": "Africa Trials", "value": "17,000"},
-            {"label": "Volume Ratio", "value": "6.4x", "color": "#c0392b"},
+            {"label": "Europe Trials", "value": "142,126"},
+            {"label": "Africa Trials", "value": "23,873"},
+            {"label": "Volume Ratio", "value": "6.0x", "color": "#c0392b"},
             {"label": "Africa 3-Country Share", "value": "80%"},
         ],
         "chart": {"title": "Clinical Trial Volume (thousands)", "bars": [

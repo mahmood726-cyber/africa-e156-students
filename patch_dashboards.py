@@ -527,8 +527,8 @@ def generate_dashboard(slug, group_id):
   <footer class="footer">
     <p>E156 Format &middot; ClinicalTrials.gov API v2 &middot; {GITHUB_REPO}</p>
     <p>Mahmood Ahmad &middot; ORCID: 0009-0003-7781-4478</p>
-  </div>
-</div>
+  </footer>
+</main>
 </body>
 </html>'''
 
