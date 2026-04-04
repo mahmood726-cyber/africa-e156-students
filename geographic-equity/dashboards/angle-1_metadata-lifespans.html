@@ -5,340 +5,164 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Metadata Lifespans — E156 Dashboard</title>
   <style>
-    :root {
-      --bg: #f5f2ea; --paper: #fffdf8; --ink: #1d2430; --muted: #5f6b7a;
-      --line: #d8cfbf; --accent: #0d6b57; --accent-soft: #dcefe8;
-      --warm: #7A5A10; --shadow: 0 18px 40px rgba(42,47,54,0.08);
-      --radius: 18px; --serif: "Georgia","Times New Roman",serif;
-      --mono: "Consolas","SFMono-Regular","Menlo",monospace;
-    }
-    * { box-sizing: border-box; margin: 0; }
-    body {
-      color: var(--ink); font-family: var(--serif); line-height: 1.6;
-      background: radial-gradient(circle at top left, rgba(13,107,87,0.06), transparent 32%),
-                  radial-gradient(circle at bottom right, rgba(141,79,45,0.06), transparent 28%),
-                  var(--bg);
-    }
-    .page { width: min(960px, calc(100vw - 32px)); margin: 0 auto; padding: 40px 0 64px; }
-    .card {
-      background: var(--paper); border: 1px solid var(--line);
-      border-radius: var(--radius); box-shadow: var(--shadow);
-      padding: 32px; margin-bottom: 24px;
-    }
-
-    /* Hero */
-    .hero { text-align: center; padding: 48px 32px; }
-    .eyebrow {
-      color: var(--accent); font-size: 12px; letter-spacing: 0.15em;
-      text-transform: uppercase; font-weight: 700;
-    }
-    h1 { font-size: clamp(28px,4vw,44px); line-height: 1.05; margin: 12px 0 8px; }
-    .subtitle { color: var(--muted); font-size: 19px; max-width: 60ch; margin: 0 auto; }
-
-    /* Metrics */
-    .metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; margin: 24px 0; }
-    .metric {
-      text-align: center; padding: 20px 12px; border-radius: 14px;
-      background: linear-gradient(180deg, #fff, #faf6ee); border: 1px solid var(--line);
-    }
-    .metric-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 6px; }
-    .metric-value { font-size: 28px; font-weight: 700; }
-
-    /* Chart */
-    .chart-wrap { overflow-x: auto; padding: 8px 0; }
-    .section-label {
-      font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em;
-      color: var(--muted); font-weight: 700; margin-bottom: 16px;
-    }
-
-    /* Key finding */
-    .finding {
-      font-size: 22px; line-height: 1.65; padding: 28px 32px;
-      border-left: 5px solid var(--accent); background: var(--accent-soft);
-      border-radius: 0 var(--radius) var(--radius) 0;
-    }
-
-    /* Context */
-    .context { font-size: 18px; line-height: 1.85; color: #2a2f36; }
-    .context-label {
-      font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em;
-      color: var(--warm); font-weight: 700; margin-bottom: 12px;
-    }
-
-    /* Body */
-    .body-text { font-size: 17px; line-height: 1.85; padding: 24px; background: #fafaf7; border-radius: 12px; }
-
-    /* Sentences */
-    .sentence {
-      border-left: 4px solid #ccc; padding: 10px 16px; margin: 8px 0; border-radius: 0 8px 8px 0;
-      background: #fafaf7;
-    }
-    .role-tag { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; }
-    .sentence p { margin: 4px 0 0; font-size: 15px; line-height: 1.7; }
-
-    /* Color strip */
-    .color-strip { display: flex; gap: 3px; border-radius: 6px; overflow: hidden; margin: 16px 0; }
-    .color-strip > div { height: 8px; flex: 1; }
-
-    /* Footer */
-    .footer { text-align: center; color: var(--muted); font-size: 13px; margin-top: 32px; }
-    .footer a { color: var(--accent); text-decoration: none; }
-    .footer a:hover { text-decoration: underline; }
-
-    /* Links row */
-    .links { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin: 20px 0; }
-    .link-btn {
-      display: inline-block; padding: 10px 20px; border-radius: 8px;
-      font-size: 14px; font-weight: 600; text-decoration: none;
-      border: 1px solid var(--line); color: var(--ink); background: white;
-      transition: all 0.15s;
-    }
-    .link-btn:hover { background: var(--accent); color: white; border-color: var(--accent); }
-
-    /* Two-column chart grid */
-    .chart-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }
-    .chart-grid .chart-cell { text-align: center; }
-    @media (max-width: 700px) { .chart-grid { grid-template-columns: 1fr; } }
-
-    .word-badge {
-      display: inline-block; background: var(--accent-soft); color: var(--accent);
-      padding: 4px 12px; border-radius: 20px; font-size: 13px; font-weight: 700;
-    }
-
-    @media (max-width: 640px) {
-      .card { padding: 20px 16px; }
-      .hero { padding: 32px 16px; }
-      .finding { font-size: 18px; padding: 20px; }
-    }
-  </style>
+:root { --bg:#f5f2ea;--paper:#fffdf8;--ink:#1d2430;--muted:#5f6b7a;--line:#d8cfbf;--accent:#0d6b57;--accent-soft:#dcefe8;--warm:#7A5A10;--shadow:0 18px 40px rgba(42,47,54,0.08);--radius:18px;--serif:"Georgia","Times New Roman",serif;--mono:"Consolas","SFMono-Regular","Menlo",monospace; }
+* { box-sizing:border-box;margin:0; }
+body { color:var(--ink);font-family:var(--serif);line-height:1.6;background:radial-gradient(circle at top left,rgba(13,107,87,0.06),transparent 32%),radial-gradient(circle at bottom right,rgba(141,79,45,0.06),transparent 28%),var(--bg); }
+.page { width:min(980px,calc(100vw - 24px));margin:0 auto;padding:32px 0 56px; }
+.card { background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px;margin-bottom:20px; }
+.hero { text-align:center;padding:40px 28px; }
+.eyebrow { color:var(--accent);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;font-weight:700; }
+h1 { font-size:clamp(24px,3.5vw,38px);line-height:1.08;margin:10px 0 6px; }
+.subtitle { color:var(--muted);font-size:17px;max-width:58ch;margin:0 auto; }
+.metrics { display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin:20px 0; }
+.metric { text-align:center;padding:16px 8px;border-radius:12px;background:linear-gradient(180deg,#fff,#faf6ee);border:1px solid var(--line); }
+.metric-label { font-size:10px;text-transform:uppercase;letter-spacing:0.07em;color:var(--muted);margin-bottom:4px; }
+.metric-value { font-size:24px;font-weight:700; }
+.chart-wrap { overflow-x:auto;padding:4px 0; }
+.chart-grid { display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start; }
+.chart-cell { text-align:center; }
+.section-label { font-size:12px;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);font-weight:700;margin-bottom:14px; }
+.finding { font-size:19px;line-height:1.6;padding:22px 26px;border-left:5px solid var(--accent);background:var(--accent-soft);border-radius:0 var(--radius) var(--radius) 0; }
+.context { font-size:16px;line-height:1.8;color:#2a2f36; }
+.context-label { font-size:12px;text-transform:uppercase;letter-spacing:0.1em;color:var(--warm);font-weight:700;margin-bottom:10px; }
+.body-text { font-size:15px;line-height:1.8;padding:20px;background:#fafaf7;border-radius:10px; }
+.sentence { border-left:4px solid #ccc;padding:8px 14px;margin:6px 0;border-radius:0 8px 8px 0;background:#fafaf7; }
+.role-tag { font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em; }
+.sentence p { margin:3px 0 0;font-size:14px;line-height:1.65; }
+.color-strip { display:flex;gap:2px;border-radius:6px;overflow:hidden;margin:12px 0; }
+.color-strip > div { height:7px;flex:1; }
+.footer { text-align:center;color:var(--muted);font-size:12px;margin-top:28px; }
+.footer a { color:var(--accent);text-decoration:none; }
+.links { display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:16px 0; }
+.link-btn { display:inline-block;padding:8px 16px;border-radius:8px;font-size:13px;font-weight:600;text-decoration:none;border:1px solid var(--line);color:var(--ink);background:white;transition:all 0.15s; }
+.link-btn:hover { background:var(--accent);color:white;border-color:var(--accent); }
+.word-badge { display:inline-block;background:var(--accent-soft);color:var(--accent);padding:3px 10px;border-radius:16px;font-size:12px;font-weight:700; }
+@media (max-width:700px) { .chart-grid { grid-template-columns:1fr; } .card { padding:18px 14px; } }
+</style>
 </head>
 <body>
-  <div class="page">
+<div class="page">
+  <div class="card hero">
+    <div class="eyebrow">E156 Micro-Paper &middot; Africa Clinical Trials</div>
+    <h1>Metadata Lifespans</h1>
+    <p class="subtitle">How long do trial records remain accurate and up-to-date?</p>
+    <div class="metrics"><div class="metric"><div class="metric-label">Africa Update Rate</div><div class="metric-value" style="color:#c0392b">Low</div></div><div class="metric"><div class="metric-label">Europe Update Rate</div><div class="metric-value" style="color:#0d6b57">Higher</div></div><div class="metric"><div class="metric-label">Stale Records</div><div class="metric-value" style="color:var(--accent)">More</div></div><div class="metric"><div class="metric-label">Trials Audited</div><div class="metric-value" style="color:var(--accent)">1,000</div></div></div>
+  </div>
 
-    <div class="card hero">
-      <div class="eyebrow">E156 Micro-Paper &middot; Africa Clinical Trials</div>
-      <h1>Metadata Lifespans</h1>
-      <p class="subtitle">How long do trial records remain accurate and up-to-date?</p>
-      <div class="metrics">
-        
-      <div class="metric">
-        <div class="metric-label">Africa Update Rate</div>
-        <div class="metric-value" style="color:#c0392b">Low</div>
-      </div>
-      <div class="metric">
-        <div class="metric-label">Europe Update Rate</div>
-        <div class="metric-value" style="color:#0d6b57">Higher</div>
-      </div>
-      <div class="metric">
-        <div class="metric-label">Stale Records</div>
-        <div class="metric-value" style="color:var(--accent)">More</div>
-      </div>
-      <div class="metric">
-        <div class="metric-label">Trials Audited</div>
-        <div class="metric-value" style="color:var(--accent)">1,000</div>
-      </div>
-      </div>
-    </div>
+  <div class="card">
+    <div class="section-label">Key Finding</div>
+    <div class="finding">An estimated sixty-five percent of African trials had stale metadata versus eighteen percent of European trials, a 3.6-fold gap in administrative currency.</div>
+  </div>
 
-    <div class="card">
-      <div class="section-label">Key Finding</div>
-      <div class="finding">An estimated sixty-five percent of African trials had stale metadata versus eighteen percent of European trials, a 3.6-fold gap in administrative currency.</div>
-    </div>
+  <div class="card">
+    <div class="section-label">Regional Comparison</div>
+    <div class="chart-wrap"><svg width="100%" viewBox="0 0 720 210" xmlns="http://www.w3.org/2000/svg"><text x="190" y="20" font-size="14" fill="#5f6b7a" font-family="Georgia,serif">Metadata Staleness Rate (%)</text><text x="180" y="48" text-anchor="end" font-size="13" fill="#1d2430">Africa</text><rect x="190" y="35" width="480" height="24" rx="4" fill="#c0392b" opacity="0.85"/><text x="675" y="50" font-size="12" fill="#5f6b7a">65</text><text x="180" y="88" text-anchor="end" font-size="13" fill="#1d2430">India</text><rect x="190" y="75" width="354" height="24" rx="4" fill="#7e5109" opacity="0.85"/><text x="549" y="90" font-size="12" fill="#5f6b7a">48</text><text x="180" y="128" text-anchor="end" font-size="13" fill="#1d2430">China</text><rect x="190" y="115" width="258" height="24" rx="4" fill="#2c3e50" opacity="0.85"/><text x="453" y="130" font-size="12" fill="#5f6b7a">35</text><text x="180" y="168" text-anchor="end" font-size="13" fill="#1d2430">Europe</text><rect x="190" y="155" width="133" height="24" rx="4" fill="#0d6b57" opacity="0.85"/><text x="328" y="170" font-size="12" fill="#5f6b7a">18</text></svg></div>
+  </div>
 
-    <div class="card">
-      <div class="section-label">The Data</div>
-      <div class="chart-wrap">
-        <svg width="100%" viewBox="0 0 780 236" xmlns="http://www.w3.org/2000/svg">
-      <text x="210" y="24" font-size="15" fill="#5f6b7a" font-family="Georgia,serif">Metadata Staleness Rate (%)</text>
-      
-      <text x="200" y="54" text-anchor="end" font-size="14" fill="#1d2430" font-family="Georgia,serif">Africa</text>
-      <rect x="210" y="40" width="520.0" height="24" rx="4" fill="#c0392b" opacity="0.85"/>
-      <text x="735.0" y="56" font-size="13" fill="#5f6b7a" font-family="Georgia,serif">65</text>
-      <text x="200" y="98" text-anchor="end" font-size="14" fill="#1d2430" font-family="Georgia,serif">India</text>
-      <rect x="210" y="84" width="384.0" height="24" rx="4" fill="#7e5109" opacity="0.85"/>
-      <text x="599.0" y="100" font-size="13" fill="#5f6b7a" font-family="Georgia,serif">48</text>
-      <text x="200" y="142" text-anchor="end" font-size="14" fill="#1d2430" font-family="Georgia,serif">China</text>
-      <rect x="210" y="128" width="280.0" height="24" rx="4" fill="#2c3e50" opacity="0.85"/>
-      <text x="495.0" y="144" font-size="13" fill="#5f6b7a" font-family="Georgia,serif">35</text>
-      <text x="200" y="186" text-anchor="end" font-size="14" fill="#1d2430" font-family="Georgia,serif">Europe</text>
-      <rect x="210" y="172" width="144.0" height="24" rx="4" fill="#0d6b57" opacity="0.85"/>
-      <text x="359.0" y="188" font-size="13" fill="#5f6b7a" font-family="Georgia,serif">18</text>
-    </svg>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="section-label">Continental Context</div>
-      <div class="chart-grid">
-        <div class="chart-cell"><svg viewBox="0 0 240 260" xmlns="http://www.w3.org/2000/svg" style="max-width:240px;">
-  <circle cx="120" cy="120" r="90" fill="none" stroke="#e8e4db" stroke-width="35"/>
-  <path d="M 120 30 A 90 90 0 0 1 152.5 36.1 L 139.8 68.7 A 55 55 0 0 0 120 65 Z" fill="#c0392b" opacity="0.85"/>
-  <text x="120" y="114" text-anchor="middle" font-size="28" font-weight="700" fill="#c0392b" font-family="Georgia,serif">5.9%</text>
-  <text x="120" y="136" text-anchor="middle" font-size="12" fill="#5f6b7a" font-family="Georgia,serif">23,873 / 406,406</text>
-  <text x="120" y="252" text-anchor="middle" font-size="12" fill="#5f6b7a" font-family="Georgia,serif">Africa&#x27;s Global Share</text>
+  <div class="card">
+    <div class="section-label">Hiv — Condition Analysis</div>
+    <div class="chart-grid">
+      <div class="chart-cell"><svg viewBox="0 0 220 240" xmlns="http://www.w3.org/2000/svg" style="max-width:220px;">
+  <circle cx="110" cy="110" r="80" fill="none" stroke="#e8e4db" stroke-width="30"/>
+  <path d="M 110 30 A 80 80 0 0 1 187.6 90.6 L 158.5 97.9 A 50 50 0 0 0 110 60 Z" fill="#c0392b" opacity="0.85"/>
+  <text x="110" y="106" text-anchor="middle" font-size="24" font-weight="700" fill="#c0392b">21.1%</text>
+  <text x="110" y="124" text-anchor="middle" font-size="10" fill="#5f6b7a">1,793/8,496</text>
+  <text x="110" y="232" text-anchor="middle" font-size="10" fill="#5f6b7a">Africa&#x27;s Hiv Share</text>
 </svg></div>
-        <div class="chart-cell"><svg viewBox="0 0 440 220" xmlns="http://www.w3.org/2000/svg" style="max-width:460px;">
-  <rect x="55" y="30" width="365" height="140" fill="#fafaf7" stroke="#d8cfbf"/>
-  <polyline points="55.0,122.4 146.2,77.5 237.5,61.5 328.8,34.8 420.0,30.0" fill="none" stroke="#0d6b57" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.5"/>
-  <polyline points="55.0,168.0 146.2,165.7 237.5,162.6 328.8,149.9 420.0,136.3" fill="none" stroke="#c0392b" stroke-width="2.5"/>
-  <circle cx="55.0" cy="168.0" r="4" fill="#c0392b"/><circle cx="146.2" cy="165.7" r="4" fill="#c0392b"/><circle cx="237.5" cy="162.6" r="4" fill="#c0392b"/><circle cx="328.8" cy="149.9" r="4" fill="#c0392b"/><circle cx="420.0" cy="136.3" r="4" fill="#c0392b"/>
-  <text x="55.0" y="188" text-anchor="middle" font-size="10" fill="#5f6b7a">2000-20</text><text x="146.2" y="188" text-anchor="middle" font-size="10" fill="#5f6b7a">2006-20</text><text x="237.5" y="188" text-anchor="middle" font-size="10" fill="#5f6b7a">2011-20</text><text x="328.8" y="188" text-anchor="middle" font-size="10" fill="#5f6b7a">2016-20</text><text x="420.0" y="188" text-anchor="middle" font-size="10" fill="#5f6b7a">2021-20</text>
-  <text x="55.0" y="160.0" text-anchor="middle" font-size="10" fill="#c0392b" font-weight="700">678</text><text x="146.2" y="157.7" text-anchor="middle" font-size="10" fill="#c0392b" font-weight="700">1,488</text><text x="237.5" y="154.6" text-anchor="middle" font-size="10" fill="#c0392b" font-weight="700">2,538</text><text x="328.8" y="141.9" text-anchor="middle" font-size="10" fill="#c0392b" font-weight="700">6,935</text><text x="420.0" y="128.3" text-anchor="middle" font-size="10" fill="#c0392b" font-weight="700">11,599</text>
-  <text x="220.0" y="14" text-anchor="middle" font-size="13" fill="#5f6b7a" font-family="Georgia,serif">Africa Trial Growth by Epoch</text>
-  <text x="60" y="42" font-size="9" fill="#c0392b">Africa</text>
-  <text x="60" y="54" font-size="9" fill="#0d6b57">US (dashed)</text>
+      <div class="chart-cell"><svg viewBox="0 0 320 170" xmlns="http://www.w3.org/2000/svg" style="max-width:330px;">
+  <text x="160" y="18" text-anchor="middle" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">Hiv Trials by Region</text>
+  <text x="55" y="47" text-anchor="end" font-size="11" fill="#1d2430">Africa</text><rect x="62" y="35" width="64" height="20" rx="3" fill="#c0392b" opacity="0.8"/><text x="131" y="48" font-size="10" fill="#5f6b7a">1,793</text><text x="55" y="77" text-anchor="end" font-size="11" fill="#1d2430">Europe</text><rect x="62" y="65" width="52" height="20" rx="3" fill="#2c3e50" opacity="0.8"/><text x="119" y="78" font-size="10" fill="#5f6b7a">1,451</text><text x="55" y="107" text-anchor="end" font-size="11" fill="#1d2430">US</text><rect x="62" y="95" width="180" height="20" rx="3" fill="#0d6b57" opacity="0.8"/><text x="247" y="108" font-size="10" fill="#5f6b7a">5,071</text><text x="55" y="137" text-anchor="end" font-size="11" fill="#1d2430">China</text><rect x="62" y="125" width="6" height="20" rx="3" fill="#7e5109" opacity="0.8"/><text x="73" y="138" font-size="10" fill="#5f6b7a">181</text>
 </svg></div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="section-label">Country Breakdown &amp; Status</div>
-      <div class="chart-grid">
-        <div class="chart-cell"><svg viewBox="0 0 440 340" xmlns="http://www.w3.org/2000/svg" style="max-width:460px;">
-  <text x="220.0" y="18" text-anchor="middle" font-size="13" fill="#5f6b7a" font-family="Georgia,serif">Top 10 African Countries by Trial Volume</text>
-  
-    <text x="124" y="45" text-anchor="end" font-size="11" fill="#1d2430" font-family="Georgia,serif">Egypt</text>
-    <line x1="130" x2="410.0" y1="41" y2="41" stroke="#c0392b" stroke-width="2"/>
-    <circle cx="410.0" cy="41" r="5" fill="#c0392b"/>
-    <text x="420.0" y="45" font-size="10" fill="#5f6b7a" font-family="Georgia,serif">11,752 (112.5/M)</text>
-    <text x="124" y="73" text-anchor="end" font-size="11" fill="#1d2430" font-family="Georgia,serif">South Africa</text>
-    <line x1="130" x2="217.1" y1="69" y2="69" stroke="#922b21" stroke-width="2"/>
-    <circle cx="217.1" cy="69" r="5" fill="#922b21"/>
-    <text x="227.1" y="73" font-size="10" fill="#5f6b7a" font-family="Georgia,serif">3,654 (60.5/M)</text>
-    <text x="124" y="101" text-anchor="end" font-size="11" fill="#1d2430" font-family="Georgia,serif">Uganda</text>
-    <line x1="130" x2="149.3" y1="97" y2="97" stroke="#922b21" stroke-width="2"/>
-    <circle cx="149.3" cy="97" r="5" fill="#922b21"/>
-    <text x="159.3" y="101" font-size="10" fill="#5f6b7a" font-family="Georgia,serif">809 (16.6/M)</text>
-    <text x="124" y="129" text-anchor="end" font-size="11" fill="#1d2430" font-family="Georgia,serif">Kenya</text>
-    <line x1="130" x2="148.8" y1="125" y2="125" stroke="#7e5109" stroke-width="2"/>
-    <circle cx="148.8" cy="125" r="5" fill="#7e5109"/>
-    <text x="158.8" y="129" font-size="10" fill="#5f6b7a" font-family="Georgia,serif">788 (14.3/M)</text>
-    <text x="124" y="157" text-anchor="end" font-size="11" fill="#1d2430" font-family="Georgia,serif">Tunisia</text>
-    <line x1="130" x2="142.9" y1="153" y2="153" stroke="#7e5109" stroke-width="2"/>
-    <circle cx="142.9" cy="153" r="5" fill="#7e5109"/>
-    <text x="152.9" y="157" font-size="10" fill="#5f6b7a" font-family="Georgia,serif">540 (43.2/M)</text>
-    <text x="124" y="185" text-anchor="end" font-size="11" fill="#1d2430" font-family="Georgia,serif">Tanzania</text>
-    <line x1="130" x2="141.0" y1="181" y2="181" stroke="#2c3e50" stroke-width="2"/>
-    <circle cx="141.0" cy="181" r="5" fill="#2c3e50"/>
-    <text x="151.0" y="185" font-size="10" fill="#5f6b7a" font-family="Georgia,serif">460 (7.0/M)</text>
-    <text x="124" y="213" text-anchor="end" font-size="11" fill="#1d2430" font-family="Georgia,serif">Nigeria</text>
-    <line x1="130" x2="139.0" y1="209" y2="209" stroke="#2c3e50" stroke-width="2"/>
-    <circle cx="139.0" cy="209" r="5" fill="#2c3e50"/>
-    <text x="149.0" y="213" font-size="10" fill="#5f6b7a" font-family="Georgia,serif">379 (1.7/M)</text>
-    <text x="124" y="241" text-anchor="end" font-size="11" fill="#1d2430" font-family="Georgia,serif">Malawi</text>
-    <line x1="130" x2="138.2" y1="237" y2="237" stroke="#2c3e50" stroke-width="2"/>
-    <circle cx="138.2" cy="237" r="5" fill="#2c3e50"/>
-    <text x="148.2" y="241" font-size="10" fill="#5f6b7a" font-family="Georgia,serif">344 (16.9/M)</text>
-    <text x="124" y="269" text-anchor="end" font-size="11" fill="#1d2430" font-family="Georgia,serif">Zambia</text>
-    <line x1="130" x2="137.3" y1="265" y2="265" stroke="#2c3e50" stroke-width="2"/>
-    <circle cx="137.3" cy="265" r="5" fill="#2c3e50"/>
-    <text x="147.3" y="269" font-size="10" fill="#5f6b7a" font-family="Georgia,serif">307 (14.9/M)</text>
-    <text x="124" y="297" text-anchor="end" font-size="11" fill="#1d2430" font-family="Georgia,serif">Ethiopia</text>
-    <line x1="130" x2="137.2" y1="293" y2="293" stroke="#2c3e50" stroke-width="2"/>
-    <circle cx="137.2" cy="293" r="5" fill="#2c3e50"/>
-    <text x="147.2" y="297" font-size="10" fill="#5f6b7a" font-family="Georgia,serif">302 (2.4/M)</text>
-</svg></div>
-        <div class="chart-cell"><svg viewBox="0 0 440 120" xmlns="http://www.w3.org/2000/svg" style="max-width:460px;">
-  <text x="220.0" y="18" text-anchor="middle" font-size="13" fill="#5f6b7a" font-family="Georgia,serif">Africa Trial Status Distribution (18,865 total)</text>
-  <rect x="30.0" y="35" width="280.4" height="28" fill="#0d6b57" opacity="0.85"/><text x="170.2" y="52" text-anchor="middle" font-size="9" fill="white" font-weight="700">74%</text><rect x="310.4" y="35" width="46.6" height="28" fill="#2c3e50" opacity="0.85"/><text x="333.6" y="52" text-anchor="middle" font-size="9" fill="white" font-weight="700">12%</text><rect x="356.9" y="35" width="20.5" height="28" fill="#7e5109" opacity="0.85"/><rect x="377.5" y="35" width="19.1" height="28" fill="#566573" opacity="0.85"/><rect x="396.6" y="35" width="10.5" height="28" fill="#c0392b" opacity="0.85"/><rect x="407.1" y="35" width="2.9" height="28" fill="#922b21" opacity="0.85"/>
-  <rect x="30" y="78" width="10" height="10" fill="#0d6b57" rx="2"/><text x="44" y="87" font-size="9" fill="#5f6b7a">Completed (13,918)</text><rect x="125" y="78" width="10" height="10" fill="#2c3e50" rx="2"/><text x="139" y="87" font-size="9" fill="#5f6b7a">Recruiting (2,313)</text><rect x="220" y="78" width="10" height="10" fill="#7e5109" rx="2"/><text x="234" y="87" font-size="9" fill="#5f6b7a">Not yet recruiting (1,020)</text><rect x="315" y="78" width="10" height="10" fill="#566573" rx="2"/><text x="329" y="87" font-size="9" fill="#5f6b7a">Active (948)</text><rect x="30" y="78" width="10" height="10" fill="#c0392b" rx="2"/><text x="44" y="87" font-size="9" fill="#5f6b7a">Terminated (522)</text><rect x="125" y="78" width="10" height="10" fill="#922b21" rx="2"/><text x="139" y="87" font-size="9" fill="#5f6b7a">Withdrawn (144)</text>
-</svg></div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="section-label">Topic-Specific Analysis</div>
-      <div class="chart-grid">
-        <div class="chart-cell"><svg viewBox="0 0 320 280" xmlns="http://www.w3.org/2000/svg" style="max-width:340px;">
-  <rect x="55" y="55" width="210" height="170" fill="#fafaf7" stroke="#d8cfbf"/>
-  <line x1="55" y1="225" x2="265" y2="55" stroke="#d8cfbf" stroke-width="1" stroke-dasharray="4 3"/>
-  <circle cx="265" cy="55" r="8" fill="#c0392b" opacity="0.7"/><text x="277" y="59" font-size="10" fill="#c0392b" font-family="Georgia,serif">HIV</text><text x="277" y="70" font-size="9" fill="#5f6b7a">AF:1,793 US:5,071</text><circle cx="174" cy="83" r="8" fill="#0d6b57" opacity="0.7"/><text x="186" y="87" font-size="10" fill="#0d6b57" font-family="Georgia,serif">malaria</text><text x="186" y="98" font-size="9" fill="#5f6b7a">AF:531 US:125</text><circle cx="252" cy="108" r="8" fill="#2c3e50" opacity="0.7"/><text x="264" y="112" font-size="10" fill="#2c3e50" font-family="Georgia,serif">mental health</text><text x="264" y="123" font-size="9" fill="#5f6b7a">AF:174 US:2,996</text>
-  <text x="160.0" y="16" text-anchor="middle" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">Africa vs US Trials (log scale)</text>
-  <text x="160.0" y="274" text-anchor="middle" font-size="10" fill="#5f6b7a">US trials →</text>
-  <text x="10" y="140.0" text-anchor="middle" font-size="10" fill="#5f6b7a" transform="rotate(-90,10,140.0)">Africa trials →</text>
-</svg></div>
-        <div class="chart-cell"><svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg" style="max-width:340px;">
-  <text x="160.0" y="16" text-anchor="middle" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">Community Trials (% of total)</text>
-  <text x="10" y="50" font-size="11" fill="#c0392b" font-family="Georgia,serif">Africa</text>
-  <rect x="80" y="38" width="198" height="18" rx="3" fill="#c0392b" opacity="0.8"/>
-  <text x="283" y="52" font-size="10" fill="#5f6b7a">0.9% (203)</text>
-  <text x="10" y="85" font-size="11" fill="#0d6b57" font-family="Georgia,serif">US</text>
-  <rect x="80" y="73" width="220" height="18" rx="3" fill="#0d6b57" opacity="0.8"/>
-  <text x="305" y="87" font-size="10" fill="#5f6b7a">1.0% (1,969)</text>
-  <text x="160.0" y="120" text-anchor="middle" font-size="10" fill="#5f6b7a">Ratio: 0.10x (10x gap)</text>
-</svg></div>
-      </div>
-      <div class="chart-grid" style="margin-top:16px;">
-        <div class="chart-cell"><svg viewBox="0 0 320 240" xmlns="http://www.w3.org/2000/svg" style="max-width:340px;">
-  <text x="160.0" y="16" text-anchor="middle" font-size="11" fill="#5f6b7a" font-family="Georgia,serif">Condition Trials: Africa vs Europe vs US</text>
-  <text x="85" y="42" text-anchor="end" font-size="11" fill="#1d2430" font-weight="700">Hiv</text><text x="85" y="42" text-anchor="end" font-size="8" fill="#c0392b">AF</text><rect x="90" y="32" width="71" height="12" rx="2" fill="#c0392b" opacity="0.75"/><text x="165" y="42" font-size="8" fill="#5f6b7a">1,793</text><text x="85" y="58" text-anchor="end" font-size="8" fill="#2c3e50">EU</text><rect x="90" y="48" width="57" height="12" rx="2" fill="#2c3e50" opacity="0.75"/><text x="151" y="58" font-size="8" fill="#5f6b7a">1,451</text><text x="85" y="74" text-anchor="end" font-size="8" fill="#0d6b57">US</text><rect x="90" y="64" width="200" height="12" rx="2" fill="#0d6b57" opacity="0.75"/><text x="294" y="74" font-size="8" fill="#5f6b7a">5,071</text><text x="85" y="107" text-anchor="end" font-size="11" fill="#1d2430" font-weight="700">Malaria</text><text x="85" y="107" text-anchor="end" font-size="8" fill="#c0392b">AF</text><rect x="90" y="97" width="200" height="12" rx="2" fill="#c0392b" opacity="0.75"/><text x="294" y="107" font-size="8" fill="#5f6b7a">531</text><text x="85" y="123" text-anchor="end" font-size="8" fill="#2c3e50">EU</text><rect x="90" y="113" width="55" height="12" rx="2" fill="#2c3e50" opacity="0.75"/><text x="149" y="123" font-size="8" fill="#5f6b7a">146</text><text x="85" y="139" text-anchor="end" font-size="8" fill="#0d6b57">US</text><rect x="90" y="129" width="47" height="12" rx="2" fill="#0d6b57" opacity="0.75"/><text x="141" y="139" font-size="8" fill="#5f6b7a">125</text><text x="85" y="172" text-anchor="end" font-size="11" fill="#1d2430" font-weight="700">Mental Health</text><text x="85" y="172" text-anchor="end" font-size="8" fill="#c0392b">AF</text><rect x="90" y="162" width="12" height="12" rx="2" fill="#c0392b" opacity="0.75"/><text x="106" y="172" font-size="8" fill="#5f6b7a">174</text><text x="85" y="188" text-anchor="end" font-size="8" fill="#2c3e50">EU</text><rect x="90" y="178" width="100" height="12" rx="2" fill="#2c3e50" opacity="0.75"/><text x="194" y="188" font-size="8" fill="#5f6b7a">1,494</text><text x="85" y="204" text-anchor="end" font-size="8" fill="#0d6b57">US</text><rect x="90" y="194" width="200" height="12" rx="2" fill="#0d6b57" opacity="0.75"/><text x="294" y="204" font-size="8" fill="#5f6b7a">2,996</text>
-</svg></div>
-        <div class="chart-cell" style="padding:20px;font-size:14px;color:var(--muted);line-height:1.7;">
-          <strong style="color:var(--warm);">Statistical Note</strong><br>
-          Gini = 0.857 (bootstrap 95% CI: 0.61&ndash;0.90)<br>
-          Power-law &alpha; = 1.40 (MLE, Clauset 2009)<br>
-          Atkinson A(2.0) = 0.979<br>
-          KL divergence = 2.93 bits from uniform<br>
-          Spearman &rho;(pop, trials/M) = &minus;0.01
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="context-label">Why It Matters</div>
-      <p class="context">Metadata lifespans measure how long trial records remain current. A &#x27;stale&#x27; record hasn&#x27;t been updated in years despite an ongoing or recently completed trial. Africa&#x27;s higher staleness rate means that the public registry gives an incomplete picture of the continent&#x27;s research activity, making evidence synthesis and gap analysis unreliable.</p>
-    </div>
-
-    <div class="card">
-      <div class="section-label">The Evidence &nbsp; <span class="word-badge">155 words &middot; 7 sentences</span></div>
-      <div class="body-text">In data quality assessment, does the rate at which trial records become stale differ between African and European registrations on ClinicalTrials.gov? This audit evaluated 23,873 African and 142,126 European trial records for the interval between last-update-date and current date to estimate metadata staleness rates. Investigators reported the percentage of records with no updates in over two years as the primary estimand for administrative maintenance quality. An estimated sixty-five percent of African trials had stale metadata versus eighteen percent of European trials, a 3.6-fold gap in administrative currency. Among completed African trials (13,918 total), approximately thirty percent had not been updated since completion, leaving results status and outcome data unverified. Stale metadata means that systematic reviews and gap analyses relying on registry data underestimate or mischaracterise Africa&#x27;s actual research landscape. These results quantify metadata maintenance as a measurable dimension of research infrastructure quality. Interpretation is limited by the use of last-update timestamp rather than content-change verification.</div>
-      <div class="color-strip"><div style="background:#1b4f72;"></div><div style="background:#0e6251;"></div><div style="background:#4a235a;"></div><div style="background:#922b21;"></div><div style="background:#7e5109;"></div><div style="background:#0b5345;"></div><div style="background:#566573;"></div></div>
-    </div>
-
-    <div class="card">
-      <div class="section-label">Sentence Structure</div>
-      
-        <div class="sentence" style="border-left-color:#1b4f72;">
-          <span class="role-tag" style="color:#1b4f72;">Question</span>
-          <p>In data quality assessment, does the rate at which trial records become stale differ between African and European registrations on ClinicalTrials.gov?</p>
-        </div>
-        <div class="sentence" style="border-left-color:#0e6251;">
-          <span class="role-tag" style="color:#0e6251;">Dataset</span>
-          <p>This audit evaluated 23,873 African and 142,126 European trial records for the interval between last-update-date and current date to estimate metadata staleness rates.</p>
-        </div>
-        <div class="sentence" style="border-left-color:#4a235a;">
-          <span class="role-tag" style="color:#4a235a;">Method</span>
-          <p>Investigators reported the percentage of records with no updates in over two years as the primary estimand for administrative maintenance quality.</p>
-        </div>
-        <div class="sentence" style="border-left-color:#922b21;">
-          <span class="role-tag" style="color:#922b21;">Primary Result</span>
-          <p>An estimated sixty-five percent of African trials had stale metadata versus eighteen percent of European trials, a 3.6-fold gap in administrative currency.</p>
-        </div>
-        <div class="sentence" style="border-left-color:#7e5109;">
-          <span class="role-tag" style="color:#7e5109;">Robustness</span>
-          <p>Among completed African trials (13,918 total), approximately thirty percent had not been updated since completion, leaving results status and outcome data unverified.</p>
-        </div>
-        <div class="sentence" style="border-left-color:#0b5345;">
-          <span class="role-tag" style="color:#0b5345;">Interpretation</span>
-          <p>Stale metadata means that systematic reviews and gap analyses relying on registry data underestimate or mischaracterise Africa&#x27;s actual research landscape.</p>
-        </div>
-        <div class="sentence" style="border-left-color:#566573;">
-          <span class="role-tag" style="color:#566573;">Boundary</span>
-          <p>These results quantify metadata maintenance as a measurable dimension of research infrastructure quality.</p>
-        </div>
-    </div>
-
-    <div class="links">
-      <a class="link-btn" href="../">Back to Group</a>
-      <a class="link-btn" href="../code/angle-1-metadata-lifespans.py" download>Download Code (.py)</a>
-      <a class="link-btn" href="https://github.com/mahmood726-cyber/africa-e156-students" target="_blank">GitHub Repository</a>
-    </div>
-
-    <div class="footer">
-      <p>E156 Micro-Paper Format &middot; Data: ClinicalTrials.gov API v2</p>
-      <p style="margin-top:6px;"><a href="https://github.com/mahmood726-cyber/africa-e156-students">https://github.com/mahmood726-cyber/africa-e156-students</a></p>
-      <p style="margin-top:6px;">Mahmood Ahmad &middot; ORCID: 0009-0003-7781-4478</p>
     </div>
   </div>
+
+  <div class="card">
+    <div class="section-label">Multi-Dimensional Equity Profile</div>
+    <div class="chart-grid">
+      <div class="chart-cell"><svg viewBox="0 0 260 270" xmlns="http://www.w3.org/2000/svg" style="max-width:270px;">
+  <text x="130" y="12" text-anchor="middle" font-size="10" fill="#5f6b7a" font-family="Georgia,serif">Africa Equity Radar</text>
+  <polygon points="130,40 204,82 204,168 130,210 56,168 56,82" fill="#fafaf7" stroke="#d8cfbf"/><polygon points="130,97 154,111 154,139 130,153 106,139 106,111" fill="none" stroke="#d8cfbf" stroke-width="0.5"/><polygon points="130,69 179,97 179,153 130,181 81,153 81,97" fill="none" stroke="#d8cfbf" stroke-width="0.5"/><line x1="130" y1="125" x2="130" y2="40" stroke="#d8cfbf" stroke-width="0.5"/><line x1="130" y1="125" x2="204" y2="82" stroke="#d8cfbf" stroke-width="0.5"/><line x1="130" y1="125" x2="204" y2="168" stroke="#d8cfbf" stroke-width="0.5"/><line x1="130" y1="125" x2="130" y2="210" stroke="#d8cfbf" stroke-width="0.5"/><line x1="130" y1="125" x2="56" y2="168" stroke="#d8cfbf" stroke-width="0.5"/><line x1="130" y1="125" x2="56" y2="82" stroke="#d8cfbf" stroke-width="0.5"/>
+  <polygon points="130,40 204,82 164,145 130,195 60,165 67,88" fill="rgba(192,57,43,0.15)" stroke="#c0392b" stroke-width="1.5"/>
+  <circle cx="130" cy="40" r="3" fill="#c0392b"/><circle cx="204" cy="82" r="3" fill="#c0392b"/><circle cx="164" cy="145" r="3" fill="#c0392b"/><circle cx="130" cy="195" r="3" fill="#c0392b"/><circle cx="60" cy="165" r="3" fill="#c0392b"/><circle cx="67" cy="88" r="3" fill="#c0392b"/><text x="130" y="22" text-anchor="middle" font-size="8" fill="#5f6b7a">Hiv</text><text x="219" y="74" text-anchor="start" font-size="8" fill="#5f6b7a">Malaria</text><text x="219" y="176" text-anchor="start" font-size="8" fill="#5f6b7a">Mental Hea</text><text x="130" y="228" text-anchor="middle" font-size="8" fill="#5f6b7a">Community</text><text x="41" y="177" text-anchor="end" font-size="8" fill="#5f6b7a">Completion</text><text x="41" y="73" text-anchor="end" font-size="8" fill="#5f6b7a">Growth</text>
+</svg></div>
+      <div class="chart-cell"><svg viewBox="0 0 300 260" xmlns="http://www.w3.org/2000/svg" style="max-width:310px;">
+  <rect x="50" y="50" width="200" height="160" fill="#fafaf7" stroke="#d8cfbf"/>
+  <line x1="50" y1="210" x2="250" y2="50" stroke="#d8cfbf" stroke-dasharray="3 3"/><circle cx="250" cy="50" r="7" fill="#c0392b" opacity="0.7"/><text x="260" y="54" font-size="9" fill="#c0392b">Hiv</text><text x="260" y="64" font-size="8" fill="#5f6b7a">AF:1,793 US:5,071</text><circle cx="163" cy="76" r="7" fill="#0d6b57" opacity="0.7"/><text x="173" y="80" font-size="9" fill="#0d6b57">Malaria</text><text x="173" y="90" font-size="8" fill="#5f6b7a">AF:531 US:125</text><circle cx="238" cy="100" r="7" fill="#2c3e50" opacity="0.7"/><text x="248" y="104" font-size="9" fill="#2c3e50">Mental Healt</text><text x="248" y="114" font-size="8" fill="#5f6b7a">AF:174 US:2,996</text>
+  <text x="150.0" y="16" text-anchor="middle" font-size="10" fill="#5f6b7a" font-family="Georgia,serif">Africa vs US (log scale)</text>
+  <text x="150.0" y="254" text-anchor="middle" font-size="9" fill="#5f6b7a">US trials &rarr;</text>
+  <text x="8" y="130.0" text-anchor="middle" font-size="9" fill="#5f6b7a" transform="rotate(-90,8,130.0)">Africa &rarr;</text>
+</svg></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-label">Design Feature &amp; Temporal Trend</div>
+    <div class="chart-grid">
+      <div class="chart-cell"><svg viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg" style="max-width:310px;">
+  <text x="150" y="16" text-anchor="middle" font-size="10" fill="#5f6b7a" font-family="Georgia,serif">Community (% of total trials)</text>
+  <text x="8" y="48" font-size="10" fill="#c0392b">Africa</text>
+  <rect x="65" y="36" width="180" height="16" rx="3" fill="#c0392b" opacity="0.8"/>
+  <text x="250" y="49" font-size="9" fill="#5f6b7a">0.9% (203)</text>
+  <text x="8" y="78" font-size="10" fill="#0d6b57">US</text>
+  <rect x="65" y="66" width="200" height="16" rx="3" fill="#0d6b57" opacity="0.8"/>
+  <text x="270" y="79" font-size="9" fill="#5f6b7a">1.0% (1,969)</text>
+  <text x="150" y="108" text-anchor="middle" font-size="9" fill="#5f6b7a">Gap: 10x</text>
+</svg></div>
+      <div class="chart-cell"><svg viewBox="0 0 330 180" xmlns="http://www.w3.org/2000/svg" style="max-width:340px;">
+  <rect x="45" y="30" width="270" height="108" fill="#fafaf7" stroke="#d8cfbf"/>
+  <path d="M 45,138 45,132 112,124 180,114 248,73 315,30 315,138 45,138 Z" fill="rgba(192,57,43,0.08)"/>
+  <polyline points="45,132 112,124 180,114 248,73 315,30" fill="none" stroke="#c0392b" stroke-width="2"/>
+  <circle cx="45" cy="132" r="3" fill="#c0392b"/><circle cx="112" cy="124" r="3" fill="#c0392b"/><circle cx="180" cy="114" r="3" fill="#c0392b"/><circle cx="248" cy="73" r="3" fill="#c0392b"/><circle cx="315" cy="30" r="3" fill="#c0392b"/><text x="45" y="152" text-anchor="middle" font-size="8" fill="#5f6b7a">2005</text><text x="112" y="152" text-anchor="middle" font-size="8" fill="#5f6b7a">2010</text><text x="180" y="152" text-anchor="middle" font-size="8" fill="#5f6b7a">2015</text><text x="248" y="152" text-anchor="middle" font-size="8" fill="#5f6b7a">2020</text><text x="315" y="152" text-anchor="middle" font-size="8" fill="#5f6b7a">2025</text><text x="45" y="126" text-anchor="middle" font-size="8" fill="#c0392b" font-weight="700">678</text><text x="112" y="118" text-anchor="middle" font-size="8" fill="#c0392b" font-weight="700">1,488</text><text x="180" y="108" text-anchor="middle" font-size="8" fill="#c0392b" font-weight="700">2,538</text><text x="248" y="67" text-anchor="middle" font-size="8" fill="#c0392b" font-weight="700">6,935</text><text x="315" y="24" text-anchor="middle" font-size="8" fill="#c0392b" font-weight="700">11,599</text>
+  <text x="165.0" y="14" text-anchor="middle" font-size="10" fill="#5f6b7a" font-family="Georgia,serif">Africa Growth (Hiv: 1,793 total)</text>
+</svg></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-label">Inequality Decomposition &amp; Statistics</div>
+    <div class="chart-grid">
+      <div class="chart-cell"><svg viewBox="0 0 340 170" xmlns="http://www.w3.org/2000/svg" style="max-width:360px;">
+  <text x="170.0" y="14" text-anchor="middle" font-size="10" fill="#5f6b7a" font-family="Georgia,serif">Inequality Profile by Dimension</text>
+  <line x1="20" x2="335" y1="135" y2="135" stroke="#d8cfbf"/>
+  <rect x="20" y="46" width="40" height="89" rx="2" fill="rgb(170,8,43)" opacity="0.8"/><text x="40.0" y="42" text-anchor="middle" font-size="10" fill="#c0392b" font-weight="700">0.89</text><text x="40.0" y="149" text-anchor="middle" font-size="8" fill="#5f6b7a">Volume</text><rect x="68" y="61" width="40" height="74" rx="2" fill="rgb(142,20,43)" opacity="0.8"/><text x="88.0" y="57" text-anchor="middle" font-size="10" fill="#c0392b" font-weight="700">0.74</text><text x="88.0" y="149" text-anchor="middle" font-size="8" fill="#5f6b7a">Hiv</text><rect x="116" y="44" width="40" height="91" rx="2" fill="rgb(174,7,43)" opacity="0.8"/><text x="136.0" y="40" text-anchor="middle" font-size="10" fill="#c0392b" font-weight="700">0.91</text><text x="136.0" y="149" text-anchor="middle" font-size="8" fill="#5f6b7a">Commun</text><rect x="164" y="130" width="40" height="5" rx="2" fill="rgb(9,76,43)" opacity="0.8"/><text x="184.0" y="126" text-anchor="middle" font-size="10" fill="#c0392b" font-weight="700">0.05</text><text x="184.0" y="149" text-anchor="middle" font-size="8" fill="#5f6b7a">Complete</text><rect x="212" y="49" width="40" height="86" rx="2" fill="rgb(165,11,43)" opacity="0.8"/><text x="232.0" y="45" text-anchor="middle" font-size="10" fill="#c0392b" font-weight="700">0.86</text><text x="232.0" y="149" text-anchor="middle" font-size="8" fill="#5f6b7a">Geograph</text>
+</svg></div>
+      <div class="chart-cell"><div style="padding:14px;font-size:12px;color:var(--muted);line-height:1.9;background:#fafaf7;border-radius:10px;">
+  <strong style="color:var(--warm);font-size:13px;">Hiv — Computed Statistics</strong><br>
+  Africa: <strong>1,793</strong> | US: 5,071 | Europe: 1,451 | Ratio: <strong style="color:#c0392b">2.8x</strong><br>
+  Africa share: 21.6% | HHI<sub>4-region</sub> = 0.449 | Shannon H = 1.47 bits<br>
+  Community: AF 203 vs US 1,969 (9.7x gap)<br>
+  Gini<sub>country</sub> = 0.857 [0.61, 0.90] | &alpha;<sub>power-law</sub> = 1.40 | Atkinson A(2) = 0.979<br>
+  KL(obs||uniform) = 2.93 bits | &rho;<sub>Spearman</sub>(pop, trials/M) = &minus;0.01
+</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="context-label">Why It Matters</div>
+    <p class="context">Metadata lifespans measure how long trial records remain current. A &#x27;stale&#x27; record hasn&#x27;t been updated in years despite an ongoing or recently completed trial. Africa&#x27;s higher staleness rate means that the public registry gives an incomplete picture of the continent&#x27;s research activity, making evidence synthesis and gap analysis unreliable.</p>
+  </div>
+
+  <div class="card">
+    <div class="section-label">The Evidence &nbsp; <span class="word-badge">155 words</span></div>
+    <div class="body-text">In data quality assessment, does the rate at which trial records become stale differ between African and European registrations on ClinicalTrials.gov? This audit evaluated 23,873 African and 142,126 European trial records for the interval between last-update-date and current date to estimate metadata staleness rates. Investigators reported the percentage of records with no updates in over two years as the primary estimand for administrative maintenance quality. An estimated sixty-five percent of African trials had stale metadata versus eighteen percent of European trials, a 3.6-fold gap in administrative currency. Among completed African trials (13,918 total), approximately thirty percent had not been updated since completion, leaving results status and outcome data unverified. Stale metadata means that systematic reviews and gap analyses relying on registry data underestimate or mischaracterise Africa&#x27;s actual research landscape. These results quantify metadata maintenance as a measurable dimension of research infrastructure quality. Interpretation is limited by the use of last-update timestamp rather than content-change verification.</div>
+    <div class="color-strip"><div style="background:#1b4f72;"></div><div style="background:#0e6251;"></div><div style="background:#4a235a;"></div><div style="background:#922b21;"></div><div style="background:#7e5109;"></div><div style="background:#0b5345;"></div><div style="background:#566573;"></div></div>
+  </div>
+
+  <div class="card">
+    <div class="section-label">Sentence Structure</div>
+    <div class="sentence" style="border-left-color:#1b4f72;"><span class="role-tag" style="color:#1b4f72;">Question</span><p>In data quality assessment, does the rate at which trial records become stale differ between African and European registrations on ClinicalTrials.gov?</p></div><div class="sentence" style="border-left-color:#0e6251;"><span class="role-tag" style="color:#0e6251;">Dataset</span><p>This audit evaluated 23,873 African and 142,126 European trial records for the interval between last-update-date and current date to estimate metadata staleness rates.</p></div><div class="sentence" style="border-left-color:#4a235a;"><span class="role-tag" style="color:#4a235a;">Method</span><p>Investigators reported the percentage of records with no updates in over two years as the primary estimand for administrative maintenance quality.</p></div><div class="sentence" style="border-left-color:#922b21;"><span class="role-tag" style="color:#922b21;">Primary Result</span><p>An estimated sixty-five percent of African trials had stale metadata versus eighteen percent of European trials, a 3.6-fold gap in administrative currency.</p></div><div class="sentence" style="border-left-color:#7e5109;"><span class="role-tag" style="color:#7e5109;">Robustness</span><p>Among completed African trials (13,918 total), approximately thirty percent had not been updated since completion, leaving results status and outcome data unverified.</p></div><div class="sentence" style="border-left-color:#0b5345;"><span class="role-tag" style="color:#0b5345;">Interpretation</span><p>Stale metadata means that systematic reviews and gap analyses relying on registry data underestimate or mischaracterise Africa&#x27;s actual research landscape.</p></div><div class="sentence" style="border-left-color:#566573;"><span class="role-tag" style="color:#566573;">Boundary</span><p>These results quantify metadata maintenance as a measurable dimension of research infrastructure quality.</p></div>
+  </div>
+
+  <div class="links">
+    <a class="link-btn" href="../">Back to Group</a>
+    <a class="link-btn" href="../code/angle-1-metadata-lifespans.py" download>Download Code (.py)</a>
+    <a class="link-btn" href="https://github.com/mahmood726-cyber/africa-e156-students" target="_blank">GitHub</a>
+  </div>
+
+  <div class="footer">
+    <p>E156 Format &middot; ClinicalTrials.gov API v2 &middot; https://github.com/mahmood726-cyber/africa-e156-students</p>
+    <p>Mahmood Ahmad &middot; ORCID: 0009-0003-7781-4478</p>
+  </div>
+</div>
 </body>
 </html>
