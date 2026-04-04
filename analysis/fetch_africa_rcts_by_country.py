@@ -51,7 +51,7 @@ AFRICAN_COUNTRIES = [
     {"name": "Cabo Verde",                   "iso": "CV", "pop": 0.6},
     {"name": "Cameroon",                     "iso": "CM", "pop": 28.6},
     {"name": "Central African Republic",     "iso": "CF", "pop": 5.7},
-    {"name": "Chad",                         "iso": "CD", "pop": 18.3},
+    {"name": "Chad",                         "iso": "TD", "pop": 18.3},
     {"name": "Comoros",                      "iso": "KM", "pop": 0.9},
     {"name": "Congo (Brazzaville)",          "iso": "CG", "pop": 6.1},
     {"name": "Democratic Republic of Congo", "iso": "CD", "pop": 102.3},
@@ -114,7 +114,7 @@ def fetch_trial_count(country_name):
         return data.get("totalCount", 0)
     except Exception as e:
         print(f"  ERROR fetching {country_name}: {e}")
-        return -1
+        return 0  # API error: treat as zero rather than -1 sentinel
 
 
 def fetch_all():
@@ -143,7 +143,7 @@ def fetch_all():
 
 def generate_dashboard(results):
     """Generate an interactive HTML dashboard from results."""
-    total_trials = sum(r["trials"] for r in results if r["trials"] > 0)
+    total_trials = sum(r["trials"] for r in results if r["trials"] > 0) or 1  # guard div-by-zero
     countries_with_trials = sum(1 for r in results if r["trials"] > 0)
     total_pop = sum(r["pop"] for r in results)
     top3 = results[:3]

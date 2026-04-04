@@ -56,7 +56,14 @@ GROWTH_AF = round(TEMP["2021-2025"]["Africa"] / TEMP["2000-2005"]["Africa"], 0)
 GROWTH_US = round(TEMP["2021-2025"]["United States"] / TEMP["2000-2005"]["United States"], 1)
 
 # Gini from statistical_deep_dive
-GINI = 0.857
+# Load computed Gini from stats output if available
+_stats_path = Path("C:/Users/user/africa-e156-students/analysis/statistical_deep_dive_results.json")
+if _stats_path.exists():
+    with open(_stats_path, encoding="utf-8") as _f:
+        _stats = json.load(_f)
+    GINI = _stats.get("gini", 0.857)
+else:
+    GINI = 0.857  # fallback
 
 # ═══════════════════════════════════════════════════════════
 #  80 PAPER DEFINITIONS

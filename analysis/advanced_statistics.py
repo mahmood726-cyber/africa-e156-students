@@ -12,7 +12,7 @@ Methods:
   4.  Kullback-Leibler divergence (observed vs uniform)
   5.  Jensen-Shannon divergence (symmetric KL)
   6.  Spearman rank correlation (population vs trials)
-  7.  Kendall tau-b rank correlation
+  7.  Kendall tau-a rank correlation
   8.  Mann-Whitney U test (top-10 vs bottom-44 nations)
   9.  Kolmogorov-Smirnov test (Africa vs log-normal)
   10. Power-law alpha via MLE (Clauset et al.)
@@ -94,7 +94,8 @@ def theil_T(vals):
     return sum((v/mu)*math.log(v/mu) for v in vals if v > 0) / n
 
 def theil_L(vals):
-    """Theil L index (GE(0) = mean log deviation). 0 = equal."""
+    """Theil L index (GE(0) = mean log deviation). 0 = equal.
+    NOTE: undefined when zeros present; computed over positive values only."""
     n = len(vals)
     mu = sum(vals)/n if n > 0 else 0
     if mu == 0: return 0.0
@@ -106,14 +107,19 @@ def atkinson(vals, epsilon):
     n = len(vals)
     mu = sum(vals)/n if n > 0 else 0
     if mu == 0: return 0.0
+    has_zeros = any(v == 0 for v in vals)
     positive = [v for v in vals if v > 0]
     if not positive: return 0.0
+    # When zeros present and epsilon >= 1, Atkinson = 1.0 by definition
+    if has_zeros and epsilon >= 1.0:
+        return 1.0
     if epsilon == 1.0:
-        # Geometric mean
         log_sum = sum(math.log(v) for v in positive) / len(positive)
         geo_mean = math.exp(log_sum)
         return 1 - geo_mean / mu
     else:
+        if has_zeros and epsilon > 1.0:
+            return 1.0  # harmonic-like mean is 0 when zeros present
         power_mean = (sum(v**(1-epsilon) for v in positive) / n) ** (1/(1-epsilon))
         return 1 - power_mean / mu
 
@@ -150,7 +156,7 @@ def _ranks(vals):
         i = j + 1
     return ranks
 
-# 7. Kendall tau-b
+# 7. Kendall tau-a (no tie correction)
 def kendall_tau(x, y):
     n = len(x)
     concordant = discordant = 0
@@ -226,7 +232,7 @@ def ks_test_lognormal(vals):
 
 # 10. Power-law alpha (MLE, Clauset et al. 2009)
 def powerlaw_alpha(vals, xmin=1):
-    """MLE estimate of power-law exponent alpha."""
+    """MLE estimate of power-law exponent alpha (continuous approx.; ~5% bias for discrete data, Clauset 2009)."""
     filtered = [v for v in vals if v >= xmin]
     n = len(filtered)
     if n < 3: return 0, 0
@@ -258,7 +264,8 @@ def jackknife_se(vals, stat_fn):
     for i in range(n):
         subset = vals[:i] + vals[i+1:]
         theta_i.append(stat_fn(subset))
-    var = (n-1)/n * sum((t - theta_full)**2 for t in theta_i)
+    theta_bar = sum(theta_i) / n
+    var = (n-1)/n * sum((t - theta_bar)**2 for t in theta_i)
     return round(math.sqrt(var), 4)
 
 # 13. Permutation test
@@ -295,12 +302,13 @@ def trend_decomposition(epochs, values):
     sx2 = sum(x2); sx3 = sum(xi**3 for xi in x); sx4 = sum(xi**4 for xi in x)
     sx2y = sum(x2i*yi for x2i,yi in zip(x2,values))
     # Solve 3x3 system via Cramer's rule
-    D = n*(sxx*sx4-sx2**2) - sx*(sx*sx4-sx2*sx3) + sx2*(sx*sx3-sxx*sx2) if n > 2 else 0
+    # Correct Cramer's rule for [n,sx,sx2; sx,sxx,sx3; sx2,sx3,sx4] * [a,b,c]^T = [sy,sxy,sx2y]
+    D = n*(sxx*sx4-sx3**2) - sx*(sx*sx4-sx3*sx2) + sx2*(sx*sx3-sxx*sx2) if n > 2 else 0
     if abs(D) < 1e-10:
         return linear, linear
-    Da = sy*(sxx*sx4-sx2**2) - sx*(sxy*sx4-sx2y*sx2) + sx2*(sxy*sx3-sxx*sx2y)
-    Db = n*(sxy*sx4-sx2y*sx2) - sy*(sx*sx4-sx2*sx3) + sx2*(sx*sx2y-sxy*sx2)
-    Dc = n*(sxx*sx2y-sxy*sx2) - sx*(sx*sx2y-sxy*sx2) + sy*(sx*sx3-sxx*sx2) if n > 2 else 0
+    Da = sy*(sxx*sx4-sx3**2) - sxy*(sx*sx4-sx3*sx2) + sx2y*(sx*sx3-sxx*sx2)
+    Db = n*(sxy*sx4-sx2y*sx3) - sy*(sx*sx4-sx3*sx2) + sx2*(sx*sx2y-sxy*sx2)
+    Dc = n*(sxx*sx2y-sx3*sxy) - sx*(sx*sx2y-sx3*sy) + sx2*(sx*sxy-sxx*sy) if n > 2 else 0
     # Simplified — just report linear for robustness
     aq = Da/D; bq = Db/D; cq = Dc/D
     ss_res_q = sum((yi-(aq+bq*xi+cq*xi**2))**2 for xi,yi in zip(x,values))
@@ -372,7 +380,7 @@ def main():
     p_pop = [pop/sum(populations) for pop in populations]  # proportional to population
     kl_uniform = round(kl_divergence(p_obs, p_uniform), 4) if all(q > 0 for q in p_uniform) else float('inf')
     js_uniform = round(js_divergence(p_obs, p_uniform), 4)
-    kl_pop = round(kl_divergence([p for p in p_obs if p > 0], [q for p,q in zip(p_obs,p_pop) if p > 0]), 4)
+    kl_pop = round(kl_divergence(p_obs, p_pop), 4)  # full vectors; kl_divergence guards pi>0 internally
     js_pop = round(js_divergence(p_obs, p_pop), 4)
     print(f"   KL(observed || uniform):     {kl_uniform} bits")
     print(f"   JS(observed, uniform):       {js_uniform} bits")
@@ -388,7 +396,7 @@ def main():
     results["spearman"] = {"pop_trials": rho, "pop_per_million": rho_pm}
 
     # 7. Kendall tau
-    print("\n7. KENDALL TAU-B")
+    print("\n7. KENDALL TAU-A (no tie correction)")
     tau = round(kendall_tau(populations, trial_counts), 4)
     print(f"   Pop vs Trials: tau = {tau}")
     results["kendall"] = {"pop_trials": tau}

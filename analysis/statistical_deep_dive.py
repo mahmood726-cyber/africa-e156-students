@@ -117,7 +117,7 @@ def descriptive_stats(values):
     s = sorted(values)
     mean = sum(s) / n
     median = s[n // 2] if n % 2 == 1 else (s[n // 2 - 1] + s[n // 2]) / 2
-    variance = sum((v - mean) ** 2 for v in s) / n
+    variance = sum((v - mean) ** 2 for v in s) / n  # population variance (N=54 is full census, not sample)
     std = math.sqrt(variance)
     q1 = s[n // 4]
     q3 = s[3 * n // 4]

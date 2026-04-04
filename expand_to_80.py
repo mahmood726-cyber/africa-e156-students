@@ -519,11 +519,11 @@ NEW_DASHBOARD_DATA = {
     },
     "masking-depth": {
         "title": "Masking Depth",
-        "subtitle": "58% of African trials are double-blinded vs 27% in Europe.",
+        "subtitle": "Africa's double-blind rate of 10.3% vs US 11.2% — similar due to Phase 3 dominance.",
         "metrics": [
-            {"label": "Africa Double-Blind", "value": "58%", "color": "#0d6b57"},
-            {"label": "Europe Double-Blind", "value": "27%"},
-            {"label": "Ratio", "value": "2.1x"},
+            {"label": "Africa Double-Blind", "value": "10.3%"},
+            {"label": "US Double-Blind", "value": "11.2%"},
+            {"label": "AF Count", "value": "2,453"},
             {"label": "Reason", "value": "Phase 3 dominance"},
         ],
         "chart": {"title": "Double-Blinding Rate (%)", "bars": [

@@ -11,6 +11,7 @@ from pathlib import Path
 from html import escape
 
 # ── Paths ──
+# NOTE: These paths are for the author's build machine. Students use the generated HTML.
 SOURCE = Path("C:/AfricaRCT")
 E156 = SOURCE / "E156"
 SCRIPTS = SOURCE / "scripts"
@@ -655,7 +656,7 @@ def generate_group_page(group_id, group):
       {strip}
       <div class="paper-body">{escape(body)}</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/{slug}.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/{slug}.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/{code_filename}" download>Download Code (.py)</a>
         <a class="btn" href="#" onclick="downloadMd('{slug}', this); return false;">Download Paper (.md)</a>
       </div>
@@ -711,7 +712,7 @@ def generate_group_page(group_id, group):
         <li><strong>Rewrite the paper in your own voice.</strong> Keep the 7-sentence, 156-word E156 format. Add your own clinical context and Uganda-specific insights.</li>
         <li><strong>Add 2-3 references</strong> &mdash; verify the suggested ones below, and add PubMed or WHO sources you find relevant.</li>
         <li><strong>Include the GitHub links</strong> (dashboard + code) in your paper's Outside Note Block when submitting.</li>
-        <li><strong>Submit</strong> to: <a href="{JOURNAL_URL}" target="_blank">Synthesis Medicine Journal</a></li>
+        <li><strong>Submit</strong> to: <a href="{JOURNAL_URL}" target="_blank" rel="noopener noreferrer">Synthesis Medicine Journal</a></li>
       </ol>
       <div class="warning">
         <strong>Important:</strong> These papers are AI-generated drafts. The journal will check for originality.
@@ -768,8 +769,8 @@ The author rewrote, verified, and takes full responsibility for the final conten
     <div class="footer">
       <p><a href="../">Back to All Groups</a></p>
       <p style="margin-top:8px;">
-        <a href="{JOURNAL_URL}" target="_blank">Synthesis Medicine Journal</a> &middot;
-        <a href="{GITHUB_REPO}" target="_blank">GitHub Repository</a> &middot;
+        <a href="{JOURNAL_URL}" target="_blank" rel="noopener noreferrer">Synthesis Medicine Journal</a> &middot;
+        <a href="{GITHUB_REPO}" target="_blank" rel="noopener noreferrer">GitHub Repository</a> &middot;
         E156 Micro-Paper Format
       </p>
       <p style="margin-top:8px;">Mahmood Ahmad &middot; ORCID: 0009-0003-7781-4478</p>
@@ -901,7 +902,7 @@ def generate_landing_page():
     <div class="intro">
       <h2>What is this?</h2>
       <p>Each group below contains 12 AI-drafted E156 micro-papers about clinical trial inequity in Africa. Each paper is exactly 7 sentences and 156 words, backed by ClinicalTrials.gov data, with an interactive HTML dashboard and Python analysis code.</p>
-      <p><strong>Your task:</strong> Read each paper, study the dashboard, understand the code, then <strong>rewrite the paper in your own voice</strong> before submitting to the <a href="{JOURNAL_URL}" target="_blank">Synthesis Medicine Journal</a>.</p>
+      <p><strong>Your task:</strong> Read each paper, study the dashboard, understand the code, then <strong>rewrite the paper in your own voice</strong> before submitting to the <a href="{JOURNAL_URL}" target="_blank" rel="noopener noreferrer">Synthesis Medicine Journal</a>.</p>
       <p>Click your group below to get started.</p>
     </div>
 
@@ -911,8 +912,8 @@ def generate_landing_page():
 
     <div class="footer">
       <p>
-        <a href="{JOURNAL_URL}" target="_blank">Synthesis Medicine Journal</a> &middot;
-        <a href="{GITHUB_REPO}" target="_blank">GitHub Repository</a>
+        <a href="{JOURNAL_URL}" target="_blank" rel="noopener noreferrer">Synthesis Medicine Journal</a> &middot;
+        <a href="{GITHUB_REPO}" target="_blank" rel="noopener noreferrer">GitHub Repository</a>
       </p>
       <p style="margin-top:8px;">Mahmood Ahmad &middot; ORCID: 0009-0003-7781-4478</p>
     </div>

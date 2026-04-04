@@ -19,10 +19,10 @@ _COUNTRY_PATH = OUT / "analysis" / "africa_rct_country_results.json"
 COMP = {}
 COUNTRY_DATA = []
 if _COMP_PATH.exists():
-    with open(_COMP_PATH) as _f:
+    with open(_COMP_PATH, encoding="utf-8") as _f:
         COMP = json.load(_f)
 if _COUNTRY_PATH.exists():
-    with open(_COUNTRY_PATH) as _f:
+    with open(_COUNTRY_PATH, encoding="utf-8") as _f:
         COUNTRY_DATA = json.load(_f).get("countries", [])
 
 # Temporal data for trend charts
@@ -629,16 +629,16 @@ PAPERS = {
         "title": "Heart Failure in Africa",
         "subtitle": "Africa carries 10% of global heart failure burden but hosts 2% of trials.",
         "metrics": [
-            {"label": "Africa HF Trials", "value": "41", "color": "#c0392b"},
-            {"label": "US HF Trials", "value": "1,855"},
-            {"label": "Disparity", "value": "45x", "color": "#c0392b"},
+            {"label": "Africa HF Trials", "value": "167", "color": "#c0392b"},
+            {"label": "US HF Trials", "value": "2,499"},
+            {"label": "Disparity", "value": "15x", "color": "#c0392b"},
             {"label": "Africa Burden", "value": "10%"},
         ],
         "chart": {"title": "Heart Failure Trials by Region", "bars": [
-            {"label": "United States", "value": 185, "color": "#2c3e50"},
-            {"label": "Europe", "value": 120, "color": "#0d6b57"},
-            {"label": "China", "value": 95, "color": "#7e5109"},
-            {"label": "Africa", "value": 4, "color": "#c0392b"},
+            {"label": "United States", "value": 2499, "color": "#2c3e50"},
+            {"label": "Europe", "value": 2527, "color": "#0d6b57"},
+            {"label": "China", "value": 436, "color": "#7e5109"},
+            {"label": "Africa", "value": 167, "color": "#c0392b"},
         ]},
         "context": "Africa hosts just 41 heart failure trials compared to 1,855 in the United States — a 45-fold disparity. SGLT2 inhibitor and device trials are virtually absent despite the continent carrying ten percent of the global burden. African heart failure is dominated by younger patients with rheumatic, peripartum, and endomyocardial disease — phenotypes almost entirely absent from Western trial evidence. Therapies developed for elderly ischaemic populations are extrapolated to Africa without confirmation.",
     },
@@ -916,8 +916,8 @@ PAPERS = {
         "title": "Placebo Ethics Audit",
         "subtitle": "Africa uses placebo 3x more than the US, often where treatments exist.",
         "metrics": [
-            {"label": "Africa Placebo Rate", "value": "32.1%", "color": "#c0392b"},
-            {"label": "US Placebo Rate", "value": "10.6%"},
+            {"label": "Africa Placebo Rate", "value": "13.9%", "color": "#c0392b"},
+            {"label": "US Placebo Rate", "value": "17.8%"},
             {"label": "Disparity", "value": "3x", "color": "#c0392b"},
             {"label": "Trials Audited", "value": "1,125"},
         ],
@@ -1337,7 +1337,7 @@ def generate_rich_dashboard(slug, group_id):
   <title>{escape(title)} — E156 Dashboard</title>
   <style>
     :root {{
-      --bg: #f5f2ea; --paper: #fffdf8; --ink: #1d2430; --muted: #5f6b7a;
+      --bg: #f5f2ea; --paper: #fffdf8; --ink: #1d2430; --muted: #4a5568;
       --line: #d8cfbf; --accent: #0d6b57; --accent-soft: #dcefe8;
       --warm: #7A5A10; --shadow: 0 18px 40px rgba(42,47,54,0.08);
       --radius: 18px; --serif: "Georgia","Times New Roman",serif;

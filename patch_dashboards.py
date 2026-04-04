@@ -10,23 +10,29 @@ from html import escape
 
 try:
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
-except:
+except Exception:
     pass
 
 def log(msg):
     try:
         print(msg)
-    except:
+    except Exception:
         pass
 
 OUT = Path("C:/Users/user/africa-e156-students")
 E156_DIR = Path("C:/AfricaRCT/E156")
 
 # Load data
-with open(OUT / "analysis/comprehensive_africa_data.json") as f:
-    COMP = json.load(f)
-with open(OUT / "analysis/africa_rct_country_results.json") as f:
-    COUNTRIES = json.load(f)["countries"]
+COMP = {}
+COUNTRIES = []
+_comp_path = OUT / "analysis/comprehensive_africa_data.json"
+_country_path = OUT / "analysis/africa_rct_country_results.json"
+if _comp_path.exists():
+    with open(_comp_path, encoding="utf-8") as f:
+        COMP = json.load(f)
+if _country_path.exists():
+    with open(_country_path, encoding="utf-8") as f:
+        COUNTRIES = json.load(f).get("countries", [])
 
 TOTALS = COMP["totals"]
 TEMPORAL = COMP["temporal"]
@@ -321,18 +327,18 @@ def get_waterfall_data(slug):
 # ═══════════════════════════════════════════════════════════
 
 CSS = '''
-:root { --bg:#f5f2ea;--paper:#fffdf8;--ink:#1d2430;--muted:#5f6b7a;--line:#d8cfbf;--accent:#0d6b57;--accent-soft:#dcefe8;--warm:#7A5A10;--shadow:0 18px 40px rgba(42,47,54,0.08);--radius:18px;--serif:"Georgia","Times New Roman",serif;--mono:"Consolas","SFMono-Regular","Menlo",monospace; }
+:root { --bg:#f5f2ea;--paper:#fffdf8;--ink:#1d2430;--muted:#4a5568;--line:#d8cfbf;--accent:#0d6b57;--accent-soft:#dcefe8;--warm:#7A5A10;--shadow:0 18px 40px rgba(42,47,54,0.08);--radius:18px;--serif:"Georgia","Times New Roman",serif;--mono:"Consolas","SFMono-Regular","Menlo",monospace; }
 * { box-sizing:border-box;margin:0; }
 body { color:var(--ink);font-family:var(--serif);line-height:1.6;background:radial-gradient(circle at top left,rgba(13,107,87,0.06),transparent 32%),radial-gradient(circle at bottom right,rgba(141,79,45,0.06),transparent 28%),var(--bg); }
 .page { width:min(980px,calc(100vw - 24px));margin:0 auto;padding:32px 0 56px; }
 .card { background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px;margin-bottom:20px; }
 .hero { text-align:center;padding:40px 28px; }
-.eyebrow { color:var(--accent);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;font-weight:700; }
+.eyebrow { color:var(--accent);font-size:13px;letter-spacing:0.15em;text-transform:uppercase;font-weight:700; }
 h1 { font-size:clamp(24px,3.5vw,38px);line-height:1.08;margin:10px 0 6px; }
 .subtitle { color:var(--muted);font-size:17px;max-width:58ch;margin:0 auto; }
 .metrics { display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin:20px 0; }
 .metric { text-align:center;padding:16px 8px;border-radius:12px;background:linear-gradient(180deg,#fff,#faf6ee);border:1px solid var(--line); }
-.metric-label { font-size:10px;text-transform:uppercase;letter-spacing:0.07em;color:var(--muted);margin-bottom:4px; }
+.metric-label { font-size:12px;text-transform:uppercase;letter-spacing:0.07em;color:var(--muted);margin-bottom:4px; }
 .metric-value { font-size:24px;font-weight:700; }
 .chart-wrap { overflow-x:auto;padding:4px 0; }
 .chart-grid { display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start; }
@@ -343,16 +349,20 @@ h1 { font-size:clamp(24px,3.5vw,38px);line-height:1.08;margin:10px 0 6px; }
 .context-label { font-size:12px;text-transform:uppercase;letter-spacing:0.1em;color:var(--warm);font-weight:700;margin-bottom:10px; }
 .body-text { font-size:15px;line-height:1.8;padding:20px;background:#fafaf7;border-radius:10px; }
 .sentence { border-left:4px solid #ccc;padding:8px 14px;margin:6px 0;border-radius:0 8px 8px 0;background:#fafaf7; }
-.role-tag { font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em; }
+.role-tag { font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em; }
 .sentence p { margin:3px 0 0;font-size:14px;line-height:1.65; }
 .color-strip { display:flex;gap:2px;border-radius:6px;overflow:hidden;margin:12px 0; }
 .color-strip > div { height:7px;flex:1; }
 .footer { text-align:center;color:var(--muted);font-size:12px;margin-top:28px; }
 .footer a { color:var(--accent);text-decoration:none; }
 .links { display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:16px 0; }
-.link-btn { display:inline-block;padding:8px 16px;border-radius:8px;font-size:13px;font-weight:600;text-decoration:none;border:1px solid var(--line);color:var(--ink);background:white;transition:all 0.15s; }
+.link-btn { display:inline-block;padding:12px 20px;min-height:44px;border-radius:8px;font-size:13px;font-weight:600;text-decoration:none;border:1px solid var(--line);color:var(--ink);background:white;transition:all 0.15s; }
 .link-btn:hover { background:var(--accent);color:white;border-color:var(--accent); }
 .word-badge { display:inline-block;background:var(--accent-soft);color:var(--accent);padding:3px 10px;border-radius:16px;font-size:12px;font-weight:700; }
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.color-strip, .sent-strip { }
+[aria-hidden="true"] { display: block; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 @media (max-width:700px) { .chart-grid { grid-template-columns:1fr; } .card { padding:18px 14px; } }
 '''
 
@@ -429,7 +439,7 @@ def generate_dashboard(slug, group_id):
         fg,bg = ROLE_COLORS[i] if i<len(ROLE_COLORS) else ("#333","#f0f0f0")
         role = ROLE_NAMES[i] if i<len(ROLE_NAMES) else f"S{i+1}"
         sent_h += f'<div class="sentence" style="border-left-color:{fg};"><span class="role-tag" style="color:{fg};">{role}</span><p>{escape(s)}</p></div>'
-    strip = '<div class="color-strip">' + "".join(f'<div style="background:{ROLE_COLORS[i][0]};"></div>' for i in range(min(len(sentences),7))) + '</div>'
+    strip = '<div class="color-strip" aria-hidden="true">' + "".join(f'<div style="background:{ROLE_COLORS[i][0]};"></div>' for i in range(min(len(sentences),7))) + '</div>'
 
     code_fn = slug.replace("_","-") + ".py"
 
@@ -442,7 +452,7 @@ def generate_dashboard(slug, group_id):
   <style>{CSS}</style>
 </head>
 <body>
-<div class="page">
+<main class="page" role="main">
   <div class="card hero">
     <div class="eyebrow">E156 Micro-Paper &middot; Africa Clinical Trials</div>
     <h1>{escape(title)}</h1>
@@ -456,12 +466,12 @@ def generate_dashboard(slug, group_id):
   </div>
 
   <div class="card">
-    <div class="section-label">Regional Comparison</div>
+    <div class="section-label" id="chart-regional">Regional Comparison</div>
     <div class="chart-wrap">{chart1}</div>
   </div>
 
   <div class="card">
-    <div class="section-label">{escape(primary_cond.title())} — Condition Analysis</div>
+    <div class="section-label" id="chart-condition">{escape(primary_cond.title())} — Condition Analysis</div>
     <div class="chart-grid">
       <div class="chart-cell">{chart2}</div>
       <div class="chart-cell">{chart3}</div>
@@ -511,10 +521,10 @@ def generate_dashboard(slug, group_id):
   <div class="links">
     <a class="link-btn" href="../">Back to Group</a>
     <a class="link-btn" href="../code/{code_fn}" download>Download Code (.py)</a>
-    <a class="link-btn" href="{GITHUB_REPO}" target="_blank">GitHub</a>
+    <a class="link-btn" href="{GITHUB_REPO}" target="_blank" rel="noopener noreferrer">GitHub</a>
   </div>
 
-  <div class="footer">
+  <footer class="footer">
     <p>E156 Format &middot; ClinicalTrials.gov API v2 &middot; {GITHUB_REPO}</p>
     <p>Mahmood Ahmad &middot; ORCID: 0009-0003-7781-4478</p>
   </div>

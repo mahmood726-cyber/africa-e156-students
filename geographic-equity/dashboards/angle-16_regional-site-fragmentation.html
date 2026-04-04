@@ -5,18 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Regional Site Fragmentation — E156 Dashboard</title>
   <style>
-:root { --bg:#f5f2ea;--paper:#fffdf8;--ink:#1d2430;--muted:#5f6b7a;--line:#d8cfbf;--accent:#0d6b57;--accent-soft:#dcefe8;--warm:#7A5A10;--shadow:0 18px 40px rgba(42,47,54,0.08);--radius:18px;--serif:"Georgia","Times New Roman",serif;--mono:"Consolas","SFMono-Regular","Menlo",monospace; }
+:root { --bg:#f5f2ea;--paper:#fffdf8;--ink:#1d2430;--muted:#4a5568;--line:#d8cfbf;--accent:#0d6b57;--accent-soft:#dcefe8;--warm:#7A5A10;--shadow:0 18px 40px rgba(42,47,54,0.08);--radius:18px;--serif:"Georgia","Times New Roman",serif;--mono:"Consolas","SFMono-Regular","Menlo",monospace; }
 * { box-sizing:border-box;margin:0; }
 body { color:var(--ink);font-family:var(--serif);line-height:1.6;background:radial-gradient(circle at top left,rgba(13,107,87,0.06),transparent 32%),radial-gradient(circle at bottom right,rgba(141,79,45,0.06),transparent 28%),var(--bg); }
 .page { width:min(980px,calc(100vw - 24px));margin:0 auto;padding:32px 0 56px; }
 .card { background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px;margin-bottom:20px; }
 .hero { text-align:center;padding:40px 28px; }
-.eyebrow { color:var(--accent);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;font-weight:700; }
+.eyebrow { color:var(--accent);font-size:13px;letter-spacing:0.15em;text-transform:uppercase;font-weight:700; }
 h1 { font-size:clamp(24px,3.5vw,38px);line-height:1.08;margin:10px 0 6px; }
 .subtitle { color:var(--muted);font-size:17px;max-width:58ch;margin:0 auto; }
 .metrics { display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin:20px 0; }
 .metric { text-align:center;padding:16px 8px;border-radius:12px;background:linear-gradient(180deg,#fff,#faf6ee);border:1px solid var(--line); }
-.metric-label { font-size:10px;text-transform:uppercase;letter-spacing:0.07em;color:var(--muted);margin-bottom:4px; }
+.metric-label { font-size:12px;text-transform:uppercase;letter-spacing:0.07em;color:var(--muted);margin-bottom:4px; }
 .metric-value { font-size:24px;font-weight:700; }
 .chart-wrap { overflow-x:auto;padding:4px 0; }
 .chart-grid { display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start; }
@@ -27,21 +27,25 @@ h1 { font-size:clamp(24px,3.5vw,38px);line-height:1.08;margin:10px 0 6px; }
 .context-label { font-size:12px;text-transform:uppercase;letter-spacing:0.1em;color:var(--warm);font-weight:700;margin-bottom:10px; }
 .body-text { font-size:15px;line-height:1.8;padding:20px;background:#fafaf7;border-radius:10px; }
 .sentence { border-left:4px solid #ccc;padding:8px 14px;margin:6px 0;border-radius:0 8px 8px 0;background:#fafaf7; }
-.role-tag { font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em; }
+.role-tag { font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em; }
 .sentence p { margin:3px 0 0;font-size:14px;line-height:1.65; }
 .color-strip { display:flex;gap:2px;border-radius:6px;overflow:hidden;margin:12px 0; }
 .color-strip > div { height:7px;flex:1; }
 .footer { text-align:center;color:var(--muted);font-size:12px;margin-top:28px; }
 .footer a { color:var(--accent);text-decoration:none; }
 .links { display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:16px 0; }
-.link-btn { display:inline-block;padding:8px 16px;border-radius:8px;font-size:13px;font-weight:600;text-decoration:none;border:1px solid var(--line);color:var(--ink);background:white;transition:all 0.15s; }
+.link-btn { display:inline-block;padding:12px 20px;min-height:44px;border-radius:8px;font-size:13px;font-weight:600;text-decoration:none;border:1px solid var(--line);color:var(--ink);background:white;transition:all 0.15s; }
 .link-btn:hover { background:var(--accent);color:white;border-color:var(--accent); }
 .word-badge { display:inline-block;background:var(--accent-soft);color:var(--accent);padding:3px 10px;border-radius:16px;font-size:12px;font-weight:700; }
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.color-strip, .sent-strip { }
+[aria-hidden="true"] { display: block; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 @media (max-width:700px) { .chart-grid { grid-template-columns:1fr; } .card { padding:18px 14px; } }
 </style>
 </head>
 <body>
-<div class="page">
+<main class="page" role="main">
   <div class="card hero">
     <div class="eyebrow">E156 Micro-Paper &middot; Africa Clinical Trials</div>
     <h1>Regional Site Fragmentation</h1>
@@ -55,12 +59,12 @@ h1 { font-size:clamp(24px,3.5vw,38px);line-height:1.08;margin:10px 0 6px; }
   </div>
 
   <div class="card">
-    <div class="section-label">Regional Comparison</div>
+    <div class="section-label" id="chart-regional">Regional Comparison</div>
     <div class="chart-wrap"><svg width="100%" viewBox="0 0 720 250" xmlns="http://www.w3.org/2000/svg"><text x="190" y="20" font-size="14" fill="#5f6b7a" font-family="Georgia,serif">Trial Distribution by African Sub-Region (%)</text><text x="180" y="48" text-anchor="end" font-size="13" fill="#1d2430">North Africa</text><rect x="190" y="35" width="480" height="24" rx="4" fill="#2c3e50" opacity="0.85"/><text x="675" y="50" font-size="12" fill="#5f6b7a">44</text><text x="180" y="88" text-anchor="end" font-size="13" fill="#1d2430">Southern Africa</text><rect x="190" y="75" width="338" height="24" rx="4" fill="#0d6b57" opacity="0.85"/><text x="533" y="90" font-size="12" fill="#5f6b7a">31</text><text x="180" y="128" text-anchor="end" font-size="13" fill="#1d2430">East Africa</text><rect x="190" y="115" width="175" height="24" rx="4" fill="#7e5109" opacity="0.85"/><text x="370" y="130" font-size="12" fill="#5f6b7a">16</text><text x="180" y="168" text-anchor="end" font-size="13" fill="#1d2430">West Africa</text><rect x="190" y="155" width="76" height="24" rx="4" fill="#e67e22" opacity="0.85"/><text x="271" y="170" font-size="12" fill="#5f6b7a">7</text><text x="180" y="208" text-anchor="end" font-size="13" fill="#1d2430">Central Africa</text><rect x="190" y="195" width="22" height="24" rx="4" fill="#c0392b" opacity="0.85"/><text x="217" y="210" font-size="12" fill="#5f6b7a">2</text></svg></div>
   </div>
 
   <div class="card">
-    <div class="section-label">Respiratory — Condition Analysis</div>
+    <div class="section-label" id="chart-condition">Respiratory — Condition Analysis</div>
     <div class="chart-grid">
       <div class="chart-cell"><svg viewBox="0 0 220 240" xmlns="http://www.w3.org/2000/svg" style="max-width:220px;">
   <circle cx="110" cy="110" r="80" fill="none" stroke="#e8e4db" stroke-width="30"/>
@@ -145,7 +149,7 @@ h1 { font-size:clamp(24px,3.5vw,38px);line-height:1.08;margin:10px 0 6px; }
   <div class="card">
     <div class="section-label">The Evidence &nbsp; <span class="word-badge">127 words</span></div>
     <div class="body-text">In the governance of African clinical research, does the sub-regional distribution of trials reveal internal fragmentation between the continent&#x27;s five geographic blocs? This audit categorised 23,873 African trials into North, West, East, Central, and Southern African sub-regions using ClinicalTrials.gov API v2 country metadata. Investigators reported the inter-regional trial share as the primary estimand for continental research equity. North Africa hosted 53% of all African trials driven by Egypt&#x27;s 11,752 registrations, while Central Africa hosted under two percent despite a combined population exceeding 180 million. East Africa contributed 11% anchored by Uganda, Kenya, and Tanzania. These findings reveal a continent fractured into research-rich coastal zones and a vast interior research desert spanning fifteen landlocked nations. Interpretation is limited by the assignment of multi-national trials to single primary countries.</div>
-    <div class="color-strip"><div style="background:#1b4f72;"></div><div style="background:#0e6251;"></div><div style="background:#4a235a;"></div><div style="background:#922b21;"></div><div style="background:#7e5109;"></div><div style="background:#0b5345;"></div><div style="background:#566573;"></div></div>
+    <div class="color-strip" aria-hidden="true"><div style="background:#1b4f72;"></div><div style="background:#0e6251;"></div><div style="background:#4a235a;"></div><div style="background:#922b21;"></div><div style="background:#7e5109;"></div><div style="background:#0b5345;"></div><div style="background:#566573;"></div></div>
   </div>
 
   <div class="card">
@@ -156,10 +160,10 @@ h1 { font-size:clamp(24px,3.5vw,38px);line-height:1.08;margin:10px 0 6px; }
   <div class="links">
     <a class="link-btn" href="../">Back to Group</a>
     <a class="link-btn" href="../code/angle-16-regional-site-fragmentation.py" download>Download Code (.py)</a>
-    <a class="link-btn" href="https://github.com/mahmood726-cyber/africa-e156-students" target="_blank">GitHub</a>
+    <a class="link-btn" href="https://github.com/mahmood726-cyber/africa-e156-students" target="_blank" rel="noopener noreferrer">GitHub</a>
   </div>
 
-  <div class="footer">
+  <footer class="footer">
     <p>E156 Format &middot; ClinicalTrials.gov API v2 &middot; https://github.com/mahmood726-cyber/africa-e156-students</p>
     <p>Mahmood Ahmad &middot; ORCID: 0009-0003-7781-4478</p>
   </div>

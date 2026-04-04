@@ -61,8 +61,8 @@
 
   <div class="card">
     <h2>3. Atkinson Index (Inequality Aversion)</h2>
-    <div class="formula">A(&epsilon;=0.5) = 0.6644 &nbsp;|&nbsp; A(&epsilon;=1.0) = 0.8785 &nbsp;|&nbsp; A(&epsilon;=2.0) = 0.9788</div>
-    <p class="context">The Atkinson index incorporates a normative parameter &epsilon; reflecting society's aversion to inequality. At &epsilon;=2.0 (high aversion to inequality), 98% of total trials would need to be redistributed to achieve equality. This means that 21,641 of 22,110 trials are "wasted" from an equity perspective.</p>
+    <div class="formula">A(&epsilon;=0.5) = 0.6644 &nbsp;|&nbsp; A(&epsilon;=1.0) = 1.0 &nbsp;|&nbsp; A(&epsilon;=2.0) = 1.0</div>
+    <p class="context">The Atkinson index incorporates a normative parameter &epsilon; reflecting society's aversion to inequality. At &epsilon;=2.0 (high aversion to inequality), 100% of total trials would need to be redistributed to achieve equality. This means that 22,110 of 22,110 trials are "wasted" from an equity perspective.</p>
   </div>
 
   <div class="card">
@@ -103,8 +103,8 @@
 
   <div class="card">
     <h2>12. Jackknife Standard Errors</h2>
-    <div class="formula">Gini SE = 0.1102 (jackknife) vs 0.0742 (bootstrap) &nbsp;|&nbsp; Shannon SE = 1.1343</div>
-    <p class="context">Jackknife and bootstrap standard errors agree closely, providing cross-validation of uncertainty estimates. The Gini is estimated with high precision (SE ~ 0.1102), meaning even small changes to the distribution would not alter the conclusion of extreme inequality.</p>
+    <div class="formula">Gini SE = 0.1097 (jackknife) vs 0.0742 (bootstrap) &nbsp;|&nbsp; Shannon SE = 1.1309</div>
+    <p class="context">Jackknife and bootstrap standard errors agree closely, providing cross-validation of uncertainty estimates. The Gini is estimated with high precision (SE ~ 0.1097), meaning even small changes to the distribution would not alter the conclusion of extreme inequality.</p>
   </div>
 
   <div class="card">
@@ -115,8 +115,8 @@
 
   <div class="card">
     <h2>14. Time-Series Trend Decomposition</h2>
-    <div class="formula">Africa: y = -810.2 + 2728.9 &middot; epoch (R²=0.8892) &nbsp;|&nbsp; Quadratic R²=0.0403</div>
-    <p class="context">Africa's trial growth is approximately linear over five epochs. The slope of 2729 additional trials per epoch indicates strong absolute growth, but the US slope of 7838 means the absolute gap widens each epoch.</p>
+    <div class="formula">Africa: y = -810.2 + 2728.9 &middot; epoch (R²=0.8892) &nbsp;|&nbsp; Quadratic R²=0.9935</div>
+    <p class="context">Africa's trial growth is better described by a quadratic (accelerating) model. The slope of 2729 additional trials per epoch indicates strong absolute growth, but the US slope of 7838 means the absolute gap widens each epoch.</p>
   </div>
 
   <div class="card">
@@ -132,7 +132,7 @@
       <tbody>
         <tr><td>1</td><td>Bootstrap CI</td><td>Resampling</td><td>Gini 0.809 [0.606, 0.897]</td></tr>
         <tr><td>2</td><td>Theil T / L</td><td>Generalised Entropy</td><td>T=2.0283, L=2.069</td></tr>
-        <tr><td>3</td><td>Atkinson</td><td>Welfare Economics</td><td>A(2.0)=0.9788</td></tr>
+        <tr><td>3</td><td>Atkinson</td><td>Welfare Economics</td><td>A(2.0)=1.0</td></tr>
         <tr><td>4</td><td>KL Divergence</td><td>Information Theory</td><td>2.93 bits from uniform</td></tr>
         <tr><td>5</td><td>JS Divergence</td><td>Information Theory</td><td>0.361 bits from population</td></tr>
         <tr><td>6</td><td>Spearman &rho;</td><td>Rank Correlation</td><td>&rho;=0.7235</td></tr>
@@ -141,7 +141,7 @@
         <tr><td>9</td><td>KS Test</td><td>Distribution Fit</td><td>D=0.0623 vs crit=0.1868</td></tr>
         <tr><td>10</td><td>Power-Law &alpha;</td><td>MLE</td><td>&alpha;=1.402</td></tr>
         <tr><td>11</td><td>Bayesian Posterior</td><td>Beta-Binomial</td><td>P=0.0546</td></tr>
-        <tr><td>12</td><td>Jackknife SE</td><td>Resampling</td><td>Gini SE=0.1102</td></tr>
+        <tr><td>12</td><td>Jackknife SE</td><td>Resampling</td><td>Gini SE=0.1097</td></tr>
         <tr><td>13</td><td>Permutation Test</td><td>Exact Test</td><td>p=0.0372</td></tr>
         <tr><td>14</td><td>Trend Decomposition</td><td>Time Series</td><td>R²=0.8892</td></tr>
         <tr><td>15</td><td>Concentration Index</td><td>Health Equity</td><td>CI=0.7405</td></tr>
@@ -151,7 +151,7 @@
 
   <div class="footer">
     <p>All methods implemented in pure Python (no external packages) &middot; Seed=42 for reproducibility</p>
-    <p>Data: ClinicalTrials.gov API v2 &middot; 54 African nations &middot; 22,110 trials &middot; Analysis: 2026-04-03 20:05</p>
+    <p>Data: ClinicalTrials.gov API v2 &middot; 54 African nations &middot; 22,110 trials &middot; Analysis: 2026-04-04 10:14</p>
   </div>
 </div>
 </body>

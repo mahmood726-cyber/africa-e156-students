@@ -28,8 +28,8 @@
   },
   "atkinson": {
     "e05": 0.6644,
-    "e10": 0.8785,
-    "e20": 0.9788
+    "e10": 1.0,
+    "e20": 1.0
   },
   "divergence": {
     "kl_uniform": 2.9263,
@@ -66,8 +66,8 @@
     ]
   },
   "jackknife": {
-    "gini_se": 0.1102,
-    "shannon_se": 1.1343
+    "gini_se": 0.1097,
+    "shannon_se": 1.1309
   },
   "permutation": {
     "north_vs_rest_diff": 1908.4375,
@@ -80,10 +80,10 @@
       "r2": 0.8892
     },
     "africa_quadratic": {
-      "a": 654.9,
-      "b": 1960.5,
-      "c": 570.8,
-      "r2": 0.0403
+      "a": 769.1,
+      "b": -429.7,
+      "c": 789.6,
+      "r2": 0.9935
     },
     "us_linear": {
       "intercept": 20422.2,
