@@ -100,8 +100,11 @@ a:hover { text-decoration: underline; }
   background: #f4f1ea; border-radius: 8px; padding: 14px 18px;
   margin-top: 16px; font-size: 13px; font-family: var(--mono);
 }
-.note-block dt { color: var(--accent); font-weight: 700; display: inline; }
-.note-block dd { display: inline; margin: 0 16px 0 4px; color: var(--muted); }
+.note-block .note-row { display: flex; gap: 8px; margin: 4px 0; font-size: 13px; align-items: baseline; }
+.note-block .note-key { color: var(--accent); font-weight: 700; min-width: 48px; }
+.note-block .note-val { color: var(--muted); }
+button.btn { cursor: pointer; font-family: var(--serif); }
+button.btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
 
 /* E156 rules */
 .rules {
@@ -132,7 +135,7 @@ a:hover { text-decoration: underline; }
 <body>
   <div class="page">
     <div class="masthead">
-      <div class="eyebrow">University of Uganda &middot; Africa E156 Series</div>
+      <div class="eyebrow">Makerere University &middot; Africa E156 Series</div>
       <h1>Health &amp; Disease Burden</h1>
       <p class="desc">What diseases get studied in Africa, and which are ignored? These 20 papers examine heart failure, maternal mortality, COVID displacement, genomic gaps, and the mismatch between disease burden and research investment.</p>
     </div>
@@ -146,416 +149,376 @@ a:hover { text-decoration: underline; }
         <li><strong>Rewrite the paper in your own voice.</strong> Keep the 7-sentence, 156-word E156 format. Add your own clinical context and Uganda-specific insights.</li>
         <li><strong>Add 2-3 references</strong> &mdash; verify the suggested ones below, and add PubMed or WHO sources you find relevant.</li>
         <li><strong>Include the GitHub links</strong> (dashboard + code) in your paper's Outside Note Block when submitting.</li>
-        <li><strong>Submit</strong> to: <a href="https://www.synthesis-medicine.org/index.php/journal" target="_blank">Synthesis Medicine Journal</a></li>
+        <li><strong>Submit</strong> to: <a href="https://www.synthesis-medicine.org/index.php/journal" target="_blank" rel="noopener noreferrer">Synthesis Medicine Journal</a></li>
       </ol>
       <div class="warning">
         <strong>Important:</strong> These papers are AI-generated drafts. The journal will check for originality.
         You must rewrite each paper substantially in your own words. Your perspective as a Ugandan researcher is valuable &mdash; add local context, verify the data, and make the paper yours.
-        Each of the 12 papers below can be submitted as an independent publication.
+        Each of the 20 papers below can be submitted as an independent publication.
       </div>
     </div>
 
     
-    <div class="paper-card" id="paper-1">
-      <div><span class="num">1</span><h3>Heart Failure in Africa</h3></div>
+    <article class="paper-card" id="paper-1" aria-labelledby="paper-1-title">
+      <div><span class="num" aria-hidden="true">1</span><h3 id="paper-1-title">Heart Failure in Africa</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In global cardiology, does the distribution of heart failure trials reflect the distinct burden carried by Africa? This audit queried ClinicalTrials.gov for heart failure trials across Africa (167), the United States (2,499), and Europe (2,527) through March 2026. Investigators reported the inter-continental volume ratio as the primary estimand for research equity in cardiovascular medicine. Africa hosted 167 heart failure trials versus 2,499 in the United States, a 15x disparity despite carrying approximately ten percent of global burden. SGLT2 inhibitor and device trials were near-absent in Africa, while peripartum cardiomyopathy had only 4 trials despite Nigeria having the highest global incidence. These findings expose a fundamental evidence gap where therapies validated in elderly ischaemic populations are extrapolated to younger African patients without confirmation. Interpretation is limited by reliance on one public registry which may undercount locally funded cardiovascular studies.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/heart-failure-africa.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/heart-failure-africa.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/heart-failure-africa.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('heart-failure-africa', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="heart-failure-africa" onclick="downloadMd('heart-failure-africa', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>Mbewu A, Mbanya JC. "Cardiovascular disease." In: <i>Disease and Mortality in Sub-Saharan Africa</i>. 2nd ed. World Bank; 2006.</li><li>Sliwa K, et al. "Readmission and death after an acute heart failure event." <i>Eur Heart J</i>. 2017;38:1508-1518.</li><li>ClinicalTrials.gov API v2 Documentation. U.S. National Library of Medicine.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/health-disease/dashboards/heart-failure-africa.html">heart-failure-africa dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/health-disease/code/heart-failure-africa.py">heart-failure-africa.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for Heart Failure in Africa">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/heart-failure-africa.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/heart-failure-africa.py" download>heart-failure-africa.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-2">
-      <div><span class="num">2</span><h3>The Maternal Mortality Scandal</h3></div>
+    </article>
+    <article class="paper-card" id="paper-2" aria-labelledby="paper-2-title">
+      <div><span class="num" aria-hidden="true">2</span><h3 id="paper-2-title">The Maternal Mortality Scandal</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In global health, does the distribution of maternal mortality trials reflect the geographic burden of obstetric death? This registry audit queried ClinicalTrials.gov for maternal mortality and related conditions across Africa (444 maternal trials, 40 specifically addressing mortality) and the United States (1,014) through March 2026. Investigators reported the burden-to-trial ratio as the primary estimand for research equity. Sub-Saharan Africa carries sixty-six percent of global maternal deaths with a mortality ratio of 542 per 100,000 against the SDG target of 70, yet hosts only 40 maternal mortality trials versus over 1,014 maternal trials in the United States. Rheumatic heart disease had only 23 African trials despite 240,000 annual deaths preventable by penicillin prophylaxis. These findings identify arguably the most extreme clinical trial disparity in global health. Interpretation is limited by keyword-based classification which may miss indirectly relevant obstetric research.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/maternal-mortality.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/maternal-mortality.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/maternal-mortality.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('maternal-mortality', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="maternal-mortality" onclick="downloadMd('maternal-mortality', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>WHO. "Trends in maternal mortality 2000 to 2020." WHO, UNICEF, UNFPA, World Bank. Geneva, 2023.</li><li>Say L, et al. "Global causes of maternal death: a WHO systematic analysis." <i>Lancet Glob Health</i>. 2014;2:e323-e333.</li><li>ClinicalTrials.gov API v2 Documentation. U.S. National Library of Medicine.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/health-disease/dashboards/maternal-mortality.html">maternal-mortality dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/health-disease/code/maternal-mortality.py">maternal-mortality.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for The Maternal Mortality Scandal">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/maternal-mortality.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/maternal-mortality.py" download>maternal-mortality.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-3">
-      <div><span class="num">3</span><h3>COVID Displacement</h3></div>
+    </article>
+    <article class="paper-card" id="paper-3" aria-labelledby="paper-3-title">
+      <div><span class="num" aria-hidden="true">3</span><h3 id="paper-3-title">COVID Displacement</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In pandemic epidemiology, did the COVID-19 response displace non-COVID clinical research in Africa more severely than in high-income regions? This temporal analysis compared trial registration volumes before and after 2020 for infectious versus non-communicable disease research across Africa (23,873 total trials) and the United States (190,644) using ClinicalTrials.gov epoch data. Africa registered 6,935 trials in 2016-2020 and 11,599 in 2021-2025, showing 67% growth heavily driven by COVID-related respiratory trials (1,886 respiratory trials total). Malaria research (531 trials) and tuberculosis (489 trials) showed slower recovery trajectories than HIV (1,793 trials) which maintained momentum through PEPFAR-funded networks. Unlike high-income countries where trial volumes recovered rapidly, Africa&#x27;s non-COVID pipeline recovery was slowed by reallocation of limited research infrastructure. These findings demonstrate the fragility of research ecosystems dependent on single-disease funding streams. Interpretation is limited by the inability to separate COVID-specific from general respiratory trial registrations.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/covid-displacement.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/covid-displacement.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/covid-displacement.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('covid-displacement', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="covid-displacement" onclick="downloadMd('covid-displacement', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>Makoni M. "COVID-19 in Africa: half a year later." <i>Lancet Infect Dis</i>. 2020;20:1127.</li><li>Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." <i>Trials</i>. 2018;19:519.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/health-disease/dashboards/covid-displacement.html">covid-displacement dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/health-disease/code/covid-displacement.py">covid-displacement.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for COVID Displacement">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/covid-displacement.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/covid-displacement.py" download>covid-displacement.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-4">
-      <div><span class="num">4</span><h3>Global Diseasome Mismatch</h3></div>
+    </article>
+    <article class="paper-card" id="paper-4" aria-labelledby="paper-4-title">
+      <div><span class="num" aria-hidden="true">4</span><h3 id="paper-4-title">Global Diseasome Mismatch</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In global health systems, does the alignment between disease burden and clinical trial investment reveal a systematic mismatch in Africa? This cross-sectional analysis compared condition-specific trial volumes to WHO disability-adjusted life year estimates across Africa (23,873 trials) and the United States (190,644) using ClinicalTrials.gov API v2. Investigators reported the burden-to-trial ratio per condition as the primary estimand. Cancer trials numbered 2,182 in Africa versus 49,054 in the United States, a 22x gap, while cardiovascular research showed 1,426 versus 19,566 (14x). Mental health had only 174 African trials against 2,996 American trials, a 17x disparity. Only malaria (531 African versus 125 American trials) showed Africa leading the global research effort. These findings reveal that Africa&#x27;s trial portfolio is misaligned with its epidemiological transition toward non-communicable diseases. Interpretation is limited by the indirect mapping between trial conditions and DALY categories.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/global-diseasome-mismatch.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/global-diseasome-mismatch.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/global-diseasome-mismatch.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('global-diseasome-mismatch', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="global-diseasome-mismatch" onclick="downloadMd('global-diseasome-mismatch', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>Isaakidis P, et al. "Relation between burden of disease and randomised evidence in sub-Saharan Africa." <i>BMJ</i>. 2002;324:702.</li><li>GBD 2019 Diseases and Injuries Collaborators. "Global burden of 369 diseases." <i>Lancet</i>. 2020;396:1204-1222.</li><li>ClinicalTrials.gov API v2 Documentation. U.S. National Library of Medicine.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/health-disease/dashboards/global-diseasome-mismatch.html">global-diseasome-mismatch dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/health-disease/code/global-diseasome-mismatch.py">global-diseasome-mismatch.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for Global Diseasome Mismatch">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/global-diseasome-mismatch.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/global-diseasome-mismatch.py" download>global-diseasome-mismatch.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-5">
-      <div><span class="num">5</span><h3>The Demographic Void &amp; Genomic Diversity</h3></div>
+    </article>
+    <article class="paper-card" id="paper-5" aria-labelledby="paper-5-title">
+      <div><span class="num" aria-hidden="true">5</span><h3 id="paper-5-title">The Demographic Void &amp; Genomic Diversity</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In precision medicine, does the exclusion of African populations from genomic research create a demographic void that undermines the global evidence base? This audit evaluated genomic and pharmacogenomic trial activity using ClinicalTrials.gov keyword searches, finding 189 genomic trials in Africa versus 2,718 in the United States, a 14x gap. Africa harbours more genetic diversity than all other continents combined, yet only two percent of genome-wide association studies include African participants. Biomarker-driven trials numbered 1,149 in Africa versus 15,494 in the United States, indicating a 13x gap in precision medicine infrastructure. This creates a pharmacogenomic blind spot where drug dosing and risk prediction models are derived from European genomes and may perform differently in African populations. These findings demonstrate that the most genetically diverse population on earth is the most excluded from the precision medicine revolution. Interpretation is limited by keyword-based identification of genomic trial components.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/ethnicity-void.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/ethnicity-void.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/ethnicity-void.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('ethnicity-void', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="ethnicity-void" onclick="downloadMd('ethnicity-void', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>Popejoy AB, Fullerton SM. "Genomics is failing on diversity." <i>Nature</i>. 2016;538:161-164.</li><li>Sirugo G, et al. "The missing diversity in human genetic studies." <i>Cell</i>. 2019;177:26-31.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/health-disease/dashboards/ethnicity-void.html">ethnicity-void dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/health-disease/code/ethnicity-void.py">ethnicity-void.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for The Demographic Void &amp; Genomic Diversity">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/ethnicity-void.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/ethnicity-void.py" download>ethnicity-void.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-6">
-      <div><span class="num">6</span><h3>Genomic Resilience &amp; Precision Gaps</h3></div>
+    </article>
+    <article class="paper-card" id="paper-6" aria-labelledby="paper-6-title">
+      <div><span class="num" aria-hidden="true">6</span><h3 id="paper-6-title">Genomic Resilience &amp; Precision Gaps</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In the infrastructure of precision medicine, can Africa build sovereign genomic research capacity given its current trial landscape? This registry analysis evaluated the genomic and biomarker trial pipeline across Africa (189 genomic trials, 1,149 biomarker trials) using ClinicalTrials.gov keyword metadata through March 2026. Investigators assessed trial density relative to the continent&#x27;s estimated 23 biobanks and 51 H3Africa-funded genomic projects as the primary research capacity estimand. Africa&#x27;s genomic trial rate of 189 registrations represents less than one percent of its 23,873 total trials, compared to a 1.4% genomic rate in the United States. The H3Africa initiative has built foundational capacity, but local sequencing and bioinformatics infrastructure remains insufficient for independent pharmacogenomic discovery. Without sovereign genomic infrastructure, African genetic data flows to Northern laboratories while precision medicine benefits remain inaccessible. These results frame genomic sovereignty as the critical bottleneck for equitable global health innovation. Interpretation is limited by the exclusion of observational genomic studies from the interventional trial registry.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/genomic-resilience.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/genomic-resilience.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/genomic-resilience.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('genomic-resilience', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="genomic-resilience" onclick="downloadMd('genomic-resilience', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>Munung NS, et al. "Obtaining informed consent for genomics research in Africa." <i>BMC Med Ethics</i>. 2016;17:15.</li><li>Popejoy AB, Fullerton SM. "Genomics is failing on diversity." <i>Nature</i>. 2016;538:161-164.</li><li>H3Africa Consortium. "Research capacity for genomics in Africa." <i>Science</i>. 2014;344:1346-1348.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/health-disease/dashboards/genomic-resilience.html">genomic-resilience dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/health-disease/code/genomic-resilience.py">genomic-resilience.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for Genomic Resilience &amp; Precision Gaps">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/genomic-resilience.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/genomic-resilience.py" download>genomic-resilience.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-7">
-      <div><span class="num">7</span><h3>The Global Cognitive Deficit</h3></div>
+    </article>
+    <article class="paper-card" id="paper-7" aria-labelledby="paper-7-title">
+      <div><span class="num" aria-hidden="true">7</span><h3 id="paper-7-title">The Global Cognitive Deficit</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In the epistemology of medical evidence, does the exclusion of African populations from clinical trials create a global cognitive deficit that weakens the universal validity of biomedical knowledge? This meta-epidemiological analysis compared Africa&#x27;s population share (18% of 8 billion) to its trial share (5.9% of major-registry trials) using ClinicalTrials.gov data for 23,873 African trials. Investigators computed the population-to-trial ratio as the primary estimand for evidence representativeness. Africa contributes 18% of the world&#x27;s population but only 5.9% of major-registry clinical trials, creating a 3x representation deficit. Unique African phenotypes including sickle cell disease (101 trials), peripartum cardiomyopathy (4 trials), and rheumatic heart disease (23 trials) remain severely understudied. The absence of Africa from the evidence base does not merely disadvantage Africans but weakens the scientific validity of findings presumed to be universal. Interpretation is limited by the exclusion of non-ClinicalTrials.gov registries and observational studies.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/cognitive-deficit.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/cognitive-deficit.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/cognitive-deficit.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('cognitive-deficit', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="cognitive-deficit" onclick="downloadMd('cognitive-deficit', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>Sirugo G, et al. "The missing diversity in human genetic studies." <i>Cell</i>. 2019;177:26-31.</li><li>Lang T, Siribaddana S. "Clinical trials have gone global: is this a good thing?" <i>PLoS Med</i>. 2012;9:e1001228.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/health-disease/dashboards/cognitive-deficit.html">cognitive-deficit dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/health-disease/code/cognitive-deficit.py">cognitive-deficit.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for The Global Cognitive Deficit">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/cognitive-deficit.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/cognitive-deficit.py" download>cognitive-deficit.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-8">
-      <div><span class="num">8</span><h3>Biological Sovereignty &amp; Extraction</h3></div>
+    </article>
+    <article class="paper-card" id="paper-8" aria-labelledby="paper-8-title">
+      <div><span class="num" aria-hidden="true">8</span><h3 id="paper-8-title">Biological Sovereignty &amp; Extraction</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In research ethics, does the flow of biological samples from African trial participants to Northern laboratories constitute a pattern of biological extraction? This audit evaluated 23,873 African interventional trials on ClinicalTrials.gov for indicators of sample export including foreign biobank designation and Northern laboratory collaborator metadata through March 2026. Investigators reported the estimated sample-export rate as the primary estimand for biological sovereignty. An estimated seventy-eight percent of African trials involving biological sample collection designated analysis at non-African institutions, while only fifteen percent included local laboratory capacity building. Africa&#x27;s 1,149 biomarker-driven trials represented less than five percent of the continental total compared to 8% in the United States. The biological extraction pipeline mirrors historical patterns of resource exploitation where raw materials flow northward and value-added products return southward at premium prices. These findings quantify the biological sovereignty deficit as a structural feature of the current research system. Interpretation is limited by the inference of sample-flow direction from collaborator metadata rather than direct tracking.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/biological-extraction.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/biological-extraction.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/biological-extraction.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('biological-extraction', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="biological-extraction" onclick="downloadMd('biological-extraction', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>de Vries J, et al. ""; returning"; individual research results in Africa." <i>Nat Genet</i>. 2012;44:370-374.</li><li>Benatar SR. "Reflections and recommendations on research ethics in developing countries." <i>Soc Sci Med</i>. 2002;54:1131-1141.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/health-disease/dashboards/biological-extraction.html">biological-extraction dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/health-disease/code/biological-extraction.py">biological-extraction.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for Biological Sovereignty &amp; Extraction">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/biological-extraction.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/biological-extraction.py" download>biological-extraction.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-9">
-      <div><span class="num">9</span><h3>Clinical Interconnectivity &amp; Global Grids</h3></div>
+    </article>
+    <article class="paper-card" id="paper-9" aria-labelledby="paper-9-title">
+      <div><span class="num" aria-hidden="true">9</span><h3 id="paper-9-title">Clinical Interconnectivity &amp; Global Grids</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In network analysis of global health research, does Africa&#x27;s connectivity to the international trial network reflect genuine integration or structural dependency? This graph-theory analysis evaluated collaborator relationships for 23,873 African trials using ClinicalTrials.gov sponsor and collaborator metadata to map directional partnership edges. Investigators reported the ratio of incoming-to-outgoing research edges as the primary estimand for network sovereignty. Africa exhibited a net-importer topology with approximately 3.2 incoming edges (foreign sponsors conducting trials in Africa) for every outgoing edge (African institutions participating in foreign-located trials). The United States showed a balanced ratio of 1.1, while China demonstrated net exporter status at 0.7, indicating sovereign research production exceeding foreign participation. Africa&#x27;s high connectivity score of 0.9 masked dependency rather than sovereignty since eighty percent of edges originated from Northern institutions. These findings reframe Africa&#x27;s network position from integration to colonisation. Interpretation is limited by the difficulty of determining the true direction of intellectual contribution within collaborative relationships.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/clinical-interconnectivity.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/clinical-interconnectivity.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/clinical-interconnectivity.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('clinical-interconnectivity', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="clinical-interconnectivity" onclick="downloadMd('clinical-interconnectivity', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>Drain PK, et al. "Global migration of clinical trials." <i>Nat Rev Drug Discov</i>. 2018;17:765-766.</li><li>Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." <i>Trials</i>. 2018;19:519.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/health-disease/dashboards/clinical-interconnectivity.html">clinical-interconnectivity dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/health-disease/code/clinical-interconnectivity.py">clinical-interconnectivity.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for Clinical Interconnectivity &amp; Global Grids">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/clinical-interconnectivity.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/clinical-interconnectivity.py" download>clinical-interconnectivity.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-10">
-      <div><span class="num">10</span><h3>Modality Symmetry &amp; Innovation Gaps</h3></div>
+    </article>
+    <article class="paper-card" id="paper-10" aria-labelledby="paper-10-title">
+      <div><span class="num" aria-hidden="true">10</span><h3 id="paper-10-title">Modality Symmetry &amp; Innovation Gaps</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In health technology assessment, does the distribution of intervention types in African trials show a modality imbalance compared to global portfolios? This audit classified 23,873 African trials by intervention modality using ClinicalTrials.gov keyword analysis for drugs, devices, diagnostics, digital health, and behavioural interventions through March 2026. Investigators reported the modality concentration index as the primary estimand for innovation diversity. Drug trials dominated Africa&#x27;s portfolio, while device trials represented under five percent and digital health interventions numbered only 268 compared to 4,540 in the United States (17x gap). Immunotherapy trials were virtually absent in Africa (92) compared to 3,803 in the United States, a 41x disparity. Africa receives pharmaceutical validation but is excluded from the device, diagnostic, and digital health revolutions transforming high-income healthcare. These findings reveal a structural modality asymmetry that limits the type of health innovations accessible to African populations. Interpretation is limited by keyword-based classification of intervention modalities.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/modality-symmetry.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/modality-symmetry.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/modality-symmetry.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('modality-symmetry', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="modality-symmetry" onclick="downloadMd('modality-symmetry', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>Lang T, Siribaddana S. "Clinical trials have gone global: is this a good thing?" <i>PLoS Med</i>. 2012;9:e1001228.</li><li>ClinicalTrials.gov API v2 Documentation. U.S. National Library of Medicine.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/health-disease/dashboards/modality-symmetry.html">modality-symmetry dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/health-disease/code/modality-symmetry.py">modality-symmetry.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for Modality Symmetry &amp; Innovation Gaps">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/modality-symmetry.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/modality-symmetry.py" download>modality-symmetry.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-11">
-      <div><span class="num">11</span><h3>Global RCT Equity (Africa vs Europe)</h3></div>
+    </article>
+    <article class="paper-card" id="paper-11" aria-labelledby="paper-11-title">
+      <div><span class="num" aria-hidden="true">11</span><h3 id="paper-11-title">Global RCT Equity (Africa vs Europe)</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In global health research, does the geographic distribution of interventional trials reveal a fundamental equity gap between Africa and Europe? This cross-sectional audit compared 23,873 African and 142,126 European interventional trials registered on ClinicalTrials.gov API v2 through March 2026. Investigators reported the inter-continental volume ratio as the primary estimand for research equity. Europe hosted 6.0x more trials than Africa despite having less than half the population, yielding a per-capita disparity exceeding ten-fold. Within Africa, three countries (Egypt, South Africa, Uganda) hosted 68% of all trials, while European research distributed across more than twenty active national systems. Africa&#x27;s growth from 678 trials in 2000-2005 to 11,599 in 2021-2025 demonstrated 17x expansion but failed to narrow the proportional gap. These findings confirm that Africa functions as a validation ground rather than a discovery hub for new medicines. Interpretation is limited by reliance on public registrations which may underreport locally funded trials.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/rct_equity.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/rct_equity.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/rct-equity.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('rct_equity', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="rct_equity" onclick="downloadMd('rct_equity', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>Ndounga Diakou LA, et al. "Mapping of clinical trials in sub-Saharan Africa." <i>Trials</i>. 2022;23:490.</li><li>Isaakidis P, et al. "Relation between burden of disease and randomised evidence in sub-Saharan Africa." <i>BMJ</i>. 2002;324:702.</li><li>ClinicalTrials.gov API v2 Documentation. U.S. National Library of Medicine.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/health-disease/dashboards/rct_equity.html">rct_equity dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/health-disease/code/rct-equity.py">rct-equity.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for Global RCT Equity (Africa vs Europe)">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/rct_equity.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/rct-equity.py" download>rct-equity.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-12">
-      <div><span class="num">12</span><h3>Expanded Access &amp; Post-Trial Justice</h3></div>
+    </article>
+    <article class="paper-card" id="paper-12" aria-labelledby="paper-12-title">
+      <div><span class="num" aria-hidden="true">12</span><h3 id="paper-12-title">Expanded Access &amp; Post-Trial Justice</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In research ethics and post-trial justice, do African clinical trials provide participants with continued access to effective treatments after study completion? This audit evaluated 23,873 African interventional trials on ClinicalTrials.gov for expanded access provisions, post-trial access plans, and compassionate use indicators through March 2026. Investigators reported the estimated post-trial access rate as the primary estimand for research justice. Fewer than five percent of African trials included explicit post-trial access provisions compared to an estimated forty-two percent in the United States. Among the 13,918 completed African trials, an estimated thirty percent never posted results publicly, making it impossible to determine whether effective interventions reached the communities that hosted the research. This represents a fundamental ethical failure where communities bear the risks of research participation but are denied the benefits of successful outcomes. These findings quantify the post-trial justice deficit as a structural feature of the African research landscape. Interpretation is limited by the unstructured nature of access-provision reporting in trial registrations.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/expanded-access.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/expanded-access.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/expanded-access.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('expanded-access', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="expanded-access" onclick="downloadMd('expanded-access', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>Participants in the 2001 Conference. "Moral standards for research in developing countries." <i>Hastings Cent Rep</i>. 2004;34:17-27.</li><li>Benatar SR. "Reflections and recommendations on research ethics in developing countries." <i>Soc Sci Med</i>. 2002;54:1131-1141.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/health-disease/dashboards/expanded-access.html">expanded-access dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/health-disease/code/expanded-access.py">expanded-access.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for Expanded Access &amp; Post-Trial Justice">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/expanded-access.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/expanded-access.py" download>expanded-access.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-13">
-      <div><span class="num">13</span><h3>Community-Led Research</h3></div>
+    </article>
+    <article class="paper-card" id="paper-13" aria-labelledby="paper-13-title">
+      <div><span class="num" aria-hidden="true">13</span><h3 id="paper-13-title">Community-Led Research</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In participatory research methods, does the integration of community advisory boards indicate a shift toward community-led clinical research in Africa? This audit evaluated 23,873 African interventional trials for explicit community engagement and participatory methodology using ClinicalTrials.gov description-field keyword analysis through March 2026. Investigators reported the community-engagement rate as the primary estimand for ethical research inclusivity. An estimated 203 African trials (0.9%) included formal community engagement compared to 1,969 (1.0%) in the United States. Despite the low absolute number, community-engaged trials in Africa showed higher completion rates and longer follow-up periods than non-engaged counterparts, suggesting that participatory methods improve research sustainability. Community advisory boards were most common in HIV research (1,793 trials) reflecting PEPFAR-mandated engagement requirements. These findings identify a nascent but validated model for ethical clinical research that prioritises local health priorities. Interpretation is limited by keyword-based identification which may undercount informal community engagement practices.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/community-engagement.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/community-engagement.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/community-engagement.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('community-engagement', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="community-engagement" onclick="downloadMd('community-engagement', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." <i>Trials</i>. 2018;19:519.</li><li>Drain PK, et al. "Global migration of clinical trials." <i>Nat Rev Drug Discov</i>. 2018;17:765-766.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/health-disease/dashboards/community-engagement.html">community-engagement dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/health-disease/code/community-engagement.py">community-engagement.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for Community-Led Research">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/community-engagement.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/community-engagement.py" download>community-engagement.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-14">
-      <div><span class="num">14</span><h3>The Bio-Digital Divide</h3></div>
+    </article>
+    <article class="paper-card" id="paper-14" aria-labelledby="paper-14-title">
+      <div><span class="num" aria-hidden="true">14</span><h3 id="paper-14-title">The Bio-Digital Divide</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In health technology innovation, does the adoption of decentralised and digital trial methodologies reveal a widening bio-digital divide between African and high-income research ecosystems? This audit evaluated digital trial components across Africa (268 trials) and the United States (4,540 trials) using ClinicalTrials.gov keyword analysis for virtual, wearable, and decentralised trial elements through March 2026. Investigators reported the digital adoption rate as the primary estimand for technological readiness. Africa&#x27;s digital trial rate of 1.1% was 17x lower than the United States rate, reflecting continued dependence on traditional site-based research models. Europe&#x27;s rapid pivot to mobile and wearable technologies during COVID-19 accelerated this gap from estimated ten-fold to seventeen-fold between 2019 and 2025. African patients risk exclusion from the next generation of decentralised clinical innovation if this digital gap is not addressed. These findings quantify the bio-digital divide as a measurable infrastructure deficit. Interpretation is limited by the evolving terminology of digital trial components.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/digital-transformation.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/digital-transformation.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/digital-transformation.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('digital-transformation', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="digital-transformation" onclick="downloadMd('digital-transformation', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." <i>Trials</i>. 2018;19:519.</li><li>Drain PK, et al. "Global migration of clinical trials." <i>Nat Rev Drug Discov</i>. 2018;17:765-766.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/health-disease/dashboards/digital-transformation.html">digital-transformation dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/health-disease/code/digital-transformation.py">digital-transformation.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for The Bio-Digital Divide">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/digital-transformation.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/digital-transformation.py" download>digital-transformation.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-15">
-      <div><span class="num">15</span><h3>The Grand Divergence: 25-Year History</h3></div>
+    </article>
+    <article class="paper-card" id="paper-15" aria-labelledby="paper-15-title">
+      <div><span class="num" aria-hidden="true">15</span><h3 id="paper-15-title">The Grand Divergence: 25-Year History</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In the history of clinical research, has the volume gap between Africa and high-income regions widened or narrowed over twenty-five years of trial registration? This longitudinal analysis tracked trial volumes across five epochs from 2000 to 2025 using ClinicalTrials.gov first-posted-date metadata for Africa and comparator regions. Africa grew from 678 trials in 2000-2005 to 11,599 in 2021-2025, while the United States grew from 16,409 to 48,234. Africa&#x27;s 17x absolute growth outpaced the United States 2.9x growth, but the absolute gap widened from 15,731 to 36,635 trials. The 2005 ICMJE mandate requiring trial registration for journal publication triggered exponential European growth that Africa never matched proportionally. These findings reveal a grand divergence where proportional equity is receding despite absolute growth. Interpretation is limited by retrospective registration of older trials which may distort early-epoch counts.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/grand-divergence.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/grand-divergence.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/grand-divergence.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('grand-divergence', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="grand-divergence" onclick="downloadMd('grand-divergence', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." <i>Trials</i>. 2018;19:519.</li><li>Drain PK, et al. "Global migration of clinical trials." <i>Nat Rev Drug Discov</i>. 2018;17:765-766.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/health-disease/dashboards/grand-divergence.html">grand-divergence dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/health-disease/code/grand-divergence.py">grand-divergence.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for The Grand Divergence: 25-Year History">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/grand-divergence.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/grand-divergence.py" download>grand-divergence.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-16">
-      <div><span class="num">16</span><h3>The South-South Axis of Discovery</h3></div>
+    </article>
+    <article class="paper-card" id="paper-16" aria-labelledby="paper-16-title">
+      <div><span class="num" aria-hidden="true">16</span><h3 id="paper-16-title">The South-South Axis of Discovery</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In the geopolitics of clinical research, does the emergence of South-South collaboration networks signal a shift toward research sovereignty for African institutions? This network analysis evaluated collaborator relationships for 23,873 African trials on ClinicalTrials.gov, classifying partnerships as South-North, South-South, or domestic. Investigators reported the South-South collaboration ratio as the primary estimand for research independence. Approximately twelve percent of African multi-partner trials involved exclusively Southern collaborators from India, China, or Brazil, exceeding the eight percent pan-African collaboration rate. Africa-India research links were strongest in infectious disease where 1,793 African HIV trials and 531 malaria trials overlapped with Indian generic drug development networks. Pure domestic trials accounted for an estimated twenty-five percent of the total, with Egypt and South Africa showing the highest sovereign research rates. These findings suggest a nascent alternative axis of discovery outside traditional Northern funding structures. Interpretation is limited by heuristic identification of collaborator locations.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/south-south-axis.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/south-south-axis.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/south-south-axis.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('south-south-axis', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="south-south-axis" onclick="downloadMd('south-south-axis', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." <i>Trials</i>. 2018;19:519.</li><li>Drain PK, et al. "Global migration of clinical trials." <i>Nat Rev Drug Discov</i>. 2018;17:765-766.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/health-disease/dashboards/south-south-axis.html">south-south-axis dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/health-disease/code/south-south-axis.py">south-south-axis.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for The South-South Axis of Discovery">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/south-south-axis.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/south-south-axis.py" download>south-south-axis.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-17">
-      <div><span class="num">17</span><h3>Epistemic Care &amp; Metadata Completeness</h3></div>
+    </article>
+    <article class="paper-card" id="paper-17" aria-labelledby="paper-17-title">
+      <div><span class="num" aria-hidden="true">17</span><h3 id="paper-17-title">Epistemic Care &amp; Metadata Completeness</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In metadata quality assessment, does the completeness of African trial registrations on ClinicalTrials.gov indicate higher or lower administrative care than global averages? This audit evaluated optional reporting fields including outcomes, oversight details, and data-sharing plans for 23,873 African trials versus global comparators through March 2026. Investigators reported a metadata completeness index as the primary estimand for registration quality. African trials surprisingly exceeded the European average on metadata completeness, scoring an estimated sixty percent versus fifty-four percent on a composite index of optional field completion. This hidden rigour is likely driven by the strict reporting requirements of international sponsors and regulatory agencies that fund the majority of African research. However, completeness at registration did not translate to results reporting: only 58% of trials reached completion and an estimated thirty percent of those never posted results. These findings reveal a paradox where registration quality exceeds results transparency. Interpretation is limited by binary presence-absence scoring of metadata fields.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/epistemic-care.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/epistemic-care.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/epistemic-care.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('epistemic-care', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="epistemic-care" onclick="downloadMd('epistemic-care', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." <i>Trials</i>. 2018;19:519.</li><li>Drain PK, et al. "Global migration of clinical trials." <i>Nat Rev Drug Discov</i>. 2018;17:765-766.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/health-disease/dashboards/epistemic-care.html">epistemic-care dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/health-disease/code/epistemic-care.py">epistemic-care.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for Epistemic Care &amp; Metadata Completeness">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/epistemic-care.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/epistemic-care.py" download>epistemic-care.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-18">
-      <div><span class="num">18</span><h3>The Omega Frontier: Precision Medicine Gap</h3></div>
+    </article>
+    <article class="paper-card" id="paper-18" aria-labelledby="paper-18-title">
+      <div><span class="num" aria-hidden="true">18</span><h3 id="paper-18-title">The Omega Frontier: Precision Medicine Gap</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In the innovation frontier of clinical medicine, does the disparity in immunotherapy and precision medicine trials between Africa and high-income nations create a technology access crisis? This audit compared advanced therapy trial volumes using ClinicalTrials.gov keyword searches for immunotherapy (92 African versus 3,803 United States), Bayesian designs (20 versus 494), and adaptive trials (140 versus 2,986) through March 2026. Africa&#x27;s immunotherapy rate of 0.39% of total trials was 41x lower than the United States rate. Precision medicine innovation is concentrated in a geographic frontier that excludes 1.4 billion Africans from the most advanced therapeutic paradigms of the twenty-first century. Without local immunotherapy and genomic trial capacity, African patients will depend indefinitely on therapies designed for European and American genomes. These findings warn of a permanent technology access crisis. Interpretation is limited by evolving precision medicine terminology.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/omega-frontier.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/omega-frontier.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/omega-frontier.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('omega-frontier', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="omega-frontier" onclick="downloadMd('omega-frontier', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." <i>Trials</i>. 2018;19:519.</li><li>Drain PK, et al. "Global migration of clinical trials." <i>Nat Rev Drug Discov</i>. 2018;17:765-766.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/health-disease/dashboards/omega-frontier.html">omega-frontier dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/health-disease/code/omega-frontier.py">omega-frontier.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for The Omega Frontier: Precision Medicine Gap">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/omega-frontier.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/omega-frontier.py" download>omega-frontier.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-19">
-      <div><span class="num">19</span><h3>Fluid Dynamics of Research Pipelines</h3></div>
+    </article>
+    <article class="paper-card" id="paper-19" aria-labelledby="paper-19-title">
+      <div><span class="num" aria-hidden="true">19</span><h3 id="paper-19-title">Fluid Dynamics of Research Pipelines</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In applied mathematics, can fluid dynamics principles characterise the flow of clinical evidence through research pipelines in Africa versus high-income regions? This analysis applied viscosity and mass-flux models to 23,873 African and 190,644 United States trial records using registration-to-completion duration and results-reporting rates from ClinicalTrials.gov. Investigators reported scientific mass flux in trial-completions per year as the primary estimand for research system throughput. Africa&#x27;s estimated annual completion flux of 557 trials per year was approximately five times lower than the United States flux of 4,673 per year. The high viscosity of the African pipeline reflected a completion rate of 95.4% with significant friction at enrollment, supply-chain, and regulatory stages. Europe functioned as a super-fluid grid with turbulent innovation flow while Africa exhibited laminar stagnation. These results apply fluid dynamics to quantify research system efficiency as a measurable physical property. Interpretation is limited by metaphorical application of physical constants to social systems.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/fluid-dynamics.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/fluid-dynamics.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/fluid-dynamics.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('fluid-dynamics', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="fluid-dynamics" onclick="downloadMd('fluid-dynamics', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." <i>Trials</i>. 2018;19:519.</li><li>Drain PK, et al. "Global migration of clinical trials." <i>Nat Rev Drug Discov</i>. 2018;17:765-766.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/health-disease/dashboards/fluid-dynamics.html">fluid-dynamics dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/health-disease/code/fluid-dynamics.py">fluid-dynamics.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for Fluid Dynamics of Research Pipelines">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/fluid-dynamics.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/fluid-dynamics.py" download>fluid-dynamics.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-20">
-      <div><span class="num">20</span><h3>Research Archetypes &amp; Cluster Mapping</h3></div>
+    </article>
+    <article class="paper-card" id="paper-20" aria-labelledby="paper-20-title">
+      <div><span class="num" aria-hidden="true">20</span><h3 id="paper-20-title">Research Archetypes &amp; Cluster Mapping</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In machine learning applied to research systems, does cluster analysis of trial features reveal distinct research archetypes that differ between African and European portfolios? This audit applied K-Means clustering to enrollment size, phase distribution, and endpoint count for 23,873 African and 142,126 European trials using ClinicalTrials.gov metadata. Investigators identified dominant research archetypes and reported their regional distribution as the primary estimand. African trials clustered eighty percent into a high-volume late-phase validation archetype characterised by large enrollment and Phase 3 dominance, mirroring patterns in India and Brazil. European trials showed three balanced clusters including early-phase discovery (forty-two percent), mixed-phase development, and late-phase validation. The archetype homogeneity of African research limits its capacity for the diversified scientific discovery that drives therapeutic innovation. These findings demonstrate that Africa&#x27;s research portfolio is structurally optimised for confirming rather than creating medical knowledge. Interpretation is limited by the feature selection and cluster count which influence archetype identification.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/research-archetypes.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/research-archetypes.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/research-archetypes.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('research-archetypes', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="research-archetypes" onclick="downloadMd('research-archetypes', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." <i>Trials</i>. 2018;19:519.</li><li>Drain PK, et al. "Global migration of clinical trials." <i>Nat Rev Drug Discov</i>. 2018;17:765-766.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/health-disease/dashboards/research-archetypes.html">research-archetypes dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/health-disease/code/research-archetypes.py">research-archetypes.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for Research Archetypes &amp; Cluster Mapping">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/research-archetypes.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/research-archetypes.py" download>research-archetypes.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
+    </article>
 
     <div class="rules">
       <details>
@@ -603,8 +566,8 @@ The author rewrote, verified, and takes full responsibility for the final conten
     <div class="footer">
       <p><a href="../">Back to All Groups</a></p>
       <p style="margin-top:8px;">
-        <a href="https://www.synthesis-medicine.org/index.php/journal" target="_blank">Synthesis Medicine Journal</a> &middot;
-        <a href="https://github.com/mahmood726-cyber/africa-e156-students" target="_blank">GitHub Repository</a> &middot;
+        <a href="https://www.synthesis-medicine.org/index.php/journal" target="_blank" rel="noopener noreferrer">Synthesis Medicine Journal</a> &middot;
+        <a href="https://github.com/mahmood726-cyber/africa-e156-students" target="_blank" rel="noopener noreferrer">GitHub Repository</a> &middot;
         E156 Micro-Paper Format
       </p>
       <p style="margin-top:8px;">Mahmood Ahmad &middot; ORCID: 0009-0003-7781-4478</p>
@@ -612,161 +575,148 @@ The author rewrote, verified, and takes full responsibility for the final conten
   </div>
 
   <script>
-  const PAPERS = {
+  const PAPER_META = {
   "heart-failure-africa": {
     title: `Heart Failure in Africa`,
-    body: `In global cardiology, does the distribution of heart failure trials reflect the distinct burden carried by Africa? This audit queried ClinicalTrials.gov for heart failure trials across Africa (167), the United States (2,499), and Europe (2,527) through March 2026. Investigators reported the inter-continental volume ratio as the primary estimand for research equity in cardiovascular medicine. Africa hosted 167 heart failure trials versus 2,499 in the United States, a 15x disparity despite carrying approximately ten percent of global burden. SGLT2 inhibitor and device trials were near-absent in Africa, while peripartum cardiomyopathy had only 4 trials despite Nigeria having the highest global incidence. These findings expose a fundamental evidence gap where therapies validated in elderly ischaemic populations are extrapolated to younger African patients without confirmation. Interpretation is limited by reliance on one public registry which may undercount locally funded cardiovascular studies.`,
     refs: `  1. Mbewu A, Mbanya JC. "Cardiovascular disease." In: Disease and Mortality in Sub-Saharan Africa. 2nd ed. World Bank; 2006.\\n  2. Sliwa K, et al. "Readmission and death after an acute heart failure event." Eur Heart J. 2017;38:1508-1518.\\n  3. ClinicalTrials.gov API v2 Documentation. U.S. National Library of Medicine.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/health-disease/dashboards/heart-failure-africa.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/health-disease/code/heart-failure-africa.py`,
+    dashboard: `dashboards/heart-failure-africa.html`,
+    code: `code/heart-failure-africa.py`,
   },
   "maternal-mortality": {
     title: `The Maternal Mortality Scandal`,
-    body: `In global health, does the distribution of maternal mortality trials reflect the geographic burden of obstetric death? This registry audit queried ClinicalTrials.gov for maternal mortality and related conditions across Africa (444 maternal trials, 40 specifically addressing mortality) and the United States (1,014) through March 2026. Investigators reported the burden-to-trial ratio as the primary estimand for research equity. Sub-Saharan Africa carries sixty-six percent of global maternal deaths with a mortality ratio of 542 per 100,000 against the SDG target of 70, yet hosts only 40 maternal mortality trials versus over 1,014 maternal trials in the United States. Rheumatic heart disease had only 23 African trials despite 240,000 annual deaths preventable by penicillin prophylaxis. These findings identify arguably the most extreme clinical trial disparity in global health. Interpretation is limited by keyword-based classification which may miss indirectly relevant obstetric research.`,
     refs: `  1. WHO. "Trends in maternal mortality 2000 to 2020." WHO, UNICEF, UNFPA, World Bank. Geneva, 2023.\\n  2. Say L, et al. "Global causes of maternal death: a WHO systematic analysis." Lancet Glob Health. 2014;2:e323-e333.\\n  3. ClinicalTrials.gov API v2 Documentation. U.S. National Library of Medicine.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/health-disease/dashboards/maternal-mortality.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/health-disease/code/maternal-mortality.py`,
+    dashboard: `dashboards/maternal-mortality.html`,
+    code: `code/maternal-mortality.py`,
   },
   "covid-displacement": {
     title: `COVID Displacement`,
-    body: `In pandemic epidemiology, did the COVID-19 response displace non-COVID clinical research in Africa more severely than in high-income regions? This temporal analysis compared trial registration volumes before and after 2020 for infectious versus non-communicable disease research across Africa (23,873 total trials) and the United States (190,644) using ClinicalTrials.gov epoch data. Africa registered 6,935 trials in 2016-2020 and 11,599 in 2021-2025, showing 67% growth heavily driven by COVID-related respiratory trials (1,886 respiratory trials total). Malaria research (531 trials) and tuberculosis (489 trials) showed slower recovery trajectories than HIV (1,793 trials) which maintained momentum through PEPFAR-funded networks. Unlike high-income countries where trial volumes recovered rapidly, Africa's non-COVID pipeline recovery was slowed by reallocation of limited research infrastructure. These findings demonstrate the fragility of research ecosystems dependent on single-disease funding streams. Interpretation is limited by the inability to separate COVID-specific from general respiratory trial registrations.`,
     refs: `  1. Makoni M. "COVID-19 in Africa: half a year later." Lancet Infect Dis. 2020;20:1127.\\n  2. Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." Trials. 2018;19:519.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/health-disease/dashboards/covid-displacement.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/health-disease/code/covid-displacement.py`,
+    dashboard: `dashboards/covid-displacement.html`,
+    code: `code/covid-displacement.py`,
   },
   "global-diseasome-mismatch": {
     title: `Global Diseasome Mismatch`,
-    body: `In global health systems, does the alignment between disease burden and clinical trial investment reveal a systematic mismatch in Africa? This cross-sectional analysis compared condition-specific trial volumes to WHO disability-adjusted life year estimates across Africa (23,873 trials) and the United States (190,644) using ClinicalTrials.gov API v2. Investigators reported the burden-to-trial ratio per condition as the primary estimand. Cancer trials numbered 2,182 in Africa versus 49,054 in the United States, a 22x gap, while cardiovascular research showed 1,426 versus 19,566 (14x). Mental health had only 174 African trials against 2,996 American trials, a 17x disparity. Only malaria (531 African versus 125 American trials) showed Africa leading the global research effort. These findings reveal that Africa's trial portfolio is misaligned with its epidemiological transition toward non-communicable diseases. Interpretation is limited by the indirect mapping between trial conditions and DALY categories.`,
     refs: `  1. Isaakidis P, et al. "Relation between burden of disease and randomised evidence in sub-Saharan Africa." BMJ. 2002;324:702.\\n  2. GBD 2019 Diseases and Injuries Collaborators. "Global burden of 369 diseases." Lancet. 2020;396:1204-1222.\\n  3. ClinicalTrials.gov API v2 Documentation. U.S. National Library of Medicine.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/health-disease/dashboards/global-diseasome-mismatch.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/health-disease/code/global-diseasome-mismatch.py`,
+    dashboard: `dashboards/global-diseasome-mismatch.html`,
+    code: `code/global-diseasome-mismatch.py`,
   },
   "ethnicity-void": {
     title: `The Demographic Void & Genomic Diversity`,
-    body: `In precision medicine, does the exclusion of African populations from genomic research create a demographic void that undermines the global evidence base? This audit evaluated genomic and pharmacogenomic trial activity using ClinicalTrials.gov keyword searches, finding 189 genomic trials in Africa versus 2,718 in the United States, a 14x gap. Africa harbours more genetic diversity than all other continents combined, yet only two percent of genome-wide association studies include African participants. Biomarker-driven trials numbered 1,149 in Africa versus 15,494 in the United States, indicating a 13x gap in precision medicine infrastructure. This creates a pharmacogenomic blind spot where drug dosing and risk prediction models are derived from European genomes and may perform differently in African populations. These findings demonstrate that the most genetically diverse population on earth is the most excluded from the precision medicine revolution. Interpretation is limited by keyword-based identification of genomic trial components.`,
     refs: `  1. Popejoy AB, Fullerton SM. "Genomics is failing on diversity." Nature. 2016;538:161-164.\\n  2. Sirugo G, et al. "The missing diversity in human genetic studies." Cell. 2019;177:26-31.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/health-disease/dashboards/ethnicity-void.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/health-disease/code/ethnicity-void.py`,
+    dashboard: `dashboards/ethnicity-void.html`,
+    code: `code/ethnicity-void.py`,
   },
   "genomic-resilience": {
     title: `Genomic Resilience & Precision Gaps`,
-    body: `In the infrastructure of precision medicine, can Africa build sovereign genomic research capacity given its current trial landscape? This registry analysis evaluated the genomic and biomarker trial pipeline across Africa (189 genomic trials, 1,149 biomarker trials) using ClinicalTrials.gov keyword metadata through March 2026. Investigators assessed trial density relative to the continent's estimated 23 biobanks and 51 H3Africa-funded genomic projects as the primary research capacity estimand. Africa's genomic trial rate of 189 registrations represents less than one percent of its 23,873 total trials, compared to a 1.4% genomic rate in the United States. The H3Africa initiative has built foundational capacity, but local sequencing and bioinformatics infrastructure remains insufficient for independent pharmacogenomic discovery. Without sovereign genomic infrastructure, African genetic data flows to Northern laboratories while precision medicine benefits remain inaccessible. These results frame genomic sovereignty as the critical bottleneck for equitable global health innovation. Interpretation is limited by the exclusion of observational genomic studies from the interventional trial registry.`,
     refs: `  1. Munung NS, et al. "Obtaining informed consent for genomics research in Africa." BMC Med Ethics. 2016;17:15.\\n  2. Popejoy AB, Fullerton SM. "Genomics is failing on diversity." Nature. 2016;538:161-164.\\n  3. H3Africa Consortium. "Research capacity for genomics in Africa." Science. 2014;344:1346-1348.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/health-disease/dashboards/genomic-resilience.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/health-disease/code/genomic-resilience.py`,
+    dashboard: `dashboards/genomic-resilience.html`,
+    code: `code/genomic-resilience.py`,
   },
   "cognitive-deficit": {
     title: `The Global Cognitive Deficit`,
-    body: `In the epistemology of medical evidence, does the exclusion of African populations from clinical trials create a global cognitive deficit that weakens the universal validity of biomedical knowledge? This meta-epidemiological analysis compared Africa's population share (18% of 8 billion) to its trial share (5.9% of major-registry trials) using ClinicalTrials.gov data for 23,873 African trials. Investigators computed the population-to-trial ratio as the primary estimand for evidence representativeness. Africa contributes 18% of the world's population but only 5.9% of major-registry clinical trials, creating a 3x representation deficit. Unique African phenotypes including sickle cell disease (101 trials), peripartum cardiomyopathy (4 trials), and rheumatic heart disease (23 trials) remain severely understudied. The absence of Africa from the evidence base does not merely disadvantage Africans but weakens the scientific validity of findings presumed to be universal. Interpretation is limited by the exclusion of non-ClinicalTrials.gov registries and observational studies.`,
     refs: `  1. Sirugo G, et al. "The missing diversity in human genetic studies." Cell. 2019;177:26-31.\\n  2. Lang T, Siribaddana S. "Clinical trials have gone global: is this a good thing?" PLoS Med. 2012;9:e1001228.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/health-disease/dashboards/cognitive-deficit.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/health-disease/code/cognitive-deficit.py`,
+    dashboard: `dashboards/cognitive-deficit.html`,
+    code: `code/cognitive-deficit.py`,
   },
   "biological-extraction": {
     title: `Biological Sovereignty & Extraction`,
-    body: `In research ethics, does the flow of biological samples from African trial participants to Northern laboratories constitute a pattern of biological extraction? This audit evaluated 23,873 African interventional trials on ClinicalTrials.gov for indicators of sample export including foreign biobank designation and Northern laboratory collaborator metadata through March 2026. Investigators reported the estimated sample-export rate as the primary estimand for biological sovereignty. An estimated seventy-eight percent of African trials involving biological sample collection designated analysis at non-African institutions, while only fifteen percent included local laboratory capacity building. Africa's 1,149 biomarker-driven trials represented less than five percent of the continental total compared to 8% in the United States. The biological extraction pipeline mirrors historical patterns of resource exploitation where raw materials flow northward and value-added products return southward at premium prices. These findings quantify the biological sovereignty deficit as a structural feature of the current research system. Interpretation is limited by the inference of sample-flow direction from collaborator metadata rather than direct tracking.`,
     refs: `  1. de Vries J, et al. " returning individual research results in Africa." Nat Genet. 2012;44:370-374.\\n  2. Benatar SR. "Reflections and recommendations on research ethics in developing countries." Soc Sci Med. 2002;54:1131-1141.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/health-disease/dashboards/biological-extraction.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/health-disease/code/biological-extraction.py`,
+    dashboard: `dashboards/biological-extraction.html`,
+    code: `code/biological-extraction.py`,
   },
   "clinical-interconnectivity": {
     title: `Clinical Interconnectivity & Global Grids`,
-    body: `In network analysis of global health research, does Africa's connectivity to the international trial network reflect genuine integration or structural dependency? This graph-theory analysis evaluated collaborator relationships for 23,873 African trials using ClinicalTrials.gov sponsor and collaborator metadata to map directional partnership edges. Investigators reported the ratio of incoming-to-outgoing research edges as the primary estimand for network sovereignty. Africa exhibited a net-importer topology with approximately 3.2 incoming edges (foreign sponsors conducting trials in Africa) for every outgoing edge (African institutions participating in foreign-located trials). The United States showed a balanced ratio of 1.1, while China demonstrated net exporter status at 0.7, indicating sovereign research production exceeding foreign participation. Africa's high connectivity score of 0.9 masked dependency rather than sovereignty since eighty percent of edges originated from Northern institutions. These findings reframe Africa's network position from integration to colonisation. Interpretation is limited by the difficulty of determining the true direction of intellectual contribution within collaborative relationships.`,
     refs: `  1. Drain PK, et al. "Global migration of clinical trials." Nat Rev Drug Discov. 2018;17:765-766.\\n  2. Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." Trials. 2018;19:519.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/health-disease/dashboards/clinical-interconnectivity.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/health-disease/code/clinical-interconnectivity.py`,
+    dashboard: `dashboards/clinical-interconnectivity.html`,
+    code: `code/clinical-interconnectivity.py`,
   },
   "modality-symmetry": {
     title: `Modality Symmetry & Innovation Gaps`,
-    body: `In health technology assessment, does the distribution of intervention types in African trials show a modality imbalance compared to global portfolios? This audit classified 23,873 African trials by intervention modality using ClinicalTrials.gov keyword analysis for drugs, devices, diagnostics, digital health, and behavioural interventions through March 2026. Investigators reported the modality concentration index as the primary estimand for innovation diversity. Drug trials dominated Africa's portfolio, while device trials represented under five percent and digital health interventions numbered only 268 compared to 4,540 in the United States (17x gap). Immunotherapy trials were virtually absent in Africa (92) compared to 3,803 in the United States, a 41x disparity. Africa receives pharmaceutical validation but is excluded from the device, diagnostic, and digital health revolutions transforming high-income healthcare. These findings reveal a structural modality asymmetry that limits the type of health innovations accessible to African populations. Interpretation is limited by keyword-based classification of intervention modalities.`,
     refs: `  1. Lang T, Siribaddana S. "Clinical trials have gone global: is this a good thing?" PLoS Med. 2012;9:e1001228.\\n  2. ClinicalTrials.gov API v2 Documentation. U.S. National Library of Medicine.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/health-disease/dashboards/modality-symmetry.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/health-disease/code/modality-symmetry.py`,
+    dashboard: `dashboards/modality-symmetry.html`,
+    code: `code/modality-symmetry.py`,
   },
   "rct_equity": {
     title: `Global RCT Equity (Africa vs Europe)`,
-    body: `In global health research, does the geographic distribution of interventional trials reveal a fundamental equity gap between Africa and Europe? This cross-sectional audit compared 23,873 African and 142,126 European interventional trials registered on ClinicalTrials.gov API v2 through March 2026. Investigators reported the inter-continental volume ratio as the primary estimand for research equity. Europe hosted 6.0x more trials than Africa despite having less than half the population, yielding a per-capita disparity exceeding ten-fold. Within Africa, three countries (Egypt, South Africa, Uganda) hosted 68% of all trials, while European research distributed across more than twenty active national systems. Africa's growth from 678 trials in 2000-2005 to 11,599 in 2021-2025 demonstrated 17x expansion but failed to narrow the proportional gap. These findings confirm that Africa functions as a validation ground rather than a discovery hub for new medicines. Interpretation is limited by reliance on public registrations which may underreport locally funded trials.`,
     refs: `  1. Ndounga Diakou LA, et al. "Mapping of clinical trials in sub-Saharan Africa." Trials. 2022;23:490.\\n  2. Isaakidis P, et al. "Relation between burden of disease and randomised evidence in sub-Saharan Africa." BMJ. 2002;324:702.\\n  3. ClinicalTrials.gov API v2 Documentation. U.S. National Library of Medicine.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/health-disease/dashboards/rct_equity.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/health-disease/code/rct-equity.py`,
+    dashboard: `dashboards/rct_equity.html`,
+    code: `code/rct-equity.py`,
   },
   "expanded-access": {
     title: `Expanded Access & Post-Trial Justice`,
-    body: `In research ethics and post-trial justice, do African clinical trials provide participants with continued access to effective treatments after study completion? This audit evaluated 23,873 African interventional trials on ClinicalTrials.gov for expanded access provisions, post-trial access plans, and compassionate use indicators through March 2026. Investigators reported the estimated post-trial access rate as the primary estimand for research justice. Fewer than five percent of African trials included explicit post-trial access provisions compared to an estimated forty-two percent in the United States. Among the 13,918 completed African trials, an estimated thirty percent never posted results publicly, making it impossible to determine whether effective interventions reached the communities that hosted the research. This represents a fundamental ethical failure where communities bear the risks of research participation but are denied the benefits of successful outcomes. These findings quantify the post-trial justice deficit as a structural feature of the African research landscape. Interpretation is limited by the unstructured nature of access-provision reporting in trial registrations.`,
     refs: `  1. Participants in the 2001 Conference. "Moral standards for research in developing countries." Hastings Cent Rep. 2004;34:17-27.\\n  2. Benatar SR. "Reflections and recommendations on research ethics in developing countries." Soc Sci Med. 2002;54:1131-1141.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/health-disease/dashboards/expanded-access.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/health-disease/code/expanded-access.py`,
+    dashboard: `dashboards/expanded-access.html`,
+    code: `code/expanded-access.py`,
   },
   "community-engagement": {
     title: `Community-Led Research`,
-    body: `In participatory research methods, does the integration of community advisory boards indicate a shift toward community-led clinical research in Africa? This audit evaluated 23,873 African interventional trials for explicit community engagement and participatory methodology using ClinicalTrials.gov description-field keyword analysis through March 2026. Investigators reported the community-engagement rate as the primary estimand for ethical research inclusivity. An estimated 203 African trials (0.9%) included formal community engagement compared to 1,969 (1.0%) in the United States. Despite the low absolute number, community-engaged trials in Africa showed higher completion rates and longer follow-up periods than non-engaged counterparts, suggesting that participatory methods improve research sustainability. Community advisory boards were most common in HIV research (1,793 trials) reflecting PEPFAR-mandated engagement requirements. These findings identify a nascent but validated model for ethical clinical research that prioritises local health priorities. Interpretation is limited by keyword-based identification which may undercount informal community engagement practices.`,
     refs: `  1. Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." Trials. 2018;19:519.\\n  2. Drain PK, et al. "Global migration of clinical trials." Nat Rev Drug Discov. 2018;17:765-766.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/health-disease/dashboards/community-engagement.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/health-disease/code/community-engagement.py`,
+    dashboard: `dashboards/community-engagement.html`,
+    code: `code/community-engagement.py`,
   },
   "digital-transformation": {
     title: `The Bio-Digital Divide`,
-    body: `In health technology innovation, does the adoption of decentralised and digital trial methodologies reveal a widening bio-digital divide between African and high-income research ecosystems? This audit evaluated digital trial components across Africa (268 trials) and the United States (4,540 trials) using ClinicalTrials.gov keyword analysis for virtual, wearable, and decentralised trial elements through March 2026. Investigators reported the digital adoption rate as the primary estimand for technological readiness. Africa's digital trial rate of 1.1% was 17x lower than the United States rate, reflecting continued dependence on traditional site-based research models. Europe's rapid pivot to mobile and wearable technologies during COVID-19 accelerated this gap from estimated ten-fold to seventeen-fold between 2019 and 2025. African patients risk exclusion from the next generation of decentralised clinical innovation if this digital gap is not addressed. These findings quantify the bio-digital divide as a measurable infrastructure deficit. Interpretation is limited by the evolving terminology of digital trial components.`,
     refs: `  1. Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." Trials. 2018;19:519.\\n  2. Drain PK, et al. "Global migration of clinical trials." Nat Rev Drug Discov. 2018;17:765-766.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/health-disease/dashboards/digital-transformation.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/health-disease/code/digital-transformation.py`,
+    dashboard: `dashboards/digital-transformation.html`,
+    code: `code/digital-transformation.py`,
   },
   "grand-divergence": {
     title: `The Grand Divergence: 25-Year History`,
-    body: `In the history of clinical research, has the volume gap between Africa and high-income regions widened or narrowed over twenty-five years of trial registration? This longitudinal analysis tracked trial volumes across five epochs from 2000 to 2025 using ClinicalTrials.gov first-posted-date metadata for Africa and comparator regions. Africa grew from 678 trials in 2000-2005 to 11,599 in 2021-2025, while the United States grew from 16,409 to 48,234. Africa's 17x absolute growth outpaced the United States 2.9x growth, but the absolute gap widened from 15,731 to 36,635 trials. The 2005 ICMJE mandate requiring trial registration for journal publication triggered exponential European growth that Africa never matched proportionally. These findings reveal a grand divergence where proportional equity is receding despite absolute growth. Interpretation is limited by retrospective registration of older trials which may distort early-epoch counts.`,
     refs: `  1. Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." Trials. 2018;19:519.\\n  2. Drain PK, et al. "Global migration of clinical trials." Nat Rev Drug Discov. 2018;17:765-766.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/health-disease/dashboards/grand-divergence.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/health-disease/code/grand-divergence.py`,
+    dashboard: `dashboards/grand-divergence.html`,
+    code: `code/grand-divergence.py`,
   },
   "south-south-axis": {
     title: `The South-South Axis of Discovery`,
-    body: `In the geopolitics of clinical research, does the emergence of South-South collaboration networks signal a shift toward research sovereignty for African institutions? This network analysis evaluated collaborator relationships for 23,873 African trials on ClinicalTrials.gov, classifying partnerships as South-North, South-South, or domestic. Investigators reported the South-South collaboration ratio as the primary estimand for research independence. Approximately twelve percent of African multi-partner trials involved exclusively Southern collaborators from India, China, or Brazil, exceeding the eight percent pan-African collaboration rate. Africa-India research links were strongest in infectious disease where 1,793 African HIV trials and 531 malaria trials overlapped with Indian generic drug development networks. Pure domestic trials accounted for an estimated twenty-five percent of the total, with Egypt and South Africa showing the highest sovereign research rates. These findings suggest a nascent alternative axis of discovery outside traditional Northern funding structures. Interpretation is limited by heuristic identification of collaborator locations.`,
     refs: `  1. Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." Trials. 2018;19:519.\\n  2. Drain PK, et al. "Global migration of clinical trials." Nat Rev Drug Discov. 2018;17:765-766.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/health-disease/dashboards/south-south-axis.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/health-disease/code/south-south-axis.py`,
+    dashboard: `dashboards/south-south-axis.html`,
+    code: `code/south-south-axis.py`,
   },
   "epistemic-care": {
     title: `Epistemic Care & Metadata Completeness`,
-    body: `In metadata quality assessment, does the completeness of African trial registrations on ClinicalTrials.gov indicate higher or lower administrative care than global averages? This audit evaluated optional reporting fields including outcomes, oversight details, and data-sharing plans for 23,873 African trials versus global comparators through March 2026. Investigators reported a metadata completeness index as the primary estimand for registration quality. African trials surprisingly exceeded the European average on metadata completeness, scoring an estimated sixty percent versus fifty-four percent on a composite index of optional field completion. This hidden rigour is likely driven by the strict reporting requirements of international sponsors and regulatory agencies that fund the majority of African research. However, completeness at registration did not translate to results reporting: only 58% of trials reached completion and an estimated thirty percent of those never posted results. These findings reveal a paradox where registration quality exceeds results transparency. Interpretation is limited by binary presence-absence scoring of metadata fields.`,
     refs: `  1. Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." Trials. 2018;19:519.\\n  2. Drain PK, et al. "Global migration of clinical trials." Nat Rev Drug Discov. 2018;17:765-766.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/health-disease/dashboards/epistemic-care.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/health-disease/code/epistemic-care.py`,
+    dashboard: `dashboards/epistemic-care.html`,
+    code: `code/epistemic-care.py`,
   },
   "omega-frontier": {
     title: `The Omega Frontier: Precision Medicine Gap`,
-    body: `In the innovation frontier of clinical medicine, does the disparity in immunotherapy and precision medicine trials between Africa and high-income nations create a technology access crisis? This audit compared advanced therapy trial volumes using ClinicalTrials.gov keyword searches for immunotherapy (92 African versus 3,803 United States), Bayesian designs (20 versus 494), and adaptive trials (140 versus 2,986) through March 2026. Africa's immunotherapy rate of 0.39% of total trials was 41x lower than the United States rate. Precision medicine innovation is concentrated in a geographic frontier that excludes 1.4 billion Africans from the most advanced therapeutic paradigms of the twenty-first century. Without local immunotherapy and genomic trial capacity, African patients will depend indefinitely on therapies designed for European and American genomes. These findings warn of a permanent technology access crisis. Interpretation is limited by evolving precision medicine terminology.`,
     refs: `  1. Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." Trials. 2018;19:519.\\n  2. Drain PK, et al. "Global migration of clinical trials." Nat Rev Drug Discov. 2018;17:765-766.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/health-disease/dashboards/omega-frontier.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/health-disease/code/omega-frontier.py`,
+    dashboard: `dashboards/omega-frontier.html`,
+    code: `code/omega-frontier.py`,
   },
   "fluid-dynamics": {
     title: `Fluid Dynamics of Research Pipelines`,
-    body: `In applied mathematics, can fluid dynamics principles characterise the flow of clinical evidence through research pipelines in Africa versus high-income regions? This analysis applied viscosity and mass-flux models to 23,873 African and 190,644 United States trial records using registration-to-completion duration and results-reporting rates from ClinicalTrials.gov. Investigators reported scientific mass flux in trial-completions per year as the primary estimand for research system throughput. Africa's estimated annual completion flux of 557 trials per year was approximately five times lower than the United States flux of 4,673 per year. The high viscosity of the African pipeline reflected a completion rate of 95.4% with significant friction at enrollment, supply-chain, and regulatory stages. Europe functioned as a super-fluid grid with turbulent innovation flow while Africa exhibited laminar stagnation. These results apply fluid dynamics to quantify research system efficiency as a measurable physical property. Interpretation is limited by metaphorical application of physical constants to social systems.`,
     refs: `  1. Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." Trials. 2018;19:519.\\n  2. Drain PK, et al. "Global migration of clinical trials." Nat Rev Drug Discov. 2018;17:765-766.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/health-disease/dashboards/fluid-dynamics.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/health-disease/code/fluid-dynamics.py`,
+    dashboard: `dashboards/fluid-dynamics.html`,
+    code: `code/fluid-dynamics.py`,
   },
   "research-archetypes": {
     title: `Research Archetypes & Cluster Mapping`,
-    body: `In machine learning applied to research systems, does cluster analysis of trial features reveal distinct research archetypes that differ between African and European portfolios? This audit applied K-Means clustering to enrollment size, phase distribution, and endpoint count for 23,873 African and 142,126 European trials using ClinicalTrials.gov metadata. Investigators identified dominant research archetypes and reported their regional distribution as the primary estimand. African trials clustered eighty percent into a high-volume late-phase validation archetype characterised by large enrollment and Phase 3 dominance, mirroring patterns in India and Brazil. European trials showed three balanced clusters including early-phase discovery (forty-two percent), mixed-phase development, and late-phase validation. The archetype homogeneity of African research limits its capacity for the diversified scientific discovery that drives therapeutic innovation. These findings demonstrate that Africa's research portfolio is structurally optimised for confirming rather than creating medical knowledge. Interpretation is limited by the feature selection and cluster count which influence archetype identification.`,
     refs: `  1. Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." Trials. 2018;19:519.\\n  2. Drain PK, et al. "Global migration of clinical trials." Nat Rev Drug Discov. 2018;17:765-766.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/health-disease/dashboards/research-archetypes.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/health-disease/code/research-archetypes.py`,
+    dashboard: `dashboards/research-archetypes.html`,
+    code: `code/research-archetypes.py`,
   },
 };
+  const SLUG_TO_ID = {"heart-failure-africa": 1, "maternal-mortality": 2, "covid-displacement": 3, "global-diseasome-mismatch": 4, "ethnicity-void": 5, "genomic-resilience": 6, "cognitive-deficit": 7, "biological-extraction": 8, "clinical-interconnectivity": 9, "modality-symmetry": 10, "rct_equity": 11, "expanded-access": 12, "community-engagement": 13, "digital-transformation": 14, "grand-divergence": 15, "south-south-axis": 16, "epistemic-care": 17, "omega-frontier": 18, "fluid-dynamics": 19, "research-archetypes": 20};
 
   function downloadMd(slug, el) {
-    const p = PAPERS[slug];
-    if (!p) return;
+    const p = PAPER_META[slug];
+    if (!p) { console.warn("Paper not found:", slug); return; }
+    const cardId = SLUG_TO_ID[slug];
+    const card = document.getElementById("paper-" + cardId);
+    if (!card) { console.warn("Card not found:", cardId); return; }
+    const bodyEl = card.querySelector(".paper-body");
+    const body = bodyEl ? bodyEl.textContent.trim() : "";
+    if (!body) { console.warn("Body empty for:", slug); return; }
     let md = "# " + p.title + "\n\n";
-    md += p.body + "\n\n";
+    md += body + "\n\n";
     md += "## References\n\n" + p.refs + "\n\n";
     md += "## Note Block\n\n";
     md += "- Type: research\n";
     md += "- App: " + p.dashboard + "\n";
     md += "- Code: " + p.code + "\n";
     md += "- Data: ClinicalTrials.gov API v2\n";
-    md += "- Date: 2026-04-03\n";
+    md += "- Date: 2026-04-05\n";
     const blob = new Blob([md], { type: "text/markdown" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");

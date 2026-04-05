@@ -769,7 +769,7 @@ def main():
 
   <div class="footer">
     <p>Data: ClinicalTrials.gov API v2 &middot; Retrieved {raw["retrieved"][:10]} &middot; Analysis: {now}</p>
-    <p>Pure Python (no external packages) &middot; University of Uganda &middot; Africa E156 Series</p>
+    <p>Pure Python (no external packages) &middot; Makerere University &middot; Africa E156 Series</p>
   </div>
 
 </div>

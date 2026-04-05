@@ -1,6 +1,6 @@
 # Africa E156 Student Assignment Platform
 
-**University of Uganda** | 48 micro-papers on clinical trial equity in Africa
+**Makerere University** | 48 micro-papers on clinical trial equity in Africa
 
 ## Live Site
 

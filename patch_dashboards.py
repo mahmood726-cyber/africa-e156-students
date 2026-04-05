@@ -185,6 +185,16 @@ def svg_temporal_cond(cond_name):
   <text x="{w/2}" y="14" text-anchor="middle" font-size="10" fill="#5f6b7a" font-family="Georgia,serif">Africa Growth ({escape(cond_name.title())}: {af_c:,} total)</text>
 </svg>'''
 
+_COND_ABBR = {
+    "hiv":"HIV", "malaria":"Malaria", "tuberculosis":"TB", "cancer":"Cancer",
+    "cardiovascular":"Cardiovasc.", "diabetes":"Diabetes", "hypertension":"Hypertension",
+    "mental health":"Mental Hlth", "stroke":"Stroke", "maternal":"Maternal",
+    "sickle cell":"Sickle Cell", "heart failure":"Heart Failure", "pneumonia":"Pneumonia",
+    "diarrhea":"Diarrhoea", "neonatal":"Neonatal", "epilepsy":"Epilepsy",
+    "kidney":"Kidney", "liver":"Liver", "respiratory":"Respiratory",
+    "neglected tropical diseases":"NTD",
+}
+
 def svg_scatter_log(conds_list):
     """Log-scale scatter: Africa vs US for 3 conditions."""
     pts = []
@@ -193,7 +203,7 @@ def svg_scatter_log(conds_list):
         af,us = cd.get("Africa",0), cd.get("United States",0)
         if af > 0 and us > 0: pts.append((c, af, us))
     if not pts: return ""
-    w,h = 300,260
+    w,h = 340,260  # wider viewBox to fit full labels
     m = 50
     pw,ph = w-2*m, h-2*m
     def sl(v): return math.log(v+1)
@@ -207,8 +217,9 @@ def svg_scatter_log(conds_list):
     for i,(name,af,us) in enumerate(pts):
         x,y = tx(us), ty(af)
         co = colors[i%3]
+        label = _COND_ABBR.get(name.lower(), name.title())
         dots += f'<circle cx="{x:.0f}" cy="{y:.0f}" r="7" fill="{co}" opacity="0.7"/>'
-        dots += f'<text x="{x+10:.0f}" y="{y+4:.0f}" font-size="9" fill="{co}">{escape(name.title()[:12])}</text>'
+        dots += f'<text x="{x+10:.0f}" y="{y+4:.0f}" font-size="9" fill="{co}">{escape(label)}</text>'
         dots += f'<text x="{x+10:.0f}" y="{y+14:.0f}" font-size="8" fill="#5f6b7a">AF:{af:,} US:{us:,}</text>'
     diag = f'<line x1="{m}" y1="{m+ph}" x2="{m+pw}" y2="{m}" stroke="#d8cfbf" stroke-dasharray="3 3"/>'
     return f'''<svg viewBox="0 0 {w} {h}" xmlns="http://www.w3.org/2000/svg" style="max-width:310px;">

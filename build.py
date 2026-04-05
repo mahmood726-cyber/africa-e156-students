@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """
 Build script for Africa E156 Student Assignment Platform.
-Generates GitHub Pages site with 4 group pages (12 papers each).
+Generates GitHub Pages site with 4 group pages (20 papers each).
 """
 
 import os
 import re
+import json
 import shutil
 from pathlib import Path
 from html import escape
@@ -582,8 +583,11 @@ a:hover { text-decoration: underline; }
   background: #f4f1ea; border-radius: 8px; padding: 14px 18px;
   margin-top: 16px; font-size: 13px; font-family: var(--mono);
 }
-.note-block dt { color: var(--accent); font-weight: 700; display: inline; }
-.note-block dd { display: inline; margin: 0 16px 0 4px; color: var(--muted); }
+.note-block .note-row { display: flex; gap: 8px; margin: 4px 0; font-size: 13px; align-items: baseline; }
+.note-block .note-key { color: var(--accent); font-weight: 700; min-width: 48px; }
+.note-block .note-val { color: var(--muted); }
+button.btn { cursor: pointer; font-family: var(--serif); }
+button.btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
 
 /* E156 rules */
 .rules {
@@ -638,54 +642,52 @@ def generate_group_page(group_id, group):
                 refs_html += f"<li>{ref}</li>"
             refs_html += "</ol></div>"
 
-        # Note block
+        # Note block — use semantic list instead of inline <dl>
         code_filename = slug.replace("_", "-") + ".py"
-        note_html = f'''<div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="{GITHUB_PAGES}/{group_id}/dashboards/{slug}.html">{slug} dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="{GITHUB_REPO}/tree/master/{group_id}/code/{code_filename}">{code_filename}</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+        note_html = f'''<div class="note-block" role="group" aria-label="Submission metadata for {escape(title)}">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/{slug}.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/{code_filename}" download>{code_filename}</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>'''
 
         cards_html += f'''
-    <div class="paper-card" id="paper-{i}">
-      <div><span class="num">{i}</span><h3>{escape(title)}</h3></div>
+    <article class="paper-card" id="paper-{i}" aria-labelledby="paper-{i}-title">
+      <div><span class="num" aria-hidden="true">{i}</span><h3 id="paper-{i}-title">{escape(title)}</h3></div>
       {strip}
       <div class="paper-body">{escape(body)}</div>
       <div class="actions">
         <a class="btn btn-primary" href="dashboards/{slug}.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/{code_filename}" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('{slug}', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="{slug}" onclick="downloadMd('{slug}', this)">Download Paper (.md)</button>
       </div>
       {refs_html}
       {note_html}
-    </div>'''
+    </article>'''
 
-    # Paper data for markdown download
-    paper_data_js = "const PAPERS = {\n"
+    # Paper metadata for markdown download (titles + refs only; bodies read from DOM)
+    paper_data_js = "const PAPER_META = {\n"
     for paper in group["papers"]:
         slug = paper["slug"]
-        body = read_paper_body(slug) or ""
         title = paper["title"]
         refs = paper.get("refs", [])
         code_filename = slug.replace("_", "-") + ".py"
-        # Escape for JS string
-        body_js = body.replace("\\", "\\\\").replace("`", "\\`").replace("${", "\\${")
         title_js = title.replace("\\", "\\\\").replace("`", "\\`").replace("${", "\\${")
         refs_js = "\\n".join(f"  {j+1}. {r}" for j, r in enumerate(refs))
         refs_js = refs_js.replace("\\", "\\\\").replace("`", "\\`").replace("${", "\\${").replace("<i>", "").replace("</i>", "").replace('";', "")
 
         paper_data_js += f'  "{slug}": {{\n'
         paper_data_js += f'    title: `{title_js}`,\n'
-        paper_data_js += f'    body: `{body_js}`,\n'
         paper_data_js += f'    refs: `{refs_js}`,\n'
-        paper_data_js += f'    dashboard: `{GITHUB_PAGES}/{group_id}/dashboards/{slug}.html`,\n'
-        paper_data_js += f'    code: `{GITHUB_REPO}/tree/master/{group_id}/code/{code_filename}`,\n'
+        paper_data_js += f'    dashboard: `dashboards/{slug}.html`,\n'
+        paper_data_js += f'    code: `code/{code_filename}`,\n'
         paper_data_js += f'  }},\n'
     paper_data_js += "};"
+
+    # Map slug to paper card number for DOM lookup
+    slug_to_id = {p["slug"]: i+1 for i, p in enumerate(group["papers"])}
+    slug_id_js = "const SLUG_TO_ID = " + json.dumps(slug_to_id) + ";"
 
     return f'''<!doctype html>
 <html lang="en">
@@ -698,7 +700,7 @@ def generate_group_page(group_id, group):
 <body>
   <div class="page">
     <div class="masthead">
-      <div class="eyebrow">University of Uganda &middot; Africa E156 Series</div>
+      <div class="eyebrow">Makerere University &middot; Africa E156 Series</div>
       <h1>{escape(group["title"])}</h1>
       <p class="desc">{escape(group["desc"])}</p>
     </div>
@@ -717,7 +719,7 @@ def generate_group_page(group_id, group):
       <div class="warning">
         <strong>Important:</strong> These papers are AI-generated drafts. The journal will check for originality.
         You must rewrite each paper substantially in your own words. Your perspective as a Ugandan researcher is valuable &mdash; add local context, verify the data, and make the paper yours.
-        Each of the 12 papers below can be submitted as an independent publication.
+        Each of the 20 papers below can be submitted as an independent publication.
       </div>
     </div>
 
@@ -779,19 +781,26 @@ The author rewrote, verified, and takes full responsibility for the final conten
 
   <script>
   {paper_data_js}
+  {slug_id_js}
 
   function downloadMd(slug, el) {{
-    const p = PAPERS[slug];
-    if (!p) return;
+    const p = PAPER_META[slug];
+    if (!p) {{ console.warn("Paper not found:", slug); return; }}
+    const cardId = SLUG_TO_ID[slug];
+    const card = document.getElementById("paper-" + cardId);
+    if (!card) {{ console.warn("Card not found:", cardId); return; }}
+    const bodyEl = card.querySelector(".paper-body");
+    const body = bodyEl ? bodyEl.textContent.trim() : "";
+    if (!body) {{ console.warn("Body empty for:", slug); return; }}
     let md = "# " + p.title + "\\n\\n";
-    md += p.body + "\\n\\n";
+    md += body + "\\n\\n";
     md += "## References\\n\\n" + p.refs + "\\n\\n";
     md += "## Note Block\\n\\n";
     md += "- Type: research\\n";
     md += "- App: " + p.dashboard + "\\n";
     md += "- Code: " + p.code + "\\n";
     md += "- Data: ClinicalTrials.gov API v2\\n";
-    md += "- Date: 2026-04-03\\n";
+    md += "- Date: 2026-04-05\\n";
     const blob = new Blob([md], {{ type: "text/markdown" }});
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
@@ -818,7 +827,7 @@ def generate_landing_page():
       <div class="group-num" style="background:{color};">Group {i+1}</div>
       <h2>{escape(g["title"])}</h2>
       <p>{escape(g["desc"])}</p>
-      <div class="paper-count">12 papers</div>
+      <div class="paper-count">20 papers</div>
     </a>'''
 
     return f'''<!doctype html>
@@ -826,7 +835,7 @@ def generate_landing_page():
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Africa E156 Series — University of Uganda Student Assignment</title>
+  <title>Africa E156 Series — Makerere University Student Assignment</title>
   <style>
     :root {{
       --bg: #f8f6f1; --paper: #fffdf8; --ink: #1d2430; --muted: #5f6b7a;
@@ -896,18 +905,43 @@ def generate_landing_page():
     <div class="masthead">
       <div class="eyebrow">E156 Micro-Paper Series</div>
       <h1>Africa Clinical Trials<br>Under the Microscope</h1>
-      <p class="sub">48 evidence papers on clinical trial equity in Africa. Four thematic groups, twelve papers each. Your assignment: rewrite, verify, and submit.</p>
+      <p class="sub">80 evidence papers on clinical trial equity in Africa. Four thematic groups, twenty papers each. Your assignment: rewrite, verify, and submit.</p>
     </div>
 
     <div class="intro">
       <h2>What is this?</h2>
-      <p>Each group below contains 12 AI-drafted E156 micro-papers about clinical trial inequity in Africa. Each paper is exactly 7 sentences and 156 words, backed by ClinicalTrials.gov data, with an interactive HTML dashboard and Python analysis code.</p>
+      <p>Each group below contains 20 AI-drafted E156 micro-papers about clinical trial inequity in Africa. Each paper is exactly 7 sentences and 156 words, backed by ClinicalTrials.gov data, with an interactive HTML dashboard and Python analysis code.</p>
       <p><strong>Your task:</strong> Read each paper, study the dashboard, understand the code, then <strong>rewrite the paper in your own voice</strong> before submitting to the <a href="{JOURNAL_URL}" target="_blank" rel="noopener noreferrer">Synthesis Medicine Journal</a>.</p>
-      <p>Click your group below to get started.</p>
+      <p>Each student group is assigned one of the four themes below — confirm your group number with your course lead, then click that card to view your 20 papers.</p>
     </div>
 
     <div class="groups">
       {group_cards}
+    </div>
+
+    <div class="intro" style="margin-top:36px;">
+      <h2>Data &amp; Analysis</h2>
+      <p>Live analysis of ClinicalTrials.gov data across all 54 African nations.</p>
+      <div class="groups" style="margin-top:16px;">
+        <a href="analysis/africa_rct_country_dashboard.html" class="group-card" style="border-top: 4px solid #2c3e50;">
+          <div class="group-num" style="background:#2c3e50;">Data</div>
+          <h2>Country-by-Country</h2>
+          <p>23,873 trials across 54 countries with bar charts, per-capita analysis, and sub-regional breakdown.</p>
+          <div class="paper-count">54 countries</div>
+        </a>
+        <a href="analysis/statistical_deep_dive.html" class="group-card" style="border-top: 4px solid #7A5A10;">
+          <div class="group-num" style="background:#7A5A10;">Stats</div>
+          <h2>Statistical Deep Dive</h2>
+          <p>Gini, Shannon, HHI, Pareto, Zipf, Benford, regression — 10 methods.</p>
+          <div class="paper-count">4 SVG charts</div>
+        </a>
+        <a href="analysis/advanced_statistics.html" class="group-card" style="border-top: 4px solid #922b21;">
+          <div class="group-num" style="background:#922b21;">Advanced</div>
+          <h2>Advanced Statistics</h2>
+          <p>Bootstrap CIs, Theil, Atkinson, KL divergence, power-law MLE, Bayesian — 15 methods.</p>
+          <div class="paper-count">Frontier maths</div>
+        </a>
+      </div>
     </div>
 
     <div class="footer">

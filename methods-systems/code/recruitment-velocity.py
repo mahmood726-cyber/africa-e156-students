@@ -1,11 +1,7 @@
-import os
-from pathlib import Path
 import json
 import requests
 import time
 from datetime import datetime
-
-os.makedirs(Path(__file__).parent / "data", exist_ok=True)
 
 BASE_URL = "https://clinicaltrials.gov/api/v2/studies"
 REGIONS = ["Africa", "Europe", "China", "India"]
@@ -59,5 +55,5 @@ def fetch_recruitment_data(location, count=200):
 results = {reg: fetch_recruitment_data(reg) for reg in REGIONS}
 print(json.dumps(results, indent=2))
 
-with open(str(Path(__file__).parent / "data" / "recruitment_efficiency_data.json"), "w") as f:
+with open("C:/AfricaRCT/data/recruitment_efficiency_data.json", "w") as f:
     json.dump(results, f, indent=2)

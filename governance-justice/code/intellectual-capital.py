@@ -1,13 +1,10 @@
-import os
-import json
+﻿import json
 import requests
 import time
 from pathlib import Path
 
-os.makedirs(Path(__file__).parent / "data", exist_ok=True)
-
 BASE_URL = "https://clinicaltrials.gov/api/v2/studies"
-DATA_DIR = Path(__file__).parent / "data"
+DATA_DIR = Path("C:/AfricaRCT/data")
 
 BIG_PHARMA = ["Pfizer", "Roche", "Novartis", "Merck", "GlaxoSmithKline", "Johnson & Johnson", "AstraZeneca", "Sanofi", "AbbVie", "Bayer"]
 WESTERN_HUBS = ["Harvard", "Oxford", "Johns Hopkins", "Stanford", "Yale", "Cambridge", "MIT", "Imperial College", "UCSF", "NIH"]

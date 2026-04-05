@@ -1,11 +1,9 @@
-import json
+﻿import json
 import os
 from pathlib import Path
 import numpy as np
 
-os.makedirs(Path(__file__).parent / "data", exist_ok=True)
-
-DATA_DIR = Path(__file__).parent / "data"
+DATA_DIR = Path("C:/AfricaRCT/data")
 
 def run_meta_synthesis():
     print("Initiating God's Eye View Meta-Synthesis...")

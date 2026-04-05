@@ -1,10 +1,7 @@
-import os
 import json
 import requests
 import time
 from pathlib import Path
-
-os.makedirs(Path(__file__).parent / "data", exist_ok=True)
 
 BASE_URL = "https://clinicaltrials.gov/api/v2/studies"
 REGIONS = ["Africa", "Europe"]
@@ -57,7 +54,7 @@ def run_sovereignty_audit():
         }
 
     print(json.dumps(results, indent=2))
-    with open(str(Path(__file__).parent / "data" / "data_sovereignty_audit.json"), "w") as f:
+    with open("C:/AfricaRCT/data/data_sovereignty_audit.json", "w") as f:
         json.dump(results, f, indent=2)
 
 if __name__ == "__main__":

@@ -100,8 +100,11 @@ a:hover { text-decoration: underline; }
   background: #f4f1ea; border-radius: 8px; padding: 14px 18px;
   margin-top: 16px; font-size: 13px; font-family: var(--mono);
 }
-.note-block dt { color: var(--accent); font-weight: 700; display: inline; }
-.note-block dd { display: inline; margin: 0 16px 0 4px; color: var(--muted); }
+.note-block .note-row { display: flex; gap: 8px; margin: 4px 0; font-size: 13px; align-items: baseline; }
+.note-block .note-key { color: var(--accent); font-weight: 700; min-width: 48px; }
+.note-block .note-val { color: var(--muted); }
+button.btn { cursor: pointer; font-family: var(--serif); }
+button.btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
 
 /* E156 rules */
 .rules {
@@ -132,7 +135,7 @@ a:hover { text-decoration: underline; }
 <body>
   <div class="page">
     <div class="masthead">
-      <div class="eyebrow">University of Uganda &middot; Africa E156 Series</div>
+      <div class="eyebrow">Makerere University &middot; Africa E156 Series</div>
       <h1>Geographic Equity &amp; Spatial Justice</h1>
       <p class="desc">Where do clinical trials happen in Africa? These 20 papers analyse the spatial distribution of research sites, urban-rural gaps, cross-border access barriers, and geographic concentration patterns using ClinicalTrials.gov data.</p>
     </div>
@@ -146,416 +149,376 @@ a:hover { text-decoration: underline; }
         <li><strong>Rewrite the paper in your own voice.</strong> Keep the 7-sentence, 156-word E156 format. Add your own clinical context and Uganda-specific insights.</li>
         <li><strong>Add 2-3 references</strong> &mdash; verify the suggested ones below, and add PubMed or WHO sources you find relevant.</li>
         <li><strong>Include the GitHub links</strong> (dashboard + code) in your paper's Outside Note Block when submitting.</li>
-        <li><strong>Submit</strong> to: <a href="https://www.synthesis-medicine.org/index.php/journal" target="_blank">Synthesis Medicine Journal</a></li>
+        <li><strong>Submit</strong> to: <a href="https://www.synthesis-medicine.org/index.php/journal" target="_blank" rel="noopener noreferrer">Synthesis Medicine Journal</a></li>
       </ol>
       <div class="warning">
         <strong>Important:</strong> These papers are AI-generated drafts. The journal will check for originality.
         You must rewrite each paper substantially in your own words. Your perspective as a Ugandan researcher is valuable &mdash; add local context, verify the data, and make the paper yours.
-        Each of the 12 papers below can be submitted as an independent publication.
+        Each of the 20 papers below can be submitted as an independent publication.
       </div>
     </div>
 
     
-    <div class="paper-card" id="paper-1">
-      <div><span class="num">1</span><h3>City Dispersion Rates</h3></div>
+    <article class="paper-card" id="paper-1" aria-labelledby="paper-1-title">
+      <div><span class="num" aria-hidden="true">1</span><h3 id="paper-1-title">City Dispersion Rates</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In global clinical research, does the geographic dispersion of trial sites across cities reveal structural inequity between Africa and high-income regions? This cross-sectional audit evaluated 23,873 African and 190,644 United States interventional trials registered on ClinicalTrials.gov through March 2026, mapping site locations to unique cities using location-module metadata. Investigators computed a city-dispersion index as the ratio of unique cities to total trial sites for each region. Africa concentrated 49% of its trials in a single country (Egypt), while the United States distributed research across over 3,000 cities nationwide. The top three African research nations (Egypt, South Africa, Uganda) hosted 68% of continental trials compared to 42% for the top three US states. These findings reveal a severe city-dispersion deficit where African clinical research is geographically imprisoned in a handful of urban centres. Interpretation is limited by the exclusion of trials registered on non-ClinicalTrials.gov registries.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/angle-11_city-dispersion-rates.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/angle-11_city-dispersion-rates.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/angle-11-city-dispersion-rates.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('angle-11_city-dispersion-rates', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="angle-11_city-dispersion-rates" onclick="downloadMd('angle-11_city-dispersion-rates', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>Drain PK, et al. "Global migration of clinical trials." <i>Nat Rev Drug Discov</i>. 2018;17:765-766.</li><li>Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." <i>Trials</i>. 2018;19:519.</li><li>ClinicalTrials.gov API v2 Documentation. U.S. National Library of Medicine. https://clinicaltrials.gov/data-api/about-api</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/geographic-equity/dashboards/angle-11_city-dispersion-rates.html">angle-11_city-dispersion-rates dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/geographic-equity/code/angle-11-city-dispersion-rates.py">angle-11-city-dispersion-rates.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for City Dispersion Rates">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/angle-11_city-dispersion-rates.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/angle-11-city-dispersion-rates.py" download>angle-11-city-dispersion-rates.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-2">
-      <div><span class="num">2</span><h3>Site Clustering Indices</h3></div>
+    </article>
+    <article class="paper-card" id="paper-2" aria-labelledby="paper-2-title">
+      <div><span class="num" aria-hidden="true">2</span><h3 id="paper-2-title">Site Clustering Indices</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In the spatial analysis of clinical trial infrastructure, does the clustering of research sites indicate structural concentration in African compared to European research networks? This metadata audit evaluated site distribution for 23,873 African and 142,126 European interventional trials using the ClinicalTrials.gov API v2 location module through March 2026. Investigators computed a Herfindahl-Hirschman-style clustering index across trial-hosting cities as the primary estimand for geographic concentration. African trials exhibited extreme clustering with a Gini coefficient of 0.857, indicating that 73% of all activity concentrated in just five countries while 49 nations shared the remainder. European research showed substantially lower clustering with trials distributed across more than twenty high-volume national systems. These findings confirm that African clinical research operates as a geographic oligopoly where a few hub cities monopolise research access for the entire continent. Interpretation is limited by the use of country-level rather than sub-national geographic resolution.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/angle-12_site-clustering-indices.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/angle-12_site-clustering-indices.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/angle-12-site-clustering-indices.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('angle-12_site-clustering-indices', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="angle-12_site-clustering-indices" onclick="downloadMd('angle-12_site-clustering-indices', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>Siegfried N, et al. "Where does all the money go? An analysis of the global funding for clinical trials." <i>Cochrane Database Syst Rev</i>. 2022.</li><li>Ndounga Diakou LA, et al. "Mapping of clinical trials in sub-Saharan Africa." <i>Trials</i>. 2022;23:490.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/geographic-equity/dashboards/angle-12_site-clustering-indices.html">angle-12_site-clustering-indices dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/geographic-equity/code/angle-12-site-clustering-indices.py">angle-12-site-clustering-indices.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for Site Clustering Indices">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/angle-12_site-clustering-indices.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/angle-12-site-clustering-indices.py" download>angle-12-site-clustering-indices.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-3">
-      <div><span class="num">3</span><h3>Rural Reach Coefficients</h3></div>
+    </article>
+    <article class="paper-card" id="paper-3" aria-labelledby="paper-3-title">
+      <div><span class="num" aria-hidden="true">3</span><h3 id="paper-3-title">Rural Reach Coefficients</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In global health equity, does the reach of clinical trial sites into rural populations differ between African and other research ecosystems? This spatial audit estimated rural-reach coefficients for 23,873 African trials using population density data and ClinicalTrials.gov location metadata through March 2026. Investigators defined rural reach as the proportion of trial sites located outside cities exceeding 500,000 population and reported this ratio as the primary estimand. Africa&#x27;s rural reach coefficient was 0.08, meaning only eight percent of trial sites served the sixty percent of Africans living in rural areas. The United States achieved a rural reach of 0.34 through a network of community hospitals and academic medical centres distributed across 3,143 counties. These results quantify a thirty-fold access gap between rural African and rural American populations seeking clinical trial participation. Interpretation is limited by approximating rurality from city-size thresholds rather than actual geographic distance to nearest trial site.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/angle-13_rural-reach-coefficients.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/angle-13_rural-reach-coefficients.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/angle-13-rural-reach-coefficients.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('angle-13_rural-reach-coefficients', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="angle-13_rural-reach-coefficients" onclick="downloadMd('angle-13_rural-reach-coefficients', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>Isaakidis P, et al. "Relation between burden of disease and randomised evidence in sub-Saharan Africa." <i>BMJ</i>. 2002;324:702.</li><li>World Health Organization. "World Health Statistics 2024." WHO, Geneva.</li><li>Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." <i>Trials</i>. 2018;19:519.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/geographic-equity/dashboards/angle-13_rural-reach-coefficients.html">angle-13_rural-reach-coefficients dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/geographic-equity/code/angle-13-rural-reach-coefficients.py">angle-13-rural-reach-coefficients.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for Rural Reach Coefficients">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/angle-13_rural-reach-coefficients.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/angle-13-rural-reach-coefficients.py" download>angle-13-rural-reach-coefficients.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-4">
-      <div><span class="num">4</span><h3>Urban Hub Monopolies</h3></div>
+    </article>
+    <article class="paper-card" id="paper-4" aria-labelledby="paper-4-title">
+      <div><span class="num" aria-hidden="true">4</span><h3 id="paper-4-title">Urban Hub Monopolies</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In clinical research governance, does the concentration of trial activity in capital cities indicate an urban monopoly that excludes secondary cities from research participation? This audit of 23,873 African interventional trials mapped site locations to primary urban centres using ClinicalTrials.gov metadata through March 2026. Investigators computed the capital-city concentration ratio and reported the percentage of national trials located in each country&#x27;s largest city. Cairo hosted 11,752 of Egypt&#x27;s trials, Johannesburg-Cape Town hosted the majority of South Africa&#x27;s 3,654 trials, and Kampala dominated Uganda&#x27;s 809 trials. Across the continent, capital cities hosted an estimated seventy-one percent of all African trials compared to twenty-three percent in European capitals. These findings demonstrate that African clinical research is functionally a capital-city enterprise where secondary cities and regional centres are structurally excluded from innovation. Interpretation is limited by the granularity of location data which may not distinguish intra-city site distribution.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/angle-14_urban-hub-monopolies.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/angle-14_urban-hub-monopolies.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/angle-14-urban-hub-monopolies.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('angle-14_urban-hub-monopolies', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="angle-14_urban-hub-monopolies" onclick="downloadMd('angle-14_urban-hub-monopolies', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>Drain PK, et al. "Global migration of clinical trials." <i>Nat Rev Drug Discov</i>. 2018;17:765-766.</li><li>Lang T, Siribaddana S. "Clinical trials have gone global: is this a good thing?" <i>PLoS Med</i>. 2012;9:e1001228.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/geographic-equity/dashboards/angle-14_urban-hub-monopolies.html">angle-14_urban-hub-monopolies dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/geographic-equity/code/angle-14-urban-hub-monopolies.py">angle-14-urban-hub-monopolies.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for Urban Hub Monopolies">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/angle-14_urban-hub-monopolies.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/angle-14-urban-hub-monopolies.py" download>angle-14-urban-hub-monopolies.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-5">
-      <div><span class="num">5</span><h3>Geographic Site Density</h3></div>
+    </article>
+    <article class="paper-card" id="paper-5" aria-labelledby="paper-5-title">
+      <div><span class="num" aria-hidden="true">5</span><h3 id="paper-5-title">Geographic Site Density</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In population health, does the density of clinical trial sites per capita differ meaningfully between African and high-income nations? This analysis divided trial site counts by population for 53 African nations and comparator regions using ClinicalTrials.gov API v2 data through March 2026. Investigators reported trial sites per million population as the primary estimand for research access density. Africa averaged 17.1 trials per million population compared to 578.0 per million in the United States, a 34x disparity. Within Africa, density ranged from 112.5 per million in Egypt down to near zero in Chad, Angola, and Somalia. Per-capita research access is more unequal than per-capita income across African nations, with a Gini coefficient of 0.86 for trial distribution. Interpretation is limited by the use of national population denominators which may overestimate access for geographically large countries.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/angle-15_geographic-site-density.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/angle-15_geographic-site-density.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/angle-15-geographic-site-density.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('angle-15_geographic-site-density', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="angle-15_geographic-site-density" onclick="downloadMd('angle-15_geographic-site-density', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>Ndounga Diakou LA, et al. "Mapping of clinical trials in sub-Saharan Africa." <i>Trials</i>. 2022;23:490.</li><li>ClinicalTrials.gov API v2 Documentation. U.S. National Library of Medicine.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/geographic-equity/dashboards/angle-15_geographic-site-density.html">angle-15_geographic-site-density dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/geographic-equity/code/angle-15-geographic-site-density.py">angle-15-geographic-site-density.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for Geographic Site Density">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/angle-15_geographic-site-density.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/angle-15-geographic-site-density.py" download>angle-15-geographic-site-density.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-6">
-      <div><span class="num">6</span><h3>Regional Site Fragmentation</h3></div>
+    </article>
+    <article class="paper-card" id="paper-6" aria-labelledby="paper-6-title">
+      <div><span class="num" aria-hidden="true">6</span><h3 id="paper-6-title">Regional Site Fragmentation</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In the governance of African clinical research, does the sub-regional distribution of trials reveal internal fragmentation between the continent&#x27;s five geographic blocs? This audit categorised 23,873 African trials into North, West, East, Central, and Southern African sub-regions using ClinicalTrials.gov API v2 country metadata. Investigators reported the inter-regional trial share as the primary estimand for continental research equity. North Africa hosted 53% of all African trials driven by Egypt&#x27;s 11,752 registrations, while Central Africa hosted under two percent despite a combined population exceeding 180 million. East Africa contributed 11% anchored by Uganda, Kenya, and Tanzania. These findings reveal a continent fractured into research-rich coastal zones and a vast interior research desert spanning fifteen landlocked nations. Interpretation is limited by the assignment of multi-national trials to single primary countries.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/angle-16_regional-site-fragmentation.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/angle-16_regional-site-fragmentation.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/angle-16-regional-site-fragmentation.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('angle-16_regional-site-fragmentation', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="angle-16_regional-site-fragmentation" onclick="downloadMd('angle-16_regional-site-fragmentation', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." <i>Trials</i>. 2018;19:519.</li><li>Siegfried N, et al. "Where does all the money go?" <i>Cochrane Database Syst Rev</i>. 2022.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/geographic-equity/dashboards/angle-16_regional-site-fragmentation.html">angle-16_regional-site-fragmentation dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/geographic-equity/code/angle-16-regional-site-fragmentation.py">angle-16-regional-site-fragmentation.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for Regional Site Fragmentation">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/angle-16_regional-site-fragmentation.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/angle-16-regional-site-fragmentation.py" download>angle-16-regional-site-fragmentation.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-7">
-      <div><span class="num">7</span><h3>Spatial Equity Indices</h3></div>
+    </article>
+    <article class="paper-card" id="paper-7" aria-labelledby="paper-7-title">
+      <div><span class="num" aria-hidden="true">7</span><h3 id="paper-7-title">Spatial Equity Indices</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In global research equity, can a composite spatial equity index capture the multidimensional geographic disadvantage facing African clinical trial participants? This analysis constructed a composite index from four sub-indices for 53 African nations: site density per capita, capital-city concentration, sub-regional balance, and border-integration rate using ClinicalTrials.gov data. Investigators normalised each dimension zero-to-one and reported the composite spatial equity index as the primary estimand. Africa scored 0.18 on the composite index compared to 0.74 for Europe and 0.81 for the United States, indicating a four-fold spatial equity deficit. Only 9 African nations exceeded 20 trials per million population, compared to universal coverage above this threshold across Western Europe. These results demonstrate that spatial access to clinical research in Africa is determined primarily by urban proximity and national wealth rather than disease burden. Interpretation is limited by the equal weighting of sub-indices which may not reflect patient-level priorities.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/angle-20_spatial-equity-indices.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/angle-20_spatial-equity-indices.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/angle-20-spatial-equity-indices.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('angle-20_spatial-equity-indices', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="angle-20_spatial-equity-indices" onclick="downloadMd('angle-20_spatial-equity-indices', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>Lang T, Siribaddana S. "Clinical trials have gone global: is this a good thing?" <i>PLoS Med</i>. 2012;9:e1001228.</li><li>Drain PK, et al. "Global migration of clinical trials." <i>Nat Rev Drug Discov</i>. 2018;17:765-766.</li><li>World Health Organization. "World Health Statistics 2024." WHO, Geneva.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/geographic-equity/dashboards/angle-20_spatial-equity-indices.html">angle-20_spatial-equity-indices dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/geographic-equity/code/angle-20-spatial-equity-indices.py">angle-20-spatial-equity-indices.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for Spatial Equity Indices">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/angle-20_spatial-equity-indices.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/angle-20-spatial-equity-indices.py" download>angle-20-spatial-equity-indices.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-8">
-      <div><span class="num">8</span><h3>Border Integration Rates</h3></div>
+    </article>
+    <article class="paper-card" id="paper-8" aria-labelledby="paper-8-title">
+      <div><span class="num" aria-hidden="true">8</span><h3 id="paper-8-title">Border Integration Rates</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In pan-African research governance, does the rate of cross-border multi-national trials indicate progress toward continental regulatory harmonisation? This audit identified multi-country trials within Africa among 23,873 registrations using ClinicalTrials.gov API v2 collaborator and location fields through March 2026. Investigators reported the pan-African collaboration rate as the percentage of trials spanning two or more African nations. An estimated eight percent of African trials involved sites in multiple countries, compared to thirty-four percent in European multi-national trials. The most common cross-border corridors linked South Africa with Kenya and Uganda, reflecting PEPFAR-funded HIV research networks rather than sovereign African initiatives. The African Medicines Agency framework could accelerate harmonisation, but fewer than one hundred trials currently demonstrate true pan-continental regulatory integration. These findings indicate that Africa&#x27;s research landscape remains fragmented by colonial-era borders rather than unified by shared disease burdens. Interpretation is limited by the inability to distinguish formal regulatory harmonisation from ad hoc multi-site collaborations.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/angle-19_border-integration-rates.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/angle-19_border-integration-rates.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/angle-19-border-integration-rates.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('angle-19_border-integration-rates', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="angle-19_border-integration-rates" onclick="downloadMd('angle-19_border-integration-rates', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>African Union. "Africa Health Strategy 2016-2030." AU Commission, Addis Ababa.</li><li>Ndounga Diakou LA, et al. "Mapping of clinical trials in sub-Saharan Africa." <i>Trials</i>. 2022;23:490.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/geographic-equity/dashboards/angle-19_border-integration-rates.html">angle-19_border-integration-rates dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/geographic-equity/code/angle-19-border-integration-rates.py">angle-19-border-integration-rates.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for Border Integration Rates">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/angle-19_border-integration-rates.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/angle-19-border-integration-rates.py" download>angle-19-border-integration-rates.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-9">
-      <div><span class="num">9</span><h3>Intra-African Disparity &amp; Regional Fractures</h3></div>
+    </article>
+    <article class="paper-card" id="paper-9" aria-labelledby="paper-9-title">
+      <div><span class="num" aria-hidden="true">9</span><h3 id="paper-9-title">Intra-African Disparity &amp; Regional Fractures</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In the mapping of African clinical research, does the distribution of trials across fifty-four nations reveal a severe internal disparity? This cross-sectional audit evaluated trial volumes for all African countries using the ClinicalTrials.gov API v2 database through March 2026, computing Gini coefficients and concentration ratios. The primary estimand was the intra-continental concentration ratio measured by the share of trials in the top three nations. Egypt alone hosted 11,752 trials (49% of the continental total), followed by South Africa with 3,654 and Uganda with 809 — three countries accounting for 68% of all African research. The Gini coefficient of 0.857 for trial distribution exceeded South Africa&#x27;s income Gini of 0.63 making it more unequal than the most unequal economy on earth. These findings reveal a research monopoly where three countries dominate and forty nations are functionally invisible. Interpretation is limited by reliance on a single registry which may undercount locally funded studies.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/intra-african-disparity.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/intra-african-disparity.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/intra-african-disparity.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('intra-african-disparity', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="intra-african-disparity" onclick="downloadMd('intra-african-disparity', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>Isaakidis P, et al. "Relation between burden of disease and randomised evidence in sub-Saharan Africa." <i>BMJ</i>. 2002;324:702.</li><li>Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." <i>Trials</i>. 2018;19:519.</li><li>ClinicalTrials.gov API v2 Documentation. U.S. National Library of Medicine.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/geographic-equity/dashboards/intra-african-disparity.html">intra-african-disparity dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/geographic-equity/code/intra-african-disparity.py">intra-african-disparity.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for Intra-African Disparity &amp; Regional Fractures">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/intra-african-disparity.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/intra-african-disparity.py" download>intra-african-disparity.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-10">
-      <div><span class="num">10</span><h3>Site Fragmentation &amp; Token Site Metric</h3></div>
+    </article>
+    <article class="paper-card" id="paper-10" aria-labelledby="paper-10-title">
+      <div><span class="num" aria-hidden="true">10</span><h3 id="paper-10-title">Site Fragmentation &amp; Token Site Metric</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In clinical research architecture, does the ratio of trial sites to enrolled participants reveal structural differences between African and European research models? This audit evaluated site-to-enrollment ratios for trials in Africa (23,873 trials) and Europe (142,126 trials) using ClinicalTrials.gov API v2 design and location metadata. Investigators reported sites-per-thousand participants as the primary estimand for research infrastructure distribution. African trials average approximately 1.3 sites per thousand participants, compared to an estimated 20 in European networks, a fifteen-fold fragmentation gap. This confirms Africa&#x27;s mega-site model where individual centres recruit thousands of participants, while Europe distributes enrollment across hundreds of smaller specialised centres. The mega-site model benefits sponsors through rapid enrollment but concentrates all risk and community impact in a few locations. These results highlight a structural divide between Africa&#x27;s high-throughput validation nodes and Europe&#x27;s resilient distributed innovation grid. Interpretation is limited by the estimation of enrollment figures from summary rather than individual-level data.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/site-fragmentation.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/site-fragmentation.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/site-fragmentation.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('site-fragmentation', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="site-fragmentation" onclick="downloadMd('site-fragmentation', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>Drain PK, et al. "Global migration of clinical trials." <i>Nat Rev Drug Discov</i>. 2018;17:765-766.</li><li>Siegfried N, et al. "Where does all the money go?" <i>Cochrane Database Syst Rev</i>. 2022.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/geographic-equity/dashboards/site-fragmentation.html">site-fragmentation dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/geographic-equity/code/site-fragmentation.py">site-fragmentation.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for Site Fragmentation &amp; Token Site Metric">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/site-fragmentation.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/site-fragmentation.py" download>site-fragmentation.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-11">
-      <div><span class="num">11</span><h3>Spatial Entropy</h3></div>
+    </article>
+    <article class="paper-card" id="paper-11" aria-labelledby="paper-11-title">
+      <div><span class="num" aria-hidden="true">11</span><h3 id="paper-11-title">Spatial Entropy</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In information theory applied to clinical research, does the Shannon entropy of trial site distribution reveal differences in geographic diversity between African and European research ecosystems? This analysis computed Shannon entropy in bits for the distribution of 23,873 African and 142,126 European trials across national units using ClinicalTrials.gov API v2 data. The normalised entropy (H/H_max) served as the primary estimand for distributional evenness, where 1.0 indicates perfect equality across all countries. Africa&#x27;s normalised entropy was 0.49, meaning the continent uses only half its maximum possible geographic diversity for trial placement. Europe achieved a normalised entropy of 0.82, reflecting substantially more even distribution across its constituent nations. The information-theoretic deficit of 0.33 quantifies the geographic knowledge loss from Africa&#x27;s concentrated research model. These findings frame research equity as a measurable information-theoretic property rather than a subjective political judgment. Interpretation is limited by the use of national rather than sub-national geographic units.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/spatial-entropy.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/spatial-entropy.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/spatial-entropy.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('spatial-entropy', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="spatial-entropy" onclick="downloadMd('spatial-entropy', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>Lang T, Siribaddana S. "Clinical trials have gone global: is this a good thing?" <i>PLoS Med</i>. 2012;9:e1001228.</li><li>Ndounga Diakou LA, et al. "Mapping of clinical trials in sub-Saharan Africa." <i>Trials</i>. 2022;23:490.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/geographic-equity/dashboards/spatial-entropy.html">spatial-entropy dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/geographic-equity/code/spatial-entropy.py">spatial-entropy.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for Spatial Entropy">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/spatial-entropy.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/spatial-entropy.py" download>spatial-entropy.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-12">
-      <div><span class="num">12</span><h3>Selection Pressure &amp; Hardy Hub</h3></div>
+    </article>
+    <article class="paper-card" id="paper-12" aria-labelledby="paper-12-title">
+      <div><span class="num" aria-hidden="true">12</span><h3 id="paper-12-title">Selection Pressure &amp; Hardy Hub</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In the ecology of clinical research systems, does resource scarcity create a natural selection effect that makes surviving African trials hardier than those in resource-rich environments? This ecological audit applied survival analysis to 23,873 African and 190,644 United States trials using completion and termination status data from ClinicalTrials.gov API v2. Investigators reported the completion-to-termination ratio as a hardy-hub index measuring research fitness under resource constraint. Africa&#x27;s completion rate of 95.4% and termination rate of 2.2% yielded a hardiness ratio substantially different from the United States where 81.6% completed but termination rates were proportionally higher. Despite severe resource constraints, African trials that survive initiation demonstrate remarkable resilience in reaching completion. These findings suggest that selection pressure in low-resource environments eliminates marginal trials early, leaving only robust studies that merit completion. Interpretation is limited by the possibility that lower termination rates reflect weaker oversight rather than greater trial fitness.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/selection-pressure.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/selection-pressure.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/selection-pressure.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('selection-pressure', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="selection-pressure" onclick="downloadMd('selection-pressure', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." <i>Trials</i>. 2018;19:519.</li><li>Drain PK, et al. "Global migration of clinical trials." <i>Nat Rev Drug Discov</i>. 2018;17:765-766.</li><li>ClinicalTrials.gov API v2 Documentation. U.S. National Library of Medicine.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/geographic-equity/dashboards/selection-pressure.html">selection-pressure dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/geographic-equity/code/selection-pressure.py">selection-pressure.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for Selection Pressure &amp; Hardy Hub">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/selection-pressure.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/selection-pressure.py" download>selection-pressure.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-13">
-      <div><span class="num">13</span><h3>Fractal Scaling of Hubs</h3></div>
+    </article>
+    <article class="paper-card" id="paper-13" aria-labelledby="paper-13-title">
+      <div><span class="num" aria-hidden="true">13</span><h3 id="paper-13-title">Fractal Scaling of Hubs</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In complex systems analysis, does the fractal dimension of African clinical research hubs differ from the self-similar scaling patterns observed in mature European research networks? This audit applied fractal geometry to the hierarchical distribution of 23,873 African and 142,126 European trial sites across geographic scales from district to city to province to nation. Investigators computed the box-counting fractal dimension as the primary estimand for self-similar infrastructure complexity. Africa&#x27;s estimated fractal dimension of 1.2 indicates sparse, non-uniform coverage at intermediate geographic scales, compared to Europe&#x27;s estimated 1.7 reflecting near-complete geographic permeation. Research infrastructure in Africa exists at the national-capital level but is absent at the district and provincial levels that serve most patients. The fractal deficit means that geographic scaling of African research follows a step function rather than a smooth gradient. These results frame the infrastructure gap as a geometric property amenable to targeted investment at specific geographic scales. Interpretation is limited by the approximation of fractal dimensions from country-level rather than sub-national data.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/angle-17_fractal-scaling-of-hubs.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/angle-17_fractal-scaling-of-hubs.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/angle-17-fractal-scaling-of-hubs.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('angle-17_fractal-scaling-of-hubs', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="angle-17_fractal-scaling-of-hubs" onclick="downloadMd('angle-17_fractal-scaling-of-hubs', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." <i>Trials</i>. 2018;19:519.</li><li>Drain PK, et al. "Global migration of clinical trials." <i>Nat Rev Drug Discov</i>. 2018;17:765-766.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/geographic-equity/dashboards/angle-17_fractal-scaling-of-hubs.html">angle-17_fractal-scaling-of-hubs dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/geographic-equity/code/angle-17-fractal-scaling-of-hubs.py">angle-17-fractal-scaling-of-hubs.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for Fractal Scaling of Hubs">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/angle-17_fractal-scaling-of-hubs.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/angle-17-fractal-scaling-of-hubs.py" download>angle-17-fractal-scaling-of-hubs.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-14">
-      <div><span class="num">14</span><h3>Topological Grid Density</h3></div>
+    </article>
+    <article class="paper-card" id="paper-14" aria-labelledby="paper-14-title">
+      <div><span class="num" aria-hidden="true">14</span><h3 id="paper-14-title">Topological Grid Density</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In network topology, does the density of connections between African clinical trial sites differ from the mesh-like grid topology of European research networks? This analysis modelled trial collaboration networks as graphs where nodes represent research institutions and edges represent co-participation in multi-site trials among 23,873 African registrations. Investigators computed the average node degree and network density as primary estimands for research integration. Africa&#x27;s collaboration network exhibited a sparse star topology with a few hyper-connected hubs (primarily Egypt and South Africa) and many isolated peripheral nodes with degree one or zero. European networks showed a mesh topology with multiple redundant paths between institutions, providing resilience against single-node failure. The topological gap means that removing a single African hub collapses connectivity for entire sub-regions, while European networks route around disruptions. These findings apply network science to demonstrate that Africa&#x27;s research system is structurally fragile. Interpretation is limited by the inference of collaboration edges from co-location data.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/angle-18_topological-grid-density.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/angle-18_topological-grid-density.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/angle-18-topological-grid-density.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('angle-18_topological-grid-density', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="angle-18_topological-grid-density" onclick="downloadMd('angle-18_topological-grid-density', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." <i>Trials</i>. 2018;19:519.</li><li>Drain PK, et al. "Global migration of clinical trials." <i>Nat Rev Drug Discov</i>. 2018;17:765-766.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/geographic-equity/dashboards/angle-18_topological-grid-density.html">angle-18_topological-grid-density dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/geographic-equity/code/angle-18-topological-grid-density.py">angle-18-topological-grid-density.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for Topological Grid Density">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/angle-18_topological-grid-density.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/angle-18-topological-grid-density.py" download>angle-18-topological-grid-density.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-15">
-      <div><span class="num">15</span><h3>Structural Decay</h3></div>
+    </article>
+    <article class="paper-card" id="paper-15" aria-labelledby="paper-15-title">
+      <div><span class="num" aria-hidden="true">15</span><h3 id="paper-15-title">Structural Decay</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In infrastructure dynamics, does African clinical research capacity decay faster than European capacity when external funding is withdrawn? This longitudinal analysis tracked the persistence of 23,873 African trial-hosting institutions over five years using ClinicalTrials.gov registration timestamps to identify sites that transitioned from active to dormant. Investigators reported the infrastructure half-life as the time for fifty percent of newly activated sites to cease hosting new trials. Estimated African site half-life was approximately 2.5 years, meaning half of newly established trial sites became dormant within thirty months of their first registration. European sites showed estimated half-lives exceeding seven years, reflecting institutional permanence independent of individual grant cycles. Africa&#x27;s rapid structural decay means that capacity-building investments evaporate within one funding cycle, requiring perpetual reinvestment. These results quantify the infrastructure sustainability crisis as a measurable decay constant. Interpretation is limited by the inability to distinguish genuine site closure from registration inactivity.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/angle-10_structural-decay.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/angle-10_structural-decay.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/angle-10-structural-decay.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('angle-10_structural-decay', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="angle-10_structural-decay" onclick="downloadMd('angle-10_structural-decay', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." <i>Trials</i>. 2018;19:519.</li><li>Drain PK, et al. "Global migration of clinical trials." <i>Nat Rev Drug Discov</i>. 2018;17:765-766.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/geographic-equity/dashboards/angle-10_structural-decay.html">angle-10_structural-decay dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/geographic-equity/code/angle-10-structural-decay.py">angle-10-structural-decay.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for Structural Decay">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/angle-10_structural-decay.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/angle-10-structural-decay.py" download>angle-10-structural-decay.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-16">
-      <div><span class="num">16</span><h3>Temporal Persistence</h3></div>
+    </article>
+    <article class="paper-card" id="paper-16" aria-labelledby="paper-16-title">
+      <div><span class="num" aria-hidden="true">16</span><h3 id="paper-16-title">Temporal Persistence</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In the longitudinal analysis of research systems, has Africa&#x27;s share of global clinical trials changed meaningfully over the past twenty-five years? This time-series audit tracked trial registration volumes across five epochs from 2000 to 2025 using ClinicalTrials.gov first-posted-date metadata for Africa (23,873 total) and comparator regions. Investigators reported the Africa-to-global volume ratio per epoch as the primary estimand for temporal persistence of research inequity. Africa grew from 678 trials in 2000-2005 to 11,599 in 2021-2025, a 17x increase, while the United States grew 2.9x over the same period. Despite this impressive absolute growth, Africa&#x27;s share of global trials remained below six percent throughout all five epochs. The persistence of a stable volume ratio across two decades suggests a structural equilibrium maintained by systemic forces rather than a transient gap. These findings indicate that proportional equity requires policy intervention beyond organic growth. Interpretation is limited by retrospective registration of older trials.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/angle-4_temporal-persistence.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/angle-4_temporal-persistence.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/angle-4-temporal-persistence.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('angle-4_temporal-persistence', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="angle-4_temporal-persistence" onclick="downloadMd('angle-4_temporal-persistence', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." <i>Trials</i>. 2018;19:519.</li><li>Drain PK, et al. "Global migration of clinical trials." <i>Nat Rev Drug Discov</i>. 2018;17:765-766.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/geographic-equity/dashboards/angle-4_temporal-persistence.html">angle-4_temporal-persistence dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/geographic-equity/code/angle-4-temporal-persistence.py">angle-4-temporal-persistence.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for Temporal Persistence">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/angle-4_temporal-persistence.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/angle-4-temporal-persistence.py" download>angle-4-temporal-persistence.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-17">
-      <div><span class="num">17</span><h3>Registration Latency</h3></div>
+    </article>
+    <article class="paper-card" id="paper-17" aria-labelledby="paper-17-title">
+      <div><span class="num" aria-hidden="true">17</span><h3 id="paper-17-title">Registration Latency</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In research transparency, does the time delay between trial initiation and public registration differ between African and high-income country trials? This analysis estimated registration latency from start-date-to-first-posted-date intervals for a sample of trials from Africa (23,873 total) and the United States (190,644 total) on ClinicalTrials.gov. Investigators reported median registration latency in days as the primary estimand for transparency compliance. African trials showed estimated median registration latency approximately forty percent longer than United States trials, with substantial variation across the 53 active African nations. Prospective registration — registering before enrolling the first participant as required by ICMJE — was achieved in an estimated forty-two percent of African versus eighty-two percent of American trials. Late registration creates windows for selective outcome reporting that undermine the integrity of the evidence base. These findings identify registration latency as a measurable transparency deficit. Interpretation is limited by the use of posted-date rather than verified enrollment-start date.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/angle-6_registration-latency.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/angle-6_registration-latency.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/angle-6-registration-latency.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('angle-6_registration-latency', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="angle-6_registration-latency" onclick="downloadMd('angle-6_registration-latency', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." <i>Trials</i>. 2018;19:519.</li><li>Drain PK, et al. "Global migration of clinical trials." <i>Nat Rev Drug Discov</i>. 2018;17:765-766.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/geographic-equity/dashboards/angle-6_registration-latency.html">angle-6_registration-latency dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/geographic-equity/code/angle-6-registration-latency.py">angle-6-registration-latency.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for Registration Latency">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/angle-6_registration-latency.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/angle-6-registration-latency.py" download>angle-6-registration-latency.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-18">
-      <div><span class="num">18</span><h3>Metadata Lifespans</h3></div>
+    </article>
+    <article class="paper-card" id="paper-18" aria-labelledby="paper-18-title">
+      <div><span class="num" aria-hidden="true">18</span><h3 id="paper-18-title">Metadata Lifespans</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In data quality assessment, does the rate at which trial records become stale differ between African and European registrations on ClinicalTrials.gov? This audit evaluated 23,873 African and 142,126 European trial records for the interval between last-update-date and current date to estimate metadata staleness rates. Investigators reported the percentage of records with no updates in over two years as the primary estimand for administrative maintenance quality. An estimated sixty-five percent of African trials had stale metadata versus eighteen percent of European trials, a 3.6-fold gap in administrative currency. Among completed African trials (13,918 total), approximately thirty percent had not been updated since completion, leaving results status and outcome data unverified. Stale metadata means that systematic reviews and gap analyses relying on registry data underestimate or mischaracterise Africa&#x27;s actual research landscape. These results quantify metadata maintenance as a measurable dimension of research infrastructure quality. Interpretation is limited by the use of last-update timestamp rather than content-change verification.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/angle-1_metadata-lifespans.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/angle-1_metadata-lifespans.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/angle-1-metadata-lifespans.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('angle-1_metadata-lifespans', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="angle-1_metadata-lifespans" onclick="downloadMd('angle-1_metadata-lifespans', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." <i>Trials</i>. 2018;19:519.</li><li>Drain PK, et al. "Global migration of clinical trials." <i>Nat Rev Drug Discov</i>. 2018;17:765-766.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/geographic-equity/dashboards/angle-1_metadata-lifespans.html">angle-1_metadata-lifespans dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/geographic-equity/code/angle-1-metadata-lifespans.py">angle-1-metadata-lifespans.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for Metadata Lifespans">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/angle-1_metadata-lifespans.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/angle-1-metadata-lifespans.py" download>angle-1-metadata-lifespans.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-19">
-      <div><span class="num">19</span><h3>Topological Networks</h3></div>
+    </article>
+    <article class="paper-card" id="paper-19" aria-labelledby="paper-19-title">
+      <div><span class="num" aria-hidden="true">19</span><h3 id="paper-19-title">Topological Networks</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In network science applied to clinical research, does the collaboration topology of African trials reveal dependency on external partners rather than sovereign local networks? This graph-theory analysis modelled collaborator relationships for 23,873 African trials using ClinicalTrials.gov sponsor and collaborator metadata to construct directed partnership networks. Investigators reported the ratio of South-North to South-South collaboration edges as the primary estimand for research sovereignty. An estimated sixty-five percent of African multi-partner trials involved Northern institutions compared to twelve percent that were exclusively intra-African collaborations. The average African node degree of 0.9 was the highest of any region, but this high connectivity reflected dependency rather than sovereignty since most edges connected to foreign hubs. China (degree 0.35) and India (degree 0.42) showed lower but more sovereign collaboration patterns. These results reveal that Africa&#x27;s apparent integration into global networks masks a structural dependency. Interpretation is limited by the heuristic identification of collaborator origins from institutional names.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/topological-networks.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/topological-networks.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/topological-networks.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('topological-networks', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="topological-networks" onclick="downloadMd('topological-networks', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." <i>Trials</i>. 2018;19:519.</li><li>Drain PK, et al. "Global migration of clinical trials." <i>Nat Rev Drug Discov</i>. 2018;17:765-766.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/geographic-equity/dashboards/topological-networks.html">topological-networks dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/geographic-equity/code/topological-networks.py">topological-networks.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for Topological Networks">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/topological-networks.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/topological-networks.py" download>topological-networks.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-20">
-      <div><span class="num">20</span><h3>Domestic Network Resilience</h3></div>
+    </article>
+    <article class="paper-card" id="paper-20" aria-labelledby="paper-20-title">
+      <div><span class="num" aria-hidden="true">20</span><h3 id="paper-20-title">Domestic Network Resilience</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In research infrastructure design, does the presence of domestic multi-centre trial networks within African nations indicate a viable model for building sovereign research capacity? This audit identified trials operating across multiple sites within a single African nation among 23,873 total registrations using ClinicalTrials.gov location metadata. Investigators reported the domestic multi-site rate as the primary estimand for intra-national research decentralisation. An estimated seven hundred African trials operated via domestic multi-centre networks connecting urban tertiary centres with district and rural facilities within a single country. These domestic grids were most common in South Africa (3,654 trials), Uganda (809), and Kenya (788), reflecting mature national clinical trial networks. The domestic-grid model bypasses capital-city monopoly by distributing research capacity throughout the existing health system hierarchy. These results validate decentralised national networks as the most sustainable path to equitable research access. Interpretation is limited by the difficulty of distinguishing true multi-site networks from multiple investigator-site registrations.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/domestic-grid.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/domestic-grid.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/domestic-grid.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('domestic-grid', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="domestic-grid" onclick="downloadMd('domestic-grid', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." <i>Trials</i>. 2018;19:519.</li><li>Drain PK, et al. "Global migration of clinical trials." <i>Nat Rev Drug Discov</i>. 2018;17:765-766.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/geographic-equity/dashboards/domestic-grid.html">domestic-grid dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/geographic-equity/code/domestic-grid.py">domestic-grid.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for Domestic Network Resilience">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/domestic-grid.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/domestic-grid.py" download>domestic-grid.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
+    </article>
 
     <div class="rules">
       <details>
@@ -603,8 +566,8 @@ The author rewrote, verified, and takes full responsibility for the final conten
     <div class="footer">
       <p><a href="../">Back to All Groups</a></p>
       <p style="margin-top:8px;">
-        <a href="https://www.synthesis-medicine.org/index.php/journal" target="_blank">Synthesis Medicine Journal</a> &middot;
-        <a href="https://github.com/mahmood726-cyber/africa-e156-students" target="_blank">GitHub Repository</a> &middot;
+        <a href="https://www.synthesis-medicine.org/index.php/journal" target="_blank" rel="noopener noreferrer">Synthesis Medicine Journal</a> &middot;
+        <a href="https://github.com/mahmood726-cyber/africa-e156-students" target="_blank" rel="noopener noreferrer">GitHub Repository</a> &middot;
         E156 Micro-Paper Format
       </p>
       <p style="margin-top:8px;">Mahmood Ahmad &middot; ORCID: 0009-0003-7781-4478</p>
@@ -612,161 +575,148 @@ The author rewrote, verified, and takes full responsibility for the final conten
   </div>
 
   <script>
-  const PAPERS = {
+  const PAPER_META = {
   "angle-11_city-dispersion-rates": {
     title: `City Dispersion Rates`,
-    body: `In global clinical research, does the geographic dispersion of trial sites across cities reveal structural inequity between Africa and high-income regions? This cross-sectional audit evaluated 23,873 African and 190,644 United States interventional trials registered on ClinicalTrials.gov through March 2026, mapping site locations to unique cities using location-module metadata. Investigators computed a city-dispersion index as the ratio of unique cities to total trial sites for each region. Africa concentrated 49% of its trials in a single country (Egypt), while the United States distributed research across over 3,000 cities nationwide. The top three African research nations (Egypt, South Africa, Uganda) hosted 68% of continental trials compared to 42% for the top three US states. These findings reveal a severe city-dispersion deficit where African clinical research is geographically imprisoned in a handful of urban centres. Interpretation is limited by the exclusion of trials registered on non-ClinicalTrials.gov registries.`,
     refs: `  1. Drain PK, et al. "Global migration of clinical trials." Nat Rev Drug Discov. 2018;17:765-766.\\n  2. Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." Trials. 2018;19:519.\\n  3. ClinicalTrials.gov API v2 Documentation. U.S. National Library of Medicine. https://clinicaltrials.gov/data-api/about-api`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/geographic-equity/dashboards/angle-11_city-dispersion-rates.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/geographic-equity/code/angle-11-city-dispersion-rates.py`,
+    dashboard: `dashboards/angle-11_city-dispersion-rates.html`,
+    code: `code/angle-11-city-dispersion-rates.py`,
   },
   "angle-12_site-clustering-indices": {
     title: `Site Clustering Indices`,
-    body: `In the spatial analysis of clinical trial infrastructure, does the clustering of research sites indicate structural concentration in African compared to European research networks? This metadata audit evaluated site distribution for 23,873 African and 142,126 European interventional trials using the ClinicalTrials.gov API v2 location module through March 2026. Investigators computed a Herfindahl-Hirschman-style clustering index across trial-hosting cities as the primary estimand for geographic concentration. African trials exhibited extreme clustering with a Gini coefficient of 0.857, indicating that 73% of all activity concentrated in just five countries while 49 nations shared the remainder. European research showed substantially lower clustering with trials distributed across more than twenty high-volume national systems. These findings confirm that African clinical research operates as a geographic oligopoly where a few hub cities monopolise research access for the entire continent. Interpretation is limited by the use of country-level rather than sub-national geographic resolution.`,
     refs: `  1. Siegfried N, et al. "Where does all the money go? An analysis of the global funding for clinical trials." Cochrane Database Syst Rev. 2022.\\n  2. Ndounga Diakou LA, et al. "Mapping of clinical trials in sub-Saharan Africa." Trials. 2022;23:490.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/geographic-equity/dashboards/angle-12_site-clustering-indices.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/geographic-equity/code/angle-12-site-clustering-indices.py`,
+    dashboard: `dashboards/angle-12_site-clustering-indices.html`,
+    code: `code/angle-12-site-clustering-indices.py`,
   },
   "angle-13_rural-reach-coefficients": {
     title: `Rural Reach Coefficients`,
-    body: `In global health equity, does the reach of clinical trial sites into rural populations differ between African and other research ecosystems? This spatial audit estimated rural-reach coefficients for 23,873 African trials using population density data and ClinicalTrials.gov location metadata through March 2026. Investigators defined rural reach as the proportion of trial sites located outside cities exceeding 500,000 population and reported this ratio as the primary estimand. Africa's rural reach coefficient was 0.08, meaning only eight percent of trial sites served the sixty percent of Africans living in rural areas. The United States achieved a rural reach of 0.34 through a network of community hospitals and academic medical centres distributed across 3,143 counties. These results quantify a thirty-fold access gap between rural African and rural American populations seeking clinical trial participation. Interpretation is limited by approximating rurality from city-size thresholds rather than actual geographic distance to nearest trial site.`,
     refs: `  1. Isaakidis P, et al. "Relation between burden of disease and randomised evidence in sub-Saharan Africa." BMJ. 2002;324:702.\\n  2. World Health Organization. "World Health Statistics 2024." WHO, Geneva.\\n  3. Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." Trials. 2018;19:519.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/geographic-equity/dashboards/angle-13_rural-reach-coefficients.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/geographic-equity/code/angle-13-rural-reach-coefficients.py`,
+    dashboard: `dashboards/angle-13_rural-reach-coefficients.html`,
+    code: `code/angle-13-rural-reach-coefficients.py`,
   },
   "angle-14_urban-hub-monopolies": {
     title: `Urban Hub Monopolies`,
-    body: `In clinical research governance, does the concentration of trial activity in capital cities indicate an urban monopoly that excludes secondary cities from research participation? This audit of 23,873 African interventional trials mapped site locations to primary urban centres using ClinicalTrials.gov metadata through March 2026. Investigators computed the capital-city concentration ratio and reported the percentage of national trials located in each country's largest city. Cairo hosted 11,752 of Egypt's trials, Johannesburg-Cape Town hosted the majority of South Africa's 3,654 trials, and Kampala dominated Uganda's 809 trials. Across the continent, capital cities hosted an estimated seventy-one percent of all African trials compared to twenty-three percent in European capitals. These findings demonstrate that African clinical research is functionally a capital-city enterprise where secondary cities and regional centres are structurally excluded from innovation. Interpretation is limited by the granularity of location data which may not distinguish intra-city site distribution.`,
     refs: `  1. Drain PK, et al. "Global migration of clinical trials." Nat Rev Drug Discov. 2018;17:765-766.\\n  2. Lang T, Siribaddana S. "Clinical trials have gone global: is this a good thing?" PLoS Med. 2012;9:e1001228.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/geographic-equity/dashboards/angle-14_urban-hub-monopolies.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/geographic-equity/code/angle-14-urban-hub-monopolies.py`,
+    dashboard: `dashboards/angle-14_urban-hub-monopolies.html`,
+    code: `code/angle-14-urban-hub-monopolies.py`,
   },
   "angle-15_geographic-site-density": {
     title: `Geographic Site Density`,
-    body: `In population health, does the density of clinical trial sites per capita differ meaningfully between African and high-income nations? This analysis divided trial site counts by population for 53 African nations and comparator regions using ClinicalTrials.gov API v2 data through March 2026. Investigators reported trial sites per million population as the primary estimand for research access density. Africa averaged 17.1 trials per million population compared to 578.0 per million in the United States, a 34x disparity. Within Africa, density ranged from 112.5 per million in Egypt down to near zero in Chad, Angola, and Somalia. Per-capita research access is more unequal than per-capita income across African nations, with a Gini coefficient of 0.86 for trial distribution. Interpretation is limited by the use of national population denominators which may overestimate access for geographically large countries.`,
     refs: `  1. Ndounga Diakou LA, et al. "Mapping of clinical trials in sub-Saharan Africa." Trials. 2022;23:490.\\n  2. ClinicalTrials.gov API v2 Documentation. U.S. National Library of Medicine.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/geographic-equity/dashboards/angle-15_geographic-site-density.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/geographic-equity/code/angle-15-geographic-site-density.py`,
+    dashboard: `dashboards/angle-15_geographic-site-density.html`,
+    code: `code/angle-15-geographic-site-density.py`,
   },
   "angle-16_regional-site-fragmentation": {
     title: `Regional Site Fragmentation`,
-    body: `In the governance of African clinical research, does the sub-regional distribution of trials reveal internal fragmentation between the continent's five geographic blocs? This audit categorised 23,873 African trials into North, West, East, Central, and Southern African sub-regions using ClinicalTrials.gov API v2 country metadata. Investigators reported the inter-regional trial share as the primary estimand for continental research equity. North Africa hosted 53% of all African trials driven by Egypt's 11,752 registrations, while Central Africa hosted under two percent despite a combined population exceeding 180 million. East Africa contributed 11% anchored by Uganda, Kenya, and Tanzania. These findings reveal a continent fractured into research-rich coastal zones and a vast interior research desert spanning fifteen landlocked nations. Interpretation is limited by the assignment of multi-national trials to single primary countries.`,
     refs: `  1. Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." Trials. 2018;19:519.\\n  2. Siegfried N, et al. "Where does all the money go?" Cochrane Database Syst Rev. 2022.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/geographic-equity/dashboards/angle-16_regional-site-fragmentation.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/geographic-equity/code/angle-16-regional-site-fragmentation.py`,
+    dashboard: `dashboards/angle-16_regional-site-fragmentation.html`,
+    code: `code/angle-16-regional-site-fragmentation.py`,
   },
   "angle-20_spatial-equity-indices": {
     title: `Spatial Equity Indices`,
-    body: `In global research equity, can a composite spatial equity index capture the multidimensional geographic disadvantage facing African clinical trial participants? This analysis constructed a composite index from four sub-indices for 53 African nations: site density per capita, capital-city concentration, sub-regional balance, and border-integration rate using ClinicalTrials.gov data. Investigators normalised each dimension zero-to-one and reported the composite spatial equity index as the primary estimand. Africa scored 0.18 on the composite index compared to 0.74 for Europe and 0.81 for the United States, indicating a four-fold spatial equity deficit. Only 9 African nations exceeded 20 trials per million population, compared to universal coverage above this threshold across Western Europe. These results demonstrate that spatial access to clinical research in Africa is determined primarily by urban proximity and national wealth rather than disease burden. Interpretation is limited by the equal weighting of sub-indices which may not reflect patient-level priorities.`,
     refs: `  1. Lang T, Siribaddana S. "Clinical trials have gone global: is this a good thing?" PLoS Med. 2012;9:e1001228.\\n  2. Drain PK, et al. "Global migration of clinical trials." Nat Rev Drug Discov. 2018;17:765-766.\\n  3. World Health Organization. "World Health Statistics 2024." WHO, Geneva.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/geographic-equity/dashboards/angle-20_spatial-equity-indices.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/geographic-equity/code/angle-20-spatial-equity-indices.py`,
+    dashboard: `dashboards/angle-20_spatial-equity-indices.html`,
+    code: `code/angle-20-spatial-equity-indices.py`,
   },
   "angle-19_border-integration-rates": {
     title: `Border Integration Rates`,
-    body: `In pan-African research governance, does the rate of cross-border multi-national trials indicate progress toward continental regulatory harmonisation? This audit identified multi-country trials within Africa among 23,873 registrations using ClinicalTrials.gov API v2 collaborator and location fields through March 2026. Investigators reported the pan-African collaboration rate as the percentage of trials spanning two or more African nations. An estimated eight percent of African trials involved sites in multiple countries, compared to thirty-four percent in European multi-national trials. The most common cross-border corridors linked South Africa with Kenya and Uganda, reflecting PEPFAR-funded HIV research networks rather than sovereign African initiatives. The African Medicines Agency framework could accelerate harmonisation, but fewer than one hundred trials currently demonstrate true pan-continental regulatory integration. These findings indicate that Africa's research landscape remains fragmented by colonial-era borders rather than unified by shared disease burdens. Interpretation is limited by the inability to distinguish formal regulatory harmonisation from ad hoc multi-site collaborations.`,
     refs: `  1. African Union. "Africa Health Strategy 2016-2030." AU Commission, Addis Ababa.\\n  2. Ndounga Diakou LA, et al. "Mapping of clinical trials in sub-Saharan Africa." Trials. 2022;23:490.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/geographic-equity/dashboards/angle-19_border-integration-rates.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/geographic-equity/code/angle-19-border-integration-rates.py`,
+    dashboard: `dashboards/angle-19_border-integration-rates.html`,
+    code: `code/angle-19-border-integration-rates.py`,
   },
   "intra-african-disparity": {
     title: `Intra-African Disparity & Regional Fractures`,
-    body: `In the mapping of African clinical research, does the distribution of trials across fifty-four nations reveal a severe internal disparity? This cross-sectional audit evaluated trial volumes for all African countries using the ClinicalTrials.gov API v2 database through March 2026, computing Gini coefficients and concentration ratios. The primary estimand was the intra-continental concentration ratio measured by the share of trials in the top three nations. Egypt alone hosted 11,752 trials (49% of the continental total), followed by South Africa with 3,654 and Uganda with 809 — three countries accounting for 68% of all African research. The Gini coefficient of 0.857 for trial distribution exceeded South Africa's income Gini of 0.63 making it more unequal than the most unequal economy on earth. These findings reveal a research monopoly where three countries dominate and forty nations are functionally invisible. Interpretation is limited by reliance on a single registry which may undercount locally funded studies.`,
     refs: `  1. Isaakidis P, et al. "Relation between burden of disease and randomised evidence in sub-Saharan Africa." BMJ. 2002;324:702.\\n  2. Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." Trials. 2018;19:519.\\n  3. ClinicalTrials.gov API v2 Documentation. U.S. National Library of Medicine.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/geographic-equity/dashboards/intra-african-disparity.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/geographic-equity/code/intra-african-disparity.py`,
+    dashboard: `dashboards/intra-african-disparity.html`,
+    code: `code/intra-african-disparity.py`,
   },
   "site-fragmentation": {
     title: `Site Fragmentation & Token Site Metric`,
-    body: `In clinical research architecture, does the ratio of trial sites to enrolled participants reveal structural differences between African and European research models? This audit evaluated site-to-enrollment ratios for trials in Africa (23,873 trials) and Europe (142,126 trials) using ClinicalTrials.gov API v2 design and location metadata. Investigators reported sites-per-thousand participants as the primary estimand for research infrastructure distribution. African trials average approximately 1.3 sites per thousand participants, compared to an estimated 20 in European networks, a fifteen-fold fragmentation gap. This confirms Africa's mega-site model where individual centres recruit thousands of participants, while Europe distributes enrollment across hundreds of smaller specialised centres. The mega-site model benefits sponsors through rapid enrollment but concentrates all risk and community impact in a few locations. These results highlight a structural divide between Africa's high-throughput validation nodes and Europe's resilient distributed innovation grid. Interpretation is limited by the estimation of enrollment figures from summary rather than individual-level data.`,
     refs: `  1. Drain PK, et al. "Global migration of clinical trials." Nat Rev Drug Discov. 2018;17:765-766.\\n  2. Siegfried N, et al. "Where does all the money go?" Cochrane Database Syst Rev. 2022.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/geographic-equity/dashboards/site-fragmentation.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/geographic-equity/code/site-fragmentation.py`,
+    dashboard: `dashboards/site-fragmentation.html`,
+    code: `code/site-fragmentation.py`,
   },
   "spatial-entropy": {
     title: `Spatial Entropy`,
-    body: `In information theory applied to clinical research, does the Shannon entropy of trial site distribution reveal differences in geographic diversity between African and European research ecosystems? This analysis computed Shannon entropy in bits for the distribution of 23,873 African and 142,126 European trials across national units using ClinicalTrials.gov API v2 data. The normalised entropy (H/H_max) served as the primary estimand for distributional evenness, where 1.0 indicates perfect equality across all countries. Africa's normalised entropy was 0.49, meaning the continent uses only half its maximum possible geographic diversity for trial placement. Europe achieved a normalised entropy of 0.82, reflecting substantially more even distribution across its constituent nations. The information-theoretic deficit of 0.33 quantifies the geographic knowledge loss from Africa's concentrated research model. These findings frame research equity as a measurable information-theoretic property rather than a subjective political judgment. Interpretation is limited by the use of national rather than sub-national geographic units.`,
     refs: `  1. Lang T, Siribaddana S. "Clinical trials have gone global: is this a good thing?" PLoS Med. 2012;9:e1001228.\\n  2. Ndounga Diakou LA, et al. "Mapping of clinical trials in sub-Saharan Africa." Trials. 2022;23:490.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/geographic-equity/dashboards/spatial-entropy.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/geographic-equity/code/spatial-entropy.py`,
+    dashboard: `dashboards/spatial-entropy.html`,
+    code: `code/spatial-entropy.py`,
   },
   "selection-pressure": {
     title: `Selection Pressure & Hardy Hub`,
-    body: `In the ecology of clinical research systems, does resource scarcity create a natural selection effect that makes surviving African trials hardier than those in resource-rich environments? This ecological audit applied survival analysis to 23,873 African and 190,644 United States trials using completion and termination status data from ClinicalTrials.gov API v2. Investigators reported the completion-to-termination ratio as a hardy-hub index measuring research fitness under resource constraint. Africa's completion rate of 95.4% and termination rate of 2.2% yielded a hardiness ratio substantially different from the United States where 81.6% completed but termination rates were proportionally higher. Despite severe resource constraints, African trials that survive initiation demonstrate remarkable resilience in reaching completion. These findings suggest that selection pressure in low-resource environments eliminates marginal trials early, leaving only robust studies that merit completion. Interpretation is limited by the possibility that lower termination rates reflect weaker oversight rather than greater trial fitness.`,
     refs: `  1. Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." Trials. 2018;19:519.\\n  2. Drain PK, et al. "Global migration of clinical trials." Nat Rev Drug Discov. 2018;17:765-766.\\n  3. ClinicalTrials.gov API v2 Documentation. U.S. National Library of Medicine.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/geographic-equity/dashboards/selection-pressure.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/geographic-equity/code/selection-pressure.py`,
+    dashboard: `dashboards/selection-pressure.html`,
+    code: `code/selection-pressure.py`,
   },
   "angle-17_fractal-scaling-of-hubs": {
     title: `Fractal Scaling of Hubs`,
-    body: `In complex systems analysis, does the fractal dimension of African clinical research hubs differ from the self-similar scaling patterns observed in mature European research networks? This audit applied fractal geometry to the hierarchical distribution of 23,873 African and 142,126 European trial sites across geographic scales from district to city to province to nation. Investigators computed the box-counting fractal dimension as the primary estimand for self-similar infrastructure complexity. Africa's estimated fractal dimension of 1.2 indicates sparse, non-uniform coverage at intermediate geographic scales, compared to Europe's estimated 1.7 reflecting near-complete geographic permeation. Research infrastructure in Africa exists at the national-capital level but is absent at the district and provincial levels that serve most patients. The fractal deficit means that geographic scaling of African research follows a step function rather than a smooth gradient. These results frame the infrastructure gap as a geometric property amenable to targeted investment at specific geographic scales. Interpretation is limited by the approximation of fractal dimensions from country-level rather than sub-national data.`,
     refs: `  1. Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." Trials. 2018;19:519.\\n  2. Drain PK, et al. "Global migration of clinical trials." Nat Rev Drug Discov. 2018;17:765-766.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/geographic-equity/dashboards/angle-17_fractal-scaling-of-hubs.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/geographic-equity/code/angle-17-fractal-scaling-of-hubs.py`,
+    dashboard: `dashboards/angle-17_fractal-scaling-of-hubs.html`,
+    code: `code/angle-17-fractal-scaling-of-hubs.py`,
   },
   "angle-18_topological-grid-density": {
     title: `Topological Grid Density`,
-    body: `In network topology, does the density of connections between African clinical trial sites differ from the mesh-like grid topology of European research networks? This analysis modelled trial collaboration networks as graphs where nodes represent research institutions and edges represent co-participation in multi-site trials among 23,873 African registrations. Investigators computed the average node degree and network density as primary estimands for research integration. Africa's collaboration network exhibited a sparse star topology with a few hyper-connected hubs (primarily Egypt and South Africa) and many isolated peripheral nodes with degree one or zero. European networks showed a mesh topology with multiple redundant paths between institutions, providing resilience against single-node failure. The topological gap means that removing a single African hub collapses connectivity for entire sub-regions, while European networks route around disruptions. These findings apply network science to demonstrate that Africa's research system is structurally fragile. Interpretation is limited by the inference of collaboration edges from co-location data.`,
     refs: `  1. Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." Trials. 2018;19:519.\\n  2. Drain PK, et al. "Global migration of clinical trials." Nat Rev Drug Discov. 2018;17:765-766.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/geographic-equity/dashboards/angle-18_topological-grid-density.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/geographic-equity/code/angle-18-topological-grid-density.py`,
+    dashboard: `dashboards/angle-18_topological-grid-density.html`,
+    code: `code/angle-18-topological-grid-density.py`,
   },
   "angle-10_structural-decay": {
     title: `Structural Decay`,
-    body: `In infrastructure dynamics, does African clinical research capacity decay faster than European capacity when external funding is withdrawn? This longitudinal analysis tracked the persistence of 23,873 African trial-hosting institutions over five years using ClinicalTrials.gov registration timestamps to identify sites that transitioned from active to dormant. Investigators reported the infrastructure half-life as the time for fifty percent of newly activated sites to cease hosting new trials. Estimated African site half-life was approximately 2.5 years, meaning half of newly established trial sites became dormant within thirty months of their first registration. European sites showed estimated half-lives exceeding seven years, reflecting institutional permanence independent of individual grant cycles. Africa's rapid structural decay means that capacity-building investments evaporate within one funding cycle, requiring perpetual reinvestment. These results quantify the infrastructure sustainability crisis as a measurable decay constant. Interpretation is limited by the inability to distinguish genuine site closure from registration inactivity.`,
     refs: `  1. Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." Trials. 2018;19:519.\\n  2. Drain PK, et al. "Global migration of clinical trials." Nat Rev Drug Discov. 2018;17:765-766.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/geographic-equity/dashboards/angle-10_structural-decay.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/geographic-equity/code/angle-10-structural-decay.py`,
+    dashboard: `dashboards/angle-10_structural-decay.html`,
+    code: `code/angle-10-structural-decay.py`,
   },
   "angle-4_temporal-persistence": {
     title: `Temporal Persistence`,
-    body: `In the longitudinal analysis of research systems, has Africa's share of global clinical trials changed meaningfully over the past twenty-five years? This time-series audit tracked trial registration volumes across five epochs from 2000 to 2025 using ClinicalTrials.gov first-posted-date metadata for Africa (23,873 total) and comparator regions. Investigators reported the Africa-to-global volume ratio per epoch as the primary estimand for temporal persistence of research inequity. Africa grew from 678 trials in 2000-2005 to 11,599 in 2021-2025, a 17x increase, while the United States grew 2.9x over the same period. Despite this impressive absolute growth, Africa's share of global trials remained below six percent throughout all five epochs. The persistence of a stable volume ratio across two decades suggests a structural equilibrium maintained by systemic forces rather than a transient gap. These findings indicate that proportional equity requires policy intervention beyond organic growth. Interpretation is limited by retrospective registration of older trials.`,
     refs: `  1. Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." Trials. 2018;19:519.\\n  2. Drain PK, et al. "Global migration of clinical trials." Nat Rev Drug Discov. 2018;17:765-766.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/geographic-equity/dashboards/angle-4_temporal-persistence.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/geographic-equity/code/angle-4-temporal-persistence.py`,
+    dashboard: `dashboards/angle-4_temporal-persistence.html`,
+    code: `code/angle-4-temporal-persistence.py`,
   },
   "angle-6_registration-latency": {
     title: `Registration Latency`,
-    body: `In research transparency, does the time delay between trial initiation and public registration differ between African and high-income country trials? This analysis estimated registration latency from start-date-to-first-posted-date intervals for a sample of trials from Africa (23,873 total) and the United States (190,644 total) on ClinicalTrials.gov. Investigators reported median registration latency in days as the primary estimand for transparency compliance. African trials showed estimated median registration latency approximately forty percent longer than United States trials, with substantial variation across the 53 active African nations. Prospective registration — registering before enrolling the first participant as required by ICMJE — was achieved in an estimated forty-two percent of African versus eighty-two percent of American trials. Late registration creates windows for selective outcome reporting that undermine the integrity of the evidence base. These findings identify registration latency as a measurable transparency deficit. Interpretation is limited by the use of posted-date rather than verified enrollment-start date.`,
     refs: `  1. Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." Trials. 2018;19:519.\\n  2. Drain PK, et al. "Global migration of clinical trials." Nat Rev Drug Discov. 2018;17:765-766.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/geographic-equity/dashboards/angle-6_registration-latency.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/geographic-equity/code/angle-6-registration-latency.py`,
+    dashboard: `dashboards/angle-6_registration-latency.html`,
+    code: `code/angle-6-registration-latency.py`,
   },
   "angle-1_metadata-lifespans": {
     title: `Metadata Lifespans`,
-    body: `In data quality assessment, does the rate at which trial records become stale differ between African and European registrations on ClinicalTrials.gov? This audit evaluated 23,873 African and 142,126 European trial records for the interval between last-update-date and current date to estimate metadata staleness rates. Investigators reported the percentage of records with no updates in over two years as the primary estimand for administrative maintenance quality. An estimated sixty-five percent of African trials had stale metadata versus eighteen percent of European trials, a 3.6-fold gap in administrative currency. Among completed African trials (13,918 total), approximately thirty percent had not been updated since completion, leaving results status and outcome data unverified. Stale metadata means that systematic reviews and gap analyses relying on registry data underestimate or mischaracterise Africa's actual research landscape. These results quantify metadata maintenance as a measurable dimension of research infrastructure quality. Interpretation is limited by the use of last-update timestamp rather than content-change verification.`,
     refs: `  1. Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." Trials. 2018;19:519.\\n  2. Drain PK, et al. "Global migration of clinical trials." Nat Rev Drug Discov. 2018;17:765-766.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/geographic-equity/dashboards/angle-1_metadata-lifespans.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/geographic-equity/code/angle-1-metadata-lifespans.py`,
+    dashboard: `dashboards/angle-1_metadata-lifespans.html`,
+    code: `code/angle-1-metadata-lifespans.py`,
   },
   "topological-networks": {
     title: `Topological Networks`,
-    body: `In network science applied to clinical research, does the collaboration topology of African trials reveal dependency on external partners rather than sovereign local networks? This graph-theory analysis modelled collaborator relationships for 23,873 African trials using ClinicalTrials.gov sponsor and collaborator metadata to construct directed partnership networks. Investigators reported the ratio of South-North to South-South collaboration edges as the primary estimand for research sovereignty. An estimated sixty-five percent of African multi-partner trials involved Northern institutions compared to twelve percent that were exclusively intra-African collaborations. The average African node degree of 0.9 was the highest of any region, but this high connectivity reflected dependency rather than sovereignty since most edges connected to foreign hubs. China (degree 0.35) and India (degree 0.42) showed lower but more sovereign collaboration patterns. These results reveal that Africa's apparent integration into global networks masks a structural dependency. Interpretation is limited by the heuristic identification of collaborator origins from institutional names.`,
     refs: `  1. Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." Trials. 2018;19:519.\\n  2. Drain PK, et al. "Global migration of clinical trials." Nat Rev Drug Discov. 2018;17:765-766.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/geographic-equity/dashboards/topological-networks.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/geographic-equity/code/topological-networks.py`,
+    dashboard: `dashboards/topological-networks.html`,
+    code: `code/topological-networks.py`,
   },
   "domestic-grid": {
     title: `Domestic Network Resilience`,
-    body: `In research infrastructure design, does the presence of domestic multi-centre trial networks within African nations indicate a viable model for building sovereign research capacity? This audit identified trials operating across multiple sites within a single African nation among 23,873 total registrations using ClinicalTrials.gov location metadata. Investigators reported the domestic multi-site rate as the primary estimand for intra-national research decentralisation. An estimated seven hundred African trials operated via domestic multi-centre networks connecting urban tertiary centres with district and rural facilities within a single country. These domestic grids were most common in South Africa (3,654 trials), Uganda (809), and Kenya (788), reflecting mature national clinical trial networks. The domestic-grid model bypasses capital-city monopoly by distributing research capacity throughout the existing health system hierarchy. These results validate decentralised national networks as the most sustainable path to equitable research access. Interpretation is limited by the difficulty of distinguishing true multi-site networks from multiple investigator-site registrations.`,
     refs: `  1. Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." Trials. 2018;19:519.\\n  2. Drain PK, et al. "Global migration of clinical trials." Nat Rev Drug Discov. 2018;17:765-766.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/geographic-equity/dashboards/domestic-grid.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/geographic-equity/code/domestic-grid.py`,
+    dashboard: `dashboards/domestic-grid.html`,
+    code: `code/domestic-grid.py`,
   },
 };
+  const SLUG_TO_ID = {"angle-11_city-dispersion-rates": 1, "angle-12_site-clustering-indices": 2, "angle-13_rural-reach-coefficients": 3, "angle-14_urban-hub-monopolies": 4, "angle-15_geographic-site-density": 5, "angle-16_regional-site-fragmentation": 6, "angle-20_spatial-equity-indices": 7, "angle-19_border-integration-rates": 8, "intra-african-disparity": 9, "site-fragmentation": 10, "spatial-entropy": 11, "selection-pressure": 12, "angle-17_fractal-scaling-of-hubs": 13, "angle-18_topological-grid-density": 14, "angle-10_structural-decay": 15, "angle-4_temporal-persistence": 16, "angle-6_registration-latency": 17, "angle-1_metadata-lifespans": 18, "topological-networks": 19, "domestic-grid": 20};
 
   function downloadMd(slug, el) {
-    const p = PAPERS[slug];
-    if (!p) return;
+    const p = PAPER_META[slug];
+    if (!p) { console.warn("Paper not found:", slug); return; }
+    const cardId = SLUG_TO_ID[slug];
+    const card = document.getElementById("paper-" + cardId);
+    if (!card) { console.warn("Card not found:", cardId); return; }
+    const bodyEl = card.querySelector(".paper-body");
+    const body = bodyEl ? bodyEl.textContent.trim() : "";
+    if (!body) { console.warn("Body empty for:", slug); return; }
     let md = "# " + p.title + "\n\n";
-    md += p.body + "\n\n";
+    md += body + "\n\n";
     md += "## References\n\n" + p.refs + "\n\n";
     md += "## Note Block\n\n";
     md += "- Type: research\n";
     md += "- App: " + p.dashboard + "\n";
     md += "- Code: " + p.code + "\n";
     md += "- Data: ClinicalTrials.gov API v2\n";
-    md += "- Date: 2026-04-03\n";
+    md += "- Date: 2026-04-05\n";
     const blob = new Blob([md], { type: "text/markdown" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");

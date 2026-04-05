@@ -100,8 +100,11 @@ a:hover { text-decoration: underline; }
   background: #f4f1ea; border-radius: 8px; padding: 14px 18px;
   margin-top: 16px; font-size: 13px; font-family: var(--mono);
 }
-.note-block dt { color: var(--accent); font-weight: 700; display: inline; }
-.note-block dd { display: inline; margin: 0 16px 0 4px; color: var(--muted); }
+.note-block .note-row { display: flex; gap: 8px; margin: 4px 0; font-size: 13px; align-items: baseline; }
+.note-block .note-key { color: var(--accent); font-weight: 700; min-width: 48px; }
+.note-block .note-val { color: var(--muted); }
+button.btn { cursor: pointer; font-family: var(--serif); }
+button.btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
 
 /* E156 rules */
 .rules {
@@ -132,7 +135,7 @@ a:hover { text-decoration: underline; }
 <body>
   <div class="page">
     <div class="masthead">
-      <div class="eyebrow">University of Uganda &middot; Africa E156 Series</div>
+      <div class="eyebrow">Makerere University &middot; Africa E156 Series</div>
       <h1>Governance, Justice &amp; Sovereignty</h1>
       <p class="desc">Who controls clinical research in Africa? These 20 papers examine authorship gaps, corporate capture, data sovereignty, knowledge extraction, placebo ethics, and the structural power dynamics that shape African research.</p>
     </div>
@@ -146,416 +149,376 @@ a:hover { text-decoration: underline; }
         <li><strong>Rewrite the paper in your own voice.</strong> Keep the 7-sentence, 156-word E156 format. Add your own clinical context and Uganda-specific insights.</li>
         <li><strong>Add 2-3 references</strong> &mdash; verify the suggested ones below, and add PubMed or WHO sources you find relevant.</li>
         <li><strong>Include the GitHub links</strong> (dashboard + code) in your paper's Outside Note Block when submitting.</li>
-        <li><strong>Submit</strong> to: <a href="https://www.synthesis-medicine.org/index.php/journal" target="_blank">Synthesis Medicine Journal</a></li>
+        <li><strong>Submit</strong> to: <a href="https://www.synthesis-medicine.org/index.php/journal" target="_blank" rel="noopener noreferrer">Synthesis Medicine Journal</a></li>
       </ol>
       <div class="warning">
         <strong>Important:</strong> These papers are AI-generated drafts. The journal will check for originality.
         You must rewrite each paper substantially in your own words. Your perspective as a Ugandan researcher is valuable &mdash; add local context, verify the data, and make the paper yours.
-        Each of the 12 papers below can be submitted as an independent publication.
+        Each of the 20 papers below can be submitted as an independent publication.
       </div>
     </div>
 
     
-    <div class="paper-card" id="paper-1">
-      <div><span class="num">1</span><h3>Author Sovereignty Gap</h3></div>
+    <article class="paper-card" id="paper-1" aria-labelledby="paper-1-title">
+      <div><span class="num" aria-hidden="true">1</span><h3 id="paper-1-title">Author Sovereignty Gap</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In research governance, does the distribution of authorship positions on publications from African clinical trials indicate a sovereignty gap in intellectual leadership? This bibliometric analysis cross-referenced 23,873 African ClinicalTrials.gov registrations with publication records to evaluate first-author and last-author nationality through March 2026. Investigators reported the proportion of non-African first authors as the primary estimand for intellectual sovereignty. An estimated sixty percent of publications from African trials had non-African first authors, while the senior author position was even more dominated by Northern researchers from institutions in the United States and United Kingdom. The author sovereignty gap was most pronounced in industry-sponsored trials where African researchers frequently occupied middle-author positions reflecting data-collection rather than intellectual-leadership roles. South Africa and Kenya showed the highest rates of African first authorship, suggesting that local institutional strength can partially offset the structural disadvantage. These findings quantify the intellectual extraction pipeline as a measurable governance deficit. Interpretation is limited by the incomplete linkage between trial registrations and resulting publications.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/author-sovereignty-gap.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/author-sovereignty-gap.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/author-sovereignty-gap.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('author-sovereignty-gap', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="author-sovereignty-gap" onclick="downloadMd('author-sovereignty-gap', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>Hedt-Gauthier BL, et al. "Stuck in the middle: authorship in collaborative health research in Africa." <i>BMJ Glob Health</i>. 2019;4:e001853.</li><li>Mbaye R, et al. "Who is telling the stories of Africa?" <i>BMJ Glob Health</i>. 2019;4:e001855.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/author-sovereignty-gap.html">author-sovereignty-gap dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/governance-justice/code/author-sovereignty-gap.py">author-sovereignty-gap.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for Author Sovereignty Gap">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/author-sovereignty-gap.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/author-sovereignty-gap.py" download>author-sovereignty-gap.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-2">
-      <div><span class="num">2</span><h3>Corporate Capture</h3></div>
+    </article>
+    <article class="paper-card" id="paper-2" aria-labelledby="paper-2-title">
+      <div><span class="num" aria-hidden="true">2</span><h3 id="paper-2-title">Corporate Capture</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In research economics, does the concentration of pharmaceutical sponsorship indicate corporate capture of Africa&#x27;s clinical trial landscape? This audit evaluated lead sponsor identity for 23,873 African interventional trials using ClinicalTrials.gov sponsor metadata through March 2026. Investigators reported the top-five sponsor concentration ratio as the primary estimand for corporate influence. The five largest global pharmaceutical companies sponsored an estimated twenty-two percent of African trials, while foreign sponsors collectively accounted for over sixty-five percent of all registrations. Local African pharmaceutical industry sponsored fewer than three percent of trials, creating a total dependency on foreign corporate agendas for clinical innovation priorities. Placebo-controlled trials numbered 3,324 in Africa (14% of total) versus 33,931 in the United States (18%). These findings demonstrate that Africa&#x27;s research agenda is set in corporate boardrooms rather than African public health institutions. Interpretation is limited by the classification of academic-industry partnerships as single-sponsor entries.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/corporate-capture.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/corporate-capture.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/corporate-capture.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('corporate-capture', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="corporate-capture" onclick="downloadMd('corporate-capture', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>Lang T, Siribaddana S. "Clinical trials have gone global: is this a good thing?" <i>PLoS Med</i>. 2012;9:e1001228.</li><li>Drain PK, et al. "Global migration of clinical trials." <i>Nat Rev Drug Discov</i>. 2018;17:765-766.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/corporate-capture.html">corporate-capture dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/governance-justice/code/corporate-capture.py">corporate-capture.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for Corporate Capture">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/corporate-capture.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/corporate-capture.py" download>corporate-capture.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-3">
-      <div><span class="num">3</span><h3>Data Sovereignty &amp; Mandatory Transparency</h3></div>
+    </article>
+    <article class="paper-card" id="paper-3" aria-labelledby="paper-3-title">
+      <div><span class="num" aria-hidden="true">3</span><h3 id="paper-3-title">Data Sovereignty &amp; Mandatory Transparency</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In information governance, does the control and accessibility of clinical trial data generated in Africa meet standards for data sovereignty? This audit evaluated 23,873 African trials on ClinicalTrials.gov for results reporting, data sharing plans, and institutional data control indicators through March 2026. Investigators reported the results-reporting rate and data-sharing compliance as primary estimands for data sovereignty. Among 13,918 completed African trials, an estimated thirty percent had not reported results on the registry, compared to approximately twenty percent in the United States. Fewer than ten percent of African trials included explicit individual participant data sharing plans compared to fifteen percent globally. Data generated by African participants is overwhelmingly stored and analysed at Northern institutions, with local researchers often lacking access to datasets from trials conducted in their own communities. These findings reveal a data sovereignty crisis where Africa exports raw data and imports finished publications. Interpretation is limited by voluntary disclosure of data-sharing intentions.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/data-sovereignty.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/data-sovereignty.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/data-sovereignty.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('data-sovereignty', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="data-sovereignty" onclick="downloadMd('data-sovereignty', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>de Vries J, et al. ""; returning"; individual research results in Africa." <i>Nat Genet</i>. 2012;44:370-374.</li><li>African Union. "Africa Health Strategy 2016-2030." AU Commission, Addis Ababa.</li><li>ClinicalTrials.gov API v2 Documentation. U.S. National Library of Medicine.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/data-sovereignty.html">data-sovereignty dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/governance-justice/code/data-sovereignty.py">data-sovereignty.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for Data Sovereignty &amp; Mandatory Transparency">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/data-sovereignty.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/data-sovereignty.py" download>data-sovereignty.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-4">
-      <div><span class="num">4</span><h3>Intellectual Capital &amp; Leadership Gaps</h3></div>
+    </article>
+    <article class="paper-card" id="paper-4" aria-labelledby="paper-4-title">
+      <div><span class="num" aria-hidden="true">4</span><h3 id="paper-4-title">Intellectual Capital &amp; Leadership Gaps</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In human capital economics, does the distribution of principal investigators on African trials reveal a leadership deficit that perpetuates dependency on Northern institutions? This audit cross-referenced investigator metadata for 23,873 African trials on ClinicalTrials.gov with institutional affiliations through March 2026. Investigators reported the proportion of foreign-affiliated principal investigators as the primary estimand for intellectual capital sovereignty. An estimated fifty-five percent of principal investigators on African trials were affiliated with Northern institutions, while twenty-five percent were African researchers trained abroad and only twenty percent were locally trained. The 1,793 HIV trials showed the highest proportion of African PIs reflecting decades of PEPFAR-funded local training. Brain drain compounded the leadership deficit as Africa&#x27;s best-trained researchers were recruited by Northern institutions, depleting the intellectual capital needed for sovereign research systems. These findings quantify the human capital pipeline as a measurable bottleneck for research sovereignty. Interpretation is limited by incomplete reporting of investigator affiliations in trial registrations.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/intellectual-capital.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/intellectual-capital.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/intellectual-capital.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('intellectual-capital', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="intellectual-capital" onclick="downloadMd('intellectual-capital', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>Hedt-Gauthier BL, et al. "Stuck in the middle." <i>BMJ Glob Health</i>. 2019;4:e001853.</li><li>Mbaye R, et al. "Who is telling the stories of Africa?" <i>BMJ Glob Health</i>. 2019;4:e001855.</li><li>Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." <i>Trials</i>. 2018;19:519.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/intellectual-capital.html">intellectual-capital dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/governance-justice/code/intellectual-capital.py">intellectual-capital.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for Intellectual Capital &amp; Leadership Gaps">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/intellectual-capital.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/intellectual-capital.py" download>intellectual-capital.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-5">
-      <div><span class="num">5</span><h3>Knowledge Extraction &amp; Sharing Gap</h3></div>
+    </article>
+    <article class="paper-card" id="paper-5" aria-labelledby="paper-5-title">
+      <div><span class="num" aria-hidden="true">5</span><h3 id="paper-5-title">Knowledge Extraction &amp; Sharing Gap</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In the political economy of research, does the directional flow of knowledge from African trial sites to Northern publications constitute a pattern of intellectual extraction? This analysis tracked the knowledge value chain from 23,873 African trial registrations through publication, citation, and clinical implementation using ClinicalTrials.gov and bibliometric cross-referencing. Investigators reported the knowledge-return ratio as the fraction of African-generated evidence applied locally. An estimated seventy-two percent of data from African trials was analysed at Northern institutions, sixty-five percent of resulting publications were behind paywalls inaccessible to African researchers, and only eighteen percent of findings were applied in local clinical practice. Africa generated 23,873 trial registrations but the intellectual capital they produced — drug approvals, guideline changes, career advancement — accrued primarily to Northern institutions and pharmaceutical companies. These findings identify a knowledge extraction pipeline operating in parallel with biological and economic extraction. Interpretation is limited by the indirect estimation of knowledge flows from publication metadata.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/knowledge-extraction.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/knowledge-extraction.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/knowledge-extraction.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('knowledge-extraction', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="knowledge-extraction" onclick="downloadMd('knowledge-extraction', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>Mbaye R, et al. "Who is telling the stories of Africa?" <i>BMJ Glob Health</i>. 2019;4:e001855.</li><li>Benatar SR. "Reflections and recommendations on research ethics in developing countries." <i>Soc Sci Med</i>. 2002;54:1131-1141.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/knowledge-extraction.html">knowledge-extraction dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/governance-justice/code/knowledge-extraction.py">knowledge-extraction.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for Knowledge Extraction &amp; Sharing Gap">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/knowledge-extraction.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/knowledge-extraction.py" download>knowledge-extraction.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-6">
-      <div><span class="num">6</span><h3>Placebo Ethics Audit</h3></div>
+    </article>
+    <article class="paper-card" id="paper-6" aria-labelledby="paper-6-title">
+      <div><span class="num" aria-hidden="true">6</span><h3 id="paper-6-title">Placebo Ethics Audit</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
-      <div class="paper-body">In research ethics, does the use of placebo controls in African trials comply with the Declaration of Helsinki requirement to test against best proven interventions? This audit identified 3,324 placebo-associated African trials among 23,873 total registrations on ClinicalTrials.gov through March 2026. Investigators reported the placebo utilisation rate as the primary estimand for Helsinki Article 33 compliance. Africa&#x27;s placebo rate of 14% exceeded the United States rate of 18%, with the disparity concentrated in conditions where proven treatments exist including HIV (1,793 trials), malaria (531 trials), and hypertension (497 trials). Double-blinded trials numbered 2,453 in Africa versus 21,421 in the United States. These findings expose a systematic double standard where placebo arms unacceptable in American trials are routinely deployed at African research sites. Interpretation is limited by keyword-based classification which cannot distinguish add-on designs from pure placebo comparisons.</div>
+      <div class="paper-body">In research ethics, does the use of placebo controls in African trials raise concerns under the Declaration of Helsinki requirement to test against best proven interventions? This audit identified 3,324 placebo-associated African trials among 23,873 total registrations on ClinicalTrials.gov through March 2026, comparing placebo utilisation rates across regions. Africa&#x27;s aggregate placebo rate of 13.9% was lower than the United States rate of 17.8%, but this aggregate figure masks critical differences in conditions where Africa lacks standard-of-care alternatives including HIV (1,793 trials), malaria (531 trials), and hypertension (497 trials). The ethical concern is not the rate but the context: placebo controls in African settings often reflect absent healthcare infrastructure rather than genuine equipoise. Double-blinded trials numbered 2,453 in Africa versus 21,421 in the United States, confirming that blinding standards track regulatory requirements rather than local ethical capacity. These findings highlight that placebo ethics in Africa requires context-specific assessment beyond simple rate comparisons. Interpretation is limited by keyword-based classification which cannot distinguish add-on designs from pure placebo comparisons.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/placebo-ethics.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/placebo-ethics.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/placebo-ethics.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('placebo-ethics', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="placebo-ethics" onclick="downloadMd('placebo-ethics', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>World Medical Association. "Declaration of Helsinki." JAMA. 2013;310:2191-2194.</li><li>Participants in the 2001 Conference. "Moral standards for research in developing countries." <i>Hastings Cent Rep</i>. 2004;34:17-27.</li><li>Benatar SR. "Reflections on research ethics in developing countries." <i>Soc Sci Med</i>. 2002;54:1131-1141.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/placebo-ethics.html">placebo-ethics dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/governance-justice/code/placebo-ethics.py">placebo-ethics.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for Placebo Ethics Audit">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/placebo-ethics.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/placebo-ethics.py" download>placebo-ethics.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-7">
-      <div><span class="num">7</span><h3>Sponsor Sovereignty</h3></div>
+    </article>
+    <article class="paper-card" id="paper-7" aria-labelledby="paper-7-title">
+      <div><span class="num" aria-hidden="true">7</span><h3 id="paper-7-title">Sponsor Sovereignty</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In research funding governance, does the source of trial sponsorship determine the degree of scientific sovereignty available to African research institutions? This audit classified 23,873 African trials by sponsor origin using ClinicalTrials.gov lead-sponsor metadata through March 2026. Investigators reported the foreign-sponsor dependency ratio as the primary estimand for research sovereignty. Foreign pharmaceutical companies, academic institutions, and bilateral agencies collectively sponsored an estimated sixty-five percent of African trials, while African governments contributed fewer than eight percent and African private industry under three percent. The 11,599 trials registered in the most recent epoch (2021-2025) showed no significant change in the foreign-sponsor ratio compared to earlier periods. Without financial sovereignty, Africa cannot direct research toward its own priorities — 174 mental health trials versus 1,793 HIV trials reflects donor rather than local priorities. These findings demonstrate that funding dependency structurally constrains Africa&#x27;s research agenda. Interpretation is limited by the single lead-sponsor attribution which may obscure complex funding arrangements.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/sponsor-sovereignty.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/sponsor-sovereignty.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/sponsor-sovereignty.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('sponsor-sovereignty', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="sponsor-sovereignty" onclick="downloadMd('sponsor-sovereignty', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>Lang T, Siribaddana S. "Clinical trials have gone global: is this a good thing?" <i>PLoS Med</i>. 2012;9:e1001228.</li><li>Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." <i>Trials</i>. 2018;19:519.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/sponsor-sovereignty.html">sponsor-sovereignty dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/governance-justice/code/sponsor-sovereignty.py">sponsor-sovereignty.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for Sponsor Sovereignty">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/sponsor-sovereignty.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/sponsor-sovereignty.py" download>sponsor-sovereignty.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-8">
-      <div><span class="num">8</span><h3>The Economic Value of African Altruism</h3></div>
+    </article>
+    <article class="paper-card" id="paper-8" aria-labelledby="paper-8-title">
+      <div><span class="num" aria-hidden="true">8</span><h3 id="paper-8-title">The Economic Value of African Altruism</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In health economics, does the cost differential for clinical trial participation create an economic value transfer from African communities to Northern pharmaceutical companies? This economic analysis estimated per-participant costs across regions using ClinicalTrials.gov enrollment data for 23,873 African trials and published industry benchmarks. Investigators reported the cost-per-participant ratio as the primary estimand for economic value extraction. Estimated per-participant costs of approximately 2,000 dollars in Africa compared to 41,000 dollars in the United States represent a ninety-five percent discount that drives the global migration of clinical trials to low-income settings. African communities provide participants, disease burden, and rapid enrollment — Africa&#x27;s 2,313 currently recruiting trials demonstrate high recruitment throughput — while resulting drugs are priced for Western markets at costs exceeding African per-capita health expenditure. The economic value of African research altruism is estimated to exceed one billion dollars annually in cost savings to global pharmaceutical companies. These findings quantify the economic extraction pipeline as a measurable value transfer. Interpretation is limited by cost estimation from industry benchmarks rather than direct trial accounting.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/value-transfer.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/value-transfer.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/value-transfer.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('value-transfer', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="value-transfer" onclick="downloadMd('value-transfer', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>Petryna A. <i>When Experiments Travel: Clinical Trials and the Global Search for Human Subjects</i>. Princeton University Press; 2009.</li><li>Drain PK, et al. "Global migration of clinical trials." <i>Nat Rev Drug Discov</i>. 2018;17:765-766.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/value-transfer.html">value-transfer dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/governance-justice/code/value-transfer.py">value-transfer.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for The Economic Value of African Altruism">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/value-transfer.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/value-transfer.py" download>value-transfer.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-9">
-      <div><span class="num">9</span><h3>Altruism Efficiency &amp; Health Expenditure</h3></div>
+    </article>
+    <article class="paper-card" id="paper-9" aria-labelledby="paper-9-title">
+      <div><span class="num" aria-hidden="true">9</span><h3 id="paper-9-title">Altruism Efficiency &amp; Health Expenditure</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In development economics, does the ratio of clinical trial participation to health expenditure reveal that Africa provides the highest research altruism per health dollar invested globally? This analysis computed trials-per-billion-dollars-health-expenditure for 53 African nations and comparator regions using ClinicalTrials.gov data and World Bank health expenditure figures. Africa&#x27;s per-capita health expenditure of approximately 41 dollars generates 17.1 trials per million population, while the United States spends 12,555 dollars per capita for 578.0 trials per million. Normalising trials by health expenditure, Africa&#x27;s research altruism ratio exceeds the United States by approximately thirty-fold, meaning African communities contribute vastly more research participation relative to the healthcare they receive. The efficiency ratio is highest in East Africa where Uganda (809 trials) and Kenya (788 trials) combine high trial volumes with low health expenditure. These findings reframe clinical trial participation as an uncompensated economic contribution from the world&#x27;s poorest populations. Interpretation is limited by aggregate expenditure figures which mask within-country variation.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/altruism-efficiency.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/altruism-efficiency.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/altruism-efficiency.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('altruism-efficiency', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="altruism-efficiency" onclick="downloadMd('altruism-efficiency', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>Petryna A. <i>When Experiments Travel</i>. Princeton University Press; 2009.</li><li>World Health Organization. "World Health Statistics 2024." WHO, Geneva.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/altruism-efficiency.html">altruism-efficiency dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/governance-justice/code/altruism-efficiency.py">altruism-efficiency.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for Altruism Efficiency &amp; Health Expenditure">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/altruism-efficiency.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/altruism-efficiency.py" download>altruism-efficiency.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-10">
-      <div><span class="num">10</span><h3>WHO Alignment &amp; Disease Burden Gaps</h3></div>
+    </article>
+    <article class="paper-card" id="paper-10" aria-labelledby="paper-10-title">
+      <div><span class="num" aria-hidden="true">10</span><h3 id="paper-10-title">WHO Alignment &amp; Disease Burden Gaps</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In global health priority-setting, does Africa&#x27;s clinical trial portfolio align with the WHO priority disease list and Sustainable Development Goal health targets? This alignment analysis compared condition-specific trial volumes across 23,873 African registrations on ClinicalTrials.gov to WHO essential medicines and SDG 3 priority conditions. Africa&#x27;s trial portfolio was heavily skewed toward HIV (1,793 trials), malaria (531 trials), and tuberculosis (489 trials) while neglecting WHO-designated priorities including mental health (174 trials), neglected tropical diseases (12 trials), and epilepsy (73 trials). Non-communicable diseases — cardiovascular (1,426), cancer (2,182), and diabetes (760) — received research attention misaligned with their growing contribution to African mortality. Only malaria and tuberculosis research showed Africa exceeding the global average trial density. These findings demonstrate systematic misalignment between Africa&#x27;s research portfolio and both WHO priorities and the epidemiological transition. Interpretation is limited by the mapping between ClinicalTrials.gov condition categories and WHO priority classifications.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/who-alignment.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/who-alignment.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/who-alignment.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('who-alignment', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="who-alignment" onclick="downloadMd('who-alignment', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>GBD 2019 Diseases and Injuries Collaborators. "Global burden of 369 diseases." <i>Lancet</i>. 2020;396:1204-1222.</li><li>World Health Organization. "World Health Statistics 2024." WHO, Geneva.</li><li>ClinicalTrials.gov API v2 Documentation. U.S. National Library of Medicine.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/who-alignment.html">who-alignment dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/governance-justice/code/who-alignment.py">who-alignment.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for WHO Alignment &amp; Disease Burden Gaps">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/who-alignment.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/who-alignment.py" download>who-alignment.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-11">
-      <div><span class="num">11</span><h3>Structural Inequity</h3></div>
+    </article>
+    <article class="paper-card" id="paper-11" aria-labelledby="paper-11-title">
+      <div><span class="num" aria-hidden="true">11</span><h3 id="paper-11-title">Structural Inequity</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In political economy, does the architecture of global clinical research create structural barriers that systematically disadvantage African participation regardless of individual country effort? This structural analysis evaluated 23,873 African trials against seventeen indicators of research infrastructure maturity including regulatory capacity, institutional density, and funding diversity using ClinicalTrials.gov metadata. Africa scored an estimated fourteen percent on a composite research infrastructure index compared to ninety-two percent for Europe and ninety-five percent for North America. The structural deficit was self-reinforcing: low infrastructure attracted foreign-sponsored validation trials that built minimal local capacity, which perpetuated low infrastructure scores. Even Africa&#x27;s fastest-growing research nation grew from 678 to 11,599 trials without meaningfully changing its structural position relative to high-income comparators. These findings demonstrate that research inequity is architectural rather than incidental and requires structural reform rather than incremental investment. Interpretation is limited by the composite index methodology which assigns equal weight to heterogeneous infrastructure dimensions.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/structural-inequity.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/structural-inequity.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/structural-inequity.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('structural-inequity', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="structural-inequity" onclick="downloadMd('structural-inequity', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>Isaakidis P, et al. "Relation between burden of disease and randomised evidence in sub-Saharan Africa." <i>BMJ</i>. 2002;324:702.</li><li>Lang T, Siribaddana S. "Clinical trials have gone global: is this a good thing?" <i>PLoS Med</i>. 2012;9:e1001228.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/structural-inequity.html">structural-inequity dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/governance-justice/code/structural-inequity.py">structural-inequity.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for Structural Inequity">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/structural-inequity.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/structural-inequity.py" download>structural-inequity.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-12">
-      <div><span class="num">12</span><h3>Unified Field Theory of Research Inequity</h3></div>
+    </article>
+    <article class="paper-card" id="paper-12" aria-labelledby="paper-12-title">
+      <div><span class="num" aria-hidden="true">12</span><h3 id="paper-12-title">Unified Field Theory of Research Inequity</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In meta-research synthesis, does the convergence of multiple analytical dimensions into a unified framework reveal the magnitude of clinical research inequity facing Africa? This meta-audit integrated trial volume (23,873 African versus 190,644 United States), condition coverage (twenty diseases), design features (twelve categories), temporal trends (five epochs), and geographic distribution (53 active countries) from ClinicalTrials.gov into a composite inequity score. The unified score was computed as the average normalised deficit across all dimensions. Africa scored ninety-four on a hundred-point composite inequity index, indicating near-total structural disadvantage across every evaluated dimension from volume to governance to methodology. The Gini coefficient of 0.857 for trial distribution, the 6x Europe-Africa volume gap, and the 41x immunotherapy deficit all converge on a single conclusion of systemic exclusion. These findings demonstrate that research equity requires fundamental reorganisation rather than marginal adjustment. Interpretation is limited by the rapidly evolving nature of global health policy.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/unified-theory.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/unified-theory.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/unified-theory.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('unified-theory', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="unified-theory" onclick="downloadMd('unified-theory', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." <i>Trials</i>. 2018;19:519.</li><li>Ndounga Diakou LA, et al. "Mapping of clinical trials in sub-Saharan Africa." <i>Trials</i>. 2022;23:490.</li><li>Drain PK, et al. "Global migration of clinical trials." <i>Nat Rev Drug Discov</i>. 2018;17:765-766.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/unified-theory.html">unified-theory dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/governance-justice/code/unified-theory.py">unified-theory.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for Unified Field Theory of Research Inequity">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/unified-theory.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/unified-theory.py" download>unified-theory.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-13">
-      <div><span class="num">13</span><h3>Global Hegemony &amp; Planetary Research Monopolies</h3></div>
+    </article>
+    <article class="paper-card" id="paper-13" aria-labelledby="paper-13-title">
+      <div><span class="num" aria-hidden="true">13</span><h3 id="paper-13-title">Global Hegemony &amp; Planetary Research Monopolies</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In geopolitical analysis, does the distribution of clinical trials across sovereign nations indicate a monopolistic concentration of scientific infrastructure at the planetary scale? This audit compared total trial volumes across major regions: United States (190,644), Europe (142,126), China (49,763), and Africa (23,873) using ClinicalTrials.gov data through March 2026. The top ten research nations controlled an estimated eighty percent of the global trial volume, while the entire Global South including Africa and South America shared less than five percent. The United States alone accounted for 47% of the combined four-region total, maintaining absolute dominance in drug discovery and regulatory approval. Africa&#x27;s 5.9% share meant that 1.4 billion people were represented by a fraction of the evidence base guiding global medical practice. These findings demonstrate that health innovation operates as an entrenched monopoly rather than a distributed enterprise. Interpretation is limited by the exclusion of national registries which may inflate US dominance.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/global-hegemony.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/global-hegemony.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/global-hegemony.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('global-hegemony', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="global-hegemony" onclick="downloadMd('global-hegemony', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." <i>Trials</i>. 2018;19:519.</li><li>Drain PK, et al. "Global migration of clinical trials." <i>Nat Rev Drug Discov</i>. 2018;17:765-766.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/global-hegemony.html">global-hegemony dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/governance-justice/code/global-hegemony.py">global-hegemony.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for Global Hegemony &amp; Planetary Research Monopolies">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/global-hegemony.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/global-hegemony.py" download>global-hegemony.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-14">
-      <div><span class="num">14</span><h3>Western Academic Footprint</h3></div>
+    </article>
+    <article class="paper-card" id="paper-14" aria-labelledby="paper-14-title">
+      <div><span class="num" aria-hidden="true">14</span><h3 id="paper-14-title">Western Academic Footprint</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In institutional analysis, does the presence of elite Western academic institutions in African clinical trials indicate intellectual partnership or structural hegemony? This audit estimated that thirty-four percent of 23,873 African interventional trials on ClinicalTrials.gov had explicit affiliations with top-tier Western institutions including Oxford, Cambridge, Johns Hopkins, and Harvard through March 2026. Investigators reported the academic penetration rate as the primary estimand for institutional influence. Western academic institutions frequently occupied the principal investigator and sponsor positions, shaping the research questions, methodologies, and publication strategies for trials conducted on African soil. The 1,793 HIV trials showed the strongest Western academic footprint through PEPFAR-affiliated networks at Uganda and Kenya institutions. Local African institutional leadership was most prominent in Egypt where domestic universities led the majority of the 11,752 registered trials. These findings reveal a structural hierarchy where scientific priorities are frequently defined in the Global North. Interpretation is limited by name-matching heuristics for institutional identification.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/western-academic-footprint.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/western-academic-footprint.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/western-academic-footprint.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('western-academic-footprint', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="western-academic-footprint" onclick="downloadMd('western-academic-footprint', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." <i>Trials</i>. 2018;19:519.</li><li>Drain PK, et al. "Global migration of clinical trials." <i>Nat Rev Drug Discov</i>. 2018;17:765-766.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/western-academic-footprint.html">western-academic-footprint dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/governance-justice/code/western-academic-footprint.py">western-academic-footprint.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for Western Academic Footprint">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/western-academic-footprint.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/western-academic-footprint.py" download>western-academic-footprint.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-15">
-      <div><span class="num">15</span><h3>Pharma Continental Pipeline</h3></div>
+    </article>
+    <article class="paper-card" id="paper-15" aria-labelledby="paper-15-title">
+      <div><span class="num" aria-hidden="true">15</span><h3 id="paper-15-title">Pharma Continental Pipeline</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In pharmaceutical industry analysis, does the concentration of major pharma sponsorship reveal that Africa functions primarily as a validation pipeline for Northern drug development? This audit identified the top pharmaceutical sponsors among 23,873 African trials on ClinicalTrials.gov through March 2026 using lead-sponsor metadata. The three largest global pharmaceutical companies collectively sponsored a disproportionate share of African trials, focusing predominantly on Phase 3 validation studies rather than early-phase discovery. Africa hosted 140 adaptive trials and 20 Bayesian-design trials compared to 2,986 and 494 respectively in the United States, confirming the validation-not-innovation paradigm. Open-label trials numbered 1,545 in Africa versus 23,963 in the United States. These findings demonstrate that the pharmaceutical continental pipeline moves drugs from Northern laboratories through African validation centres to global regulatory approval. Interpretation is limited by the single lead-sponsor attribution which may obscure complex sponsorship arrangements.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/pharma-continental-pipeline.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/pharma-continental-pipeline.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/pharma-continental-pipeline.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('pharma-continental-pipeline', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="pharma-continental-pipeline" onclick="downloadMd('pharma-continental-pipeline', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." <i>Trials</i>. 2018;19:519.</li><li>Drain PK, et al. "Global migration of clinical trials." <i>Nat Rev Drug Discov</i>. 2018;17:765-766.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/pharma-continental-pipeline.html">pharma-continental-pipeline dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/governance-justice/code/pharma-continental-pipeline.py">pharma-continental-pipeline.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for Pharma Continental Pipeline">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/pharma-continental-pipeline.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/pharma-continental-pipeline.py" download>pharma-continental-pipeline.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-16">
-      <div><span class="num">16</span><h3>Technology Transfer &amp; Capacity Building</h3></div>
+    </article>
+    <article class="paper-card" id="paper-16" aria-labelledby="paper-16-title">
+      <div><span class="num" aria-hidden="true">16</span><h3 id="paper-16-title">Technology Transfer &amp; Capacity Building</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In capacity building, does the inclusion of explicit technology transfer and training objectives in African trial protocols indicate a validated model for building sovereign research capacity? This audit searched 23,873 African trial descriptions on ClinicalTrials.gov for technology transfer, laboratory development, and investigator training keywords through March 2026. An estimated eighty trials explicitly incorporated capacity building into their core protocols, representing less than one percent of total African registrations. The 203 trials with community engagement and the 452 cluster-randomised trials showed the highest rates of embedded capacity building. These regenerative models transform the extractive research paradigm by permanently elevating local laboratory, bioinformatics, and regulatory capacity beyond the individual trial duration. South Africa and Uganda hosted the largest number of capacity-building trials reflecting their mature institutional partnerships. These findings provide a blueprint for ethical funding mandates requiring embedded infrastructure development as a condition for international research partnerships. Interpretation is limited by keyword-based identification of capacity building objectives.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/tech-transfer.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/tech-transfer.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/tech-transfer.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('tech-transfer', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="tech-transfer" onclick="downloadMd('tech-transfer', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." <i>Trials</i>. 2018;19:519.</li><li>Drain PK, et al. "Global migration of clinical trials." <i>Nat Rev Drug Discov</i>. 2018;17:765-766.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/tech-transfer.html">tech-transfer dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/governance-justice/code/tech-transfer.py">tech-transfer.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for Technology Transfer &amp; Capacity Building">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/tech-transfer.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/tech-transfer.py" download>tech-transfer.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-17">
-      <div><span class="num">17</span><h3>Pan-Continental Regulatory Harmonisation</h3></div>
+    </article>
+    <article class="paper-card" id="paper-17" aria-labelledby="paper-17-title">
+      <div><span class="num" aria-hidden="true">17</span><h3 id="paper-17-title">Pan-Continental Regulatory Harmonisation</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In regulatory science, does the execution of pan-African multi-national trials demonstrate the viability of continental regulatory harmonisation? This audit identified trials operating across multiple African nations among 23,873 total registrations on ClinicalTrials.gov using multi-country location metadata through March 2026. An estimated one hundred trials successfully operated across three or more African nations simultaneously, while approximately sixty-five trials spanned exactly two countries. The most common pan-African corridors linked South Africa with Kenya and Uganda, reflecting HIV and tuberculosis research networks. The African Medicines Agency framework promises to accelerate harmonisation, but current pan-African trial rates of eight percent lag far behind Europe&#x27;s thirty-four percent multi-national rate. These validated pan-continental networks demonstrate that unified regulatory corridors can overcome historical fragmentation by harmonising ethical reviews and pooling diverse patient cohorts. These findings identify pan-African collaboration as the most effective lever for accelerating sovereign clinical innovation. Interpretation is limited by the difficulty of distinguishing genuine regulatory harmonisation from multi-site sponsorship convenience.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/pan-continental.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/pan-continental.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/pan-continental.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('pan-continental', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="pan-continental" onclick="downloadMd('pan-continental', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." <i>Trials</i>. 2018;19:519.</li><li>Drain PK, et al. "Global migration of clinical trials." <i>Nat Rev Drug Discov</i>. 2018;17:765-766.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/pan-continental.html">pan-continental dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/governance-justice/code/pan-continental.py">pan-continental.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for Pan-Continental Regulatory Harmonisation">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/pan-continental.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/pan-continental.py" download>pan-continental.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-18">
-      <div><span class="num">18</span><h3>Sponsor Churn</h3></div>
+    </article>
+    <article class="paper-card" id="paper-18" aria-labelledby="paper-18-title">
+      <div><span class="num" aria-hidden="true">18</span><h3 id="paper-18-title">Sponsor Churn</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In institutional economics, does the turnover rate of research sponsors in Africa indicate stable institutional commitment or dependency on a rotating cast of foreign funders? This audit evaluated sponsor diversity and persistence for 23,873 African trials using ClinicalTrials.gov lead-sponsor metadata across five temporal epochs through March 2026. Investigators reported the sponsor-to-trial ratio and repeat-sponsor rate as primary estimands for institutional stability. Africa&#x27;s sponsor churn index of 0.46 matched Europe&#x27;s rate, suggesting comparable sponsor diversity in aggregate. However, analysis by sponsor origin revealed that stability was maintained by a continuous influx of new international sponsors rather than growing commitment from returning local institutions. The 11,599 trials in the most recent epoch drew from a wider sponsor pool than earlier periods but with no increase in African government or private-sector sponsorship. These findings reveal that apparent sponsor stability masks dependency on external funding decisions. Interpretation is limited by the single lead-sponsor classification which may obscure co-funding arrangements.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/sponsor-churn.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/sponsor-churn.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/sponsor-churn.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('sponsor-churn', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="sponsor-churn" onclick="downloadMd('sponsor-churn', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." <i>Trials</i>. 2018;19:519.</li><li>Drain PK, et al. "Global migration of clinical trials." <i>Nat Rev Drug Discov</i>. 2018;17:765-766.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/sponsor-churn.html">sponsor-churn dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/governance-justice/code/sponsor-churn.py">sponsor-churn.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for Sponsor Churn">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/sponsor-churn.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/sponsor-churn.py" download>sponsor-churn.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-19">
-      <div><span class="num">19</span><h3>Regulatory Oversight &amp; Global Rigor</h3></div>
+    </article>
+    <article class="paper-card" id="paper-19" aria-labelledby="paper-19-title">
+      <div><span class="num" aria-hidden="true">19</span><h3 id="paper-19-title">Regulatory Oversight &amp; Global Rigor</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In regulatory science, does the prevalence of FDA oversight on African trials indicate imported rigor from foreign regulatory frameworks rather than sovereign regulatory capacity? This audit evaluated regulatory oversight indicators for 23,873 African trials using ClinicalTrials.gov oversight module metadata through March 2026. An estimated thirty-one percent of African trials had FDA oversight designations, reflecting the dominance of internationally sponsored Phase 3 studies designed for United States regulatory submission. Africa&#x27;s FDA oversight rate exceeded China&#x27;s eighteen percent but fell below the United States domestic rate of seventy-two percent. Data monitoring committee rates were higher in African trials than in Chinese or Indian trials, again reflecting imported regulatory standards rather than local regulatory development. The 2,453 double-blind African trials (10% of total) demonstrated that imported regulatory standards enforce methodological rigour on the continent. These findings demonstrate that Africa&#x27;s research quality is maintained by foreign regulatory frameworks. Interpretation is limited by voluntary disclosure of oversight arrangements.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/regulatory-oversight.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/regulatory-oversight.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/regulatory-oversight.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('regulatory-oversight', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="regulatory-oversight" onclick="downloadMd('regulatory-oversight', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." <i>Trials</i>. 2018;19:519.</li><li>Drain PK, et al. "Global migration of clinical trials." <i>Nat Rev Drug Discov</i>. 2018;17:765-766.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/regulatory-oversight.html">regulatory-oversight dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/governance-justice/code/regulatory-oversight.py">regulatory-oversight.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for Regulatory Oversight &amp; Global Rigor">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/regulatory-oversight.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/regulatory-oversight.py" download>regulatory-oversight.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
-    <div class="paper-card" id="paper-20">
-      <div><span class="num">20</span><h3>Forensic Audit: Zombie Trials &amp; Silent Completions</h3></div>
+    </article>
+    <article class="paper-card" id="paper-20" aria-labelledby="paper-20-title">
+      <div><span class="num" aria-hidden="true">20</span><h3 id="paper-20-title">Forensic Audit: Zombie Trials &amp; Silent Completions</h3></div>
       <div class="sent-strip"><div class="seg" style="background:#1b4f72;" title="Question"></div><div class="seg" style="background:#0e6251;" title="Dataset"></div><div class="seg" style="background:#4a235a;" title="Method"></div><div class="seg" style="background:#922b21;" title="Primary Result"></div><div class="seg" style="background:#7e5109;" title="Robustness"></div><div class="seg" style="background:#0b5345;" title="Interpretation"></div><div class="seg" style="background:#566573;" title="Boundary"></div></div>
       <div class="paper-body">In research integrity, does forensic screening of ClinicalTrials.gov records reveal systematic transparency failures in African clinical research that warrant investigation? This forensic audit screened 23,873 African trial records for zombie protocols (unknown status exceeding five years), silent completions (results withheld over two years), and parachute research indicators through March 2026. Among 13,918 completed African trials, an estimated thirty percent had withheld results for over two years, and 24% remained in unknown or ambiguous status categories. The 522 terminated and 144 withdrawn African trials had lower rates of results reporting than completed trials. These forensic markers suggest a pattern of selective transparency where the data contribution of African participants is harvested for regulatory submissions but never returned to the public evidence base. These findings quantify research transparency as a measurable integrity dimension requiring systematic reform. Interpretation is limited by the automated nature of forensic screening which requires manual follow-up to distinguish administrative delays from genuine transparency failures.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="dashboards/forensic-audit.html" target="_blank">View Dashboard</a>
+        <a class="btn btn-primary" href="dashboards/forensic-audit.html" target="_blank" rel="noopener noreferrer">View Dashboard</a>
         <a class="btn" href="code/forensic-audit.py" download>Download Code (.py)</a>
-        <a class="btn" href="#" onclick="downloadMd('forensic-audit', this); return false;">Download Paper (.md)</a>
+        <button class="btn" type="button" data-slug="forensic-audit" onclick="downloadMd('forensic-audit', this)">Download Paper (.md)</button>
       </div>
       <div class="refs"><h4>Suggested References</h4><ol><li>Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." <i>Trials</i>. 2018;19:519.</li><li>Drain PK, et al. "Global migration of clinical trials." <i>Nat Rev Drug Discov</i>. 2018;17:765-766.</li></ol></div>
-      <div class="note-block">
-          <dl>
-            <dt>Type:</dt><dd>research</dd>
-            <dt>App:</dt><dd><a href="https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/forensic-audit.html">forensic-audit dashboard</a></dd>
-            <dt>Code:</dt><dd><a href="https://github.com/mahmood726-cyber/africa-e156-students/tree/master/governance-justice/code/forensic-audit.py">forensic-audit.py</a></dd>
-            <dt>Data:</dt><dd>ClinicalTrials.gov API v2</dd>
-            <dt>Date:</dt><dd>2026-04-03</dd>
-          </dl>
+      <div class="note-block" role="group" aria-label="Submission metadata for Forensic Audit: Zombie Trials &amp; Silent Completions">
+          <div class="note-row"><span class="note-key">Type:</span> <span class="note-val">research</span></div>
+          <div class="note-row"><span class="note-key">App:</span> <a href="dashboards/forensic-audit.html">View dashboard</a></div>
+          <div class="note-row"><span class="note-key">Code:</span> <a href="code/forensic-audit.py" download>forensic-audit.py</a></div>
+          <div class="note-row"><span class="note-key">Data:</span> <span class="note-val">ClinicalTrials.gov API v2</span></div>
+          <div class="note-row"><span class="note-key">Date:</span> <span class="note-val">2026-04-05</span></div>
         </div>
-    </div>
+    </article>
 
     <div class="rules">
       <details>
@@ -603,8 +566,8 @@ The author rewrote, verified, and takes full responsibility for the final conten
     <div class="footer">
       <p><a href="../">Back to All Groups</a></p>
       <p style="margin-top:8px;">
-        <a href="https://www.synthesis-medicine.org/index.php/journal" target="_blank">Synthesis Medicine Journal</a> &middot;
-        <a href="https://github.com/mahmood726-cyber/africa-e156-students" target="_blank">GitHub Repository</a> &middot;
+        <a href="https://www.synthesis-medicine.org/index.php/journal" target="_blank" rel="noopener noreferrer">Synthesis Medicine Journal</a> &middot;
+        <a href="https://github.com/mahmood726-cyber/africa-e156-students" target="_blank" rel="noopener noreferrer">GitHub Repository</a> &middot;
         E156 Micro-Paper Format
       </p>
       <p style="margin-top:8px;">Mahmood Ahmad &middot; ORCID: 0009-0003-7781-4478</p>
@@ -612,161 +575,148 @@ The author rewrote, verified, and takes full responsibility for the final conten
   </div>
 
   <script>
-  const PAPERS = {
+  const PAPER_META = {
   "author-sovereignty-gap": {
     title: `Author Sovereignty Gap`,
-    body: `In research governance, does the distribution of authorship positions on publications from African clinical trials indicate a sovereignty gap in intellectual leadership? This bibliometric analysis cross-referenced 23,873 African ClinicalTrials.gov registrations with publication records to evaluate first-author and last-author nationality through March 2026. Investigators reported the proportion of non-African first authors as the primary estimand for intellectual sovereignty. An estimated sixty percent of publications from African trials had non-African first authors, while the senior author position was even more dominated by Northern researchers from institutions in the United States and United Kingdom. The author sovereignty gap was most pronounced in industry-sponsored trials where African researchers frequently occupied middle-author positions reflecting data-collection rather than intellectual-leadership roles. South Africa and Kenya showed the highest rates of African first authorship, suggesting that local institutional strength can partially offset the structural disadvantage. These findings quantify the intellectual extraction pipeline as a measurable governance deficit. Interpretation is limited by the incomplete linkage between trial registrations and resulting publications.`,
     refs: `  1. Hedt-Gauthier BL, et al. "Stuck in the middle: authorship in collaborative health research in Africa." BMJ Glob Health. 2019;4:e001853.\\n  2. Mbaye R, et al. "Who is telling the stories of Africa?" BMJ Glob Health. 2019;4:e001855.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/author-sovereignty-gap.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/governance-justice/code/author-sovereignty-gap.py`,
+    dashboard: `dashboards/author-sovereignty-gap.html`,
+    code: `code/author-sovereignty-gap.py`,
   },
   "corporate-capture": {
     title: `Corporate Capture`,
-    body: `In research economics, does the concentration of pharmaceutical sponsorship indicate corporate capture of Africa's clinical trial landscape? This audit evaluated lead sponsor identity for 23,873 African interventional trials using ClinicalTrials.gov sponsor metadata through March 2026. Investigators reported the top-five sponsor concentration ratio as the primary estimand for corporate influence. The five largest global pharmaceutical companies sponsored an estimated twenty-two percent of African trials, while foreign sponsors collectively accounted for over sixty-five percent of all registrations. Local African pharmaceutical industry sponsored fewer than three percent of trials, creating a total dependency on foreign corporate agendas for clinical innovation priorities. Placebo-controlled trials numbered 3,324 in Africa (14% of total) versus 33,931 in the United States (18%). These findings demonstrate that Africa's research agenda is set in corporate boardrooms rather than African public health institutions. Interpretation is limited by the classification of academic-industry partnerships as single-sponsor entries.`,
     refs: `  1. Lang T, Siribaddana S. "Clinical trials have gone global: is this a good thing?" PLoS Med. 2012;9:e1001228.\\n  2. Drain PK, et al. "Global migration of clinical trials." Nat Rev Drug Discov. 2018;17:765-766.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/corporate-capture.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/governance-justice/code/corporate-capture.py`,
+    dashboard: `dashboards/corporate-capture.html`,
+    code: `code/corporate-capture.py`,
   },
   "data-sovereignty": {
     title: `Data Sovereignty & Mandatory Transparency`,
-    body: `In information governance, does the control and accessibility of clinical trial data generated in Africa meet standards for data sovereignty? This audit evaluated 23,873 African trials on ClinicalTrials.gov for results reporting, data sharing plans, and institutional data control indicators through March 2026. Investigators reported the results-reporting rate and data-sharing compliance as primary estimands for data sovereignty. Among 13,918 completed African trials, an estimated thirty percent had not reported results on the registry, compared to approximately twenty percent in the United States. Fewer than ten percent of African trials included explicit individual participant data sharing plans compared to fifteen percent globally. Data generated by African participants is overwhelmingly stored and analysed at Northern institutions, with local researchers often lacking access to datasets from trials conducted in their own communities. These findings reveal a data sovereignty crisis where Africa exports raw data and imports finished publications. Interpretation is limited by voluntary disclosure of data-sharing intentions.`,
     refs: `  1. de Vries J, et al. " returning individual research results in Africa." Nat Genet. 2012;44:370-374.\\n  2. African Union. "Africa Health Strategy 2016-2030." AU Commission, Addis Ababa.\\n  3. ClinicalTrials.gov API v2 Documentation. U.S. National Library of Medicine.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/data-sovereignty.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/governance-justice/code/data-sovereignty.py`,
+    dashboard: `dashboards/data-sovereignty.html`,
+    code: `code/data-sovereignty.py`,
   },
   "intellectual-capital": {
     title: `Intellectual Capital & Leadership Gaps`,
-    body: `In human capital economics, does the distribution of principal investigators on African trials reveal a leadership deficit that perpetuates dependency on Northern institutions? This audit cross-referenced investigator metadata for 23,873 African trials on ClinicalTrials.gov with institutional affiliations through March 2026. Investigators reported the proportion of foreign-affiliated principal investigators as the primary estimand for intellectual capital sovereignty. An estimated fifty-five percent of principal investigators on African trials were affiliated with Northern institutions, while twenty-five percent were African researchers trained abroad and only twenty percent were locally trained. The 1,793 HIV trials showed the highest proportion of African PIs reflecting decades of PEPFAR-funded local training. Brain drain compounded the leadership deficit as Africa's best-trained researchers were recruited by Northern institutions, depleting the intellectual capital needed for sovereign research systems. These findings quantify the human capital pipeline as a measurable bottleneck for research sovereignty. Interpretation is limited by incomplete reporting of investigator affiliations in trial registrations.`,
     refs: `  1. Hedt-Gauthier BL, et al. "Stuck in the middle." BMJ Glob Health. 2019;4:e001853.\\n  2. Mbaye R, et al. "Who is telling the stories of Africa?" BMJ Glob Health. 2019;4:e001855.\\n  3. Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." Trials. 2018;19:519.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/intellectual-capital.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/governance-justice/code/intellectual-capital.py`,
+    dashboard: `dashboards/intellectual-capital.html`,
+    code: `code/intellectual-capital.py`,
   },
   "knowledge-extraction": {
     title: `Knowledge Extraction & Sharing Gap`,
-    body: `In the political economy of research, does the directional flow of knowledge from African trial sites to Northern publications constitute a pattern of intellectual extraction? This analysis tracked the knowledge value chain from 23,873 African trial registrations through publication, citation, and clinical implementation using ClinicalTrials.gov and bibliometric cross-referencing. Investigators reported the knowledge-return ratio as the fraction of African-generated evidence applied locally. An estimated seventy-two percent of data from African trials was analysed at Northern institutions, sixty-five percent of resulting publications were behind paywalls inaccessible to African researchers, and only eighteen percent of findings were applied in local clinical practice. Africa generated 23,873 trial registrations but the intellectual capital they produced — drug approvals, guideline changes, career advancement — accrued primarily to Northern institutions and pharmaceutical companies. These findings identify a knowledge extraction pipeline operating in parallel with biological and economic extraction. Interpretation is limited by the indirect estimation of knowledge flows from publication metadata.`,
     refs: `  1. Mbaye R, et al. "Who is telling the stories of Africa?" BMJ Glob Health. 2019;4:e001855.\\n  2. Benatar SR. "Reflections and recommendations on research ethics in developing countries." Soc Sci Med. 2002;54:1131-1141.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/knowledge-extraction.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/governance-justice/code/knowledge-extraction.py`,
+    dashboard: `dashboards/knowledge-extraction.html`,
+    code: `code/knowledge-extraction.py`,
   },
   "placebo-ethics": {
     title: `Placebo Ethics Audit`,
-    body: `In research ethics, does the use of placebo controls in African trials comply with the Declaration of Helsinki requirement to test against best proven interventions? This audit identified 3,324 placebo-associated African trials among 23,873 total registrations on ClinicalTrials.gov through March 2026. Investigators reported the placebo utilisation rate as the primary estimand for Helsinki Article 33 compliance. Africa's placebo rate of 14% exceeded the United States rate of 18%, with the disparity concentrated in conditions where proven treatments exist including HIV (1,793 trials), malaria (531 trials), and hypertension (497 trials). Double-blinded trials numbered 2,453 in Africa versus 21,421 in the United States. These findings expose a systematic double standard where placebo arms unacceptable in American trials are routinely deployed at African research sites. Interpretation is limited by keyword-based classification which cannot distinguish add-on designs from pure placebo comparisons.`,
     refs: `  1. World Medical Association. "Declaration of Helsinki." JAMA. 2013;310:2191-2194.\\n  2. Participants in the 2001 Conference. "Moral standards for research in developing countries." Hastings Cent Rep. 2004;34:17-27.\\n  3. Benatar SR. "Reflections on research ethics in developing countries." Soc Sci Med. 2002;54:1131-1141.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/placebo-ethics.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/governance-justice/code/placebo-ethics.py`,
+    dashboard: `dashboards/placebo-ethics.html`,
+    code: `code/placebo-ethics.py`,
   },
   "sponsor-sovereignty": {
     title: `Sponsor Sovereignty`,
-    body: `In research funding governance, does the source of trial sponsorship determine the degree of scientific sovereignty available to African research institutions? This audit classified 23,873 African trials by sponsor origin using ClinicalTrials.gov lead-sponsor metadata through March 2026. Investigators reported the foreign-sponsor dependency ratio as the primary estimand for research sovereignty. Foreign pharmaceutical companies, academic institutions, and bilateral agencies collectively sponsored an estimated sixty-five percent of African trials, while African governments contributed fewer than eight percent and African private industry under three percent. The 11,599 trials registered in the most recent epoch (2021-2025) showed no significant change in the foreign-sponsor ratio compared to earlier periods. Without financial sovereignty, Africa cannot direct research toward its own priorities — 174 mental health trials versus 1,793 HIV trials reflects donor rather than local priorities. These findings demonstrate that funding dependency structurally constrains Africa's research agenda. Interpretation is limited by the single lead-sponsor attribution which may obscure complex funding arrangements.`,
     refs: `  1. Lang T, Siribaddana S. "Clinical trials have gone global: is this a good thing?" PLoS Med. 2012;9:e1001228.\\n  2. Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." Trials. 2018;19:519.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/sponsor-sovereignty.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/governance-justice/code/sponsor-sovereignty.py`,
+    dashboard: `dashboards/sponsor-sovereignty.html`,
+    code: `code/sponsor-sovereignty.py`,
   },
   "value-transfer": {
     title: `The Economic Value of African Altruism`,
-    body: `In health economics, does the cost differential for clinical trial participation create an economic value transfer from African communities to Northern pharmaceutical companies? This economic analysis estimated per-participant costs across regions using ClinicalTrials.gov enrollment data for 23,873 African trials and published industry benchmarks. Investigators reported the cost-per-participant ratio as the primary estimand for economic value extraction. Estimated per-participant costs of approximately 2,000 dollars in Africa compared to 41,000 dollars in the United States represent a ninety-five percent discount that drives the global migration of clinical trials to low-income settings. African communities provide participants, disease burden, and rapid enrollment — Africa's 2,313 currently recruiting trials demonstrate high recruitment throughput — while resulting drugs are priced for Western markets at costs exceeding African per-capita health expenditure. The economic value of African research altruism is estimated to exceed one billion dollars annually in cost savings to global pharmaceutical companies. These findings quantify the economic extraction pipeline as a measurable value transfer. Interpretation is limited by cost estimation from industry benchmarks rather than direct trial accounting.`,
     refs: `  1. Petryna A. When Experiments Travel: Clinical Trials and the Global Search for Human Subjects. Princeton University Press; 2009.\\n  2. Drain PK, et al. "Global migration of clinical trials." Nat Rev Drug Discov. 2018;17:765-766.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/value-transfer.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/governance-justice/code/value-transfer.py`,
+    dashboard: `dashboards/value-transfer.html`,
+    code: `code/value-transfer.py`,
   },
   "altruism-efficiency": {
     title: `Altruism Efficiency & Health Expenditure`,
-    body: `In development economics, does the ratio of clinical trial participation to health expenditure reveal that Africa provides the highest research altruism per health dollar invested globally? This analysis computed trials-per-billion-dollars-health-expenditure for 53 African nations and comparator regions using ClinicalTrials.gov data and World Bank health expenditure figures. Africa's per-capita health expenditure of approximately 41 dollars generates 17.1 trials per million population, while the United States spends 12,555 dollars per capita for 578.0 trials per million. Normalising trials by health expenditure, Africa's research altruism ratio exceeds the United States by approximately thirty-fold, meaning African communities contribute vastly more research participation relative to the healthcare they receive. The efficiency ratio is highest in East Africa where Uganda (809 trials) and Kenya (788 trials) combine high trial volumes with low health expenditure. These findings reframe clinical trial participation as an uncompensated economic contribution from the world's poorest populations. Interpretation is limited by aggregate expenditure figures which mask within-country variation.`,
     refs: `  1. Petryna A. When Experiments Travel. Princeton University Press; 2009.\\n  2. World Health Organization. "World Health Statistics 2024." WHO, Geneva.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/altruism-efficiency.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/governance-justice/code/altruism-efficiency.py`,
+    dashboard: `dashboards/altruism-efficiency.html`,
+    code: `code/altruism-efficiency.py`,
   },
   "who-alignment": {
     title: `WHO Alignment & Disease Burden Gaps`,
-    body: `In global health priority-setting, does Africa's clinical trial portfolio align with the WHO priority disease list and Sustainable Development Goal health targets? This alignment analysis compared condition-specific trial volumes across 23,873 African registrations on ClinicalTrials.gov to WHO essential medicines and SDG 3 priority conditions. Africa's trial portfolio was heavily skewed toward HIV (1,793 trials), malaria (531 trials), and tuberculosis (489 trials) while neglecting WHO-designated priorities including mental health (174 trials), neglected tropical diseases (12 trials), and epilepsy (73 trials). Non-communicable diseases — cardiovascular (1,426), cancer (2,182), and diabetes (760) — received research attention misaligned with their growing contribution to African mortality. Only malaria and tuberculosis research showed Africa exceeding the global average trial density. These findings demonstrate systematic misalignment between Africa's research portfolio and both WHO priorities and the epidemiological transition. Interpretation is limited by the mapping between ClinicalTrials.gov condition categories and WHO priority classifications.`,
     refs: `  1. GBD 2019 Diseases and Injuries Collaborators. "Global burden of 369 diseases." Lancet. 2020;396:1204-1222.\\n  2. World Health Organization. "World Health Statistics 2024." WHO, Geneva.\\n  3. ClinicalTrials.gov API v2 Documentation. U.S. National Library of Medicine.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/who-alignment.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/governance-justice/code/who-alignment.py`,
+    dashboard: `dashboards/who-alignment.html`,
+    code: `code/who-alignment.py`,
   },
   "structural-inequity": {
     title: `Structural Inequity`,
-    body: `In political economy, does the architecture of global clinical research create structural barriers that systematically disadvantage African participation regardless of individual country effort? This structural analysis evaluated 23,873 African trials against seventeen indicators of research infrastructure maturity including regulatory capacity, institutional density, and funding diversity using ClinicalTrials.gov metadata. Africa scored an estimated fourteen percent on a composite research infrastructure index compared to ninety-two percent for Europe and ninety-five percent for North America. The structural deficit was self-reinforcing: low infrastructure attracted foreign-sponsored validation trials that built minimal local capacity, which perpetuated low infrastructure scores. Even Africa's fastest-growing research nation grew from 678 to 11,599 trials without meaningfully changing its structural position relative to high-income comparators. These findings demonstrate that research inequity is architectural rather than incidental and requires structural reform rather than incremental investment. Interpretation is limited by the composite index methodology which assigns equal weight to heterogeneous infrastructure dimensions.`,
     refs: `  1. Isaakidis P, et al. "Relation between burden of disease and randomised evidence in sub-Saharan Africa." BMJ. 2002;324:702.\\n  2. Lang T, Siribaddana S. "Clinical trials have gone global: is this a good thing?" PLoS Med. 2012;9:e1001228.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/structural-inequity.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/governance-justice/code/structural-inequity.py`,
+    dashboard: `dashboards/structural-inequity.html`,
+    code: `code/structural-inequity.py`,
   },
   "unified-theory": {
     title: `Unified Field Theory of Research Inequity`,
-    body: `In meta-research synthesis, does the convergence of multiple analytical dimensions into a unified framework reveal the magnitude of clinical research inequity facing Africa? This meta-audit integrated trial volume (23,873 African versus 190,644 United States), condition coverage (twenty diseases), design features (twelve categories), temporal trends (five epochs), and geographic distribution (53 active countries) from ClinicalTrials.gov into a composite inequity score. The unified score was computed as the average normalised deficit across all dimensions. Africa scored ninety-four on a hundred-point composite inequity index, indicating near-total structural disadvantage across every evaluated dimension from volume to governance to methodology. The Gini coefficient of 0.857 for trial distribution, the 6x Europe-Africa volume gap, and the 41x immunotherapy deficit all converge on a single conclusion of systemic exclusion. These findings demonstrate that research equity requires fundamental reorganisation rather than marginal adjustment. Interpretation is limited by the rapidly evolving nature of global health policy.`,
     refs: `  1. Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." Trials. 2018;19:519.\\n  2. Ndounga Diakou LA, et al. "Mapping of clinical trials in sub-Saharan Africa." Trials. 2022;23:490.\\n  3. Drain PK, et al. "Global migration of clinical trials." Nat Rev Drug Discov. 2018;17:765-766.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/unified-theory.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/governance-justice/code/unified-theory.py`,
+    dashboard: `dashboards/unified-theory.html`,
+    code: `code/unified-theory.py`,
   },
   "global-hegemony": {
     title: `Global Hegemony & Planetary Research Monopolies`,
-    body: `In geopolitical analysis, does the distribution of clinical trials across sovereign nations indicate a monopolistic concentration of scientific infrastructure at the planetary scale? This audit compared total trial volumes across major regions: United States (190,644), Europe (142,126), China (49,763), and Africa (23,873) using ClinicalTrials.gov data through March 2026. The top ten research nations controlled an estimated eighty percent of the global trial volume, while the entire Global South including Africa and South America shared less than five percent. The United States alone accounted for 47% of the combined four-region total, maintaining absolute dominance in drug discovery and regulatory approval. Africa's 5.9% share meant that 1.4 billion people were represented by a fraction of the evidence base guiding global medical practice. These findings demonstrate that health innovation operates as an entrenched monopoly rather than a distributed enterprise. Interpretation is limited by the exclusion of national registries which may inflate US dominance.`,
     refs: `  1. Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." Trials. 2018;19:519.\\n  2. Drain PK, et al. "Global migration of clinical trials." Nat Rev Drug Discov. 2018;17:765-766.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/global-hegemony.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/governance-justice/code/global-hegemony.py`,
+    dashboard: `dashboards/global-hegemony.html`,
+    code: `code/global-hegemony.py`,
   },
   "western-academic-footprint": {
     title: `Western Academic Footprint`,
-    body: `In institutional analysis, does the presence of elite Western academic institutions in African clinical trials indicate intellectual partnership or structural hegemony? This audit estimated that thirty-four percent of 23,873 African interventional trials on ClinicalTrials.gov had explicit affiliations with top-tier Western institutions including Oxford, Cambridge, Johns Hopkins, and Harvard through March 2026. Investigators reported the academic penetration rate as the primary estimand for institutional influence. Western academic institutions frequently occupied the principal investigator and sponsor positions, shaping the research questions, methodologies, and publication strategies for trials conducted on African soil. The 1,793 HIV trials showed the strongest Western academic footprint through PEPFAR-affiliated networks at Uganda and Kenya institutions. Local African institutional leadership was most prominent in Egypt where domestic universities led the majority of the 11,752 registered trials. These findings reveal a structural hierarchy where scientific priorities are frequently defined in the Global North. Interpretation is limited by name-matching heuristics for institutional identification.`,
     refs: `  1. Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." Trials. 2018;19:519.\\n  2. Drain PK, et al. "Global migration of clinical trials." Nat Rev Drug Discov. 2018;17:765-766.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/western-academic-footprint.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/governance-justice/code/western-academic-footprint.py`,
+    dashboard: `dashboards/western-academic-footprint.html`,
+    code: `code/western-academic-footprint.py`,
   },
   "pharma-continental-pipeline": {
     title: `Pharma Continental Pipeline`,
-    body: `In pharmaceutical industry analysis, does the concentration of major pharma sponsorship reveal that Africa functions primarily as a validation pipeline for Northern drug development? This audit identified the top pharmaceutical sponsors among 23,873 African trials on ClinicalTrials.gov through March 2026 using lead-sponsor metadata. The three largest global pharmaceutical companies collectively sponsored a disproportionate share of African trials, focusing predominantly on Phase 3 validation studies rather than early-phase discovery. Africa hosted 140 adaptive trials and 20 Bayesian-design trials compared to 2,986 and 494 respectively in the United States, confirming the validation-not-innovation paradigm. Open-label trials numbered 1,545 in Africa versus 23,963 in the United States. These findings demonstrate that the pharmaceutical continental pipeline moves drugs from Northern laboratories through African validation centres to global regulatory approval. Interpretation is limited by the single lead-sponsor attribution which may obscure complex sponsorship arrangements.`,
     refs: `  1. Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." Trials. 2018;19:519.\\n  2. Drain PK, et al. "Global migration of clinical trials." Nat Rev Drug Discov. 2018;17:765-766.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/pharma-continental-pipeline.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/governance-justice/code/pharma-continental-pipeline.py`,
+    dashboard: `dashboards/pharma-continental-pipeline.html`,
+    code: `code/pharma-continental-pipeline.py`,
   },
   "tech-transfer": {
     title: `Technology Transfer & Capacity Building`,
-    body: `In capacity building, does the inclusion of explicit technology transfer and training objectives in African trial protocols indicate a validated model for building sovereign research capacity? This audit searched 23,873 African trial descriptions on ClinicalTrials.gov for technology transfer, laboratory development, and investigator training keywords through March 2026. An estimated eighty trials explicitly incorporated capacity building into their core protocols, representing less than one percent of total African registrations. The 203 trials with community engagement and the 452 cluster-randomised trials showed the highest rates of embedded capacity building. These regenerative models transform the extractive research paradigm by permanently elevating local laboratory, bioinformatics, and regulatory capacity beyond the individual trial duration. South Africa and Uganda hosted the largest number of capacity-building trials reflecting their mature institutional partnerships. These findings provide a blueprint for ethical funding mandates requiring embedded infrastructure development as a condition for international research partnerships. Interpretation is limited by keyword-based identification of capacity building objectives.`,
     refs: `  1. Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." Trials. 2018;19:519.\\n  2. Drain PK, et al. "Global migration of clinical trials." Nat Rev Drug Discov. 2018;17:765-766.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/tech-transfer.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/governance-justice/code/tech-transfer.py`,
+    dashboard: `dashboards/tech-transfer.html`,
+    code: `code/tech-transfer.py`,
   },
   "pan-continental": {
     title: `Pan-Continental Regulatory Harmonisation`,
-    body: `In regulatory science, does the execution of pan-African multi-national trials demonstrate the viability of continental regulatory harmonisation? This audit identified trials operating across multiple African nations among 23,873 total registrations on ClinicalTrials.gov using multi-country location metadata through March 2026. An estimated one hundred trials successfully operated across three or more African nations simultaneously, while approximately sixty-five trials spanned exactly two countries. The most common pan-African corridors linked South Africa with Kenya and Uganda, reflecting HIV and tuberculosis research networks. The African Medicines Agency framework promises to accelerate harmonisation, but current pan-African trial rates of eight percent lag far behind Europe's thirty-four percent multi-national rate. These validated pan-continental networks demonstrate that unified regulatory corridors can overcome historical fragmentation by harmonising ethical reviews and pooling diverse patient cohorts. These findings identify pan-African collaboration as the most effective lever for accelerating sovereign clinical innovation. Interpretation is limited by the difficulty of distinguishing genuine regulatory harmonisation from multi-site sponsorship convenience.`,
     refs: `  1. Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." Trials. 2018;19:519.\\n  2. Drain PK, et al. "Global migration of clinical trials." Nat Rev Drug Discov. 2018;17:765-766.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/pan-continental.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/governance-justice/code/pan-continental.py`,
+    dashboard: `dashboards/pan-continental.html`,
+    code: `code/pan-continental.py`,
   },
   "sponsor-churn": {
     title: `Sponsor Churn`,
-    body: `In institutional economics, does the turnover rate of research sponsors in Africa indicate stable institutional commitment or dependency on a rotating cast of foreign funders? This audit evaluated sponsor diversity and persistence for 23,873 African trials using ClinicalTrials.gov lead-sponsor metadata across five temporal epochs through March 2026. Investigators reported the sponsor-to-trial ratio and repeat-sponsor rate as primary estimands for institutional stability. Africa's sponsor churn index of 0.46 matched Europe's rate, suggesting comparable sponsor diversity in aggregate. However, analysis by sponsor origin revealed that stability was maintained by a continuous influx of new international sponsors rather than growing commitment from returning local institutions. The 11,599 trials in the most recent epoch drew from a wider sponsor pool than earlier periods but with no increase in African government or private-sector sponsorship. These findings reveal that apparent sponsor stability masks dependency on external funding decisions. Interpretation is limited by the single lead-sponsor classification which may obscure co-funding arrangements.`,
     refs: `  1. Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." Trials. 2018;19:519.\\n  2. Drain PK, et al. "Global migration of clinical trials." Nat Rev Drug Discov. 2018;17:765-766.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/sponsor-churn.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/governance-justice/code/sponsor-churn.py`,
+    dashboard: `dashboards/sponsor-churn.html`,
+    code: `code/sponsor-churn.py`,
   },
   "regulatory-oversight": {
     title: `Regulatory Oversight & Global Rigor`,
-    body: `In regulatory science, does the prevalence of FDA oversight on African trials indicate imported rigor from foreign regulatory frameworks rather than sovereign regulatory capacity? This audit evaluated regulatory oversight indicators for 23,873 African trials using ClinicalTrials.gov oversight module metadata through March 2026. An estimated thirty-one percent of African trials had FDA oversight designations, reflecting the dominance of internationally sponsored Phase 3 studies designed for United States regulatory submission. Africa's FDA oversight rate exceeded China's eighteen percent but fell below the United States domestic rate of seventy-two percent. Data monitoring committee rates were higher in African trials than in Chinese or Indian trials, again reflecting imported regulatory standards rather than local regulatory development. The 2,453 double-blind African trials (10% of total) demonstrated that imported regulatory standards enforce methodological rigour on the continent. These findings demonstrate that Africa's research quality is maintained by foreign regulatory frameworks. Interpretation is limited by voluntary disclosure of oversight arrangements.`,
     refs: `  1. Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." Trials. 2018;19:519.\\n  2. Drain PK, et al. "Global migration of clinical trials." Nat Rev Drug Discov. 2018;17:765-766.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/regulatory-oversight.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/governance-justice/code/regulatory-oversight.py`,
+    dashboard: `dashboards/regulatory-oversight.html`,
+    code: `code/regulatory-oversight.py`,
   },
   "forensic-audit": {
     title: `Forensic Audit: Zombie Trials & Silent Completions`,
-    body: `In research integrity, does forensic screening of ClinicalTrials.gov records reveal systematic transparency failures in African clinical research that warrant investigation? This forensic audit screened 23,873 African trial records for zombie protocols (unknown status exceeding five years), silent completions (results withheld over two years), and parachute research indicators through March 2026. Among 13,918 completed African trials, an estimated thirty percent had withheld results for over two years, and 24% remained in unknown or ambiguous status categories. The 522 terminated and 144 withdrawn African trials had lower rates of results reporting than completed trials. These forensic markers suggest a pattern of selective transparency where the data contribution of African participants is harvested for regulatory submissions but never returned to the public evidence base. These findings quantify research transparency as a measurable integrity dimension requiring systematic reform. Interpretation is limited by the automated nature of forensic screening which requires manual follow-up to distinguish administrative delays from genuine transparency failures.`,
     refs: `  1. Alemayehu C, et al. "Behind the mask of the African clinical trials landscape." Trials. 2018;19:519.\\n  2. Drain PK, et al. "Global migration of clinical trials." Nat Rev Drug Discov. 2018;17:765-766.`,
-    dashboard: `https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/forensic-audit.html`,
-    code: `https://github.com/mahmood726-cyber/africa-e156-students/tree/master/governance-justice/code/forensic-audit.py`,
+    dashboard: `dashboards/forensic-audit.html`,
+    code: `code/forensic-audit.py`,
   },
 };
+  const SLUG_TO_ID = {"author-sovereignty-gap": 1, "corporate-capture": 2, "data-sovereignty": 3, "intellectual-capital": 4, "knowledge-extraction": 5, "placebo-ethics": 6, "sponsor-sovereignty": 7, "value-transfer": 8, "altruism-efficiency": 9, "who-alignment": 10, "structural-inequity": 11, "unified-theory": 12, "global-hegemony": 13, "western-academic-footprint": 14, "pharma-continental-pipeline": 15, "tech-transfer": 16, "pan-continental": 17, "sponsor-churn": 18, "regulatory-oversight": 19, "forensic-audit": 20};
 
   function downloadMd(slug, el) {
-    const p = PAPERS[slug];
-    if (!p) return;
+    const p = PAPER_META[slug];
+    if (!p) { console.warn("Paper not found:", slug); return; }
+    const cardId = SLUG_TO_ID[slug];
+    const card = document.getElementById("paper-" + cardId);
+    if (!card) { console.warn("Card not found:", cardId); return; }
+    const bodyEl = card.querySelector(".paper-body");
+    const body = bodyEl ? bodyEl.textContent.trim() : "";
+    if (!body) { console.warn("Body empty for:", slug); return; }
     let md = "# " + p.title + "\n\n";
-    md += p.body + "\n\n";
+    md += body + "\n\n";
     md += "## References\n\n" + p.refs + "\n\n";
     md += "## Note Block\n\n";
     md += "- Type: research\n";
     md += "- App: " + p.dashboard + "\n";
     md += "- Code: " + p.code + "\n";
     md += "- Data: ClinicalTrials.gov API v2\n";
-    md += "- Date: 2026-04-03\n";
+    md += "- Date: 2026-04-05\n";
     const blob = new Blob([md], { type: "text/markdown" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");

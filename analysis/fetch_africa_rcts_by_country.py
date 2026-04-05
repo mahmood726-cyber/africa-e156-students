@@ -365,7 +365,7 @@ def generate_dashboard(results):
 
   <div class="footer">
     <p>Data: ClinicalTrials.gov API v2 (public, no key required) &middot; Retrieved {now}</p>
-    <p>Analysis: University of Uganda &middot; Africa E156 Series</p>
+    <p>Analysis: Makerere University &middot; Africa E156 Series</p>
   </div>
 
 </div>
