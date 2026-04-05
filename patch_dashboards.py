@@ -269,7 +269,25 @@ def get_stats_html(slug):
 
 
 def get_radar_data(slug):
-    """Build unique radar dimensions per paper."""
+    """Build unique radar dimensions per paper. Labels use clean abbreviations (no truncation)."""
+    # Abbreviation map for common conditions/designs
+    ABBR = {
+        "hiv":"HIV", "malaria":"Malaria", "tuberculosis":"TB", "cancer":"Cancer",
+        "cardiovascular":"CV", "diabetes":"Diabetes", "hypertension":"HTN",
+        "mental health":"Mental", "stroke":"Stroke", "maternal":"Maternal",
+        "sickle cell":"SCD", "heart failure":"HF", "pneumonia":"Pneumonia",
+        "diarrhea":"Diarrhea", "neonatal":"Neonatal", "epilepsy":"Epilepsy",
+        "kidney":"Kidney", "liver":"Liver", "respiratory":"Resp",
+        "neglected tropical diseases":"NTD",
+        "adaptive":"Adaptive", "cluster":"Cluster", "platform":"Platform",
+        "bayesian":"Bayesian", "placebo":"Placebo", "double-blind":"Blinding",
+        "open-label":"OpenLabel", "biomarker":"Biomarker",
+        "immunotherapy":"Immuno", "genomic":"Genomic", "digital":"Digital",
+        "community":"Community",
+    }
+    def abbr(key):
+        return ABBR.get(key.lower(), key.title()[:8])
+
     topic = PAPER_TOPICS.get(slug, {"conditions":["HIV"],"design":"double-blind"})
     conds = topic["conditions"]
     dkey = topic["design"]
@@ -280,15 +298,15 @@ def get_radar_data(slug):
         af_p = cd.get("Africa",0)/af_t
         us_p = cd.get("United States",0)/us_t
         score = min(100, round(af_p/us_p*100)) if us_p>0 else 0
-        dims[c.title()[:10]] = score
+        dims[abbr(c)] = score
     d = DESIGNS.get(dkey, {})
     af_dp = d.get("Africa",0)/af_t if af_t>0 else 0
     us_dp = d.get("United States",0)/us_t if us_t>0 else 0
-    dims[dkey.title()[:10]] = min(100, round(af_dp/us_dp*100)) if us_dp>0 else 0
+    dims[abbr(dkey)] = min(100, round(af_dp/us_dp*100)) if us_dp>0 else 0
     # Completion
     c_af = STATUSES.get("COMPLETED",{}).get("Africa",0)
     c_us = STATUSES.get("COMPLETED",{}).get("United States",0)
-    dims["Completion"] = min(100,round((c_af/af_t)/(c_us/us_t)*100)) if c_us>0 and us_t>0 else 50
+    dims["Completed"] = min(100,round((c_af/af_t)/(c_us/us_t)*100)) if c_us>0 and us_t>0 else 50
     # Growth
     t1 = TEMPORAL.get("2000-2005",{}).get("Africa",1) or 1
     t5 = TEMPORAL.get("2021-2025",{}).get("Africa",1)
@@ -508,7 +526,7 @@ def generate_dashboard(slug, group_id):
   </div>
 
   <div class="card">
-    <div class="section-label">The Evidence &nbsp; <span class="word-badge">{wc} words</span></div>
+    <div class="section-label">The Evidence &nbsp; <span class="word-badge">{wc} words &middot; target 156</span></div>
     <div class="body-text">{escape(body)}</div>
     {strip}
   </div>

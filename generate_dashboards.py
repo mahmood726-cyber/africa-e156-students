@@ -640,7 +640,7 @@ PAPERS = {
             {"label": "China", "value": 436, "color": "#7e5109"},
             {"label": "Africa", "value": 167, "color": "#c0392b"},
         ]},
-        "context": "Africa hosts just 41 heart failure trials compared to 1,855 in the United States — a 45-fold disparity. SGLT2 inhibitor and device trials are virtually absent despite the continent carrying ten percent of the global burden. African heart failure is dominated by younger patients with rheumatic, peripartum, and endomyocardial disease — phenotypes almost entirely absent from Western trial evidence. Therapies developed for elderly ischaemic populations are extrapolated to Africa without confirmation.",
+        "context": "Africa hosts 167 heart failure trials compared to 2,499 in the United States — a 15-fold disparity. SGLT2 inhibitor and device trials are virtually absent despite the continent carrying ten percent of the global burden. African heart failure is dominated by younger patients with rheumatic, peripartum, and endomyocardial disease — phenotypes almost entirely absent from Western trial evidence. Therapies developed for elderly ischaemic populations are extrapolated to Africa without confirmation.",
     },
     "maternal-mortality": {
         "title": "The Maternal Mortality Scandal",

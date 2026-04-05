@@ -24,7 +24,7 @@ JOURNAL_URL = "https://www.synthesis-medicine.org/index.php/journal"
 GROUPS = {
     "geographic-equity": {
         "title": "Geographic Equity & Spatial Justice",
-        "desc": "Where do clinical trials happen in Africa? These 12 papers analyse the spatial distribution of research sites, urban-rural gaps, cross-border access barriers, and geographic concentration patterns using ClinicalTrials.gov data.",
+        "desc": "Where do clinical trials happen in Africa? These 20 papers analyse the spatial distribution of research sites, urban-rural gaps, cross-border access barriers, and geographic concentration patterns using ClinicalTrials.gov data.",
         "papers": [
             {"slug": "angle-11_city-dispersion-rates", "title": "City Dispersion Rates",
              "code_src": "scripts/forty_angles_audit.py",
@@ -107,7 +107,7 @@ GROUPS = {
     },
     "health-disease": {
         "title": "Health & Disease Burden",
-        "desc": "What diseases get studied in Africa, and which are ignored? These 12 papers examine heart failure, maternal mortality, COVID displacement, genomic gaps, and the mismatch between disease burden and research investment.",
+        "desc": "What diseases get studied in Africa, and which are ignored? These 20 papers examine heart failure, maternal mortality, COVID displacement, genomic gaps, and the mismatch between disease burden and research investment.",
         "papers": [
             {"slug": "heart-failure-africa", "title": "Heart Failure in Africa",
              "code_src": "scripts/fetch_heart_failure_africa.py",
@@ -190,7 +190,7 @@ GROUPS = {
     },
     "governance-justice": {
         "title": "Governance, Justice & Sovereignty",
-        "desc": "Who controls clinical research in Africa? These 12 papers examine authorship gaps, corporate capture, data sovereignty, knowledge extraction, placebo ethics, and the structural power dynamics that shape African research.",
+        "desc": "Who controls clinical research in Africa? These 20 papers examine authorship gaps, corporate capture, data sovereignty, knowledge extraction, placebo ethics, and the structural power dynamics that shape African research.",
         "papers": [
             {"slug": "author-sovereignty-gap", "title": "Author Sovereignty Gap",
              "code_src": "scripts/sovereignty_audit.py",
@@ -273,7 +273,7 @@ GROUPS = {
     },
     "methods-systems": {
         "title": "Methods, Design & Research Systems",
-        "desc": "What trial methods does Africa receive? These 12 papers audit protocol quality, recruitment speed, Benford's law adherence, network entropy, and whether Africa gets cutting-edge or second-class methodology.",
+        "desc": "What trial methods does Africa receive? These 20 papers audit protocol quality, recruitment speed, Benford's law adherence, network entropy, and whether Africa gets cutting-edge or second-class methodology.",
         "papers": [
             {"slug": "design-quality", "title": "Methodological Quality Audit",
              "code_src": "scripts/fetch_design_quality.py",
