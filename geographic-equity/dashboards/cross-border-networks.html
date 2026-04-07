@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cross-Border Trial Networks — E156 Dashboard</title>
+  <style>
+:root { --bg:#f5f2ea;--paper:#fffdf8;--ink:#1d2430;--muted:#4a5568;--line:#d8cfbf;--accent:#0d6b57;--accent-soft:#dcefe8;--warm:#7A5A10;--shadow:0 18px 40px rgba(42,47,54,0.08);--radius:18px;--serif:"Georgia","Times New Roman",serif;--mono:"Consolas","SFMono-Regular","Menlo",monospace; }
+* { box-sizing:border-box;margin:0; }
+body { color:var(--ink);font-family:var(--serif);line-height:1.6;background:radial-gradient(circle at top left,rgba(13,107,87,0.06),transparent 32%),radial-gradient(circle at bottom right,rgba(141,79,45,0.06),transparent 28%),var(--bg); }
+.page { width:min(980px,calc(100vw - 24px));margin:0 auto;padding:32px 0 56px; }
+.card { background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px;margin-bottom:20px; }
+.hero { text-align:center;padding:40px 28px; }
+.eyebrow { color:var(--accent);font-size:13px;letter-spacing:0.15em;text-transform:uppercase;font-weight:700; }
+h1 { font-size:clamp(24px,3.5vw,38px);line-height:1.08;margin:10px 0 6px; }
+.subtitle { color:var(--muted);font-size:17px;max-width:58ch;margin:0 auto; }
+.metrics { display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin:20px 0; }
+.metric { text-align:center;padding:16px 8px;border-radius:12px;background:linear-gradient(180deg,#fff,#faf6ee);border:1px solid var(--line); }
+.metric-label { font-size:12px;text-transform:uppercase;letter-spacing:0.07em;color:var(--muted);margin-bottom:4px; }
+.metric-value { font-size:24px;font-weight:700; }
+.chart-wrap { overflow-x:auto;padding:4px 0; }
+.chart-grid { display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start; }
+.chart-cell { text-align:center; }
+.section-label { font-size:12px;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);font-weight:700;margin-bottom:14px; }
+.finding { font-size:19px;line-height:1.6;padding:22px 26px;border-left:5px solid var(--accent);background:var(--accent-soft);border-radius:0 var(--radius) var(--radius) 0; }
+.context { font-size:16px;line-height:1.8;color:#2a2f36; }
+.context-label { font-size:12px;text-transform:uppercase;letter-spacing:0.1em;color:var(--warm);font-weight:700;margin-bottom:10px; }
+.body-text { font-size:15px;line-height:1.8;padding:20px;background:#fafaf7;border-radius:10px; }
+.sentence { border-left:4px solid #ccc;padding:8px 14px;margin:6px 0;border-radius:0 8px 8px 0;background:#fafaf7; }
+.role-tag { font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em; }
+.sentence p { margin:3px 0 0;font-size:14px;line-height:1.65; }
+.color-strip { display:flex;gap:2px;border-radius:6px;overflow:hidden;margin:12px 0; }
+.color-strip > div { height:7px;flex:1; }
+.footer { text-align:center;color:var(--muted);font-size:12px;margin-top:28px; }
+.footer a { color:var(--accent);text-decoration:none; }
+.links { display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:16px 0; }
+.link-btn { display:inline-block;padding:12px 20px;min-height:44px;border-radius:8px;font-size:13px;font-weight:600;text-decoration:none;border:1px solid var(--line);color:var(--ink);background:white;transition:all 0.15s; }
+.link-btn:hover { background:var(--accent);color:white;border-color:var(--accent); }
+.word-badge { display:inline-block;background:var(--accent-soft);color:var(--accent);padding:3px 10px;border-radius:16px;font-size:12px;font-weight:700; }
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+@media (max-width:700px) { .chart-grid { grid-template-columns:1fr; } .card { padding:18px 14px; } }
+</style>
+</head>
+<body>
+<main class="page" role="main">
+  <div class="card hero">
+    <div class="eyebrow">E156 Micro-Paper &middot; Africa Clinical Trials</div>
+    <h1>Cross-Border Trial Networks</h1>
+    <p class="subtitle">Cross-border trial networks in Africa are dominated by disease-specific consorti...</p>
+    <div class="metrics"><div class="metric"><div class="metric-label">Africa Trials</div><div class="metric-value" style="color:var(--accent)">1,250</div></div><div class="metric"><div class="metric-label">US Trials</div><div class="metric-value" style="color:#c0392b">22,280</div></div><div class="metric"><div class="metric-label">Gap Ratio</div><div class="metric-value" style="color:#c0392b">18x</div></div><div class="metric"><div class="metric-label">Nations</div><div class="metric-value" style="color:#c0392b">54</div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="section-label">Key Finding</div>
+    <div class="finding">Africa hosts 23,873 trials across 54 nations with extreme geographic concentration.</div>
+  </div>
+
+  <div class="card">
+    <div class="section-label">Regional Comparison</div>
+    <div class="chart-grid">
+      <div class="chart-cell"><svg viewBox="0 0 200 100"><text x="100" y="50" text-anchor="middle" font-size="12" fill="#999">No data</text></svg></div>
+      <div class="chart-cell"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" style="max-width:500px;font-family:Georgia,'Times New Roman',serif;">
+<rect width="500" height="500" fill="#fffdf8" rx="4"/>
+<text x="250" y="24" text-anchor="middle" font-size="15" font-weight="700" fill="#1d2430">Cross-Border Trial Networks by Country</text>
+<path d="M 340 80 L 370 80 380 100 390 140 370 160 340 150 330 120 Z" fill="rgb(192,57,43)" stroke="#fff" stroke-width="1" opacity="0.9"><title>Egypt: 11752</title></path>
+<path d="M 180 80 L 230 70 260 90 260 130 230 150 200 150 180 130 Z" fill="#e8e4db" stroke="#fff" stroke-width="1" opacity="0.9"><title>Algeria: N/A</title></path>
+<path d="M 155 85 L 185 75 195 95 185 115 160 115 150 100 Z" fill="rgb(254,243,224)" stroke="#fff" stroke-width="1" opacity="0.9"><title>Morocco: 162</title></path>
+<path d="M 235 65 L 250 60 260 75 255 90 240 90 Z" fill="rgb(251,236,218)" stroke="#fff" stroke-width="1" opacity="0.9"><title>Tunisia: 540</title></path>
+<path d="M 100 200 L 130 195 140 210 125 225 105 220 Z" fill="#e8e4db" stroke="#fff" stroke-width="1" opacity="0.9"><title>Senegal: N/A</title></path>
+<path d="M 175 235 L 190 225 200 240 195 260 178 260 Z" fill="rgb(253,241,222)" stroke="#fff" stroke-width="1" opacity="0.9"><title>Ghana: 261</title></path>
+<path d="M 205 225 L 240 215 255 235 250 265 225 270 205 255 Z" fill="rgb(252,239,220)" stroke="#fff" stroke-width="1" opacity="0.9"><title>Nigeria: 379</title></path>
+<path d="M 255 240 L 275 235 280 260 270 280 255 270 Z" fill="#e8e4db" stroke="#fff" stroke-width="1" opacity="0.9"><title>Cameroon: N/A</title></path>
+<path d="M 290 290 L 325 275 340 300 335 340 310 350 285 330 Z" fill="#e8e4db" stroke="#fff" stroke-width="1" opacity="0.9"><title>DRC: N/A</title></path>
+<path d="M 365 210 L 400 200 415 225 400 250 375 245 360 230 Z" fill="rgb(253,240,221)" stroke="#fff" stroke-width="1" opacity="0.9"><title>Ethiopia: 302</title></path>
+<path d="M 370 260 L 395 255 400 280 385 300 365 290 Z" fill="rgb(250,232,214)" stroke="#fff" stroke-width="1" opacity="0.9"><title>Kenya: 788</title></path>
+<path d="M 345 260 L 365 255 370 275 355 285 340 275 Z" fill="rgb(250,232,213)" stroke="#fff" stroke-width="1" opacity="0.9"><title>Uganda: 809</title></path>
+<path d="M 360 300 L 390 295 395 330 375 345 355 330 Z" fill="rgb(252,238,219)" stroke="#fff" stroke-width="1" opacity="0.9"><title>Tanzania: 460</title></path>
+<path d="M 340 288 L 355 285 358 298 345 300 Z" fill="#e8e4db" stroke="#fff" stroke-width="1" opacity="0.9"><title>Rwanda: N/A</title></path>
+<path d="M 260 400 L 310 380 345 400 340 440 300 455 265 435 Z" fill="rgb(235,186,169)" stroke="#fff" stroke-width="1" opacity="0.9"><title>South Africa: 3654</title></path>
+<text x="360" y="115" text-anchor="middle" font-size="9" fill="#1d2430" font-weight="600">Egy</text>
+<text x="360" y="126" text-anchor="middle" font-size="8" fill="#4a5568">11752</text>
+<text x="300" y="418" text-anchor="middle" font-size="9" fill="#1d2430" font-weight="600">Sou</text>
+<text x="300" y="429" text-anchor="middle" font-size="8" fill="#4a5568">3654</text>
+<text x="355" y="270" text-anchor="middle" font-size="9" fill="#1d2430" font-weight="600">Uga</text>
+<text x="355" y="281" text-anchor="middle" font-size="8" fill="#4a5568">809</text>
+<text x="382" y="275" text-anchor="middle" font-size="9" fill="#1d2430" font-weight="600">Ken</text>
+<text x="382" y="286" text-anchor="middle" font-size="8" fill="#4a5568">788</text>
+<text x="248" y="76" text-anchor="middle" font-size="9" fill="#1d2430" font-weight="600">Tun</text>
+<text x="248" y="87" text-anchor="middle" font-size="8" fill="#4a5568">540</text>
+<rect x="175" y="465" width="3" height="10" fill="rgb(254,243,224)"/>
+<rect x="178" y="465" width="3" height="10" fill="rgb(252,239,220)"/>
+<rect x="181" y="465" width="3" height="10" fill="rgb(251,235,216)"/>
+<rect x="184" y="465" width="3" height="10" fill="rgb(250,231,212)"/>
+<rect x="187" y="465" width="3" height="10" fill="rgb(248,227,209)"/>
+<rect x="190" y="465" width="3" height="10" fill="rgb(247,224,205)"/>
+<rect x="193" y="465" width="3" height="10" fill="rgb(246,220,201)"/>
+<rect x="196" y="465" width="3" height="10" fill="rgb(245,216,198)"/>
+<rect x="199" y="465" width="3" height="10" fill="rgb(243,212,194)"/>
+<rect x="202" y="465" width="3" height="10" fill="rgb(242,208,190)"/>
+<rect x="205" y="465" width="3" height="10" fill="rgb(241,205,187)"/>
+<rect x="208" y="465" width="3" height="10" fill="rgb(240,201,183)"/>
+<rect x="211" y="465" width="3" height="10" fill="rgb(238,197,179)"/>
+<rect x="214" y="465" width="3" height="10" fill="rgb(237,193,175)"/>
+<rect x="217" y="465" width="3" height="10" fill="rgb(236,189,172)"/>
+<rect x="220" y="465" width="3" height="10" fill="rgb(235,186,168)"/>
+<rect x="223" y="465" width="3" height="10" fill="rgb(233,182,164)"/>
+<rect x="226" y="465" width="3" height="10" fill="rgb(232,178,161)"/>
+<rect x="229" y="465" width="3" height="10" fill="rgb(231,174,157)"/>
+<rect x="232" y="465" width="3" height="10" fill="rgb(229,170,153)"/>
+<rect x="235" y="465" width="3" height="10" fill="rgb(228,167,150)"/>
+<rect x="238" y="465" width="3" height="10" fill="rgb(227,163,146)"/>
+<rect x="241" y="465" width="3" height="10" fill="rgb(226,159,142)"/>
+<rect x="244" y="465" width="3" height="10" fill="rgb(224,155,139)"/>
+<rect x="247" y="465" width="3" height="10" fill="rgb(223,151,135)"/>
+<rect x="250" y="465" width="3" height="10" fill="rgb(222,148,131)"/>
+<rect x="253" y="465" width="3" height="10" fill="rgb(221,144,127)"/>
+<rect x="256" y="465" width="3" height="10" fill="rgb(219,140,124)"/>
+<rect x="259" y="465" width="3" height="10" fill="rgb(218,136,120)"/>
+<rect x="262" y="465" width="3" height="10" fill="rgb(217,132,116)"/>
+<rect x="265" y="465" width="3" height="10" fill="rgb(216,129,113)"/>
+<rect x="268" y="465" width="3" height="10" fill="rgb(214,125,109)"/>
+<rect x="271" y="465" width="3" height="10" fill="rgb(213,121,105)"/>
+<rect x="274" y="465" width="3" height="10" fill="rgb(212,117,102)"/>
+<rect x="277" y="465" width="3" height="10" fill="rgb(210,113,98)"/>
+<rect x="280" y="465" width="3" height="10" fill="rgb(209,110,94)"/>
+<rect x="283" y="465" width="3" height="10" fill="rgb(208,106,91)"/>
+<rect x="286" y="465" width="3" height="10" fill="rgb(207,102,87)"/>
+<rect x="289" y="465" width="3" height="10" fill="rgb(205,98,83)"/>
+<rect x="292" y="465" width="3" height="10" fill="rgb(204,94,79)"/>
+<rect x="295" y="465" width="3" height="10" fill="rgb(203,91,76)"/>
+<rect x="298" y="465" width="3" height="10" fill="rgb(202,87,72)"/>
+<rect x="301" y="465" width="3" height="10" fill="rgb(200,83,68)"/>
+<rect x="304" y="465" width="3" height="10" fill="rgb(199,79,65)"/>
+<rect x="307" y="465" width="3" height="10" fill="rgb(198,75,61)"/>
+<rect x="310" y="465" width="3" height="10" fill="rgb(197,72,57)"/>
+<rect x="313" y="465" width="3" height="10" fill="rgb(195,68,54)"/>
+<rect x="316" y="465" width="3" height="10" fill="rgb(194,64,50)"/>
+<rect x="319" y="465" width="3" height="10" fill="rgb(193,60,46)"/>
+<rect x="322" y="465" width="3" height="10" fill="rgb(192,57,43)"/>
+<text x="172" y="474" text-anchor="end" font-size="9" fill="#4a5568">162</text>
+<text x="328" y="474" text-anchor="start" font-size="9" fill="#4a5568">11752</text>
+</svg></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-label">Distribution Analysis</div>
+    <div class="chart-grid">
+      <div class="chart-cell"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 320" style="max-width:420px;font-family:Georgia,'Times New Roman',serif;">
+<rect width="420" height="320" fill="#fffdf8" rx="4"/>
+<text x="210" y="22" text-anchor="middle" font-size="14" font-weight="700" fill="#1d2430">Phase Distribution</text>
+<text x="135.0" y="40" text-anchor="middle" font-size="9" fill="#4a5568">Africa</text>
+<text x="225.0" y="40" text-anchor="middle" font-size="9" fill="#4a5568">US</text>
+<text x="315.0" y="40" text-anchor="middle" font-size="9" fill="#4a5568">Europe</text>
+<text x="85" y="80.5" text-anchor="end" font-size="9" fill="#1d2430">Phase 1</text>
+<rect x="90.0" y="45.0" width="90.0" height="65.0" fill="rgb(254,243,224)" stroke="#fff" stroke-width="1"/>
+<text x="135.0" y="80.5" text-anchor="middle" font-size="9" fill="#1d2430">7</text>
+<rect x="180.0" y="45.0" width="90.0" height="65.0" fill="rgb(245,216,197)" stroke="#fff" stroke-width="1"/>
+<text x="225.0" y="80.5" text-anchor="middle" font-size="9" fill="#1d2430">97.3</text>
+<rect x="270.0" y="45.0" width="90.0" height="65.0" fill="rgb(248,226,207)" stroke="#fff" stroke-width="1"/>
+<text x="315.0" y="80.5" text-anchor="middle" font-size="9" fill="#1d2430">62.7</text>
+<text x="85" y="145.5" text-anchor="end" font-size="9" fill="#1d2430">Phase 2</text>
+<rect x="90.0" y="110.0" width="90.0" height="65.0" fill="rgb(252,237,218)" stroke="#fff" stroke-width="1"/>
+<text x="135.0" y="145.5" text-anchor="middle" font-size="9" fill="#1d2430">26</text>
+<rect x="180.0" y="110.0" width="90.0" height="65.0" fill="rgb(229,169,152)" stroke="#fff" stroke-width="1"/>
+<text x="225.0" y="145.5" text-anchor="middle" font-size="9" fill="#1d2430">254.0</text>
+<rect x="270.0" y="110.0" width="90.0" height="65.0" fill="rgb(240,201,184)" stroke="#fff" stroke-width="1"/>
+<text x="315.0" y="145.5" text-anchor="middle" font-size="9" fill="#1d2430">145.1</text>
+<text x="85" y="210.5" text-anchor="end" font-size="9" fill="#1d2430">Phase 3</text>
+<rect x="90.0" y="175.0" width="90.0" height="65.0" fill="rgb(248,226,208)" stroke="#fff" stroke-width="1"/>
+<text x="135.0" y="210.5" text-anchor="middle" font-size="9" fill="#1d2430">62</text>
+<rect x="180.0" y="175.0" width="90.0" height="65.0" fill="rgb(192,57,43)" stroke="#fff" stroke-width="1"/>
+<text x="225.0" y="210.5" text-anchor="middle" font-size="9" fill="#fff">632.8</text>
+<rect x="270.0" y="175.0" width="90.0" height="65.0" fill="rgb(207,104,89)" stroke="#fff" stroke-width="1"/>
+<text x="315.0" y="210.5" text-anchor="middle" font-size="9" fill="#fff">472.4</text>
+<text x="85" y="275.5" text-anchor="end" font-size="9" fill="#1d2430">Phase 4</text>
+<rect x="90.0" y="240.0" width="90.0" height="65.0" fill="rgb(254,243,224)" stroke="#fff" stroke-width="1"/>
+<text x="135.0" y="275.5" text-anchor="middle" font-size="9" fill="#1d2430">7</text>
+<rect x="180.0" y="240.0" width="90.0" height="65.0" fill="rgb(250,231,212)" stroke="#fff" stroke-width="1"/>
+<text x="225.0" y="275.5" text-anchor="middle" font-size="9" fill="#1d2430">47.1</text>
+<rect x="270.0" y="240.0" width="90.0" height="65.0" fill="rgb(249,230,211)" stroke="#fff" stroke-width="1"/>
+<text x="315.0" y="275.5" text-anchor="middle" font-size="9" fill="#1d2430">48.9</text>
+<rect x="375" y="45.0" width="10" height="9.7" fill="rgb(192,57,43)"/>
+<rect x="375" y="53.7" width="10" height="9.7" fill="rgb(194,63,49)"/>
+<rect x="375" y="62.3" width="10" height="9.7" fill="rgb(196,69,55)"/>
+<rect x="375" y="71.0" width="10" height="9.7" fill="rgb(198,76,61)"/>
+<rect x="375" y="79.7" width="10" height="9.7" fill="rgb(200,82,67)"/>
+<rect x="375" y="88.3" width="10" height="9.7" fill="rgb(202,89,74)"/>
+<rect x="375" y="97.0" width="10" height="9.7" fill="rgb(204,95,80)"/>
+<rect x="375" y="105.7" width="10" height="9.7" fill="rgb(206,101,86)"/>
+<rect x="375" y="114.3" width="10" height="9.7" fill="rgb(209,108,92)"/>
+<rect x="375" y="123.0" width="10" height="9.7" fill="rgb(211,114,99)"/>
+<rect x="375" y="131.7" width="10" height="9.7" fill="rgb(213,121,105)"/>
+<rect x="375" y="140.3" width="10" height="9.7" fill="rgb(215,127,111)"/>
+<rect x="375" y="149.0" width="10" height="9.7" fill="rgb(217,133,117)"/>
+<rect x="375" y="157.7" width="10" height="9.7" fill="rgb(219,140,124)"/>
+<rect x="375" y="166.3" width="10" height="9.7" fill="rgb(221,146,130)"/>
+<rect x="375" y="175.0" width="10" height="9.7" fill="rgb(224,153,136)"/>
+<rect x="375" y="183.7" width="10" height="9.7" fill="rgb(226,159,142)"/>
+<rect x="375" y="192.3" width="10" height="9.7" fill="rgb(228,166,149)"/>
+<rect x="375" y="201.0" width="10" height="9.7" fill="rgb(230,172,155)"/>
+<rect x="375" y="209.7" width="10" height="9.7" fill="rgb(232,178,161)"/>
+<rect x="375" y="218.3" width="10" height="9.7" fill="rgb(234,185,167)"/>
+<rect x="375" y="227.0" width="10" height="9.7" fill="rgb(236,191,174)"/>
+<rect x="375" y="235.7" width="10" height="9.7" fill="rgb(239,198,180)"/>
+<rect x="375" y="244.3" width="10" height="9.7" fill="rgb(241,204,186)"/>
+<rect x="375" y="253.0" width="10" height="9.7" fill="rgb(243,210,192)"/>
+<rect x="375" y="261.7" width="10" height="9.7" fill="rgb(245,217,199)"/>
+<rect x="375" y="270.3" width="10" height="9.7" fill="rgb(247,223,205)"/>
+<rect x="375" y="279.0" width="10" height="9.7" fill="rgb(249,230,211)"/>
+<rect x="375" y="287.7" width="10" height="9.7" fill="rgb(251,236,217)"/>
+<rect x="375" y="296.3" width="10" height="9.7" fill="rgb(254,243,224)"/>
+<text x="389" y="53" font-size="8" fill="#4a5568">632.8</text>
+<text x="389" y="305" font-size="8" fill="#4a5568">7</text>
+</svg></div>
+      <div class="chart-cell"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" style="max-width:300px;font-family:Georgia,'Times New Roman',serif;">
+<rect width="300" height="300" fill="#fffdf8" rx="4"/>
+<text x="150" y="22" text-anchor="middle" font-size="14" font-weight="700" fill="#1d2430">Research Profile</text>
+<polygon points="150.0,137.2 173.5,154.4 164.5,182.0 135.5,182.0 126.5,154.4" fill="none" stroke="#d8cfbf" stroke-width="0.7" opacity="0.5"/>
+<polygon points="150.0,112.5 197.1,146.7 179.1,202.0 120.9,202.0 102.9,146.7" fill="none" stroke="#d8cfbf" stroke-width="0.7" opacity="0.5"/>
+<polygon points="150.0,87.8 220.6,139.1 193.6,222.1 106.4,222.1 79.4,139.1" fill="none" stroke="#d8cfbf" stroke-width="0.7" opacity="0.5"/>
+<polygon points="150.0,63.0 244.2,131.4 208.2,242.1 91.8,242.1 55.8,131.4" fill="none" stroke="#d8cfbf" stroke-width="0.7" opacity="0.5"/>
+<line x1="150.0" y1="162.0" x2="150.0" y2="63.0" stroke="#d8cfbf" stroke-width="0.7" opacity="0.5"/>
+<line x1="150.0" y1="162.0" x2="244.2" y2="131.4" stroke="#d8cfbf" stroke-width="0.7" opacity="0.5"/>
+<line x1="150.0" y1="162.0" x2="208.2" y2="242.1" stroke="#d8cfbf" stroke-width="0.7" opacity="0.5"/>
+<line x1="150.0" y1="162.0" x2="91.8" y2="242.1" stroke="#d8cfbf" stroke-width="0.7" opacity="0.5"/>
+<line x1="150.0" y1="162.0" x2="55.8" y2="131.4" stroke="#d8cfbf" stroke-width="0.7" opacity="0.5"/>
+<polygon points="150.0,156.4 188.8,149.4 175.4,197.0 111.6,214.8 116.1,151.0" fill="#c0392b" opacity="0.2" stroke="#c0392b" stroke-width="2"/>
+<circle cx="150.0" cy="156.4" r="3" fill="#c0392b"/>
+<circle cx="188.8" cy="149.4" r="3" fill="#c0392b"/>
+<circle cx="175.4" cy="197.0" r="3" fill="#c0392b"/>
+<circle cx="111.6" cy="214.8" r="3" fill="#c0392b"/>
+<circle cx="116.1" cy="151.0" r="3" fill="#c0392b"/>
+<text x="150.0" y="48.0" text-anchor="middle" font-size="9" fill="#1d2430">Volume</text>
+<text x="261.3" y="128.8" text-anchor="start" font-size="9" fill="#1d2430">Growth</text>
+<text x="218.8" y="259.7" text-anchor="start" font-size="9" fill="#1d2430">Phase3</text>
+<text x="81.2" y="259.7" text-anchor="end" font-size="9" fill="#1d2430">Complete</text>
+<text x="38.7" y="128.8" text-anchor="end" font-size="9" fill="#1d2430">Diversity</text>
+</svg></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-label">Inequality Profile</div>
+    <div class="chart-grid">
+      <div class="chart-cell"><svg viewBox="0 0 200 100"><text x="100" y="50" text-anchor="middle" font-size="12" fill="#999">No data</text></svg></div>
+      <div class="chart-cell"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 300" style="max-width:440px;font-family:Georgia,'Times New Roman',serif;">
+<rect width="440" height="300" fill="#fffdf8" rx="4"/>
+<text x="220" y="22" text-anchor="middle" font-size="14" font-weight="700" fill="#1d2430">Trial Flow</text>
+<path d="M 118 40.0 C 220.0 40.0, 220.0 40.0, 322 40.0 L 322 48.0 C 220.0 48.0, 220.0 47.7, 118 47.7 Z" fill="#c0392b" opacity="0.35"/>
+<path d="M 118 47.688348856475784 C 220.0 47.688348856475784, 220.0 52.0, 322 52.0 L 322 189.0 C 220.0 189.0, 220.0 184.7, 118 184.7 Z" fill="#2c3e50" opacity="0.35"/>
+<path d="M 118 184.7254788743002 C 220.0 184.7254788743002, 220.0 193.03713001782444, 322 193.03713001782444 L 322 201.0 C 220.0 201.0, 220.0 186.7, 118 186.7 Z" fill="#0d6b57" opacity="0.35"/>
+<path d="M 118 189.2667386337961 C 220.0 189.2667386337961, 220.0 205.03713001782444, 322 205.03713001782444 L 322 277.3 C 220.0 277.3, 220.0 261.5, 118 261.5 Z" fill="#7e5109" opacity="0.35"/>
+<path d="M 118 261.54951924283887 C 220.0 261.54951924283887, 220.0 281.31991062686717, 322 281.31991062686717 L 322 303.8 C 220.0 303.8, 220.0 284.0, 118 284.0 Z" fill="#8e44ad" opacity="0.35"/>
+<path d="M 118 284.0241006200889 C 220.0 284.0241006200889, 220.0 307.79449200411716, 322 307.79449200411716 L 322 315.8 C 220.0 315.8, 220.0 289.0, 118 289.0 Z" fill="#e67e22" opacity="0.35"/>
+<rect x="100" y="40.0" width="18" height="145.3" fill="#c0392b" rx="2"/>
+<text x="96" y="115.6" text-anchor="end" font-size="9" fill="#1d2430">Global</text>
+<rect x="100" y="189.3" width="18" height="99.7" fill="#c0392b" rx="2"/>
+<text x="96" y="242.1" text-anchor="end" font-size="9" fill="#1d2430">Africa</text>
+<rect x="322" y="40.0" width="18" height="8.0" fill="#2c3e50" rx="2"/>
+<text x="344" y="47.0" text-anchor="start" font-size="9" fill="#1d2430">Africa</text>
+<rect x="322" y="52.0" width="18" height="137.0" fill="#2c3e50" rx="2"/>
+<text x="344" y="123.5" text-anchor="start" font-size="9" fill="#1d2430">US</text>
+<rect x="322" y="193.0" width="18" height="8.0" fill="#2c3e50" rx="2"/>
+<text x="344" y="200.0" text-anchor="start" font-size="9" fill="#1d2430">Europe</text>
+<rect x="322" y="205.0" width="18" height="72.3" fill="#2c3e50" rx="2"/>
+<text x="344" y="244.2" text-anchor="start" font-size="9" fill="#1d2430">Egypt</text>
+<rect x="322" y="281.3" width="18" height="22.5" fill="#2c3e50" rx="2"/>
+<text x="344" y="295.6" text-anchor="start" font-size="9" fill="#1d2430">South Af</text>
+<rect x="322" y="307.8" width="18" height="8.0" fill="#2c3e50" rx="2"/>
+<text x="344" y="314.8" text-anchor="start" font-size="9" fill="#1d2430">Uganda</text>
+</svg></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-label">Temporal &amp; Structural</div>
+    <div class="chart-grid">
+      <div class="chart-cell"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 280" style="max-width:420px;font-family:Georgia,'Times New Roman',serif;">
+<rect width="420" height="280" fill="#fffdf8" rx="4"/>
+<text x="210" y="22" text-anchor="middle" font-size="14" font-weight="700" fill="#1d2430">Contribution Breakdown</text>
+<rect x="61.7" y="122.4" width="35.0" height="112.6" fill="#0d6b57" opacity="0.85" rx="1"/>
+<text x="79.2" y="117.4" text-anchor="middle" font-size="8" fill="#1d2430">11752</text>
+<line x1="96.7" y1="122.4" x2="120.0" y2="122.4" stroke="#d8cfbf" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="79.2" y="249" text-anchor="middle" font-size="8" fill="#4a5568" transform="rotate(-30 79.2 249)">Egypt</text>
+<rect x="120.0" y="87.4" width="35.0" height="35.0" fill="#0d6b57" opacity="0.85" rx="1"/>
+<text x="137.5" y="82.4" text-anchor="middle" font-size="8" fill="#1d2430">3654</text>
+<line x1="155.0" y1="87.4" x2="178.3" y2="87.4" stroke="#d8cfbf" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="137.5" y="249" text-anchor="middle" font-size="8" fill="#4a5568" transform="rotate(-30 137.5 249)">South Afri</text>
+<rect x="178.3" y="79.7" width="35.0" height="7.7" fill="#0d6b57" opacity="0.85" rx="1"/>
+<text x="195.8" y="74.7" text-anchor="middle" font-size="8" fill="#1d2430">809</text>
+<line x1="213.3" y1="79.7" x2="236.7" y2="79.7" stroke="#d8cfbf" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="195.8" y="249" text-anchor="middle" font-size="8" fill="#4a5568" transform="rotate(-30 195.8 249)">Uganda</text>
+<rect x="236.7" y="72.1" width="35.0" height="7.5" fill="#0d6b57" opacity="0.85" rx="1"/>
+<text x="254.2" y="67.1" text-anchor="middle" font-size="8" fill="#1d2430">788</text>
+<line x1="271.7" y1="72.1" x2="295.0" y2="72.1" stroke="#d8cfbf" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="254.2" y="249" text-anchor="middle" font-size="8" fill="#4a5568" transform="rotate(-30 254.2 249)">Kenya</text>
+<rect x="295.0" y="67.0" width="35.0" height="5.2" fill="#0d6b57" opacity="0.85" rx="1"/>
+<text x="312.5" y="62.0" text-anchor="middle" font-size="8" fill="#1d2430">540</text>
+<line x1="330.0" y1="67.0" x2="353.3" y2="67.0" stroke="#d8cfbf" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="312.5" y="249" text-anchor="middle" font-size="8" fill="#4a5568" transform="rotate(-30 312.5 249)">Tunisia</text>
+<rect x="353.3" y="40.0" width="35.0" height="27.0" fill="#0d6b57" opacity="0.85" rx="1"/>
+<text x="370.8" y="35.0" text-anchor="middle" font-size="8" fill="#1d2430">2814</text>
+<text x="370.8" y="249" text-anchor="middle" font-size="8" fill="#4a5568" transform="rotate(-30 370.8 249)">Others</text>
+</svg></div>
+      <div class="chart-cell"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 280" style="max-width:400px;font-family:Georgia,'Times New Roman',serif;">
+<rect width="400" height="280" fill="#fffdf8" rx="4"/>
+<text x="200" y="22" text-anchor="middle" font-size="14" font-weight="700" fill="#1d2430">Enrollment Distribution</text>
+<polygon points="132.8,272.1 133.0,270.1 133.5,268.1 134.3,266.0 135.6,264.0 137.7,262.0 140.7,260.0 144.9,257.9 150.3,255.9 157.0,253.9 164.7,251.8 173.0,249.8 181.2,247.8 188.6,245.8 194.3,243.7 197.7,241.7 198.5,239.7 196.5,237.7 192.1,235.6 185.8,233.6 178.3,231.6 170.4,229.5 162.9,227.5 156.1,225.5 150.3,223.5 145.8,221.4 142.4,219.4 139.9,217.4 138.1,215.3 136.9,213.3 136.0,211.3 135.4,209.3 134.9,207.2 134.5,205.2 134.1,203.2 133.8,201.1 133.5,199.1 133.2,197.1 133.0,195.1 132.9,193.0 132.7,191.0 132.7,189.0 132.6,186.9 132.6,184.9 132.6,182.9 132.7,180.9 132.7,178.8 132.8,176.8 133.0,174.8 133.2,172.8 133.4,170.7 133.6,168.7 133.8,166.7 134.0,164.6 134.1,162.6 134.1,160.6 134.2,158.6 134.1,156.5 134.1,154.5 134.0,152.5 134.0,150.4 134.0,148.4 134.0,146.4 134.1,144.4 134.1,142.3 134.2,140.3 134.1,138.3 134.0,136.2 133.9,134.2 133.7,132.2 133.5,130.2 133.3,128.1 133.1,126.1 132.9,124.1 132.8,122.0 132.7,120.0 132.6,118.0 132.6,116.0 132.5,113.9 132.5,111.9 132.5,111.9 132.5,113.9 132.4,116.0 132.4,118.0 132.3,120.0 132.2,122.0 132.1,124.1 131.9,126.1 131.7,128.1 131.5,130.2 131.3,132.2 131.1,134.2 131.0,136.2 130.9,138.3 130.8,140.3 130.9,142.3 130.9,144.4 131.0,146.4 131.0,148.4 131.0,150.4 131.0,152.5 130.9,154.5 130.9,156.5 130.8,158.6 130.9,160.6 130.9,162.6 131.0,164.6 131.2,166.7 131.4,168.7 131.6,170.7 131.8,172.8 132.0,174.8 132.2,176.8 132.3,178.8 132.3,180.9 132.4,182.9 132.4,184.9 132.4,186.9 132.3,189.0 132.3,191.0 132.1,193.0 132.0,195.1 131.8,197.1 131.5,199.1 131.2,201.1 130.9,203.2 130.5,205.2 130.1,207.2 129.6,209.3 129.0,211.3 128.1,213.3 126.9,215.3 125.1,217.4 122.6,219.4 119.2,221.4 114.7,223.5 108.9,225.5 102.1,227.5 94.6,229.5 86.7,231.6 79.2,233.6 72.9,235.6 68.5,237.7 66.5,239.7 67.3,241.7 70.7,243.7 76.4,245.8 83.8,247.8 92.0,249.8 100.3,251.8 108.0,253.9 114.7,255.9 120.1,257.9 124.3,260.0 127.3,262.0 129.4,264.0 130.7,266.0 131.5,268.1 132.0,270.1 132.2,272.1" fill="#c0392b" opacity="0.3" stroke="#c0392b" stroke-width="1"/>
+<line x1="106.1" y1="243.1" x2="158.9" y2="243.1" stroke="#c0392b" stroke-width="1"/>
+<line x1="106.1" y1="236.8" x2="158.9" y2="236.8" stroke="#c0392b" stroke-width="1"/>
+<line x1="92.9" y1="239.7" x2="172.1" y2="239.7" stroke="#c0392b" stroke-width="2.5"/>
+<text x="132.5" y="270" text-anchor="middle" font-size="10" fill="#1d2430">Africa</text>
+<polygon points="297.8,301.0 298.0,297.0 298.5,293.0 299.2,288.9 300.4,284.9 302.2,280.9 304.9,276.9 308.6,272.9 313.4,268.9 319.4,264.8 326.4,260.8 334.2,256.8 342.2,252.8 349.8,248.8 356.3,244.8 361.0,240.8 363.5,236.7 363.5,232.7 361.0,228.7 356.4,224.7 350.2,220.7 343.1,216.7 335.7,212.7 328.6,208.6 322.2,204.6 316.8,200.6 312.5,196.6 309.2,192.6 306.7,188.6 304.8,184.5 303.5,180.5 302.5,176.5 301.7,172.5 301.0,168.5 300.4,164.5 299.8,160.5 299.3,156.4 298.9,152.4 298.5,148.4 298.2,144.4 298.0,140.4 297.8,136.4 297.7,132.4 297.6,128.3 297.6,124.3 297.5,120.3 297.5,116.3 297.5,112.3 297.5,108.3 297.6,104.2 297.6,100.2 297.7,96.2 297.8,92.2 297.9,88.2 298.1,84.2 298.4,80.2 298.7,76.1 299.0,72.1 299.3,68.1 299.7,64.1 300.0,60.1 300.2,56.1 300.3,52.1 300.4,48.0 300.3,44.0 300.2,40.0 299.9,36.0 299.6,32.0 299.3,28.0 299.0,23.9 298.6,19.9 298.4,15.9 298.1,11.9 297.9,7.9 297.8,3.9 297.7,-0.1 297.6,-4.2 297.6,-8.2 297.5,-12.2 297.5,-16.2 297.5,-16.2 297.5,-12.2 297.4,-8.2 297.4,-4.2 297.3,-0.1 297.2,3.9 297.1,7.9 296.9,11.9 296.6,15.9 296.4,19.9 296.0,23.9 295.7,28.0 295.4,32.0 295.1,36.0 294.8,40.0 294.7,44.0 294.6,48.0 294.7,52.1 294.8,56.1 295.0,60.1 295.3,64.1 295.7,68.1 296.0,72.1 296.3,76.1 296.6,80.2 296.9,84.2 297.1,88.2 297.2,92.2 297.3,96.2 297.4,100.2 297.4,104.2 297.5,108.3 297.5,112.3 297.5,116.3 297.5,120.3 297.4,124.3 297.4,128.3 297.3,132.4 297.2,136.4 297.0,140.4 296.8,144.4 296.5,148.4 296.1,152.4 295.7,156.4 295.2,160.5 294.6,164.5 294.0,168.5 293.3,172.5 292.5,176.5 291.5,180.5 290.2,184.5 288.3,188.6 285.8,192.6 282.5,196.6 278.2,200.6 272.8,204.6 266.4,208.6 259.3,212.7 251.9,216.7 244.8,220.7 238.6,224.7 234.0,228.7 231.5,232.7 231.5,236.7 234.0,240.8 238.7,244.8 245.2,248.8 252.8,252.8 260.8,256.8 268.6,260.8 275.6,264.8 281.6,268.9 286.4,272.9 290.1,276.9 292.8,280.9 294.6,284.9 295.8,288.9 296.5,293.0 297.0,297.0 297.2,301.0" fill="#c0392b" opacity="0.3" stroke="#c0392b" stroke-width="1"/>
+<line x1="271.1" y1="240.8" x2="323.9" y2="240.8" stroke="#c0392b" stroke-width="1"/>
+<line x1="271.1" y1="228.6" x2="323.9" y2="228.6" stroke="#c0392b" stroke-width="1"/>
+<line x1="257.9" y1="233.6" x2="337.1" y2="233.6" stroke="#c0392b" stroke-width="2.5"/>
+<text x="297.5" y="270" text-anchor="middle" font-size="10" fill="#1d2430">Reference</text>
+<line x1="50" y1="40" x2="50" y2="245" stroke="#d8cfbf" stroke-width="1"/>
+<text x="45" y="195.66084430357793" text-anchor="end" font-size="9" fill="#4a5568">5000</text>
+<line x1="50" y1="192.66084430357793" x2="380" y2="192.66084430357793" stroke="#d8cfbf" stroke-width="0.5" opacity="0.4"/>
+<text x="45" y="143.0057580898736" text-anchor="end" font-size="9" fill="#4a5568">10000</text>
+<line x1="50" y1="140.0057580898736" x2="380" y2="140.0057580898736" stroke="#d8cfbf" stroke-width="0.5" opacity="0.4"/>
+<text x="45" y="90.35067187616932" text-anchor="end" font-size="9" fill="#4a5568">15000</text>
+<line x1="50" y1="87.35067187616932" x2="380" y2="87.35067187616932" stroke="#d8cfbf" stroke-width="0.5" opacity="0.4"/>
+</svg></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="context-label">Why It Matters</div>
+    <p class="context">Cross-border trial networks in Africa are dominated by disease-specific consortia (EDCTP, EANETT) rather than sovereign African regulatory frameworks, meaning collaboration structures reflect donor priorities.</p>
+  </div>
+
+  <div class="card">
+    <div class="section-label">The Evidence &nbsp; <span class="word-badge">125 words &middot; target 156</span></div>
+    <div class="body-text">In the spatial mapping of African clinical research, does the pattern of cross-border trial networks reveal structural inequity in African research investment? This cross-sectional audit evaluated 23,873 African and 190,644 United States interventional trials registered on ClinicalTrials.gov through April 2026. Investigators computed the network degree centrality as the primary estimand using registry metadata for each nation. Africa registered 1,250 relevant trials compared to 22,280 in the United States, revealing an 18-fold absolute gap in research volume. Shannon entropy of the trial distribution was 2.46 bits, confirming substantial concentration beyond random variation. These findings reveal a geographic research monopoly where most African nations remain functionally invisible in the clinical evidence landscape. Interpretation is limited by reliance on ClinicalTrials.gov alone, which may undercount locally registered African studies.</div>
+    <div class="color-strip" aria-hidden="true"><div style="background:#1b4f72;"></div><div style="background:#0e6251;"></div><div style="background:#4a235a;"></div><div style="background:#922b21;"></div><div style="background:#7e5109;"></div><div style="background:#0b5345;"></div><div style="background:#566573;"></div></div>
+  </div>
+
+  <div class="card">
+    <div class="section-label">Sentence Structure</div>
+    <div class="sentence" style="border-left-color:#1b4f72;"><span class="role-tag" style="color:#1b4f72;">Question</span><p>In the spatial mapping of African clinical research, does the pattern of cross-border trial networks reveal structural inequity in African research investment?</p></div><div class="sentence" style="border-left-color:#0e6251;"><span class="role-tag" style="color:#0e6251;">Dataset</span><p>This cross-sectional audit evaluated 23,873 African and 190,644 United States interventional trials registered on ClinicalTrials.</p></div><div class="sentence" style="border-left-color:#4a235a;"><span class="role-tag" style="color:#4a235a;">Method</span><p>gov through April 2026.</p></div><div class="sentence" style="border-left-color:#922b21;"><span class="role-tag" style="color:#922b21;">Primary Result</span><p>Investigators computed the network degree centrality as the primary estimand using registry metadata for each nation.</p></div><div class="sentence" style="border-left-color:#7e5109;"><span class="role-tag" style="color:#7e5109;">Robustness</span><p>Africa registered 1,250 relevant trials compared to 22,280 in the United States, revealing an 18-fold absolute gap in research volume.</p></div><div class="sentence" style="border-left-color:#0b5345;"><span class="role-tag" style="color:#0b5345;">Interpretation</span><p>Shannon entropy of the trial distribution was 2.</p></div><div class="sentence" style="border-left-color:#566573;"><span class="role-tag" style="color:#566573;">Boundary</span><p>46 bits, confirming substantial concentration beyond random variation.</p></div><div class="sentence" style="border-left-color:#566573;"><span class="role-tag" style="color:#566573;">Extra</span><p>These findings reveal a geographic research monopoly where most African nations remain functionally invisible in the clinical evidence landscape.</p></div><div class="sentence" style="border-left-color:#566573;"><span class="role-tag" style="color:#566573;">Extra</span><p>Interpretation is limited by reliance on ClinicalTrials.</p></div><div class="sentence" style="border-left-color:#566573;"><span class="role-tag" style="color:#566573;">Extra</span><p>gov alone, which may undercount locally registered African studies.</p></div>
+  </div>
+
+  <div class="links">
+    <a class="link-btn" href="../">Back to Group</a>
+    <a class="link-btn" href="../code/cross-border-networks.py" download>Download Code (.py)</a>
+    <a class="link-btn" href="https://github.com/mahmood726-cyber/africa-e156-students" target="_blank" rel="noopener noreferrer">GitHub</a>
+  </div>
+
+  <footer class="footer">
+    <p>E156 Format &middot; ClinicalTrials.gov API v2 &middot; https://github.com/mahmood726-cyber/africa-e156-students</p>
+    <p>Mahmood Ahmad &middot; ORCID: 0009-0003-7781-4478</p>
+  </footer>
+</main>
+</body>
+</html>

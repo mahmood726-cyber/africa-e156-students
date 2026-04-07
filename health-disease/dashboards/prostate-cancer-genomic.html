@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prostate Cancer Genomic Divide — E156 Dashboard</title>
+  <style>
+:root { --bg:#f5f2ea;--paper:#fffdf8;--ink:#1d2430;--muted:#4a5568;--line:#d8cfbf;--accent:#0d6b57;--accent-soft:#dcefe8;--warm:#7A5A10;--shadow:0 18px 40px rgba(42,47,54,0.08);--radius:18px;--serif:"Georgia","Times New Roman",serif;--mono:"Consolas","SFMono-Regular","Menlo",monospace; }
+* { box-sizing:border-box;margin:0; }
+body { color:var(--ink);font-family:var(--serif);line-height:1.6;background:radial-gradient(circle at top left,rgba(13,107,87,0.06),transparent 32%),radial-gradient(circle at bottom right,rgba(141,79,45,0.06),transparent 28%),var(--bg); }
+.page { width:min(980px,calc(100vw - 24px));margin:0 auto;padding:32px 0 56px; }
+.card { background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px;margin-bottom:20px; }
+.hero { text-align:center;padding:40px 28px; }
+.eyebrow { color:var(--accent);font-size:13px;letter-spacing:0.15em;text-transform:uppercase;font-weight:700; }
+h1 { font-size:clamp(24px,3.5vw,38px);line-height:1.08;margin:10px 0 6px; }
+.subtitle { color:var(--muted);font-size:17px;max-width:58ch;margin:0 auto; }
+.metrics { display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin:20px 0; }
+.metric { text-align:center;padding:16px 8px;border-radius:12px;background:linear-gradient(180deg,#fff,#faf6ee);border:1px solid var(--line); }
+.metric-label { font-size:12px;text-transform:uppercase;letter-spacing:0.07em;color:var(--muted);margin-bottom:4px; }
+.metric-value { font-size:24px;font-weight:700; }
+.chart-wrap { overflow-x:auto;padding:4px 0; }
+.chart-grid { display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start; }
+.chart-cell { text-align:center; }
+.section-label { font-size:12px;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);font-weight:700;margin-bottom:14px; }
+.finding { font-size:19px;line-height:1.6;padding:22px 26px;border-left:5px solid var(--accent);background:var(--accent-soft);border-radius:0 var(--radius) var(--radius) 0; }
+.context { font-size:16px;line-height:1.8;color:#2a2f36; }
+.context-label { font-size:12px;text-transform:uppercase;letter-spacing:0.1em;color:var(--warm);font-weight:700;margin-bottom:10px; }
+.body-text { font-size:15px;line-height:1.8;padding:20px;background:#fafaf7;border-radius:10px; }
+.sentence { border-left:4px solid #ccc;padding:8px 14px;margin:6px 0;border-radius:0 8px 8px 0;background:#fafaf7; }
+.role-tag { font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em; }
+.sentence p { margin:3px 0 0;font-size:14px;line-height:1.65; }
+.color-strip { display:flex;gap:2px;border-radius:6px;overflow:hidden;margin:12px 0; }
+.color-strip > div { height:7px;flex:1; }
+.footer { text-align:center;color:var(--muted);font-size:12px;margin-top:28px; }
+.footer a { color:var(--accent);text-decoration:none; }
+.links { display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:16px 0; }
+.link-btn { display:inline-block;padding:12px 20px;min-height:44px;border-radius:8px;font-size:13px;font-weight:600;text-decoration:none;border:1px solid var(--line);color:var(--ink);background:white;transition:all 0.15s; }
+.link-btn:hover { background:var(--accent);color:white;border-color:var(--accent); }
+.word-badge { display:inline-block;background:var(--accent-soft);color:var(--accent);padding:3px 10px;border-radius:16px;font-size:12px;font-weight:700; }
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+@media (max-width:700px) { .chart-grid { grid-template-columns:1fr; } .card { padding:18px 14px; } }
+</style>
+</head>
+<body>
+<main class="page" role="main">
+  <div class="card hero">
+    <div class="eyebrow">E156 Micro-Paper &middot; Africa Clinical Trials</div>
+    <h1>Prostate Cancer Genomic Divide</h1>
+    <p class="subtitle">African men have the highest prostate cancer mortality globally, with distinct g...</p>
+    <div class="metrics"><div class="metric"><div class="metric-label">Africa Trials</div><div class="metric-value" style="color:var(--accent)">48</div></div><div class="metric"><div class="metric-label">US Trials</div><div class="metric-value" style="color:#c0392b">3,279</div></div><div class="metric"><div class="metric-label">Gap Ratio</div><div class="metric-value" style="color:#c0392b">68x</div></div><div class="metric"><div class="metric-label">Nations</div><div class="metric-value" style="color:#c0392b">54</div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="section-label">Key Finding</div>
+    <div class="finding">Africa hosted 48 prostate cancer trials versus 3,279 in the United States, a 68-fold disparity in research investment.</div>
+  </div>
+
+  <div class="card">
+    <div class="section-label">Regional Comparison</div>
+    <div class="chart-grid">
+      <div class="chart-cell"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" style="max-width:500px;font-family:Georgia,'Times New Roman',serif;">
+<rect width="500" height="500" fill="#fffdf8" rx="4"/>
+<text x="250" y="24" text-anchor="middle" font-size="15" font-weight="700" fill="#1d2430">Prostate Cancer Genomic Divide by Country</text>
+<path d="M 340 80 L 370 80 380 100 390 140 370 160 340 150 330 120 Z" fill="rgb(192,57,43)" stroke="#fff" stroke-width="1" opacity="0.9"><title>Egypt: 11752</title></path>
+<path d="M 180 80 L 230 70 260 90 260 130 230 150 200 150 180 130 Z" fill="#e8e4db" stroke="#fff" stroke-width="1" opacity="0.9"><title>Algeria: N/A</title></path>
+<path d="M 155 85 L 185 75 195 95 185 115 160 115 150 100 Z" fill="rgb(254,243,224)" stroke="#fff" stroke-width="1" opacity="0.9"><title>Morocco: 162</title></path>
+<path d="M 235 65 L 250 60 260 75 255 90 240 90 Z" fill="rgb(251,236,218)" stroke="#fff" stroke-width="1" opacity="0.9"><title>Tunisia: 540</title></path>
+<path d="M 100 200 L 130 195 140 210 125 225 105 220 Z" fill="#e8e4db" stroke="#fff" stroke-width="1" opacity="0.9"><title>Senegal: N/A</title></path>
+<path d="M 175 235 L 190 225 200 240 195 260 178 260 Z" fill="rgb(253,241,222)" stroke="#fff" stroke-width="1" opacity="0.9"><title>Ghana: 261</title></path>
+<path d="M 205 225 L 240 215 255 235 250 265 225 270 205 255 Z" fill="rgb(252,239,220)" stroke="#fff" stroke-width="1" opacity="0.9"><title>Nigeria: 379</title></path>
+<path d="M 255 240 L 275 235 280 260 270 280 255 270 Z" fill="#e8e4db" stroke="#fff" stroke-width="1" opacity="0.9"><title>Cameroon: N/A</title></path>
+<path d="M 290 290 L 325 275 340 300 335 340 310 350 285 330 Z" fill="#e8e4db" stroke="#fff" stroke-width="1" opacity="0.9"><title>DRC: N/A</title></path>
+<path d="M 365 210 L 400 200 415 225 400 250 375 245 360 230 Z" fill="rgb(253,240,221)" stroke="#fff" stroke-width="1" opacity="0.9"><title>Ethiopia: 302</title></path>
+<path d="M 370 260 L 395 255 400 280 385 300 365 290 Z" fill="rgb(250,232,214)" stroke="#fff" stroke-width="1" opacity="0.9"><title>Kenya: 788</title></path>
+<path d="M 345 260 L 365 255 370 275 355 285 340 275 Z" fill="rgb(250,232,213)" stroke="#fff" stroke-width="1" opacity="0.9"><title>Uganda: 809</title></path>
+<path d="M 360 300 L 390 295 395 330 375 345 355 330 Z" fill="rgb(252,238,219)" stroke="#fff" stroke-width="1" opacity="0.9"><title>Tanzania: 460</title></path>
+<path d="M 340 288 L 355 285 358 298 345 300 Z" fill="#e8e4db" stroke="#fff" stroke-width="1" opacity="0.9"><title>Rwanda: N/A</title></path>
+<path d="M 260 400 L 310 380 345 400 340 440 300 455 265 435 Z" fill="rgb(235,186,169)" stroke="#fff" stroke-width="1" opacity="0.9"><title>South Africa: 3654</title></path>
+<text x="360" y="115" text-anchor="middle" font-size="9" fill="#1d2430" font-weight="600">Egy</text>
+<text x="360" y="126" text-anchor="middle" font-size="8" fill="#4a5568">11752</text>
+<text x="300" y="418" text-anchor="middle" font-size="9" fill="#1d2430" font-weight="600">Sou</text>
+<text x="300" y="429" text-anchor="middle" font-size="8" fill="#4a5568">3654</text>
+<text x="355" y="270" text-anchor="middle" font-size="9" fill="#1d2430" font-weight="600">Uga</text>
+<text x="355" y="281" text-anchor="middle" font-size="8" fill="#4a5568">809</text>
+<text x="382" y="275" text-anchor="middle" font-size="9" fill="#1d2430" font-weight="600">Ken</text>
+<text x="382" y="286" text-anchor="middle" font-size="8" fill="#4a5568">788</text>
+<text x="248" y="76" text-anchor="middle" font-size="9" fill="#1d2430" font-weight="600">Tun</text>
+<text x="248" y="87" text-anchor="middle" font-size="8" fill="#4a5568">540</text>
+<rect x="175" y="465" width="3" height="10" fill="rgb(254,243,224)"/>
+<rect x="178" y="465" width="3" height="10" fill="rgb(252,239,220)"/>
+<rect x="181" y="465" width="3" height="10" fill="rgb(251,235,216)"/>
+<rect x="184" y="465" width="3" height="10" fill="rgb(250,231,212)"/>
+<rect x="187" y="465" width="3" height="10" fill="rgb(248,227,209)"/>
+<rect x="190" y="465" width="3" height="10" fill="rgb(247,224,205)"/>
+<rect x="193" y="465" width="3" height="10" fill="rgb(246,220,201)"/>
+<rect x="196" y="465" width="3" height="10" fill="rgb(245,216,198)"/>
+<rect x="199" y="465" width="3" height="10" fill="rgb(243,212,194)"/>
+<rect x="202" y="465" width="3" height="10" fill="rgb(242,208,190)"/>
+<rect x="205" y="465" width="3" height="10" fill="rgb(241,205,187)"/>
+<rect x="208" y="465" width="3" height="10" fill="rgb(240,201,183)"/>
+<rect x="211" y="465" width="3" height="10" fill="rgb(238,197,179)"/>
+<rect x="214" y="465" width="3" height="10" fill="rgb(237,193,175)"/>
+<rect x="217" y="465" width="3" height="10" fill="rgb(236,189,172)"/>
+<rect x="220" y="465" width="3" height="10" fill="rgb(235,186,168)"/>
+<rect x="223" y="465" width="3" height="10" fill="rgb(233,182,164)"/>
+<rect x="226" y="465" width="3" height="10" fill="rgb(232,178,161)"/>
+<rect x="229" y="465" width="3" height="10" fill="rgb(231,174,157)"/>
+<rect x="232" y="465" width="3" height="10" fill="rgb(229,170,153)"/>
+<rect x="235" y="465" width="3" height="10" fill="rgb(228,167,150)"/>
+<rect x="238" y="465" width="3" height="10" fill="rgb(227,163,146)"/>
+<rect x="241" y="465" width="3" height="10" fill="rgb(226,159,142)"/>
+<rect x="244" y="465" width="3" height="10" fill="rgb(224,155,139)"/>
+<rect x="247" y="465" width="3" height="10" fill="rgb(223,151,135)"/>
+<rect x="250" y="465" width="3" height="10" fill="rgb(222,148,131)"/>
+<rect x="253" y="465" width="3" height="10" fill="rgb(221,144,127)"/>
+<rect x="256" y="465" width="3" height="10" fill="rgb(219,140,124)"/>
+<rect x="259" y="465" width="3" height="10" fill="rgb(218,136,120)"/>
+<rect x="262" y="465" width="3" height="10" fill="rgb(217,132,116)"/>
+<rect x="265" y="465" width="3" height="10" fill="rgb(216,129,113)"/>
+<rect x="268" y="465" width="3" height="10" fill="rgb(214,125,109)"/>
+<rect x="271" y="465" width="3" height="10" fill="rgb(213,121,105)"/>
+<rect x="274" y="465" width="3" height="10" fill="rgb(212,117,102)"/>
+<rect x="277" y="465" width="3" height="10" fill="rgb(210,113,98)"/>
+<rect x="280" y="465" width="3" height="10" fill="rgb(209,110,94)"/>
+<rect x="283" y="465" width="3" height="10" fill="rgb(208,106,91)"/>
+<rect x="286" y="465" width="3" height="10" fill="rgb(207,102,87)"/>
+<rect x="289" y="465" width="3" height="10" fill="rgb(205,98,83)"/>
+<rect x="292" y="465" width="3" height="10" fill="rgb(204,94,79)"/>
+<rect x="295" y="465" width="3" height="10" fill="rgb(203,91,76)"/>
+<rect x="298" y="465" width="3" height="10" fill="rgb(202,87,72)"/>
+<rect x="301" y="465" width="3" height="10" fill="rgb(200,83,68)"/>
+<rect x="304" y="465" width="3" height="10" fill="rgb(199,79,65)"/>
+<rect x="307" y="465" width="3" height="10" fill="rgb(198,75,61)"/>
+<rect x="310" y="465" width="3" height="10" fill="rgb(197,72,57)"/>
+<rect x="313" y="465" width="3" height="10" fill="rgb(195,68,54)"/>
+<rect x="316" y="465" width="3" height="10" fill="rgb(194,64,50)"/>
+<rect x="319" y="465" width="3" height="10" fill="rgb(193,60,46)"/>
+<rect x="322" y="465" width="3" height="10" fill="rgb(192,57,43)"/>
+<text x="172" y="474" text-anchor="end" font-size="9" fill="#4a5568">162</text>
+<text x="328" y="474" text-anchor="start" font-size="9" fill="#4a5568">11752</text>
+</svg></div>
+      <div class="chart-cell"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 154" style="max-width:420px;font-family:Georgia,'Times New Roman',serif;">
+<rect width="420" height="154" fill="#fffdf8" rx="4"/>
+<text x="210" y="22" text-anchor="middle" font-size="14" font-weight="700" fill="#1d2430">Regional Comparison</text>
+<line x1="186.53846153846155" y1="40" x2="186.53846153846155" y2="134" stroke="#d8cfbf" stroke-width="1" stroke-dasharray="4,3"/>
+<text x="152" y="58" text-anchor="end" font-size="10" fill="#1d2430">Africa</text>
+<line x1="188.5" y1="54" x2="189.2" y2="54" stroke="#1d2430" stroke-width="1.5"/>
+<rect x="181.5" y="49" width="10" height="10" fill="#c0392b"/>
+<text x="152" y="86" text-anchor="end" font-size="10" fill="#1d2430">US</text>
+<line x1="331.3" y1="82" x2="363.5" y2="82" stroke="#1d2430" stroke-width="1.5"/>
+<rect x="181.5" y="77" width="10" height="10" fill="#c0392b"/>
+<text x="152" y="114" text-anchor="end" font-size="10" fill="#1d2430">Europe</text>
+<line x1="187.2" y1="110" x2="187.4" y2="110" stroke="#1d2430" stroke-width="1.5"/>
+<rect x="181.5" y="105" width="10" height="10" fill="#c0392b"/>
+<line x1="160" y1="134" x2="390" y2="134" stroke="#d8cfbf" stroke-width="1"/>
+<text x="186.53846153846155" y="148" text-anchor="middle" font-size="9" fill="#4a5568">0</text>
+<text x="235.5897457224081" y="148" text-anchor="middle" font-size="9" fill="#4a5568">1000</text>
+<text x="284.6410299063547" y="148" text-anchor="middle" font-size="9" fill="#4a5568">2000</text>
+<text x="333.69231409030124" y="148" text-anchor="middle" font-size="9" fill="#4a5568">3000</text>
+<text x="382.74359827424786" y="148" text-anchor="middle" font-size="9" fill="#4a5568">4000</text>
+</svg></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-label">Distribution Analysis</div>
+    <div class="chart-grid">
+      <div class="chart-cell"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 280" style="max-width:400px;font-family:Georgia,'Times New Roman',serif;">
+<rect width="400" height="280" fill="#fffdf8" rx="4"/>
+<text x="200" y="22" text-anchor="middle" font-size="14" font-weight="700" fill="#1d2430">Enrollment Distribution</text>
+<polygon points="132.8,284.3 132.9,282.3 133.2,280.2 133.6,278.1 134.1,276.1 134.9,274.0 136.0,271.9 137.4,269.9 139.2,267.8 141.6,265.8 144.4,263.7 147.8,261.6 151.8,259.6 156.3,257.5 161.1,255.5 166.2,253.4 171.4,251.3 176.5,249.3 181.4,247.2 185.8,245.1 189.7,243.1 192.9,241.0 195.4,239.0 197.1,236.9 198.1,234.8 198.5,232.8 198.3,230.7 197.7,228.6 196.6,226.6 195.2,224.5 193.5,222.5 191.6,220.4 189.4,218.3 187.0,216.3 184.5,214.2 181.7,212.1 178.8,210.1 175.9,208.0 172.9,206.0 169.9,203.9 166.9,201.8 164.1,199.8 161.5,197.7 159.1,195.7 157.0,193.6 155.1,191.5 153.6,189.5 152.2,187.4 151.2,185.3 150.3,183.3 149.5,181.2 148.8,179.2 148.2,177.1 147.5,175.0 146.9,173.0 146.2,170.9 145.5,168.8 144.7,166.8 143.9,164.7 143.0,162.7 142.1,160.6 141.1,158.5 140.2,156.5 139.3,154.4 138.3,152.3 137.5,150.3 136.6,148.2 135.9,146.2 135.2,144.1 134.7,142.0 134.2,140.0 133.8,137.9 133.4,135.9 133.2,133.8 133.0,131.7 132.8,129.7 132.7,127.6 132.6,125.5 132.6,123.5 132.6,121.4 132.4,121.4 132.4,123.5 132.4,125.5 132.3,127.6 132.2,129.7 132.0,131.7 131.8,133.8 131.6,135.9 131.2,137.9 130.8,140.0 130.3,142.0 129.8,144.1 129.1,146.2 128.4,148.2 127.5,150.3 126.7,152.3 125.7,154.4 124.8,156.5 123.9,158.5 122.9,160.6 122.0,162.7 121.1,164.7 120.3,166.8 119.5,168.8 118.8,170.9 118.1,173.0 117.5,175.0 116.8,177.1 116.2,179.2 115.5,181.2 114.7,183.3 113.8,185.3 112.8,187.4 111.4,189.5 109.9,191.5 108.0,193.6 105.9,195.7 103.5,197.7 100.9,199.8 98.1,201.8 95.1,203.9 92.1,206.0 89.1,208.0 86.2,210.1 83.3,212.1 80.5,214.2 78.0,216.3 75.6,218.3 73.4,220.4 71.5,222.5 69.8,224.5 68.4,226.6 67.3,228.6 66.7,230.7 66.5,232.8 66.9,234.8 67.9,236.9 69.6,239.0 72.1,241.0 75.3,243.1 79.2,245.1 83.6,247.2 88.5,249.3 93.6,251.3 98.8,253.4 103.9,255.5 108.7,257.5 113.2,259.6 117.2,261.6 120.6,263.7 123.4,265.8 125.8,267.8 127.6,269.9 129.0,271.9 130.1,274.0 130.9,276.1 131.4,278.1 131.8,280.2 132.1,282.3 132.2,284.3" fill="#c0392b" opacity="0.3" stroke="#c0392b" stroke-width="1"/>
+<line x1="106.1" y1="241.5" x2="158.9" y2="241.5" stroke="#c0392b" stroke-width="1"/>
+<line x1="106.1" y1="206.0" x2="158.9" y2="206.0" stroke="#c0392b" stroke-width="1"/>
+<line x1="92.9" y1="225.7" x2="172.1" y2="225.7" stroke="#c0392b" stroke-width="2.5"/>
+<text x="132.5" y="270" text-anchor="middle" font-size="10" fill="#1d2430">Africa</text>
+<polygon points="297.8,342.9 297.9,337.8 298.2,332.8 298.6,327.7 299.1,322.6 299.9,317.5 300.9,312.4 302.3,307.3 304.1,302.3 306.3,297.2 309.1,292.1 312.4,287.0 316.2,281.9 320.5,276.8 325.2,271.8 330.1,266.7 335.2,261.6 340.3,256.5 345.2,251.4 349.7,246.3 353.7,241.3 357.1,236.2 359.8,231.1 361.8,226.0 363.0,220.9 363.5,215.8 363.3,210.8 362.5,205.7 361.2,200.6 359.4,195.5 357.3,190.4 354.8,185.3 352.1,180.3 349.2,175.2 346.2,170.1 343.2,165.0 340.2,159.9 337.2,154.8 334.4,149.8 331.7,144.7 329.2,139.6 326.9,134.5 324.7,129.4 322.8,124.3 321.0,119.3 319.4,114.2 318.0,109.1 316.7,104.0 315.6,98.9 314.6,93.8 313.7,88.8 313.0,83.7 312.4,78.6 311.9,73.5 311.4,68.4 311.0,63.3 310.5,58.3 310.0,53.2 309.4,48.1 308.7,43.0 307.9,37.9 307.1,32.8 306.1,27.8 305.2,22.7 304.2,17.6 303.2,12.5 302.3,7.4 301.4,2.4 300.6,-2.7 300.0,-7.8 299.4,-12.9 298.9,-18.0 298.6,-23.1 298.3,-28.1 298.0,-33.2 297.9,-38.3 297.7,-43.4 297.7,-48.5 297.6,-53.6 297.6,-58.6 297.4,-58.6 297.4,-53.6 297.3,-48.5 297.3,-43.4 297.1,-38.3 297.0,-33.2 296.7,-28.1 296.4,-23.1 296.1,-18.0 295.6,-12.9 295.0,-7.8 294.4,-2.7 293.6,2.4 292.7,7.4 291.8,12.5 290.8,17.6 289.8,22.7 288.9,27.8 287.9,32.8 287.1,37.9 286.3,43.0 285.6,48.1 285.0,53.2 284.5,58.3 284.0,63.3 283.6,68.4 283.1,73.5 282.6,78.6 282.0,83.7 281.3,88.8 280.4,93.8 279.4,98.9 278.3,104.0 277.0,109.1 275.6,114.2 274.0,119.3 272.2,124.3 270.3,129.4 268.1,134.5 265.8,139.6 263.3,144.7 260.6,149.8 257.8,154.8 254.8,159.9 251.8,165.0 248.8,170.1 245.8,175.2 242.9,180.3 240.2,185.3 237.7,190.4 235.6,195.5 233.8,200.6 232.5,205.7 231.7,210.8 231.5,215.8 232.0,220.9 233.2,226.0 235.2,231.1 237.9,236.2 241.3,241.3 245.3,246.3 249.8,251.4 254.7,256.5 259.8,261.6 264.9,266.7 269.8,271.8 274.5,276.8 278.8,281.9 282.6,287.0 285.9,292.1 288.7,297.2 290.9,302.3 292.7,307.3 294.1,312.4 295.1,317.5 295.9,322.6 296.4,327.7 296.8,332.8 297.1,337.8 297.2,342.9" fill="#c0392b" opacity="0.3" stroke="#c0392b" stroke-width="1"/>
+<line x1="271.1" y1="236.5" x2="323.9" y2="236.5" stroke="#c0392b" stroke-width="1"/>
+<line x1="271.1" y1="150.8" x2="323.9" y2="150.8" stroke="#c0392b" stroke-width="1"/>
+<line x1="257.9" y1="195.7" x2="337.1" y2="195.7" stroke="#c0392b" stroke-width="2.5"/>
+<text x="297.5" y="270" text-anchor="middle" font-size="10" fill="#1d2430">Reference</text>
+<line x1="50" y1="40" x2="50" y2="245" stroke="#d8cfbf" stroke-width="1"/>
+<text x="45" y="182.7074242513916" text-anchor="end" font-size="9" fill="#4a5568">2000</text>
+<line x1="50" y1="179.7074242513916" x2="380" y2="179.7074242513916" stroke="#d8cfbf" stroke-width="0.5" opacity="0.4"/>
+<text x="45" y="116.9545785831052" text-anchor="end" font-size="9" fill="#4a5568">4000</text>
+<line x1="50" y1="113.9545785831052" x2="380" y2="113.9545785831052" stroke="#d8cfbf" stroke-width="0.5" opacity="0.4"/>
+<text x="45" y="51.20173291481879" text-anchor="end" font-size="9" fill="#4a5568">6000</text>
+<line x1="50" y1="48.20173291481879" x2="380" y2="48.20173291481879" stroke="#d8cfbf" stroke-width="0.5" opacity="0.4"/>
+</svg></div>
+      <div class="chart-cell"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 320" style="max-width:420px;font-family:Georgia,'Times New Roman',serif;">
+<rect width="420" height="320" fill="#fffdf8" rx="4"/>
+<text x="210" y="22" text-anchor="middle" font-size="14" font-weight="700" fill="#1d2430">Phase Distribution</text>
+<text x="135.0" y="40" text-anchor="middle" font-size="9" fill="#4a5568">Africa</text>
+<text x="225.0" y="40" text-anchor="middle" font-size="9" fill="#4a5568">US</text>
+<text x="315.0" y="40" text-anchor="middle" font-size="9" fill="#4a5568">Europe</text>
+<text x="85" y="80.5" text-anchor="end" font-size="9" fill="#1d2430">Phase 1</text>
+<rect x="90.0" y="45.0" width="90.0" height="65.0" fill="rgb(254,243,224)" stroke="#fff" stroke-width="1"/>
+<text x="135.0" y="80.5" text-anchor="middle" font-size="9" fill="#1d2430">3</text>
+<rect x="180.0" y="45.0" width="90.0" height="65.0" fill="rgb(245,217,198)" stroke="#fff" stroke-width="1"/>
+<text x="225.0" y="80.5" text-anchor="middle" font-size="9" fill="#1d2430">44.5</text>
+<rect x="270.0" y="45.0" width="90.0" height="65.0" fill="rgb(249,229,210)" stroke="#fff" stroke-width="1"/>
+<text x="315.0" y="80.5" text-anchor="middle" font-size="9" fill="#1d2430">24.6</text>
+<text x="85" y="145.5" text-anchor="end" font-size="9" fill="#1d2430">Phase 2</text>
+<rect x="90.0" y="110.0" width="90.0" height="65.0" fill="rgb(252,239,220)" stroke="#fff" stroke-width="1"/>
+<text x="135.0" y="145.5" text-anchor="middle" font-size="9" fill="#1d2430">8</text>
+<rect x="180.0" y="110.0" width="90.0" height="65.0" fill="rgb(235,188,170)" stroke="#fff" stroke-width="1"/>
+<text x="225.0" y="145.5" text-anchor="middle" font-size="9" fill="#1d2430">90.6</text>
+<rect x="270.0" y="110.0" width="90.0" height="65.0" fill="rgb(248,226,208)" stroke="#fff" stroke-width="1"/>
+<text x="315.0" y="145.5" text-anchor="middle" font-size="9" fill="#1d2430">29.2</text>
+<text x="85" y="210.5" text-anchor="end" font-size="9" fill="#1d2430">Phase 3</text>
+<rect x="90.0" y="175.0" width="90.0" height="65.0" fill="rgb(246,221,203)" stroke="#fff" stroke-width="1"/>
+<text x="135.0" y="210.5" text-anchor="middle" font-size="9" fill="#1d2430">37</text>
+<rect x="180.0" y="175.0" width="90.0" height="65.0" fill="rgb(215,126,110)" stroke="#fff" stroke-width="1"/>
+<text x="225.0" y="210.5" text-anchor="middle" font-size="9" fill="#fff">190.0</text>
+<rect x="270.0" y="175.0" width="90.0" height="65.0" fill="rgb(215,128,112)" stroke="#fff" stroke-width="1"/>
+<text x="315.0" y="210.5" text-anchor="middle" font-size="9" fill="#fff">186.8</text>
+<text x="85" y="275.5" text-anchor="end" font-size="9" fill="#1d2430">Phase 4</text>
+<rect x="90.0" y="240.0" width="90.0" height="65.0" fill="rgb(250,231,212)" stroke="#fff" stroke-width="1"/>
+<text x="135.0" y="275.5" text-anchor="middle" font-size="9" fill="#1d2430">22</text>
+<rect x="180.0" y="240.0" width="90.0" height="65.0" fill="rgb(192,57,43)" stroke="#fff" stroke-width="1"/>
+<text x="225.0" y="275.5" text-anchor="middle" font-size="9" fill="#fff">300.7</text>
+<rect x="270.0" y="240.0" width="90.0" height="65.0" fill="rgb(238,196,178)" stroke="#fff" stroke-width="1"/>
+<text x="315.0" y="275.5" text-anchor="middle" font-size="9" fill="#1d2430">77.7</text>
+<rect x="375" y="45.0" width="10" height="9.7" fill="rgb(192,57,43)"/>
+<rect x="375" y="53.7" width="10" height="9.7" fill="rgb(194,63,49)"/>
+<rect x="375" y="62.3" width="10" height="9.7" fill="rgb(196,69,55)"/>
+<rect x="375" y="71.0" width="10" height="9.7" fill="rgb(198,76,61)"/>
+<rect x="375" y="79.7" width="10" height="9.7" fill="rgb(200,82,67)"/>
+<rect x="375" y="88.3" width="10" height="9.7" fill="rgb(202,89,74)"/>
+<rect x="375" y="97.0" width="10" height="9.7" fill="rgb(204,95,80)"/>
+<rect x="375" y="105.7" width="10" height="9.7" fill="rgb(206,101,86)"/>
+<rect x="375" y="114.3" width="10" height="9.7" fill="rgb(209,108,92)"/>
+<rect x="375" y="123.0" width="10" height="9.7" fill="rgb(211,114,99)"/>
+<rect x="375" y="131.7" width="10" height="9.7" fill="rgb(213,121,105)"/>
+<rect x="375" y="140.3" width="10" height="9.7" fill="rgb(215,127,111)"/>
+<rect x="375" y="149.0" width="10" height="9.7" fill="rgb(217,133,117)"/>
+<rect x="375" y="157.7" width="10" height="9.7" fill="rgb(219,140,124)"/>
+<rect x="375" y="166.3" width="10" height="9.7" fill="rgb(221,146,130)"/>
+<rect x="375" y="175.0" width="10" height="9.7" fill="rgb(224,153,136)"/>
+<rect x="375" y="183.7" width="10" height="9.7" fill="rgb(226,159,142)"/>
+<rect x="375" y="192.3" width="10" height="9.7" fill="rgb(228,166,149)"/>
+<rect x="375" y="201.0" width="10" height="9.7" fill="rgb(230,172,155)"/>
+<rect x="375" y="209.7" width="10" height="9.7" fill="rgb(232,178,161)"/>
+<rect x="375" y="218.3" width="10" height="9.7" fill="rgb(234,185,167)"/>
+<rect x="375" y="227.0" width="10" height="9.7" fill="rgb(236,191,174)"/>
+<rect x="375" y="235.7" width="10" height="9.7" fill="rgb(239,198,180)"/>
+<rect x="375" y="244.3" width="10" height="9.7" fill="rgb(241,204,186)"/>
+<rect x="375" y="253.0" width="10" height="9.7" fill="rgb(243,210,192)"/>
+<rect x="375" y="261.7" width="10" height="9.7" fill="rgb(245,217,199)"/>
+<rect x="375" y="270.3" width="10" height="9.7" fill="rgb(247,223,205)"/>
+<rect x="375" y="279.0" width="10" height="9.7" fill="rgb(249,230,211)"/>
+<rect x="375" y="287.7" width="10" height="9.7" fill="rgb(251,236,217)"/>
+<rect x="375" y="296.3" width="10" height="9.7" fill="rgb(254,243,224)"/>
+<text x="389" y="53" font-size="8" fill="#4a5568">300.7</text>
+<text x="389" y="305" font-size="8" fill="#4a5568">3</text>
+</svg></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-label">Inequality Profile</div>
+    <div class="chart-grid">
+      <div class="chart-cell"><svg viewBox="0 0 200 100"><text x="100" y="50" text-anchor="middle" font-size="12" fill="#999">No data</text></svg></div>
+      <div class="chart-cell"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" style="max-width:300px;font-family:Georgia,'Times New Roman',serif;">
+<rect width="300" height="300" fill="#fffdf8" rx="4"/>
+<text x="150" y="22" text-anchor="middle" font-size="14" font-weight="700" fill="#1d2430">Research Profile</text>
+<polygon points="150.0,137.2 173.5,154.4 164.5,182.0 135.5,182.0 126.5,154.4" fill="none" stroke="#d8cfbf" stroke-width="0.7" opacity="0.5"/>
+<polygon points="150.0,112.5 197.1,146.7 179.1,202.0 120.9,202.0 102.9,146.7" fill="none" stroke="#d8cfbf" stroke-width="0.7" opacity="0.5"/>
+<polygon points="150.0,87.8 220.6,139.1 193.6,222.1 106.4,222.1 79.4,139.1" fill="none" stroke="#d8cfbf" stroke-width="0.7" opacity="0.5"/>
+<polygon points="150.0,63.0 244.2,131.4 208.2,242.1 91.8,242.1 55.8,131.4" fill="none" stroke="#d8cfbf" stroke-width="0.7" opacity="0.5"/>
+<line x1="150.0" y1="162.0" x2="150.0" y2="63.0" stroke="#d8cfbf" stroke-width="0.7" opacity="0.5"/>
+<line x1="150.0" y1="162.0" x2="244.2" y2="131.4" stroke="#d8cfbf" stroke-width="0.7" opacity="0.5"/>
+<line x1="150.0" y1="162.0" x2="208.2" y2="242.1" stroke="#d8cfbf" stroke-width="0.7" opacity="0.5"/>
+<line x1="150.0" y1="162.0" x2="91.8" y2="242.1" stroke="#d8cfbf" stroke-width="0.7" opacity="0.5"/>
+<line x1="150.0" y1="162.0" x2="55.8" y2="131.4" stroke="#d8cfbf" stroke-width="0.7" opacity="0.5"/>
+<polygon points="150.0,160.6 223.9,138.0 178.2,200.8 114.3,211.2 138.1,158.1" fill="#c0392b" opacity="0.2" stroke="#c0392b" stroke-width="2"/>
+<circle cx="150.0" cy="160.6" r="3" fill="#c0392b"/>
+<circle cx="223.9" cy="138.0" r="3" fill="#c0392b"/>
+<circle cx="178.2" cy="200.8" r="3" fill="#c0392b"/>
+<circle cx="114.3" cy="211.2" r="3" fill="#c0392b"/>
+<circle cx="138.1" cy="158.1" r="3" fill="#c0392b"/>
+<text x="150.0" y="48.0" text-anchor="middle" font-size="9" fill="#1d2430">Volume</text>
+<text x="261.3" y="128.8" text-anchor="start" font-size="9" fill="#1d2430">Growth</text>
+<text x="218.8" y="259.7" text-anchor="start" font-size="9" fill="#1d2430">Phase3</text>
+<text x="81.2" y="259.7" text-anchor="end" font-size="9" fill="#1d2430">Complete</text>
+<text x="38.7" y="128.8" text-anchor="end" font-size="9" fill="#1d2430">Diversity</text>
+</svg></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-label">Temporal &amp; Structural</div>
+    <div class="chart-grid">
+      <div class="chart-cell"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 280" style="max-width:420px;font-family:Georgia,'Times New Roman',serif;">
+<rect width="420" height="280" fill="#fffdf8" rx="4"/>
+<text x="210" y="22" text-anchor="middle" font-size="14" font-weight="700" fill="#1d2430">Contribution Breakdown</text>
+<rect x="61.7" y="122.4" width="35.0" height="112.6" fill="#0d6b57" opacity="0.85" rx="1"/>
+<text x="79.2" y="117.4" text-anchor="middle" font-size="8" fill="#1d2430">11752</text>
+<line x1="96.7" y1="122.4" x2="120.0" y2="122.4" stroke="#d8cfbf" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="79.2" y="249" text-anchor="middle" font-size="8" fill="#4a5568" transform="rotate(-30 79.2 249)">Egypt</text>
+<rect x="120.0" y="87.4" width="35.0" height="35.0" fill="#0d6b57" opacity="0.85" rx="1"/>
+<text x="137.5" y="82.4" text-anchor="middle" font-size="8" fill="#1d2430">3654</text>
+<line x1="155.0" y1="87.4" x2="178.3" y2="87.4" stroke="#d8cfbf" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="137.5" y="249" text-anchor="middle" font-size="8" fill="#4a5568" transform="rotate(-30 137.5 249)">South Afri</text>
+<rect x="178.3" y="79.7" width="35.0" height="7.7" fill="#0d6b57" opacity="0.85" rx="1"/>
+<text x="195.8" y="74.7" text-anchor="middle" font-size="8" fill="#1d2430">809</text>
+<line x1="213.3" y1="79.7" x2="236.7" y2="79.7" stroke="#d8cfbf" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="195.8" y="249" text-anchor="middle" font-size="8" fill="#4a5568" transform="rotate(-30 195.8 249)">Uganda</text>
+<rect x="236.7" y="72.1" width="35.0" height="7.5" fill="#0d6b57" opacity="0.85" rx="1"/>
+<text x="254.2" y="67.1" text-anchor="middle" font-size="8" fill="#1d2430">788</text>
+<line x1="271.7" y1="72.1" x2="295.0" y2="72.1" stroke="#d8cfbf" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="254.2" y="249" text-anchor="middle" font-size="8" fill="#4a5568" transform="rotate(-30 254.2 249)">Kenya</text>
+<rect x="295.0" y="67.0" width="35.0" height="5.2" fill="#0d6b57" opacity="0.85" rx="1"/>
+<text x="312.5" y="62.0" text-anchor="middle" font-size="8" fill="#1d2430">540</text>
+<line x1="330.0" y1="67.0" x2="353.3" y2="67.0" stroke="#d8cfbf" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="312.5" y="249" text-anchor="middle" font-size="8" fill="#4a5568" transform="rotate(-30 312.5 249)">Tunisia</text>
+<rect x="353.3" y="40.0" width="35.0" height="27.0" fill="#0d6b57" opacity="0.85" rx="1"/>
+<text x="370.8" y="35.0" text-anchor="middle" font-size="8" fill="#1d2430">2814</text>
+<text x="370.8" y="249" text-anchor="middle" font-size="8" fill="#4a5568" transform="rotate(-30 370.8 249)">Others</text>
+</svg></div>
+      <div class="chart-cell"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" style="max-width:400px;font-family:Georgia,'Times New Roman',serif;">
+<rect width="400" height="300" fill="#fffdf8" rx="4"/>
+<text x="200" y="22" text-anchor="middle" font-size="14" font-weight="700" fill="#1d2430">Enrollment Density</text>
+<polygon points="11.3,160.0 11.3,159.6 16.0,159.2 20.6,158.6 25.2,157.6 29.9,156.1 34.5,153.8 39.2,150.5 43.8,146.0 48.5,140.2 53.1,133.0 57.8,124.5 62.4,115.1 67.0,105.1 71.7,95.2 76.3,86.0 81.0,78.0 85.6,71.7 90.3,67.2 94.9,64.7 99.6,64.0 104.2,64.7 108.9,66.5 113.5,69.1 118.1,72.2 122.8,75.8 127.4,79.6 132.1,83.8 136.7,88.3 141.4,93.1 146.0,98.1 150.7,103.1 155.3,108.1 159.9,112.8 164.6,117.0 169.2,120.7 173.9,123.8 178.5,126.4 183.2,128.6 187.8,130.5 192.5,132.3 197.1,134.0 201.8,135.8 206.4,137.8 211.0,139.9 215.7,142.0 220.3,144.3 225.0,146.6 229.6,148.8 234.3,150.9 238.9,152.8 243.6,154.5 248.2,155.9 252.8,157.1 257.5,158.0 262.1,158.6 266.8,159.1 271.4,159.5 276.1,159.7 280.7,159.8 285.4,159.9 285.4,160.0" fill="#c0392b" opacity="0.3" stroke="#c0392b" stroke-width="1.5"/>
+<text x="75" y="124.0" text-anchor="end" font-size="10" fill="#1d2430">Africa</text>
+<polygon points="-85.5,280.0 -85.5,279.8 -74.8,279.7 -64.1,279.5 -53.4,279.2 -42.7,278.6 -32.0,277.8 -21.3,276.7 -10.5,275.2 0.2,273.2 10.9,270.6 21.6,267.6 32.3,264.1 43.0,260.3 53.7,256.4 64.5,252.6 75.2,249.1 85.9,246.2 96.6,244.0 107.3,242.6 118.0,241.9 128.7,241.9 139.4,242.4 150.2,243.3 160.9,244.4 171.6,245.6 182.3,246.9 193.0,248.2 203.7,249.4 214.4,250.7 225.2,252.0 235.9,253.4 246.6,254.9 257.3,256.3 268.0,257.8 278.7,259.3 289.4,260.6 300.1,261.8 310.9,262.9 321.6,263.9 332.3,264.7 343.0,265.5 353.7,266.3 364.4,267.2 375.1,268.1 385.9,269.2 396.6,270.3 407.3,271.6 418.0,272.9 428.7,274.2 439.4,275.3 450.1,276.4 460.8,277.3 471.6,278.1 482.3,278.7 493.0,279.1 503.7,279.4 514.4,279.6 525.1,279.8 535.8,279.9 546.6,279.9 546.6,280.0" fill="#4a5568" opacity="0.3" stroke="#4a5568" stroke-width="1.5"/>
+<text x="75" y="244.0" text-anchor="end" font-size="10" fill="#1d2430">Reference</text>
+<text x="132.6" y="294" text-anchor="middle" font-size="9" fill="#4a5568">1000</text>
+<text x="185.9" y="294" text-anchor="middle" font-size="9" fill="#4a5568">2000</text>
+<text x="239.2" y="294" text-anchor="middle" font-size="9" fill="#4a5568">3000</text>
+<text x="292.5" y="294" text-anchor="middle" font-size="9" fill="#4a5568">4000</text>
+<text x="345.9" y="294" text-anchor="middle" font-size="9" fill="#4a5568">5000</text>
+</svg></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="context-label">Why It Matters</div>
+    <p class="context">African men have the highest prostate cancer mortality globally, with distinct genomic profiles that require Africa-specific precision medicine trials rather than extrapolation from European data.</p>
+  </div>
+
+  <div class="card">
+    <div class="section-label">The Evidence &nbsp; <span class="word-badge">133 words &middot; target 156</span></div>
+    <div class="body-text">In the burden-versus-investment landscape of African health research, does the distribution of prostate cancer trials across African nations reveal a systematic research gap? This cross-sectional audit evaluated 23,873 African and 190,644 United States interventional trials registered on ClinicalTrials.gov through April 2026. Investigators computed the rate ratio comparing Africa to other regions as the primary estimand using registry metadata for each nation. Africa hosted 48 prostate cancer trials (0.2% of its portfolio) compared to 3,279 in the United States, yielding a 0.0-fold disparity in per-population investment. Shannon entropy of the trial distribution was 2.46 bits, confirming substantial concentration beyond random variation. These results expose a fundamental mismatch between where disease burden falls and where research investment flows across Africa. Interpretation is limited by reliance on ClinicalTrials.gov alone, which may undercount locally registered African studies.</div>
+    <div class="color-strip" aria-hidden="true"><div style="background:#1b4f72;"></div><div style="background:#0e6251;"></div><div style="background:#4a235a;"></div><div style="background:#922b21;"></div><div style="background:#7e5109;"></div><div style="background:#0b5345;"></div><div style="background:#566573;"></div></div>
+  </div>
+
+  <div class="card">
+    <div class="section-label">Sentence Structure</div>
+    <div class="sentence" style="border-left-color:#1b4f72;"><span class="role-tag" style="color:#1b4f72;">Question</span><p>In the burden-versus-investment landscape of African health research, does the distribution of prostate cancer trials across African nations reveal a systematic research gap?</p></div><div class="sentence" style="border-left-color:#0e6251;"><span class="role-tag" style="color:#0e6251;">Dataset</span><p>This cross-sectional audit evaluated 23,873 African and 190,644 United States interventional trials registered on ClinicalTrials.</p></div><div class="sentence" style="border-left-color:#4a235a;"><span class="role-tag" style="color:#4a235a;">Method</span><p>gov through April 2026.</p></div><div class="sentence" style="border-left-color:#922b21;"><span class="role-tag" style="color:#922b21;">Primary Result</span><p>Investigators computed the rate ratio comparing Africa to other regions as the primary estimand using registry metadata for each nation.</p></div><div class="sentence" style="border-left-color:#7e5109;"><span class="role-tag" style="color:#7e5109;">Robustness</span><p>Africa hosted 48 prostate cancer trials (0.</p></div><div class="sentence" style="border-left-color:#0b5345;"><span class="role-tag" style="color:#0b5345;">Interpretation</span><p>2% of its portfolio) compared to 3,279 in the United States, yielding a 0.</p></div><div class="sentence" style="border-left-color:#566573;"><span class="role-tag" style="color:#566573;">Boundary</span><p>0-fold disparity in per-population investment.</p></div><div class="sentence" style="border-left-color:#566573;"><span class="role-tag" style="color:#566573;">Extra</span><p>Shannon entropy of the trial distribution was 2.</p></div><div class="sentence" style="border-left-color:#566573;"><span class="role-tag" style="color:#566573;">Extra</span><p>46 bits, confirming substantial concentration beyond random variation.</p></div><div class="sentence" style="border-left-color:#566573;"><span class="role-tag" style="color:#566573;">Extra</span><p>These results expose a fundamental mismatch between where disease burden falls and where research investment flows across Africa.</p></div><div class="sentence" style="border-left-color:#566573;"><span class="role-tag" style="color:#566573;">Extra</span><p>Interpretation is limited by reliance on ClinicalTrials.</p></div><div class="sentence" style="border-left-color:#566573;"><span class="role-tag" style="color:#566573;">Extra</span><p>gov alone, which may undercount locally registered African studies.</p></div>
+  </div>
+
+  <div class="links">
+    <a class="link-btn" href="../">Back to Group</a>
+    <a class="link-btn" href="../code/prostate-cancer-genomic.py" download>Download Code (.py)</a>
+    <a class="link-btn" href="https://github.com/mahmood726-cyber/africa-e156-students" target="_blank" rel="noopener noreferrer">GitHub</a>
+  </div>
+
+  <footer class="footer">
+    <p>E156 Format &middot; ClinicalTrials.gov API v2 &middot; https://github.com/mahmood726-cyber/africa-e156-students</p>
+    <p>Mahmood Ahmad &middot; ORCID: 0009-0003-7781-4478</p>
+  </footer>
+</main>
+</body>
+</html>
