@@ -1,0 +1,17 @@
+# Colonial Legacy in Sponsorship
+
+
+
+## References
+
+1. Hedt-Gauthier BL, et al. "Stuck in the middle: authorship in collaborative health research in Africa." BMJ Glob Health. 2019;4:e001853.
+2. Drain PK, et al. "Global migration of clinical trials." Nat Rev Drug Discov. 2018;17:765-766.
+3. ClinicalTrials.gov API v2 Documentation. U.S. National Library of Medicine. https://clinicaltrials.gov/data-api/about-api
+
+## Note Block
+
+- Type: research
+- App: https://mahmood726-cyber.github.io/africa-e156-students/governance-justice/dashboards/colonial-legacy-sponsorship.html
+- Code: https://github.com/mahmood726-cyber/africa-e156-students/blob/master/governance-justice/code/colonial-legacy-sponsorship.py
+- Data: ClinicalTrials.gov API v2
+- Date: 2026-04-07
