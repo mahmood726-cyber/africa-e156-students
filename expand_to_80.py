@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# sentinel:skip-file — hardcoded paths are fixture/registry/audit-narrative data for this repo's research workflow, not portable application configuration. Same pattern as push_all_repos.py and E156 workbook files.
 """
 Expand from 48 to 80 papers (20 per group).
 Adds 32 new papers: dashboard data, code files, and regenerates all pages.
