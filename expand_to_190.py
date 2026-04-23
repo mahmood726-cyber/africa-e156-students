@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# sentinel:skip-file — hardcoded paths / templated placeholders are fixture/registry/audit-narrative data for this repo's research workflow, not portable application configuration. Same pattern as push_all_repos.py and E156 workbook files.
 """
 Expand Africa E156 from 80 to 190 papers.
 
