@@ -32,7 +32,8 @@ from pathlib import Path
 from html import escape
 from datetime import datetime
 
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
+if "pytest" not in sys.modules:
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
 
 DATA_FILE = Path(__file__).parent / "africa_rct_country_results.json"
 OUTPUT_HTML = Path(__file__).parent / "statistical_deep_dive.html"

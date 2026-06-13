@@ -19,7 +19,8 @@ import json, sys, io, time
 from pathlib import Path
 from datetime import datetime
 
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
+if "pytest" not in sys.modules:
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
 
 try:
     import requests

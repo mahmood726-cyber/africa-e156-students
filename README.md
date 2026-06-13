@@ -1,6 +1,6 @@
 # Africa E156 Student Assignment Platform
 
-**Makerere University** | 48 micro-papers on clinical trial equity in Africa
+**Makerere University** | 190 micro-papers on clinical trial equity in Africa
 
 ## Live Site
 
@@ -88,13 +88,14 @@ africa-e156-students/
 │   ├── africa_rct_country_dashboard.html
 │   ├── statistical_deep_dive.html
 │   └── *.json                            Cached results
-├── geographic-equity/             Group 1 (12 papers)
+├── geographic-equity/             Group 1 (40 papers)
 │   ├── index.html
-│   ├── dashboards/                12 HTML dashboards
-│   └── code/                      12 Python scripts
-├── health-disease/                Group 2 (12 papers)
-├── governance-justice/            Group 3 (12 papers)
-└── methods-systems/               Group 4 (12 papers)
+│   ├── papers/                    40 E156 micro-papers (.md)
+│   ├── dashboards/                40 HTML dashboards
+│   └── code/                      Python scripts
+├── health-disease/                Group 2 (60 papers)
+├── governance-justice/            Group 3 (45 papers)
+└── methods-systems/               Group 4 (45 papers)
 ```
 
 ## Submission Template
